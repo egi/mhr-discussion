@@ -5,7 +5,7 @@
 // run this with no secret. Findings print a location and DENYLIST_HIT, never the
 // matched token.
 //
-// Usage: node scripts/check-denylist.mjs [--root <dir>] [--denylist <file>] [--history]
+// Usage: node scripts/check-denylist.mjs [--root <dir>] [--denylist <file>] [--history] [--allow-empty]
 
 import { createHash } from 'node:crypto';
 import { spawn, execFileSync } from 'node:child_process';
@@ -52,6 +52,12 @@ export function loadDenylist(file) {
   };
 }
 
+/** A path that itself contains a denied token is shown as a short hash, never verbatim. */
+function showPath(hit, path) {
+  if (!hit(path)) return path;
+  return `<redacted-path:${createHash('sha256').update(path).digest('hex').slice(0, 8)}>`;
+}
+
 function makeMatcher(list) {
   const memo = new Map();
   return (text) => {
@@ -81,7 +87,8 @@ export function scanTree(root, list, denylistFile) {
     .filter(Boolean);
   for (const name of names) {
     if (name === skip) continue;
-    if (hit(name)) findings.push(`${name}:name`);
+    const shown = showPath(hit, name);
+    if (shown !== name) findings.push(`${shown}:name`);
     let buf;
     try {
       const abs = join(root, name);
@@ -93,7 +100,7 @@ export function scanTree(root, list, denylistFile) {
     if (buf.includes(0)) continue;
     const lines = buf.toString('utf8').split('\n');
     for (let i = 0; i < lines.length; i++) {
-      if (hit(lines[i])) findings.push(`${name}:${i + 1}`);
+      if (hit(lines[i])) findings.push(`${shown}:${i + 1}`);
     }
   }
   return findings;
@@ -138,8 +145,8 @@ export function scanHistory(root, list) {
       }
       if (region !== 'diff') return;
       if (text.startsWith('+++ ')) {
-        file = text.slice(4).replace(/^b\//, '');
-        if (hit(file)) findings.push(`commit ${commit} ${file}:name`);
+        file = showPath(hit, text.slice(4).replace(/^b\//, ''));
+        if (file.startsWith('<redacted-path:')) findings.push(`commit ${commit} ${file}:name`);
         return;
       }
       if (text.startsWith('--- ') || text.startsWith('diff --git')) return;
@@ -160,11 +167,12 @@ export function scanHistory(root, list) {
 }
 
 function parseArgs(argv) {
-  const opts = { root: process.cwd(), denylist: null, history: false };
+  const opts = { root: process.cwd(), denylist: null, history: false, allowEmpty: false };
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--root') opts.root = resolve(argv[++i]);
     else if (argv[i] === '--denylist') opts.denylist = resolve(argv[++i]);
     else if (argv[i] === '--history') opts.history = true;
+    else if (argv[i] === '--allow-empty') opts.allowEmpty = true;
   }
   opts.denylist ??= join(opts.root, 'scripts', 'denylist.json');
   return opts;
@@ -174,7 +182,11 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2));
   const list = loadDenylist(opts.denylist);
   console.log(`denylist entries: ${list.hashes.size}`);
-  if (list.hashes.size === 0) return 0;
+  if (list.hashes.size === 0) {
+    if (opts.allowEmpty) return 0;
+    console.error('denylist: no entries, so this gate checks nothing (pass --allow-empty to accept that)');
+    return 1;
+  }
   const findings = opts.history ? await scanHistory(opts.root, list) : scanTree(opts.root, list, opts.denylist);
   for (const f of findings) console.log(`DENYLIST_HIT ${f}`);
   if (findings.length > 0) {

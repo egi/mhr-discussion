@@ -87,12 +87,27 @@ describe('check-denylist', () => {
     expect(r.out).toContain('denylist entries: 1');
   });
 
-  it('passes with an empty denylist', () => {
+  it('fails with an empty denylist unless --allow-empty is given', () => {
     const repo = makeRepo();
     writeFileSync(join(repo, 'a.txt'), `${TOKEN}\n`);
     const r = runCheck(repo, writeDenylist([]));
-    expect(r.code).toBe(0);
+    expect(r.code).toBe(1);
     expect(r.out).toContain('denylist entries: 0');
+    expect(runCheck(repo, writeDenylist([]), '--allow-empty').code).toBe(0);
+  });
+
+  it('never prints a path that contains a denied token (tree and history)', () => {
+    const repo = makeRepo();
+    writeFileSync(join(repo, `${TOKEN}-notes.txt`), 'nothing here\n');
+    git(repo, 'add', '-A');
+    git(repo, 'commit', '-q', '-m', 'add');
+    const dl = writeDenylist([hashToken(SALT, TOKEN)]);
+    for (const extra of [[], ['--history']]) {
+      const r = runCheck(repo, dl, ...extra);
+      expect(r.code).toBe(1);
+      expect(r.out).toContain('<redacted-path:');
+      expect(r.out).not.toContain(TOKEN);
+    }
   });
 
   it('never scans the denylist file itself', () => {
