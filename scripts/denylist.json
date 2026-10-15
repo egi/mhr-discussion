@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "algorithm": "sha256",
+  "minTokenLength": 3,
+  "salt": "50bd100fc93765d76482c7be85308f65",
+  "note": "Obfuscation, not secrecy: a determined attacker with a candidate list of names can confirm membership (accepted, D-15). hash = sha256 hex of salt + ':' + lowercased token. Add entries with: node scripts/denylist-add.mjs < names.txt",
+  "hashes": [
+    "28f80d407cbd1194776342b4a82ae3f2c9b8e0ad156b63ccd987b1e0b0ebc4c7",
+    "2b2bd1058795c632720b354a12c4e780ab50936e185456012873c5b83b5581a3",
+    "45d1499cea35449918847147ddc9597089e7e60ddc61296a0d653c0c53e2a1e9",
+    "464e432b4fd26a808c08e6a81aa5a88923dbb8970c658af1c1a706f0eecb63c5",
+    "4b4e0442ee2521c6808996ae9265143ba17658b38b26b8fc9fc4068c87208f1e",
+    "4cd979dbb10ccc76c7a4e17ca1dd9993d148b2957d6d6932df7c765c6c04a731",
+    "6369d9294ef00e8b05af41f236b540be012ec3a19040367125d75bce79ba4b2b",
+    "9ce6f6cb09243ade7b6f2b048ffb2c0e750bf6fd9cfc0aeeb0ea3a23350fddf9",
+    "9ea4d1b74e587188b568e3ba653e484cd1129394d755604a047c662de3b99022",
+    "bbf024e30d0b75511c7ae7666509c10bde4fde39d7c9c52f4f84eba55cf21113",
+    "d06acf38aee9afd3b9c8ee5320015c6cab56fed7e953c2ef363e7df9102527f6",
+    "d62836a756e0d1bc0e133d89d1f344801f00ea7bbfd9f6bb91c080911849e1d3",
+    "d76d3ac5dbbfdba2b23dbc28842148ef166310dd31d132ebcca45e08bc1b0afc"
+  ]
+}

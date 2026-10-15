@@ -1,0 +1,25 @@
+{
+  "name": "mhr-discussion",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.6.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "pretest": "node scripts/assert-node-version.mjs",
+    "test": "vitest run",
+    "typecheck": "pnpm -r typecheck",
+    "lint:boundaries": "bash scripts/check-boundary-control.sh && pnpm exec depcruise -c .dependency-cruiser.cjs -T err-long packages",
+    "check:data": "node scripts/check-no-card-data.mjs --self-test && node scripts/check-no-card-data.mjs",
+    "ci": "pnpm typecheck && pnpm test && pnpm lint:boundaries && pnpm check:data && pnpm check:privacy",
+    "check:privacy": "node scripts/check-denylist.mjs",
+    "scan:history": "bash scripts/gitleaks-scan.sh history",
+    "check:publish": "node scripts/check-publish-ready.mjs"
+  },
+  "devDependencies": {
+    "dependency-cruiser": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

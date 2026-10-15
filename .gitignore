@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Review and history-rewrite report outputs
+gitleaks-report.json
+filter-repo-report.txt
+.git/filter-repo/

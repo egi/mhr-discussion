@@ -1,0 +1,23 @@
+/**
+ * BP01-060, a character that weakens the opposing FRONT character when it is called.
+ *
+ * Printed text (official card):
+ *
+ *   TRIG【FIELD】: When this card enters the field by calling, your opponent's character in
+ *   FRONT gets Power-1000 in this turn.
+ *
+ * The script lowers the Power of the opposing character in the FRONT lane by 1000 until the
+ * end of the turn. With no opposing FRONT character there is nothing to lower and the effect
+ * cannot run.
+ */
+
+import { asCardNo } from '@mhr/core';
+import { characters, effect, power, select } from '../combinators';
+import type { EffectIR } from '../ir';
+
+export const CARD_NO = asCardNo('BP01-060');
+
+/** The effect's IR. */
+export function script(): EffectIR {
+  return effect(CARD_NO, power(select('opponent', 'FRONT', characters()), -1000));
+}

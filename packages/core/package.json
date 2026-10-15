@@ -1,0 +1,20 @@
+{
+  "name": "@mhr/core",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "pretest": "node ../../scripts/assert-node-version.mjs",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  }
+}

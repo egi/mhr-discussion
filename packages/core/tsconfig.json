@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // Same boundary as the engine: the shared leaf compiles against ES2023 only,
+    // so the DOM lib can never legalise `document` or `window` here. Core has no
+    // byte-level code, so it needs no `esnext.typedarrays` either.
+    "lib": ["ES2023"],
+    // Load-bearing: an empty allow-list keeps @types/node (installed at the
+    // workspace root) from making `process` and `Buffer` type-check in core.
+    "types": []
+  }
+}

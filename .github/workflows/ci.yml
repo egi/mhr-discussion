@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      # Full history: the privacy gate scans every commit, not just the tip.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run ci
+      # No third-party gitleaks action and no repository secret: forks and pull
+      # requests run exactly the same gate.
+      - name: Install gitleaks
+        run: |
+          bash scripts/install-gitleaks.sh "$RUNNER_TEMP/bin"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+      - name: Prove every privacy rule fires
+        run: bash scripts/check-gate-control.sh
+      - name: Scan full history with gitleaks
+        run: bash scripts/gitleaks-scan.sh history
+      - name: Check member denylist over full history
+        run: node scripts/check-denylist.mjs --history

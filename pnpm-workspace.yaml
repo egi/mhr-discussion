@@ -1,0 +1,25 @@
+# pnpm 12 reads ONLY this file for workspace package globs and version catalogs.
+packages:
+  - 'packages/*'
+
+# `strict` makes an out-of-catalog version an ERROR instead of a warning.
+catalogMode: 'strict'
+
+# Versions mirror the simulator's catalog exactly. `typescript` stays on 6.0.x because
+# typescript-eslint declares peerDependencies.typescript ">=4.8.4 <6.1.0".
+catalog:
+  typescript: 6.0.2
+  dependency-cruiser: 18.4.0
+  vitest: 5.0.2
+  zod: 4.6.5
+  '@mhr/core': workspace:*
+
+minimumReleaseAgeExclude:
+  - '@vitest/mocker@5.0.2'
+  - '@vitest/spy@5.0.2'
+  - vitest@5.0.2
+
+# pnpm runs no dependency build scripts unless approved here. esbuild is the native
+# binary behind vite and vitest.
+allowBuilds:
+  esbuild: true

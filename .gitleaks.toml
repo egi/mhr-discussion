@@ -1,0 +1,79 @@
+# Privacy gate rules for the public repository.
+#
+# Scope: personal data (phone numbers, chat-export lines), vendor hosts and
+# signed URLs, and card-art files. Member names and the head-judge handle are
+# NOT enforced here (a regex cannot match against hashes); they are enforced by
+# scripts/check-denylist.mjs against salted hashes. Card text is deliberately not
+# a rule: it cannot be told apart from rules prose mechanically, so it is covered
+# by manual review (see CONTRIBUTING).
+#
+# The patterns below are written so that this file's own text does not match
+# them (escaped dots, \s in place of literal spaces).
+
+title = "mhr-discussion privacy gate"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "phone-id"
+description = "Indonesian mobile number (+62, 62 or 08 form)"
+regex = '''(?:^|[^0-9A-Za-z])(?:\+62|62|0)[\s.\-]?8[0-9]{2}[\s.\-]?[0-9]{3,4}[\s.\-]?[0-9]{2,5}(?:[^0-9]|$)'''
+
+[[rules]]
+id = "phone-intl-spaced"
+description = "International number written with separators"
+regex = '''(?:^|[^0-9A-Za-z])\+[1-9][0-9]{0,2}[\s.\-]\(?[0-9]{1,4}\)?[\s.\-][0-9]{2,5}(?:[\s.\-][0-9]{2,5})*'''
+
+[[rules]]
+id = "whatsapp-export-line"
+description = "Chat export line: timestamp, sender, colon"
+regex = '''(?m)^\s*\[?[0-9]{1,2}[/.][0-9]{1,2}[/.][0-9]{2,4},?\s+[0-9]{1,2}[:.][0-9]{2}(?:[:.][0-9]{2})?(?:\s?[APap][Mm])?\]?\s*(?:-\s+)?[^:\n]{1,60}:\s'''
+
+[[rules]]
+id = "whatsapp-export-markers"
+description = "Chat export marker text"
+regex = '''(?i)(?:<media\s+omitted>|\(file\s+attached\)|<attached:\s[^>]*>|messages\s+and\s+calls\s+are\s+end-to-end\s+encrypted)'''
+
+[[rules]]
+id = "vendor-hosts"
+description = "Vendor card-art or API host"
+regex = '''(?i)(?:janime\.cn|marvelherorush\.com|marvel-tcg\.)'''
+
+[[rules]]
+id = "signed-url-query"
+description = "URL carrying a signature or expiring token in its query"
+regex = '''(?i)https?://[^\s"'<>]*[?&](?:token|signature|x-amz-signature|expires|e)=[A-Za-z0-9_\-%.~]{6,}'''
+
+# Note: the default config allowlists png, jpg, gif, bmp and tif paths, which
+# disables this rule for them. scripts/check-art-paths.sh covers every extension
+# and runs alongside gitleaks in scripts/gitleaks-scan.sh.
+[[rules]]
+id = "card-art-file"
+description = "Image file (card art must never be committed)"
+path = '''(?i)\.(?:png|jpe?g|webp|gif|avif|bmp|tiff?)$'''
+
+[[rules]]
+id = "card-art-directory"
+description = "Card image directory"
+path = '''(?i)(?:^|/)images?/cards(?:/|$)'''
+
+# Exact-path allowlists. Each is limited to one file, one rule and one value
+# shape, so no rule category is switched off.
+
+# Invented 24-hex image keys in the core schema test are fixture identifiers.
+[[allowlists]]
+description = "schema.test.ts: synthetic image keys"
+condition = "AND"
+targetRules = ["generic-api-key"]
+paths = ['''^packages/core/src/cards/schema\.test\.ts$''']
+regexes = ['''^[0-9a-f]{24}$''']
+
+# The schema test feeds a made-up signed URL on the reserved .test TLD.
+[[allowlists]]
+description = "schema.test.ts: synthetic signed URL on a reserved example host"
+condition = "AND"
+targetRules = ["signed-url-query"]
+paths = ['''^packages/core/src/cards/schema\.test\.ts$''']
+regexTarget = "match"
+regexes = ['''https://cdn\.example\.test/''']
