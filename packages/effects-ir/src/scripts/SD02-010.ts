@@ -10,11 +10,21 @@
  * BASE, face up. With no such character the effect cannot run.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import { characters, effect, relocate, select } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD02-010');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger
+    { key: asRuleKey('301.12.a'), reviewedHash: 'dadfa25956d9' }, // place face-up
+    { key: asRuleKey('302.6.a'), reviewedHash: 'a0baa15958d8' }, // BASE area
+  ],
+  rulings: [],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {

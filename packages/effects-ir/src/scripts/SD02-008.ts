@@ -13,7 +13,7 @@
  * limit, not an effect, and is not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   characters,
   cover,
@@ -25,9 +25,22 @@ import {
   statMod,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD02-008');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves
+    { key: asRuleKey('303.2.a.6.1.2'), reviewedHash: '06effe272462' }, // this-turn effects end
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
