@@ -11,11 +11,22 @@
  * EFFECT_UNSUPPORTED and the card is played by hand.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import { characters, effect, restrict, select } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-050');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger timing
+    { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // movement prevention blocks swap
+  ],
+  rulings: [
+    { discussion: '04', rule: asRuleKey('301.18.h') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
