@@ -12,7 +12,7 @@
  * hand. The "once per turn" limit is a use limit, not an effect, and is not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   cover,
   draw,
@@ -23,9 +23,23 @@ import {
   source,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD02-005');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves
+    { key: asRuleKey('301.15.a.3'), reviewedHash: '9ac3aa7c9412' }, // discard from deck
+    { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
