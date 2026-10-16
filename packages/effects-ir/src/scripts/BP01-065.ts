@@ -10,11 +10,21 @@
  * BASE. A DECK with fewer than two cards cannot satisfy it.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import { ANY_CARD, effect, relocate, select } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-065');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger timing
+    { key: asRuleKey('301.13.a'), reviewedHash: 'ece044bdbe4a' }, // SET cards face-down
+    { key: asRuleKey('302.6.a'), reviewedHash: 'a0baa15958d8' }, // BASE limit
+  ],
+  rulings: [],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
