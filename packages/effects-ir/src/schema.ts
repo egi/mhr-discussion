@@ -17,6 +17,7 @@ import { z } from 'zod';
 import { CardColorSchema, CardNoSchema } from '@mhr/core';
 import {
   EFFECT_AREAS,
+  EFFECT_TRIGGER_EVENTS,
   EFFECT_DECK_ENDS,
   EFFECT_DESTINATION_AREAS,
   EFFECT_DIG_REMAINDERS,
@@ -173,10 +174,16 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('optional'), op: EffectOpRef }),
 ]);
 
+export const EffectTriggerSchema = z.strictObject({
+  event: z.enum(EFFECT_TRIGGER_EVENTS),
+  area: AreaSchema,
+});
+
 export const EffectIRSchema = z.strictObject({
   cardNo: CardNoSchema,
   rulesVersion: z.string().min(1),
   op: EffectOpSchema,
+  trigger: EffectTriggerSchema.optional(),
 });
 
 export type EffectIR = z.infer<typeof EffectIRSchema>;

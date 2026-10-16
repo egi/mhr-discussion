@@ -7,6 +7,7 @@ export {
   EffectFilterSchema,
   EffectIRSchema,
   EffectOpSchema,
+  EffectTriggerSchema,
   EffectTargetSchema,
   effectIRAgrees,
   effectOpAgrees,

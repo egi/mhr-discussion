@@ -29,6 +29,8 @@ import type {
   EffectSide,
   EffectStat,
   EffectStep,
+  EffectTrigger,
+  EffectTriggerEvent,
   EffectStepGate,
   EffectTarget,
 } from './ir';
@@ -228,6 +230,16 @@ export function optional(op: EffectOp): EffectOp {
 // --- the script envelope ---------------------------------------------------------------------
 
 /** Wrap an op as the IR of one card's effect, stamped with the current rules revision. */
-export function effect(cardNo: CardNo, op: EffectOp): EffectIR {
-  return { cardNo, rulesVersion: EFFECT_RULES_VERSION, op };
+export function effect(cardNo: CardNo, op: EffectOp, trigger?: EffectTrigger): EffectIR {
+  return {
+    cardNo,
+    rulesVersion: EFFECT_RULES_VERSION,
+    op,
+    ...(trigger === undefined ? {} : { trigger }),
+  };
+}
+
+/** Tag a script with the action outcome it fires on and the area its card must stand in. */
+export function trigger(event: EffectTriggerEvent, area: EffectArea): EffectTrigger {
+  return { event, area };
 }

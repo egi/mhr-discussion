@@ -13,6 +13,7 @@ import {
   effect,
   grantAbility,
   ifDone,
+  trigger,
   mill,
   optional,
   power,
@@ -98,5 +99,19 @@ describe('combinators', () => {
       const ir = effect(c.cardNo, power(select('self', 'BATTLE', filter), 1000));
       expect(EffectIRSchema.safeParse(ir).success).toBe(true);
     }
+  });
+});
+
+describe('effect trigger tag', () => {
+  const op = draw('self', 1);
+
+  it('omits the trigger key when none is given', () => {
+    expect('trigger' in effect(card.cardNo, op)).toBe(false);
+  });
+
+  it('carries the tag when given and still parses', () => {
+    const ir = effect(card.cardNo, op, trigger('enters-field-by-call', 'FIELD'));
+    expect(ir.trigger).toEqual({ event: 'enters-field-by-call', area: 'FIELD' });
+    expect(EffectIRSchema.safeParse(ir).success).toBe(true);
   });
 });

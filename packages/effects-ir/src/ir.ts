@@ -61,6 +61,38 @@ export const EFFECT_AREAS = [
 ] as const;
 export type EffectArea = (typeof EFFECT_AREAS)[number];
 
+/**
+ * The engine action outcomes a script can be tagged with. Append-only: a stored tag must
+ * keep its meaning.
+ * - `enters-field-by-call`: the card was CALLed onto the field (a structural `call` action;
+ *   a COUNTER CALL is the same action).
+ * - `enters-field`: the card entered the field; today the engine can only express that as a
+ *   CALL, so it fires on CALL only.
+ * - `attacks`: the card was the attacker of a structural `attack`.
+ * - `base-move`: a structural `base-move` where exactly one end is a BATTLE lane and the
+ *   other is the BASE (301.24.a); BASE-to-BASE rearrangement does not count.
+ * - `activate`: a player-initiated Activated Effect (201.10.f.2).
+ * - `activate-counter`: a COUNTER-Activated Effect (201.10.f.3).
+ */
+export const EFFECT_TRIGGER_EVENTS = [
+  'enters-field-by-call',
+  'enters-field',
+  'attacks',
+  'base-move',
+  'activate',
+  'activate-counter',
+] as const;
+export type EffectTriggerEvent = (typeof EFFECT_TRIGGER_EVENTS)[number];
+
+/**
+ * When a script fires on its own: the event, and the Effect Location the card must stand in
+ * when the event happens (201.10.d.2).
+ */
+export type EffectTrigger = {
+  readonly event: EffectTriggerEvent;
+  readonly area: EffectArea;
+};
+
 /** Where a relocated card can end up. The deck is addressed by end, as the text does. */
 export const EFFECT_DESTINATION_AREAS = [
   'FIELD',
@@ -317,6 +349,11 @@ export type EffectIR = {
   readonly cardNo: CardNo;
   readonly rulesVersion: string;
   readonly op: EffectOp;
+  /**
+   * ABSENT means the timing is not modelled and the effect is manual only. Event values are
+   * append-only.
+   */
+  readonly trigger?: EffectTrigger | undefined;
 };
 
 /** An authored card script: a pure function producing the card's effect IR. */
