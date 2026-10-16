@@ -10,7 +10,7 @@
  * down into the BASE.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   ANY_CARD,
   draw,
@@ -21,9 +21,23 @@ import {
   sequence,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-077');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger
+    { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw
+    { key: asRuleKey('301.13.a'), reviewedHash: 'ece044bdbe4a' }, // set face-down
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {

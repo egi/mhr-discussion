@@ -14,7 +14,7 @@
  * "once per turn" limit is a use limit, not an effect, and is not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   ANY_CARD,
   characters,
@@ -23,9 +23,19 @@ import {
   relocate,
   select,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-074');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves
+    { key: asRuleKey('301.12.a'), reviewedHash: 'dadfa25956d9' }, // place face-up into field
+  ],
+  rulings: [
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
