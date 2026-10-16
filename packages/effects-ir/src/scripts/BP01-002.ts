@@ -22,6 +22,7 @@ import {
   sequence,
   source,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -49,5 +50,6 @@ export function script(): EffectIR {
       step(discard(source())),
       ifDone(power(select('opponent', 'BATTLE', characters()), -2000)),
     ),
+    trigger('activate-counter', 'HAND'),
   );
 }

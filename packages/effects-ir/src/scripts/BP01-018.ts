@@ -13,7 +13,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, conditional, effect, power, select } from '../combinators';
+import { characters, conditional, effect, power, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -35,5 +35,6 @@ export function script(): EffectIR {
       { kind: 'fewer-than-opponent', area: 'BATTLE', filter: characters() },
       power(select('opponent', 'BATTLE', characters({ lvMax: 3 })), -2000),
     ),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

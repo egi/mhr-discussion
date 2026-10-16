@@ -12,7 +12,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, effect, power, select } from '../combinators';
+import { characters, effect, power, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -30,5 +30,9 @@ export const RULE_DECLARATION = declareRules({
 
 /** The effect's IR. */
 export function script(): EffectIR {
-  return effect(CARD_NO, power(select('opponent', 'FRONT', characters()), -1000));
+  return effect(
+    CARD_NO,
+    power(select('opponent', 'FRONT', characters()), -1000),
+    trigger('enters-field-by-call', 'FIELD'),
+  );
 }

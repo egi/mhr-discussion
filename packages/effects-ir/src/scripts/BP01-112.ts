@@ -11,7 +11,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { ANY_CARD, effect, retreat, select } from '../combinators';
+import { ANY_CARD, effect, retreat, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -31,5 +31,6 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     retreat(select('opponent', 'BASE', { ...ANY_CARD, faceDown: true })),
+    trigger('enters-field', 'FIELD'),
   );
 }

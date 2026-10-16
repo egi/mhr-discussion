@@ -21,6 +21,7 @@ import {
   select,
   sequence,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -50,5 +51,6 @@ export function script(): EffectIR {
         ifDone(draw('self', 2)),
       ),
     ),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

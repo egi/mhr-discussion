@@ -22,6 +22,7 @@ import {
   sequence,
   statMod,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -52,5 +53,6 @@ export function script(): EffectIR {
         statMod(select('opponent', 'BATTLE', characters()), 'power', -1000, 'discarded-lv-total'),
       ),
     ),
+    trigger('enters-field', 'FIELD'),
   );
 }

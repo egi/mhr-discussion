@@ -19,6 +19,7 @@ import {
   optional,
   relocate,
   select,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -48,5 +49,6 @@ export function script(): EffectIR {
         }),
       ),
     ),
+    trigger('enters-field-by-call', 'BATTLE'),
   );
 }

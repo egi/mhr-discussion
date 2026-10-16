@@ -20,6 +20,7 @@ import {
   select,
   sequence,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -49,5 +50,6 @@ export function script(): EffectIR {
         relocate(select('self', 'DECK', ANY_CARD), { side: 'self', area: 'BASE', faceDown: true }),
       ),
     ),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

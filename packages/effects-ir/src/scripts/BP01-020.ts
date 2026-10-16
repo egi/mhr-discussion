@@ -20,6 +20,7 @@ import {
   select,
   sequence,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -44,5 +45,6 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     sequence(step(prune(select('self', 'RETREAT', colored('red')))), ifDone(draw('self', 1))),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

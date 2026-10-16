@@ -12,7 +12,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, conditional, effect, power, source } from '../combinators';
+import { characters, conditional, effect, power, source, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -34,5 +34,6 @@ export function script(): EffectIR {
       { kind: 'subject-matches', filter: characters({ lvMin: 4 }) },
       power(source(), 1500),
     ),
+    trigger('attacks', 'BATTLE'),
   );
 }
