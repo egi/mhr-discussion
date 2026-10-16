@@ -13,7 +13,7 @@
  * card is played by hand. The once-per-turn limit is a use limit, not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   ANY_CARD,
   characters,
@@ -26,9 +26,24 @@ import {
   sequence,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SP01-043');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('201.10.f.3'), reviewedHash: 'a05bc11524e4' }, // counter activated effect
+    { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves
+    { key: asRuleKey('301.15.a.2'), reviewedHash: '7ff4da381ca1' }, // discard from HAND
+    { key: asRuleKey('301.12.a'), reviewedHash: 'dadfa25956d9' }, // place face-up
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
