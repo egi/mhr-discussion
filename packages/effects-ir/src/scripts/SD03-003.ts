@@ -13,7 +13,7 @@
  * is played by hand. The BATTLE-BASE Move trigger is the envelope that decides when it may run.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   characters,
   effect,
@@ -26,9 +26,24 @@ import {
   source,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD03-003');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
+    { key: asRuleKey('301.24.a'), reviewedHash: '0cb9dd0e8eaa' }, // BATTLE-BASE move
+    { key: asRuleKey('301.12.a'), reviewedHash: 'dadfa25956d9' }, // place face-up
+    { key: asRuleKey('301.16.a.3'), reviewedHash: 'cdc114bcae3f' }, // retreat by effect
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
