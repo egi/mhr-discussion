@@ -9,11 +9,20 @@
  * The script lets the player prune one opposing BATTLE character with Power 4000 or less.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import { characters, effect, optional, prune, select } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-015');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger timing
+    { key: asRuleKey('301.17.a'), reviewedHash: '3200ad9250ee' }, // prune places card in VOID
+  ],
+  rulings: [],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
