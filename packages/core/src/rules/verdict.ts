@@ -66,9 +66,12 @@ export const DiagnosticCodeSchema = z.enum([
   /** A win condition (103.1) is already fulfilled, so the game has ended and no turn action
    * is accepted. */
   'GAME_OVER',
+  /** An action that belongs to one phase (an ordinary Action CALL, 303.2.a.3.1.2) was
+   * offered in another. */
+  'NOT_ACTION_PHASE',
 ]);
 
-/** One of the sixteen stable codes above. */
+/** One of the seventeen stable codes above. */
 export type DiagnosticCode = z.infer<typeof DiagnosticCodeSchema>;
 
 /**
