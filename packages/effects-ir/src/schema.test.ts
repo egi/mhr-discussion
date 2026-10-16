@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { asCardNo } from '@mhr/core';
-import { EFFECT_OP_KINDS, type EffectFilter, type EffectIR, type EffectOp, type EffectTarget } from './ir';
+import { EFFECT_OP_KINDS, EFFECT_TRIGGER_EVENTS, type EffectFilter, type EffectIR, type EffectOp, type EffectTarget } from './ir';
 import { EffectIRSchema, type EffectIR as WireEffectIR } from './schema';
 
 const NO_FILTER: EffectFilter = {
@@ -185,5 +185,40 @@ describe('the schema and the IR types agree', () => {
     const wire: WireEffectIR = ir;
     const back: EffectIR = wire;
     expect(EffectIRSchema.parse(back)).toEqual(ir);
+  });
+});
+
+describe('the optional trigger tag', () => {
+  const base = { cardNo: 'BP01-001', rulesVersion: '1.0', op: VALID['draw'] };
+
+  it('parses an IR with no trigger key', () => {
+    expect(EffectIRSchema.safeParse(base).success).toBe(true);
+  });
+
+  it('accepts a known event and area', () => {
+    const ir = { ...base, trigger: { event: 'enters-field-by-call', area: 'FIELD' } };
+    expect(EffectIRSchema.safeParse(ir).success).toBe(true);
+  });
+
+  it('rejects an unknown event, an extra key, or an unknown area', () => {
+    const bad = [
+      { event: 'nope', area: 'FIELD' },
+      { event: 'attacks', area: 'FIELD', extra: 1 },
+      { event: 'attacks', area: 'MOON' },
+    ];
+    for (const trigger of bad) {
+      expect(EffectIRSchema.safeParse({ ...base, trigger }).success).toBe(false);
+    }
+  });
+
+  it('keeps the event table append-only', () => {
+    expect([...EFFECT_TRIGGER_EVENTS]).toEqual([
+      'enters-field-by-call',
+      'enters-field',
+      'attacks',
+      'base-move',
+      'activate',
+      'activate-counter',
+    ]);
   });
 });
