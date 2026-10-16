@@ -4,6 +4,6 @@ export default defineProject({
   test: {
     name: 'scripts',
     environment: 'node',
-    include: ['*.test.mjs'],
+    include: ['*.test.mjs', 'community/*.test.ts'],
   },
 });
