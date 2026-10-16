@@ -11,7 +11,7 @@
  * the once-per-turn limit are the envelope and a use limit, not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   ANY_CARD,
   effect,
@@ -19,9 +19,18 @@ import {
   relocate,
   select,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD03-005');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
+    { key: asRuleKey('301.24.a'), reviewedHash: '0cb9dd0e8eaa' }, // BATTLE-BASE move
+  ],
+  rulings: [],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
