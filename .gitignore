@@ -14,3 +14,6 @@ Thumbs.db
 gitleaks-report.json
 filter-repo-report.txt
 .git/filter-repo/
+
+# Consistency report output (never committed)
+reports/
