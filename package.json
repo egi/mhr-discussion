@@ -12,7 +12,11 @@
     "typecheck": "pnpm -r typecheck",
     "lint:boundaries": "bash scripts/check-boundary-control.sh && pnpm exec depcruise -c .dependency-cruiser.cjs -T err-long packages",
     "check:data": "node scripts/check-no-card-data.mjs --self-test && node scripts/check-no-card-data.mjs",
-    "ci": "pnpm typecheck && pnpm test && pnpm lint:boundaries && pnpm check:data && pnpm check:privacy",
+    "ci": "pnpm typecheck && pnpm test && pnpm lint:boundaries && pnpm check:data && pnpm check:privacy && pnpm check:community",
+    "check:errata": "bash scripts/check-errata-control.sh && node scripts/check-errata.mjs",
+    "check:discussions": "node scripts/check-discussions.mjs --self-test && node scripts/check-discussions.mjs",
+    "report:consistency": "tsx scripts/consistency-report.ts",
+    "check:community": "pnpm check:errata && pnpm check:discussions && pnpm report:consistency",
     "check:privacy": "node scripts/check-denylist.mjs",
     "scan:history": "bash scripts/gitleaks-scan.sh history",
     "check:publish": "node scripts/check-publish-ready.mjs"

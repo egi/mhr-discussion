@@ -22,6 +22,15 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm run ci
+      - name: Errata history check
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -z "$BASE" ] || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            echo "No base commit to compare against; skipping errata history check."
+            exit 0
+          fi
+          node scripts/check-errata.mjs --base "$BASE"
       # No third-party gitleaks action and no repository secret: forks and pull
       # requests run exactly the same gate.
       - name: Install gitleaks
@@ -34,3 +43,25 @@ jobs:
         run: bash scripts/gitleaks-scan.sh history
       - name: Check member denylist over full history
         run: node scripts/check-denylist.mjs --history
+
+  consistency-report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Consistency report
+        run: pnpm exec tsx scripts/consistency-report.ts --json reports/consistency.json --summary "$GITHUB_STEP_SUMMARY"
+      - name: Upload consistency report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: consistency-report
+          path: reports/consistency.json
+          retention-days: 14
