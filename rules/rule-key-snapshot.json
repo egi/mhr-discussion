@@ -1,0 +1,2422 @@
+[
+  {
+    "ruleKey": "0",
+    "revision": "1.03",
+    "textHash": "7a931891ebbb"
+  },
+  {
+    "ruleKey": "001",
+    "revision": "1.03",
+    "textHash": "d08254de418c"
+  },
+  {
+    "ruleKey": "002",
+    "revision": "1.03",
+    "textHash": "4830aeba1d20"
+  },
+  {
+    "ruleKey": "003",
+    "revision": "1.03",
+    "textHash": "49fb83f60c17"
+  },
+  {
+    "ruleKey": "1",
+    "revision": "1.03",
+    "textHash": "16b0367fcb8b"
+  },
+  {
+    "ruleKey": "101",
+    "revision": "1.03",
+    "textHash": "a2ea99a19994"
+  },
+  {
+    "ruleKey": "101.1",
+    "revision": "1.03",
+    "textHash": "a27c3b7621b8"
+  },
+  {
+    "ruleKey": "101.1.a",
+    "revision": "1.03",
+    "textHash": "4edce8eb1a5e"
+  },
+  {
+    "ruleKey": "101.1.b",
+    "revision": "1.03",
+    "textHash": "e61c2127ec6a"
+  },
+  {
+    "ruleKey": "101.1.c",
+    "revision": "1.03",
+    "textHash": "da9bd5466677"
+  },
+  {
+    "ruleKey": "101.1.d",
+    "revision": "1.03",
+    "textHash": "b3517a3243bb"
+  },
+  {
+    "ruleKey": "101.2",
+    "revision": "1.03",
+    "textHash": "72768a7187c7"
+  },
+  {
+    "ruleKey": "101.2.a",
+    "revision": "1.03",
+    "textHash": "50f12b35c3c0"
+  },
+  {
+    "ruleKey": "101.2.b",
+    "revision": "1.03",
+    "textHash": "da2f8e100d4c"
+  },
+  {
+    "ruleKey": "101.2.c",
+    "revision": "1.03",
+    "textHash": "865c4a046c88"
+  },
+  {
+    "ruleKey": "102",
+    "revision": "1.03",
+    "textHash": "fe65413e29f5"
+  },
+  {
+    "ruleKey": "102.1",
+    "revision": "1.03",
+    "textHash": "839876a6eca7"
+  },
+  {
+    "ruleKey": "102.2",
+    "revision": "1.03",
+    "textHash": "bbc18c7cafd3"
+  },
+  {
+    "ruleKey": "102.3",
+    "revision": "1.03",
+    "textHash": "05dd2a4ce6a6"
+  },
+  {
+    "ruleKey": "102.4",
+    "revision": "1.03",
+    "textHash": "c2724efc69a3"
+  },
+  {
+    "ruleKey": "102.5",
+    "revision": "1.03",
+    "textHash": "104a7988a438"
+  },
+  {
+    "ruleKey": "103",
+    "revision": "1.03",
+    "textHash": "cb5889fe99e0"
+  },
+  {
+    "ruleKey": "103.1",
+    "revision": "1.03",
+    "textHash": "32d90a703652"
+  },
+  {
+    "ruleKey": "103.1.a",
+    "revision": "1.03",
+    "textHash": "6b77c7d25494"
+  },
+  {
+    "ruleKey": "103.1.b",
+    "revision": "1.03",
+    "textHash": "5c0489d13f1c"
+  },
+  {
+    "ruleKey": "103.1.c",
+    "revision": "1.03",
+    "textHash": "23831c5eba8a"
+  },
+  {
+    "ruleKey": "2",
+    "revision": "1.03",
+    "textHash": "17136b4ad4d8"
+  },
+  {
+    "ruleKey": "201",
+    "revision": "1.03",
+    "textHash": "6fac39e2845b"
+  },
+  {
+    "ruleKey": "201.1",
+    "revision": "1.03",
+    "textHash": "a7878cd89d9c"
+  },
+  {
+    "ruleKey": "201.2",
+    "revision": "1.03",
+    "textHash": "61015256123c"
+  },
+  {
+    "ruleKey": "201.3",
+    "revision": "1.03",
+    "textHash": "db6189ebefbe"
+  },
+  {
+    "ruleKey": "201.4",
+    "revision": "1.03",
+    "textHash": "1e482be1a756"
+  },
+  {
+    "ruleKey": "201.5",
+    "revision": "1.03",
+    "textHash": "41081d8e7363"
+  },
+  {
+    "ruleKey": "201.5.a",
+    "revision": "1.03",
+    "textHash": "4eb0551499e7"
+  },
+  {
+    "ruleKey": "201.5.b",
+    "revision": "1.03",
+    "textHash": "99ff16b44b6a"
+  },
+  {
+    "ruleKey": "201.5.c",
+    "revision": "1.03",
+    "textHash": "a8bbe838857e"
+  },
+  {
+    "ruleKey": "201.5.d",
+    "revision": "1.03",
+    "textHash": "1982eab2a66d"
+  },
+  {
+    "ruleKey": "201.6",
+    "revision": "1.03",
+    "textHash": "d81674b2bdd5"
+  },
+  {
+    "ruleKey": "201.6.a",
+    "revision": "1.03",
+    "textHash": "756f4d1df08f"
+  },
+  {
+    "ruleKey": "201.6.b",
+    "revision": "1.03",
+    "textHash": "24dc586fa544"
+  },
+  {
+    "ruleKey": "201.6.c",
+    "revision": "1.03",
+    "textHash": "46f4b29d9384"
+  },
+  {
+    "ruleKey": "201.6.e",
+    "revision": "1.03",
+    "textHash": "ceaaa9d13fd1"
+  },
+  {
+    "ruleKey": "201.7",
+    "revision": "1.03",
+    "textHash": "d88dd8363c93"
+  },
+  {
+    "ruleKey": "201.7.a",
+    "revision": "1.03",
+    "textHash": "2edd61a5c244"
+  },
+  {
+    "ruleKey": "201.7.b",
+    "revision": "1.03",
+    "textHash": "80e9cf329e21"
+  },
+  {
+    "ruleKey": "201.7.c",
+    "revision": "1.03",
+    "textHash": "d3936370ba88"
+  },
+  {
+    "ruleKey": "201.7.d",
+    "revision": "1.03",
+    "textHash": "58c0be1c5d6a"
+  },
+  {
+    "ruleKey": "201.7.e",
+    "revision": "1.03",
+    "textHash": "b3c076a70615"
+  },
+  {
+    "ruleKey": "201.7.f",
+    "revision": "1.03",
+    "textHash": "45d3998f2cd8"
+  },
+  {
+    "ruleKey": "201.7.g",
+    "revision": "1.03",
+    "textHash": "c04473933fb6"
+  },
+  {
+    "ruleKey": "201.8",
+    "revision": "1.03",
+    "textHash": "563c7ab915bc"
+  },
+  {
+    "ruleKey": "201.8.a",
+    "revision": "1.03",
+    "textHash": "b916bf0101a7"
+  },
+  {
+    "ruleKey": "201.8.b",
+    "revision": "1.03",
+    "textHash": "76851dddca55"
+  },
+  {
+    "ruleKey": "201.8.c",
+    "revision": "1.03",
+    "textHash": "a9a16ae4c877"
+  },
+  {
+    "ruleKey": "201.9",
+    "revision": "1.03",
+    "textHash": "28e3e479e087"
+  },
+  {
+    "ruleKey": "201.9.a",
+    "revision": "1.03",
+    "textHash": "38b687a3f473"
+  },
+  {
+    "ruleKey": "201.9.b",
+    "revision": "1.03",
+    "textHash": "e14f67733647"
+  },
+  {
+    "ruleKey": "201.10",
+    "revision": "1.03",
+    "textHash": "358511c8c098"
+  },
+  {
+    "ruleKey": "201.10.a",
+    "revision": "1.03",
+    "textHash": "eaa237d72323"
+  },
+  {
+    "ruleKey": "201.10.b",
+    "revision": "1.03",
+    "textHash": "f32f2e450fe7"
+  },
+  {
+    "ruleKey": "201.10.c",
+    "revision": "1.03",
+    "textHash": "60cb463abf23"
+  },
+  {
+    "ruleKey": "201.10.d",
+    "revision": "1.03",
+    "textHash": "d566cc2d7ec3"
+  },
+  {
+    "ruleKey": "201.10.d.1",
+    "revision": "1.03",
+    "textHash": "df86fb7a1977"
+  },
+  {
+    "ruleKey": "201.10.d.2",
+    "revision": "1.03",
+    "textHash": "bc5181d4de09"
+  },
+  {
+    "ruleKey": "201.10.d.3",
+    "revision": "1.03",
+    "textHash": "129b6dda2600"
+  },
+  {
+    "ruleKey": "201.10.e",
+    "revision": "1.03",
+    "textHash": "423cadf776f0"
+  },
+  {
+    "ruleKey": "201.10.e.1",
+    "revision": "1.03",
+    "textHash": "7baad38e892a"
+  },
+  {
+    "ruleKey": "201.10.e.2",
+    "revision": "1.03",
+    "textHash": "ff0ede5da38c"
+  },
+  {
+    "ruleKey": "201.10.e.3",
+    "revision": "1.03",
+    "textHash": "129b6dda2600"
+  },
+  {
+    "ruleKey": "201.10.f",
+    "revision": "1.03",
+    "textHash": "61a46ca85234"
+  },
+  {
+    "ruleKey": "201.10.f.1",
+    "revision": "1.03",
+    "textHash": "babdc0ca7969"
+  },
+  {
+    "ruleKey": "201.10.f.2",
+    "revision": "1.03",
+    "textHash": "cd3f45d43dbb"
+  },
+  {
+    "ruleKey": "201.10.f.3",
+    "revision": "1.03",
+    "textHash": "a05bc11524e4"
+  },
+  {
+    "ruleKey": "201.10.f.4",
+    "revision": "1.03",
+    "textHash": "129b6dda2600"
+  },
+  {
+    "ruleKey": "201.10.g",
+    "revision": "1.03",
+    "textHash": "9c40ae32bd6b"
+  },
+  {
+    "ruleKey": "201.10.g.1",
+    "revision": "1.03",
+    "textHash": "b513495fe464"
+  },
+  {
+    "ruleKey": "201.10.g.2",
+    "revision": "1.03",
+    "textHash": "1a6e2572fa96"
+  },
+  {
+    "ruleKey": "201.11",
+    "revision": "1.03",
+    "textHash": "69da9691cb9d"
+  },
+  {
+    "ruleKey": "201.11.a",
+    "revision": "1.03",
+    "textHash": "514c773c95a7"
+  },
+  {
+    "ruleKey": "201.11.b",
+    "revision": "1.03",
+    "textHash": "7e211a68355d"
+  },
+  {
+    "ruleKey": "201.11.c",
+    "revision": "1.03",
+    "textHash": "5ebbb588272f"
+  },
+  {
+    "ruleKey": "201.12",
+    "revision": "1.03",
+    "textHash": "e213caae172c"
+  },
+  {
+    "ruleKey": "201.12.a",
+    "revision": "1.03",
+    "textHash": "ac9a98110f24"
+  },
+  {
+    "ruleKey": "201.12.b",
+    "revision": "1.03",
+    "textHash": "b154fd020f2e"
+  },
+  {
+    "ruleKey": "201.12.c",
+    "revision": "1.03",
+    "textHash": "47b62abbbaf4"
+  },
+  {
+    "ruleKey": "201.13",
+    "revision": "1.03",
+    "textHash": "4566e068a215"
+  },
+  {
+    "ruleKey": "201.13.a",
+    "revision": "1.03",
+    "textHash": "a16868d16bbf"
+  },
+  {
+    "ruleKey": "201.13.b",
+    "revision": "1.03",
+    "textHash": "613e3ec58347"
+  },
+  {
+    "ruleKey": "201.14",
+    "revision": "1.03",
+    "textHash": "96390d79e507"
+  },
+  {
+    "ruleKey": "201.14.a",
+    "revision": "1.03",
+    "textHash": "53fac94399e6"
+  },
+  {
+    "ruleKey": "201.14.b",
+    "revision": "1.03",
+    "textHash": "66c9a1aedddc"
+  },
+  {
+    "ruleKey": "201.15",
+    "revision": "1.03",
+    "textHash": "3e30dfa97888"
+  },
+  {
+    "ruleKey": "201.15.a",
+    "revision": "1.03",
+    "textHash": "84a2ff19bf54"
+  },
+  {
+    "ruleKey": "201.16",
+    "revision": "1.03",
+    "textHash": "f0a608c6cec2"
+  },
+  {
+    "ruleKey": "201.16.a",
+    "revision": "1.03",
+    "textHash": "dc87c68f78b2"
+  },
+  {
+    "ruleKey": "202",
+    "revision": "1.03",
+    "textHash": "94f0f5e2ec7f"
+  },
+  {
+    "ruleKey": "202.1",
+    "revision": "1.03",
+    "textHash": "cb0664ec14e8"
+  },
+  {
+    "ruleKey": "202.2",
+    "revision": "1.03",
+    "textHash": "152b9b0039a9"
+  },
+  {
+    "ruleKey": "202.3",
+    "revision": "1.03",
+    "textHash": "33cd7af656aa"
+  },
+  {
+    "ruleKey": "202.4",
+    "revision": "1.03",
+    "textHash": "272bb0cc31a6"
+  },
+  {
+    "ruleKey": "202.5",
+    "revision": "1.03",
+    "textHash": "4566e068a215"
+  },
+  {
+    "ruleKey": "202.5.a",
+    "revision": "1.03",
+    "textHash": "abad0b274941"
+  },
+  {
+    "ruleKey": "202.5.b",
+    "revision": "1.03",
+    "textHash": "2b2259df9d25"
+  },
+  {
+    "ruleKey": "202.6",
+    "revision": "1.03",
+    "textHash": "feddcf308625"
+  },
+  {
+    "ruleKey": "202.6.a",
+    "revision": "1.03",
+    "textHash": "59ebcdbf905d"
+  },
+  {
+    "ruleKey": "202.6.b",
+    "revision": "1.03",
+    "textHash": "3c468232dda4"
+  },
+  {
+    "ruleKey": "3",
+    "revision": "1.03",
+    "textHash": "2b90b3a8d484"
+  },
+  {
+    "ruleKey": "301",
+    "revision": "1.03",
+    "textHash": "092b3a47893e"
+  },
+  {
+    "ruleKey": "301.1",
+    "revision": "1.03",
+    "textHash": "d60dbba07922"
+  },
+  {
+    "ruleKey": "301.1.a",
+    "revision": "1.03",
+    "textHash": "f5fb571c54b2"
+  },
+  {
+    "ruleKey": "301.2",
+    "revision": "1.03",
+    "textHash": "3797aeb87ad0"
+  },
+  {
+    "ruleKey": "301.2.a",
+    "revision": "1.03",
+    "textHash": "b08d6c973076"
+  },
+  {
+    "ruleKey": "301.2.a.1",
+    "revision": "1.03",
+    "textHash": "11950a190e07"
+  },
+  {
+    "ruleKey": "301.2.a.2",
+    "revision": "1.03",
+    "textHash": "c561311a7cf1"
+  },
+  {
+    "ruleKey": "301.2.b",
+    "revision": "1.03",
+    "textHash": "1b1969c15df7"
+  },
+  {
+    "ruleKey": "301.3",
+    "revision": "1.03",
+    "textHash": "86b4b11f7534"
+  },
+  {
+    "ruleKey": "301.3.a",
+    "revision": "1.03",
+    "textHash": "ae32ae23bbd0"
+  },
+  {
+    "ruleKey": "301.3.b",
+    "revision": "1.03",
+    "textHash": "5c8f12e6e820"
+  },
+  {
+    "ruleKey": "301.3.c",
+    "revision": "1.03",
+    "textHash": "2914f553b53d"
+  },
+  {
+    "ruleKey": "301.3.d",
+    "revision": "1.03",
+    "textHash": "ab6e9d81bed6"
+  },
+  {
+    "ruleKey": "301.3.e",
+    "revision": "1.03",
+    "textHash": "0d63d3573246"
+  },
+  {
+    "ruleKey": "301.3.f",
+    "revision": "1.03",
+    "textHash": "ba1702090267"
+  },
+  {
+    "ruleKey": "301.3.g",
+    "revision": "1.03",
+    "textHash": "3c3ed7b360df"
+  },
+  {
+    "ruleKey": "301.3.h",
+    "revision": "1.03",
+    "textHash": "8fd62271d738"
+  },
+  {
+    "ruleKey": "301.4",
+    "revision": "1.03",
+    "textHash": "ab0636146e12"
+  },
+  {
+    "ruleKey": "301.4.a",
+    "revision": "1.03",
+    "textHash": "39d1a2aa68aa"
+  },
+  {
+    "ruleKey": "301.5",
+    "revision": "1.03",
+    "textHash": "8da6174e06b8"
+  },
+  {
+    "ruleKey": "301.5.a",
+    "revision": "1.03",
+    "textHash": "4e51ed6a19f3"
+  },
+  {
+    "ruleKey": "301.5.b",
+    "revision": "1.03",
+    "textHash": "f9dd8108d300"
+  },
+  {
+    "ruleKey": "301.5.c",
+    "revision": "1.03",
+    "textHash": "0b69dcecd8b2"
+  },
+  {
+    "ruleKey": "301.5.d",
+    "revision": "1.03",
+    "textHash": "a3cdfce85848"
+  },
+  {
+    "ruleKey": "301.5.e",
+    "revision": "1.03",
+    "textHash": "95ce274ff158"
+  },
+  {
+    "ruleKey": "301.5.f",
+    "revision": "1.03",
+    "textHash": "b3495cd19c74"
+  },
+  {
+    "ruleKey": "301.6",
+    "revision": "1.03",
+    "textHash": "88d759ea02ce"
+  },
+  {
+    "ruleKey": "301.6.a",
+    "revision": "1.03",
+    "textHash": "fe95be3f5640"
+  },
+  {
+    "ruleKey": "301.7",
+    "revision": "1.03",
+    "textHash": "9bbb9ff22a95"
+  },
+  {
+    "ruleKey": "301.7.a",
+    "revision": "1.03",
+    "textHash": "41c0b08ec4b7"
+  },
+  {
+    "ruleKey": "301.7.b",
+    "revision": "1.03",
+    "textHash": "0b791e50b101"
+  },
+  {
+    "ruleKey": "301.8",
+    "revision": "1.03",
+    "textHash": "f9f737fc364e"
+  },
+  {
+    "ruleKey": "301.8.a",
+    "revision": "1.03",
+    "textHash": "7008a08eb9de"
+  },
+  {
+    "ruleKey": "301.8.b",
+    "revision": "1.03",
+    "textHash": "13d3a43f70e2"
+  },
+  {
+    "ruleKey": "301.9",
+    "revision": "1.03",
+    "textHash": "76243b4eef7a"
+  },
+  {
+    "ruleKey": "301.9.a",
+    "revision": "1.03",
+    "textHash": "e2dfcadc3628"
+  },
+  {
+    "ruleKey": "301.10",
+    "revision": "1.03",
+    "textHash": "b6cd9ef35d82"
+  },
+  {
+    "ruleKey": "301.10.a",
+    "revision": "1.03",
+    "textHash": "75cc8341f8ba"
+  },
+  {
+    "ruleKey": "301.10.b",
+    "revision": "1.03",
+    "textHash": "baf77149331c"
+  },
+  {
+    "ruleKey": "301.11",
+    "revision": "1.03",
+    "textHash": "0ad955726f8c"
+  },
+  {
+    "ruleKey": "301.11.a",
+    "revision": "1.03",
+    "textHash": "c7644d195f20"
+  },
+  {
+    "ruleKey": "301.11.b",
+    "revision": "1.03",
+    "textHash": "cdfd3aac7332"
+  },
+  {
+    "ruleKey": "301.12",
+    "revision": "1.03",
+    "textHash": "3bafa0d9e871"
+  },
+  {
+    "ruleKey": "301.12.a",
+    "revision": "1.03",
+    "textHash": "dadfa25956d9"
+  },
+  {
+    "ruleKey": "301.13",
+    "revision": "1.03",
+    "textHash": "8b951d706e3f"
+  },
+  {
+    "ruleKey": "301.13.a",
+    "revision": "1.03",
+    "textHash": "ece044bdbe4a"
+  },
+  {
+    "ruleKey": "301.14",
+    "revision": "1.03",
+    "textHash": "8f7f36327ab3"
+  },
+  {
+    "ruleKey": "301.14.a",
+    "revision": "1.03",
+    "textHash": "cc8979d0cba4"
+  },
+  {
+    "ruleKey": "301.14.a.1",
+    "revision": "1.03",
+    "textHash": "e129e0620d73"
+  },
+  {
+    "ruleKey": "301.14.a.2",
+    "revision": "1.03",
+    "textHash": "65b460eb5946"
+  },
+  {
+    "ruleKey": "301.15",
+    "revision": "1.03",
+    "textHash": "5c226881bde4"
+  },
+  {
+    "ruleKey": "301.15.a",
+    "revision": "1.03",
+    "textHash": "2148fe594165"
+  },
+  {
+    "ruleKey": "301.15.a.1",
+    "revision": "1.03",
+    "textHash": "26ff6183405a"
+  },
+  {
+    "ruleKey": "301.15.a.2",
+    "revision": "1.03",
+    "textHash": "7ff4da381ca1"
+  },
+  {
+    "ruleKey": "301.15.a.3",
+    "revision": "1.03",
+    "textHash": "9ac3aa7c9412"
+  },
+  {
+    "ruleKey": "301.16",
+    "revision": "1.03",
+    "textHash": "4d9b618a47fc"
+  },
+  {
+    "ruleKey": "301.16.a",
+    "revision": "1.03",
+    "textHash": "72a1ab425b37"
+  },
+  {
+    "ruleKey": "301.16.a.1",
+    "revision": "1.03",
+    "textHash": "bff4b407369d"
+  },
+  {
+    "ruleKey": "301.16.a.2",
+    "revision": "1.03",
+    "textHash": "564b857cc069"
+  },
+  {
+    "ruleKey": "301.16.a.3",
+    "revision": "1.03",
+    "textHash": "cdc114bcae3f"
+  },
+  {
+    "ruleKey": "301.16.a.4",
+    "revision": "1.03",
+    "textHash": "47953ce28d45"
+  },
+  {
+    "ruleKey": "301.16.a.5",
+    "revision": "1.03",
+    "textHash": "322a49fb9629"
+  },
+  {
+    "ruleKey": "301.16.a.6",
+    "revision": "1.03",
+    "textHash": "d77bb1167305"
+  },
+  {
+    "ruleKey": "301.16.b",
+    "revision": "1.03",
+    "textHash": "e91c00c1a4ce"
+  },
+  {
+    "ruleKey": "301.17",
+    "revision": "1.03",
+    "textHash": "4b638a4ba436"
+  },
+  {
+    "ruleKey": "301.17.a",
+    "revision": "1.03",
+    "textHash": "3200ad9250ee"
+  },
+  {
+    "ruleKey": "301.18",
+    "revision": "1.03",
+    "textHash": "d17e971f8d58"
+  },
+  {
+    "ruleKey": "301.18.a",
+    "revision": "1.03",
+    "textHash": "ee5d5ce25680"
+  },
+  {
+    "ruleKey": "301.18.b",
+    "revision": "1.03",
+    "textHash": "b0d4f9b79d48"
+  },
+  {
+    "ruleKey": "301.18.c",
+    "revision": "1.03",
+    "textHash": "ecf7cbe1e937"
+  },
+  {
+    "ruleKey": "301.18.d",
+    "revision": "1.03",
+    "textHash": "75dd0629d8dd"
+  },
+  {
+    "ruleKey": "301.18.e",
+    "revision": "1.03",
+    "textHash": "5bfc3b5c73f4"
+  },
+  {
+    "ruleKey": "301.18.f",
+    "revision": "1.03",
+    "textHash": "1dfd38a20178"
+  },
+  {
+    "ruleKey": "301.18.g",
+    "revision": "1.03",
+    "textHash": "efc88f881a88"
+  },
+  {
+    "ruleKey": "301.18.h",
+    "revision": "1.03",
+    "textHash": "bce92f4d4890"
+  },
+  {
+    "ruleKey": "301.19",
+    "revision": "1.03",
+    "textHash": "86c4446cd307"
+  },
+  {
+    "ruleKey": "301.19.a",
+    "revision": "1.03",
+    "textHash": "c169103329bc"
+  },
+  {
+    "ruleKey": "301.19.b",
+    "revision": "1.03",
+    "textHash": "4804fb75db07"
+  },
+  {
+    "ruleKey": "301.19.c",
+    "revision": "1.03",
+    "textHash": "67c95a14583d"
+  },
+  {
+    "ruleKey": "301.19.d",
+    "revision": "1.03",
+    "textHash": "bc0f9df7837c"
+  },
+  {
+    "ruleKey": "301.19.e",
+    "revision": "1.03",
+    "textHash": "2b239dcdb018"
+  },
+  {
+    "ruleKey": "301.19.f",
+    "revision": "1.03",
+    "textHash": "d7edd39e1ccd"
+  },
+  {
+    "ruleKey": "301.20",
+    "revision": "1.03",
+    "textHash": "f3e0689e79fd"
+  },
+  {
+    "ruleKey": "301.20.a",
+    "revision": "1.03",
+    "textHash": "2254445a2da9"
+  },
+  {
+    "ruleKey": "301.21",
+    "revision": "1.03",
+    "textHash": "fcaf7882286d"
+  },
+  {
+    "ruleKey": "301.21.a",
+    "revision": "1.03",
+    "textHash": "73c1095ad66d"
+  },
+  {
+    "ruleKey": "301.21.b",
+    "revision": "1.03",
+    "textHash": "aa3d79e21000"
+  },
+  {
+    "ruleKey": "301.21.c",
+    "revision": "1.03",
+    "textHash": "5cbf8ef8a01a"
+  },
+  {
+    "ruleKey": "301.21.d",
+    "revision": "1.03",
+    "textHash": "480db5e5df40"
+  },
+  {
+    "ruleKey": "301.21.e",
+    "revision": "1.03",
+    "textHash": "5f9b1dc86846"
+  },
+  {
+    "ruleKey": "301.21.f",
+    "revision": "1.03",
+    "textHash": "3e4758b6c8a1"
+  },
+  {
+    "ruleKey": "301.21.g",
+    "revision": "1.03",
+    "textHash": "80c004d0dd23"
+  },
+  {
+    "ruleKey": "301.21.h",
+    "revision": "1.03",
+    "textHash": "cbcbe42a1d38"
+  },
+  {
+    "ruleKey": "301.22",
+    "revision": "1.03",
+    "textHash": "1fc792106d50"
+  },
+  {
+    "ruleKey": "301.22.a",
+    "revision": "1.03",
+    "textHash": "4a51b9811106"
+  },
+  {
+    "ruleKey": "301.22.b",
+    "revision": "1.03",
+    "textHash": "13cb248dccf5"
+  },
+  {
+    "ruleKey": "301.22.c",
+    "revision": "1.03",
+    "textHash": "ab61dd037e28"
+  },
+  {
+    "ruleKey": "301.22.c.1",
+    "revision": "1.03",
+    "textHash": "c46f27cc983e"
+  },
+  {
+    "ruleKey": "301.22.c.2",
+    "revision": "1.03",
+    "textHash": "31660664ba0e"
+  },
+  {
+    "ruleKey": "301.22.d",
+    "revision": "1.03",
+    "textHash": "561defd4704b"
+  },
+  {
+    "ruleKey": "301.23",
+    "revision": "1.03",
+    "textHash": "9ed8c544f769"
+  },
+  {
+    "ruleKey": "301.23.a",
+    "revision": "1.03",
+    "textHash": "507a60bbd6a3"
+  },
+  {
+    "ruleKey": "301.23.b",
+    "revision": "1.03",
+    "textHash": "bd6926cc49cb"
+  },
+  {
+    "ruleKey": "301.24",
+    "revision": "1.03",
+    "textHash": "94fc5e80b68e"
+  },
+  {
+    "ruleKey": "301.24.a",
+    "revision": "1.03",
+    "textHash": "0cb9dd0e8eaa"
+  },
+  {
+    "ruleKey": "301.24.b",
+    "revision": "1.03",
+    "textHash": "5ebdfc22a919"
+  },
+  {
+    "ruleKey": "301.25",
+    "revision": "1.03",
+    "textHash": "cd148091222a"
+  },
+  {
+    "ruleKey": "301.25.a",
+    "revision": "1.03",
+    "textHash": "c2f486b7c72e"
+  },
+  {
+    "ruleKey": "301.25.b",
+    "revision": "1.03",
+    "textHash": "afd29edaf368"
+  },
+  {
+    "ruleKey": "301.25.c",
+    "revision": "1.03",
+    "textHash": "f689fb13c049"
+  },
+  {
+    "ruleKey": "301.25.d",
+    "revision": "1.03",
+    "textHash": "83e9f131654c"
+  },
+  {
+    "ruleKey": "301.25.e",
+    "revision": "1.03",
+    "textHash": "2de1cda655ba"
+  },
+  {
+    "ruleKey": "301.25.f",
+    "revision": "1.03",
+    "textHash": "d3901c274ff6"
+  },
+  {
+    "ruleKey": "301.25.g",
+    "revision": "1.03",
+    "textHash": "ccd8e424b36d"
+  },
+  {
+    "ruleKey": "301.25.h",
+    "revision": "1.03",
+    "textHash": "fa51690a86ce"
+  },
+  {
+    "ruleKey": "301.25.i",
+    "revision": "1.03",
+    "textHash": "56284108c1b5"
+  },
+  {
+    "ruleKey": "301.25.j",
+    "revision": "1.03",
+    "textHash": "b1e64bb8c0a1"
+  },
+  {
+    "ruleKey": "301.25.k",
+    "revision": "1.03",
+    "textHash": "203c0528727d"
+  },
+  {
+    "ruleKey": "301.25.l",
+    "revision": "1.03",
+    "textHash": "95fb0dbd1a2a"
+  },
+  {
+    "ruleKey": "301.25.m",
+    "revision": "1.03",
+    "textHash": "2ea78974fb39"
+  },
+  {
+    "ruleKey": "301.25.n",
+    "revision": "1.03",
+    "textHash": "577554887ece"
+  },
+  {
+    "ruleKey": "301.26",
+    "revision": "1.03",
+    "textHash": "ba8063b4d30c"
+  },
+  {
+    "ruleKey": "301.26.a",
+    "revision": "1.03",
+    "textHash": "8c49a3099f84"
+  },
+  {
+    "ruleKey": "301.26.b",
+    "revision": "1.03",
+    "textHash": "37416cbf2bfd"
+  },
+  {
+    "ruleKey": "301.27",
+    "revision": "1.03",
+    "textHash": "0e71303b4bba"
+  },
+  {
+    "ruleKey": "301.27.a",
+    "revision": "1.03",
+    "textHash": "ff0a152d7e45"
+  },
+  {
+    "ruleKey": "301.28",
+    "revision": "1.03",
+    "textHash": "36b830bdb447"
+  },
+  {
+    "ruleKey": "301.28.a",
+    "revision": "1.03",
+    "textHash": "07b2366e111b"
+  },
+  {
+    "ruleKey": "301.28.b",
+    "revision": "1.03",
+    "textHash": "d16957353407"
+  },
+  {
+    "ruleKey": "301.29",
+    "revision": "1.03",
+    "textHash": "67bc484430fe"
+  },
+  {
+    "ruleKey": "301.29.a",
+    "revision": "1.03",
+    "textHash": "3016c094952e"
+  },
+  {
+    "ruleKey": "301.30",
+    "revision": "1.03",
+    "textHash": "317cb3a7efad"
+  },
+  {
+    "ruleKey": "301.30.a",
+    "revision": "1.03",
+    "textHash": "14012321e86e"
+  },
+  {
+    "ruleKey": "301.31",
+    "revision": "1.03",
+    "textHash": "a876264b38ab"
+  },
+  {
+    "ruleKey": "301.31.a",
+    "revision": "1.03",
+    "textHash": "b4bd56348647"
+  },
+  {
+    "ruleKey": "301.32",
+    "revision": "1.03",
+    "textHash": "bd4d69ec491c"
+  },
+  {
+    "ruleKey": "301.32.a",
+    "revision": "1.03",
+    "textHash": "13cd9995b794"
+  },
+  {
+    "ruleKey": "301.32.a.1",
+    "revision": "1.03",
+    "textHash": "8d0eca68e686"
+  },
+  {
+    "ruleKey": "301.32.b",
+    "revision": "1.03",
+    "textHash": "85a5eb710c34"
+  },
+  {
+    "ruleKey": "301.33",
+    "revision": "1.03",
+    "textHash": "0871a06a1406"
+  },
+  {
+    "ruleKey": "301.33.a",
+    "revision": "1.03",
+    "textHash": "1542dad9be3a"
+  },
+  {
+    "ruleKey": "301.34",
+    "revision": "1.03",
+    "textHash": "ab7daa3d9e85"
+  },
+  {
+    "ruleKey": "301.34.a",
+    "revision": "1.03",
+    "textHash": "1c55ac4735b5"
+  },
+  {
+    "ruleKey": "301.34.b",
+    "revision": "1.03",
+    "textHash": "8610ef84cbae"
+  },
+  {
+    "ruleKey": "301.35",
+    "revision": "1.03",
+    "textHash": "5df750b5ee5b"
+  },
+  {
+    "ruleKey": "301.35.a",
+    "revision": "1.03",
+    "textHash": "45f6de2d44e0"
+  },
+  {
+    "ruleKey": "301.35.b",
+    "revision": "1.03",
+    "textHash": "8610ef84cbae"
+  },
+  {
+    "ruleKey": "301.36",
+    "revision": "1.03",
+    "textHash": "04cf0dce6b57"
+  },
+  {
+    "ruleKey": "301.36.a",
+    "revision": "1.03",
+    "textHash": "9c0ecb414000"
+  },
+  {
+    "ruleKey": "301.37",
+    "revision": "1.03",
+    "textHash": "0022e697f3d5"
+  },
+  {
+    "ruleKey": "301.37.a",
+    "revision": "1.03",
+    "textHash": "b99e35d30fa3"
+  },
+  {
+    "ruleKey": "301.38",
+    "revision": "1.03",
+    "textHash": "f07f10c56e23"
+  },
+  {
+    "ruleKey": "301.38.a",
+    "revision": "1.03",
+    "textHash": "35e8b25aa5b6"
+  },
+  {
+    "ruleKey": "301.39",
+    "revision": "1.03",
+    "textHash": "806f8b53f4ec"
+  },
+  {
+    "ruleKey": "301.39.a",
+    "revision": "1.03",
+    "textHash": "3e414c9e6fdf"
+  },
+  {
+    "ruleKey": "301.40",
+    "revision": "1.03",
+    "textHash": "dfb3f2406832"
+  },
+  {
+    "ruleKey": "301.40.a",
+    "revision": "1.03",
+    "textHash": "a6bcd3ba3fa8"
+  },
+  {
+    "ruleKey": "301.41",
+    "revision": "1.03",
+    "textHash": "240da7c32396"
+  },
+  {
+    "ruleKey": "301.41.a",
+    "revision": "1.03",
+    "textHash": "8283945e3cc4"
+  },
+  {
+    "ruleKey": "301.41.b",
+    "revision": "1.03",
+    "textHash": "295942fcd6bb"
+  },
+  {
+    "ruleKey": "301.41.c",
+    "revision": "1.03",
+    "textHash": "5687d45d3802"
+  },
+  {
+    "ruleKey": "301.41.d",
+    "revision": "1.03",
+    "textHash": "8722309da8fb"
+  },
+  {
+    "ruleKey": "301.41.e",
+    "revision": "1.03",
+    "textHash": "5d997b36080d"
+  },
+  {
+    "ruleKey": "301.41.f",
+    "revision": "1.03",
+    "textHash": "82346f83123c"
+  },
+  {
+    "ruleKey": "301.41.g",
+    "revision": "1.03",
+    "textHash": "e7dcbd2f3309"
+  },
+  {
+    "ruleKey": "301.41.h",
+    "revision": "1.03",
+    "textHash": "82c850cd269e"
+  },
+  {
+    "ruleKey": "301.41.i",
+    "revision": "1.03",
+    "textHash": "f9a0b8073335"
+  },
+  {
+    "ruleKey": "301.41.j",
+    "revision": "1.03",
+    "textHash": "9840e47eae21"
+  },
+  {
+    "ruleKey": "301.41.k",
+    "revision": "1.03",
+    "textHash": "16ffb3d7924e"
+  },
+  {
+    "ruleKey": "301.41.l",
+    "revision": "1.03",
+    "textHash": "57bbd3a8d820"
+  },
+  {
+    "ruleKey": "301.41.m",
+    "revision": "1.03",
+    "textHash": "8f008847cdea"
+  },
+  {
+    "ruleKey": "301.41.n",
+    "revision": "1.03",
+    "textHash": "7b139fd9b6da"
+  },
+  {
+    "ruleKey": "301.42",
+    "revision": "1.03",
+    "textHash": "aeb9d973034e"
+  },
+  {
+    "ruleKey": "301.43",
+    "revision": "1.03",
+    "textHash": "4d143bb70f0e"
+  },
+  {
+    "ruleKey": "301.44",
+    "revision": "1.03",
+    "textHash": "eb51744128f3"
+  },
+  {
+    "ruleKey": "301.45",
+    "revision": "1.03",
+    "textHash": "7fb69fed54a5"
+  },
+  {
+    "ruleKey": "301.45.a",
+    "revision": "1.03",
+    "textHash": "e115469e2049"
+  },
+  {
+    "ruleKey": "301.45.b",
+    "revision": "1.03",
+    "textHash": "f132b8c68b34"
+  },
+  {
+    "ruleKey": "301.45.c",
+    "revision": "1.03",
+    "textHash": "0e0ec438088f"
+  },
+  {
+    "ruleKey": "301.45.d",
+    "revision": "1.03",
+    "textHash": "1baca90932a3"
+  },
+  {
+    "ruleKey": "301.46",
+    "revision": "1.03",
+    "textHash": "a52ace420f21"
+  },
+  {
+    "ruleKey": "301.46.a",
+    "revision": "1.03",
+    "textHash": "011fa308dbc2"
+  },
+  {
+    "ruleKey": "301.46.b",
+    "revision": "1.03",
+    "textHash": "3933566144da"
+  },
+  {
+    "ruleKey": "301.47",
+    "revision": "1.03",
+    "textHash": "7a2843adac85"
+  },
+  {
+    "ruleKey": "301.47.a",
+    "revision": "1.03",
+    "textHash": "28b1d6c5a0be"
+  },
+  {
+    "ruleKey": "301.47.a.1",
+    "revision": "1.03",
+    "textHash": "f6f9aa29c7c4"
+  },
+  {
+    "ruleKey": "301.47.b",
+    "revision": "1.03",
+    "textHash": "8fe4157593f7"
+  },
+  {
+    "ruleKey": "301.47.b.1",
+    "revision": "1.03",
+    "textHash": "7fe5af320585"
+  },
+  {
+    "ruleKey": "301.48",
+    "revision": "1.03",
+    "textHash": "45abec0b397b"
+  },
+  {
+    "ruleKey": "301.48.a",
+    "revision": "1.03",
+    "textHash": "cf5802fb87d9"
+  },
+  {
+    "ruleKey": "301.48.a.1",
+    "revision": "1.03",
+    "textHash": "8069d6813c0f"
+  },
+  {
+    "ruleKey": "301.48.b",
+    "revision": "1.03",
+    "textHash": "f9295f70d887"
+  },
+  {
+    "ruleKey": "301.48.b.1",
+    "revision": "1.03",
+    "textHash": "98a565a07c9e"
+  },
+  {
+    "ruleKey": "301.49",
+    "revision": "1.03",
+    "textHash": "bc066998a516"
+  },
+  {
+    "ruleKey": "301.49.a",
+    "revision": "1.03",
+    "textHash": "b78e11dbc016"
+  },
+  {
+    "ruleKey": "301.50",
+    "revision": "1.03",
+    "textHash": "8facbacc10c4"
+  },
+  {
+    "ruleKey": "301.50.a",
+    "revision": "1.03",
+    "textHash": "91b450744943"
+  },
+  {
+    "ruleKey": "301.51",
+    "revision": "1.03",
+    "textHash": "3e603e297851"
+  },
+  {
+    "ruleKey": "301.51.a",
+    "revision": "1.03",
+    "textHash": "0b4b60ad6abf"
+  },
+  {
+    "ruleKey": "301.52",
+    "revision": "1.03",
+    "textHash": "230c3f7b4687"
+  },
+  {
+    "ruleKey": "301.52.a",
+    "revision": "1.03",
+    "textHash": "303d3fc4d1f5"
+  },
+  {
+    "ruleKey": "301.53",
+    "revision": "1.03",
+    "textHash": "b9180b807ad4"
+  },
+  {
+    "ruleKey": "301.53.a",
+    "revision": "1.03",
+    "textHash": "c98e9e2c3167"
+  },
+  {
+    "ruleKey": "302",
+    "revision": "1.03",
+    "textHash": "1ebb62e938a7"
+  },
+  {
+    "ruleKey": "302.1",
+    "revision": "1.03",
+    "textHash": "2e9729bdfa9d"
+  },
+  {
+    "ruleKey": "302.1.a",
+    "revision": "1.03",
+    "textHash": "ea63c3694178"
+  },
+  {
+    "ruleKey": "302.1.b",
+    "revision": "1.03",
+    "textHash": "b159f6e05391"
+  },
+  {
+    "ruleKey": "302.2",
+    "revision": "1.03",
+    "textHash": "abdad3609e33"
+  },
+  {
+    "ruleKey": "302.2.a",
+    "revision": "1.03",
+    "textHash": "34c5cf52cc7d"
+  },
+  {
+    "ruleKey": "302.2.b",
+    "revision": "1.03",
+    "textHash": "6b4a9f2fce18"
+  },
+  {
+    "ruleKey": "302.3",
+    "revision": "1.03",
+    "textHash": "a855f18ac584"
+  },
+  {
+    "ruleKey": "302.3.a",
+    "revision": "1.03",
+    "textHash": "76c50e07fe47"
+  },
+  {
+    "ruleKey": "302.4",
+    "revision": "1.03",
+    "textHash": "ac4e93a245f3"
+  },
+  {
+    "ruleKey": "302.4.a",
+    "revision": "1.03",
+    "textHash": "f95b8ba67252"
+  },
+  {
+    "ruleKey": "302.5",
+    "revision": "1.03",
+    "textHash": "639807a2e018"
+  },
+  {
+    "ruleKey": "302.5.a",
+    "revision": "1.03",
+    "textHash": "fef55b718795"
+  },
+  {
+    "ruleKey": "302.6",
+    "revision": "1.03",
+    "textHash": "cbf36a964ba8"
+  },
+  {
+    "ruleKey": "302.6.a",
+    "revision": "1.03",
+    "textHash": "a0baa15958d8"
+  },
+  {
+    "ruleKey": "302.7",
+    "revision": "1.03",
+    "textHash": "d217000e9547"
+  },
+  {
+    "ruleKey": "302.7.a",
+    "revision": "1.03",
+    "textHash": "dcc747c4d840"
+  },
+  {
+    "ruleKey": "302.8",
+    "revision": "1.03",
+    "textHash": "b238f962a37f"
+  },
+  {
+    "ruleKey": "302.8.a",
+    "revision": "1.03",
+    "textHash": "0755ebaaa015"
+  },
+  {
+    "ruleKey": "302.8.b",
+    "revision": "1.03",
+    "textHash": "7aef69347230"
+  },
+  {
+    "ruleKey": "302.8.c",
+    "revision": "1.03",
+    "textHash": "66150ea836c4"
+  },
+  {
+    "ruleKey": "302.8.d",
+    "revision": "1.03",
+    "textHash": "c0eaa6477fc2"
+  },
+  {
+    "ruleKey": "302.9",
+    "revision": "1.03",
+    "textHash": "90251d5ff401"
+  },
+  {
+    "ruleKey": "302.9.a",
+    "revision": "1.03",
+    "textHash": "5bf2771e63a4"
+  },
+  {
+    "ruleKey": "302.9.b",
+    "revision": "1.03",
+    "textHash": "929e60ecb34f"
+  },
+  {
+    "ruleKey": "302.9.c",
+    "revision": "1.03",
+    "textHash": "474b396f5d9a"
+  },
+  {
+    "ruleKey": "302.9.d",
+    "revision": "1.03",
+    "textHash": "61e61d944117"
+  },
+  {
+    "ruleKey": "302.10",
+    "revision": "1.03",
+    "textHash": "9dcff98e275f"
+  },
+  {
+    "ruleKey": "302.10.a",
+    "revision": "1.03",
+    "textHash": "6850f4fbd47b"
+  },
+  {
+    "ruleKey": "302.11",
+    "revision": "1.03",
+    "textHash": "889eacd6e13f"
+  },
+  {
+    "ruleKey": "302.11.a",
+    "revision": "1.03",
+    "textHash": "a78d08c5ecfc"
+  },
+  {
+    "ruleKey": "302.11.b",
+    "revision": "1.03",
+    "textHash": "e021deff8956"
+  },
+  {
+    "ruleKey": "302.11.c",
+    "revision": "1.03",
+    "textHash": "c56cfcb2bc32"
+  },
+  {
+    "ruleKey": "302.11.d",
+    "revision": "1.03",
+    "textHash": "6f4be4d201b9"
+  },
+  {
+    "ruleKey": "302.12",
+    "revision": "1.03",
+    "textHash": "0793c73aab33"
+  },
+  {
+    "ruleKey": "302.12.a",
+    "revision": "1.03",
+    "textHash": "cda93a05f6b8"
+  },
+  {
+    "ruleKey": "302.12.b",
+    "revision": "1.03",
+    "textHash": "049da025c240"
+  },
+  {
+    "ruleKey": "302.12.c",
+    "revision": "1.03",
+    "textHash": "67e017444766"
+  },
+  {
+    "ruleKey": "302.12.d",
+    "revision": "1.03",
+    "textHash": "4ca2f503b1f5"
+  },
+  {
+    "ruleKey": "302.13",
+    "revision": "1.03",
+    "textHash": "53c7e3bfe50d"
+  },
+  {
+    "ruleKey": "302.13.a",
+    "revision": "1.03",
+    "textHash": "5f393f15d6d8"
+  },
+  {
+    "ruleKey": "302.13.b",
+    "revision": "1.03",
+    "textHash": "f4fd473858f6"
+  },
+  {
+    "ruleKey": "302.13.c",
+    "revision": "1.03",
+    "textHash": "2edf1e68f264"
+  },
+  {
+    "ruleKey": "302.13.d",
+    "revision": "1.03",
+    "textHash": "cbe457d2ccbd"
+  },
+  {
+    "ruleKey": "302.13.e",
+    "revision": "1.03",
+    "textHash": "e94749247ce5"
+  },
+  {
+    "ruleKey": "302.13.f",
+    "revision": "1.03",
+    "textHash": "60b5171aac3e"
+  },
+  {
+    "ruleKey": "303",
+    "revision": "1.03",
+    "textHash": "27ab3dfdcb80"
+  },
+  {
+    "ruleKey": "303.1",
+    "revision": "1.03",
+    "textHash": "cf7124a72dfe"
+  },
+  {
+    "ruleKey": "303.1.a",
+    "revision": "1.03",
+    "textHash": "d8712fbbb699"
+  },
+  {
+    "ruleKey": "303.1.b",
+    "revision": "1.03",
+    "textHash": "cec4814ba873"
+  },
+  {
+    "ruleKey": "303.1.c",
+    "revision": "1.03",
+    "textHash": "0657642f3899"
+  },
+  {
+    "ruleKey": "303.1.d",
+    "revision": "1.03",
+    "textHash": "3ad22149dedf"
+  },
+  {
+    "ruleKey": "303.1.e",
+    "revision": "1.03",
+    "textHash": "1b4319174b9b"
+  },
+  {
+    "ruleKey": "303.1.f",
+    "revision": "1.03",
+    "textHash": "a7c13d0614fa"
+  },
+  {
+    "ruleKey": "303.2",
+    "revision": "1.03",
+    "textHash": "67c448f5cd96"
+  },
+  {
+    "ruleKey": "303.2.a",
+    "revision": "1.03",
+    "textHash": "cb24fe72da67"
+  },
+  {
+    "ruleKey": "303.2.a.1",
+    "revision": "1.03",
+    "textHash": "2803e4447473"
+  },
+  {
+    "ruleKey": "303.2.a.1.1",
+    "revision": "1.03",
+    "textHash": "48a62084a386"
+  },
+  {
+    "ruleKey": "303.2.a.1.2",
+    "revision": "1.03",
+    "textHash": "a0bff9dfaf5f"
+  },
+  {
+    "ruleKey": "303.2.a.2",
+    "revision": "1.03",
+    "textHash": "6749c8c7c08d"
+  },
+  {
+    "ruleKey": "303.2.a.2.1",
+    "revision": "1.03",
+    "textHash": "f1dda7558545"
+  },
+  {
+    "ruleKey": "303.2.a.2.2",
+    "revision": "1.03",
+    "textHash": "84ec1f10181b"
+  },
+  {
+    "ruleKey": "303.2.a.3",
+    "revision": "1.03",
+    "textHash": "dccc8ab36163"
+  },
+  {
+    "ruleKey": "303.2.a.3.1",
+    "revision": "1.03",
+    "textHash": "e05a5db5e67a"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.1",
+    "revision": "1.03",
+    "textHash": "80fac319ec77"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.1.1",
+    "revision": "1.03",
+    "textHash": "2fc8f99fe949"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.1.2",
+    "revision": "1.03",
+    "textHash": "e1272853fbae"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.2",
+    "revision": "1.03",
+    "textHash": "cd2432be7e6f"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.2.1",
+    "revision": "1.03",
+    "textHash": "ca7b5f7c632a"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.2.2",
+    "revision": "1.03",
+    "textHash": "a0d9a672e8e7"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.2.3",
+    "revision": "1.03",
+    "textHash": "7990b80c23b1"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.3",
+    "revision": "1.03",
+    "textHash": "94fc5e80b68e"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.3.1",
+    "revision": "1.03",
+    "textHash": "eefcbf810028"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.3.2",
+    "revision": "1.03",
+    "textHash": "4df7ee6cf684"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.3.3",
+    "revision": "1.03",
+    "textHash": "5dfca050b2f2"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.4",
+    "revision": "1.03",
+    "textHash": "4115e4bfcc90"
+  },
+  {
+    "ruleKey": "303.2.a.3.1.4.1",
+    "revision": "1.03",
+    "textHash": "ed3b54971b89"
+  },
+  {
+    "ruleKey": "303.2.a.3.2",
+    "revision": "1.03",
+    "textHash": "fca78f0369f6"
+  },
+  {
+    "ruleKey": "303.2.a.4",
+    "revision": "1.03",
+    "textHash": "f613c3a52e5e"
+  },
+  {
+    "ruleKey": "303.2.a.4.1",
+    "revision": "1.03",
+    "textHash": "600dc10feced"
+  },
+  {
+    "ruleKey": "303.2.a.4.2",
+    "revision": "1.03",
+    "textHash": "bc8dbabf5ddf"
+  },
+  {
+    "ruleKey": "303.2.a.4.2.1",
+    "revision": "1.03",
+    "textHash": "6d5c3eb1af40"
+  },
+  {
+    "ruleKey": "303.2.a.4.2.1.1",
+    "revision": "1.03",
+    "textHash": "9a5f77a28a8b"
+  },
+  {
+    "ruleKey": "303.2.a.4.2.2",
+    "revision": "1.03",
+    "textHash": "bb6d5317f96a"
+  },
+  {
+    "ruleKey": "303.2.a.4.3",
+    "revision": "1.03",
+    "textHash": "7c6ee101bd64"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1",
+    "revision": "1.03",
+    "textHash": "2b173b7a0a17"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1",
+    "revision": "1.03",
+    "textHash": "83ebfc5199ca"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1.1",
+    "revision": "1.03",
+    "textHash": "d8a0c0babe94"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1.2",
+    "revision": "1.03",
+    "textHash": "db8f87e96e26"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1.3",
+    "revision": "1.03",
+    "textHash": "2cbec5b2cd85"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1.4",
+    "revision": "1.03",
+    "textHash": "70561a964fad"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.1.5",
+    "revision": "1.03",
+    "textHash": "483401a4b99f"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.2",
+    "revision": "1.03",
+    "textHash": "aa7c7c7ab4ea"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.3",
+    "revision": "1.03",
+    "textHash": "004f89a5f321"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.4",
+    "revision": "1.03",
+    "textHash": "7ec320f01fff"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.5",
+    "revision": "1.03",
+    "textHash": "8e33701eb8ff"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.1.6",
+    "revision": "1.03",
+    "textHash": "803d26166572"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2",
+    "revision": "1.03",
+    "textHash": "8a4fb5df90c1"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.1",
+    "revision": "1.03",
+    "textHash": "a8848b833f21"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.2",
+    "revision": "1.03",
+    "textHash": "16c82563f537"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.3",
+    "revision": "1.03",
+    "textHash": "8bef9b7282a8"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.3.1",
+    "revision": "1.03",
+    "textHash": "e6b51d0adab3"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.3.1.1",
+    "revision": "1.03",
+    "textHash": "bb87be320740"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.3.2",
+    "revision": "1.03",
+    "textHash": "1327b3c13318"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.3.3",
+    "revision": "1.03",
+    "textHash": "313971ecff3e"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.4",
+    "revision": "1.03",
+    "textHash": "377cb57181b2"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.5",
+    "revision": "1.03",
+    "textHash": "41bf66703d25"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.6",
+    "revision": "1.03",
+    "textHash": "7ec320f01fff"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.2.7",
+    "revision": "1.03",
+    "textHash": "8e33701eb8ff"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3",
+    "revision": "1.03",
+    "textHash": "0a42d34243d0"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.1",
+    "revision": "1.03",
+    "textHash": "7de1e28a7786"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.1.1",
+    "revision": "1.03",
+    "textHash": "c5cd4c5f7337"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.1.2",
+    "revision": "1.03",
+    "textHash": "7a3de69bfb97"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.1.3",
+    "revision": "1.03",
+    "textHash": "3839388471c6"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.2",
+    "revision": "1.03",
+    "textHash": "bd9a33bc8a40"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.2.1",
+    "revision": "1.03",
+    "textHash": "b8d957f2302e"
+  },
+  {
+    "ruleKey": "303.2.a.4.3.3.3",
+    "revision": "1.03",
+    "textHash": "64b78b233faf"
+  },
+  {
+    "ruleKey": "303.2.a.4.4",
+    "revision": "1.03",
+    "textHash": "c6e1f2ecd51a"
+  },
+  {
+    "ruleKey": "303.2.a.4.5",
+    "revision": "1.03",
+    "textHash": "3c0df49f3531"
+  },
+  {
+    "ruleKey": "303.2.a.4.6",
+    "revision": "1.03",
+    "textHash": "b2b9685dbc08"
+  },
+  {
+    "ruleKey": "303.2.a.4.7",
+    "revision": "1.03",
+    "textHash": "85283945e04d"
+  },
+  {
+    "ruleKey": "303.2.a.4.8",
+    "revision": "1.03",
+    "textHash": "cbe130f70690"
+  },
+  {
+    "ruleKey": "303.2.a.4.9",
+    "revision": "1.03",
+    "textHash": "c36d077ea5ab"
+  },
+  {
+    "ruleKey": "303.2.a.4.9.1",
+    "revision": "1.03",
+    "textHash": "3cf5595812b0"
+  },
+  {
+    "ruleKey": "303.2.a.4.10",
+    "revision": "1.03",
+    "textHash": "81c905b0b785"
+  },
+  {
+    "ruleKey": "303.2.a.5",
+    "revision": "1.03",
+    "textHash": "056a2e9a9981"
+  },
+  {
+    "ruleKey": "303.2.a.5.1",
+    "revision": "1.03",
+    "textHash": "f91276f1cf63"
+  },
+  {
+    "ruleKey": "303.2.a.5.2",
+    "revision": "1.03",
+    "textHash": "1428e7fb70f3"
+  },
+  {
+    "ruleKey": "303.2.a.5.2.1",
+    "revision": "1.03",
+    "textHash": "e6b51d0adab3"
+  },
+  {
+    "ruleKey": "303.2.a.5.2.1.1",
+    "revision": "1.03",
+    "textHash": "bb87be320740"
+  },
+  {
+    "ruleKey": "303.2.a.5.2.2",
+    "revision": "1.03",
+    "textHash": "1327b3c13318"
+  },
+  {
+    "ruleKey": "303.2.a.5.2.3",
+    "revision": "1.03",
+    "textHash": "313971ecff3e"
+  },
+  {
+    "ruleKey": "303.2.a.5.3",
+    "revision": "1.03",
+    "textHash": "7cb782b0b9ce"
+  },
+  {
+    "ruleKey": "303.2.a.6",
+    "revision": "1.03",
+    "textHash": "ea5c34a932ea"
+  },
+  {
+    "ruleKey": "303.2.a.6.1",
+    "revision": "1.03",
+    "textHash": "70a3cfed92d6"
+  },
+  {
+    "ruleKey": "303.2.a.6.1.1",
+    "revision": "1.03",
+    "textHash": "bd4b199e9ed5"
+  },
+  {
+    "ruleKey": "303.2.a.6.1.1.1",
+    "revision": "1.03",
+    "textHash": "79bc4956c67e"
+  },
+  {
+    "ruleKey": "303.2.a.6.1.2",
+    "revision": "1.03",
+    "textHash": "06effe272462"
+  },
+  {
+    "ruleKey": "303.2.a.6.1.2.1",
+    "revision": "1.03",
+    "textHash": "dcb87f877988"
+  },
+  {
+    "ruleKey": "303.2.a.6.1.3",
+    "revision": "1.03",
+    "textHash": "9b4a603fb026"
+  },
+  {
+    "ruleKey": "303.2.a.6.2",
+    "revision": "1.03",
+    "textHash": "b71d7dcbff23"
+  },
+  {
+    "ruleKey": "304",
+    "revision": "1.03",
+    "textHash": "708f227f2e02"
+  },
+  {
+    "ruleKey": "304.1",
+    "revision": "1.03",
+    "textHash": "d566cc2d7ec3"
+  },
+  {
+    "ruleKey": "304.1.a",
+    "revision": "1.03",
+    "textHash": "d1cde41a6928"
+  },
+  {
+    "ruleKey": "304.1.b",
+    "revision": "1.03",
+    "textHash": "8c3ab46e7230"
+  },
+  {
+    "ruleKey": "304.1.c",
+    "revision": "1.03",
+    "textHash": "01edcc482ce9"
+  },
+  {
+    "ruleKey": "304.1.d",
+    "revision": "1.03",
+    "textHash": "7986869359ce"
+  },
+  {
+    "ruleKey": "304.1.e",
+    "revision": "1.03",
+    "textHash": "bcd38056bd2c"
+  },
+  {
+    "ruleKey": "304.1.f",
+    "revision": "1.03",
+    "textHash": "341c9ecb6ad8"
+  },
+  {
+    "ruleKey": "304.1.g",
+    "revision": "1.03",
+    "textHash": "26d1cfbb8440"
+  },
+  {
+    "ruleKey": "304.1.g.1",
+    "revision": "1.03",
+    "textHash": "9b3244044414"
+  },
+  {
+    "ruleKey": "304.1.g.2",
+    "revision": "1.03",
+    "textHash": "107585942132"
+  },
+  {
+    "ruleKey": "304.1.g.3",
+    "revision": "1.03",
+    "textHash": "f0628cec73db"
+  },
+  {
+    "ruleKey": "304.1.h",
+    "revision": "1.03",
+    "textHash": "e8f95b60b174"
+  },
+  {
+    "ruleKey": "304.1.i",
+    "revision": "1.03",
+    "textHash": "0686b5d35dd7"
+  },
+  {
+    "ruleKey": "304.1.j",
+    "revision": "1.03",
+    "textHash": "fc8eac204284"
+  },
+  {
+    "ruleKey": "304.1.k",
+    "revision": "1.03",
+    "textHash": "1c37c93f925c"
+  },
+  {
+    "ruleKey": "304.2",
+    "revision": "1.03",
+    "textHash": "61a46ca85234"
+  },
+  {
+    "ruleKey": "304.2.a",
+    "revision": "1.03",
+    "textHash": "27e81bd820cf"
+  },
+  {
+    "ruleKey": "304.2.b",
+    "revision": "1.03",
+    "textHash": "bc71dd561b8a"
+  },
+  {
+    "ruleKey": "304.2.c",
+    "revision": "1.03",
+    "textHash": "af8ff211a42d"
+  },
+  {
+    "ruleKey": "305",
+    "revision": "1.03",
+    "textHash": "b309f7e797e7"
+  },
+  {
+    "ruleKey": "305.1",
+    "revision": "1.03",
+    "textHash": "6075e2f903ff"
+  },
+  {
+    "ruleKey": "305.1.a",
+    "revision": "1.03",
+    "textHash": "20e318b40744"
+  },
+  {
+    "ruleKey": "305.2",
+    "revision": "1.03",
+    "textHash": "38a42c0b64ac"
+  },
+  {
+    "ruleKey": "305.2.a",
+    "revision": "1.03",
+    "textHash": "b350a4f6db4e"
+  },
+  {
+    "ruleKey": "305.3",
+    "revision": "1.03",
+    "textHash": "bbc961e49b55"
+  },
+  {
+    "ruleKey": "305.3.a",
+    "revision": "1.03",
+    "textHash": "50e7a5497ebc"
+  },
+  {
+    "ruleKey": "305.4",
+    "revision": "1.03",
+    "textHash": "287482c65737"
+  },
+  {
+    "ruleKey": "305.4.a",
+    "revision": "1.03",
+    "textHash": "c1de4889c0ff"
+  },
+  {
+    "ruleKey": "305.5",
+    "revision": "1.03",
+    "textHash": "477a1730e620"
+  },
+  {
+    "ruleKey": "305.5.a",
+    "revision": "1.03",
+    "textHash": "d8dc19b3f969"
+  },
+  {
+    "ruleKey": "305.6",
+    "revision": "1.03",
+    "textHash": "64636a121324"
+  },
+  {
+    "ruleKey": "305.6.a",
+    "revision": "1.03",
+    "textHash": "bd86e15d7866"
+  }
+]
