@@ -1,0 +1,51 @@
+name: Challenge a card script
+description: Say that a card script does something the rules do not support.
+title: "[Challenge] "
+labels: ["challenge"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when a card script behaves differently from the rules or the card as you read them. A maintainer reads every report and triages it by hand; nothing here is automated.
+
+        **Do not paste private chat messages or card text.** Cite the rule by number or key, and the published discussion by file name (for example `04-swap-vs-movement-prevention.md`), and put your reasoning in your own words.
+  - type: input
+    id: card-number
+    attributes:
+      label: Card number
+      placeholder: BP01-002
+    validations:
+      required: true
+  - type: input
+    id: rule
+    attributes:
+      label: Rule (key or number)
+      placeholder: 303.2.a.4.3.2.2
+    validations:
+      required: true
+  - type: textarea
+    id: script-behavior
+    attributes:
+      label: What the script does
+    validations:
+      required: true
+  - type: textarea
+    id: disagreement
+    attributes:
+      label: Why you disagree
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: A rule number, a published discussion file, or your reasoning in your own words.
+    validations:
+      required: true
+  - type: checkboxes
+    id: no-private-data
+    attributes:
+      label: Privacy
+      options:
+        - label: This report contains no private chat content, names, or card text.
+          required: true
