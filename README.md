@@ -16,6 +16,11 @@ pnpm run ci
 
 - `packages/core`: `@mhr/core`, shared types
 - `packages/effects-ir`: `@mhr/effects-ir` with the IR, schema, combinators, version, auto, registry and the 43 scripts
+- `discussions/`: sanitised, paraphrased community rulings with a status board
+- `AUTHORITY.md`: which source wins when rulings disagree
+- `ERRATA.md` and `errata/`: immutable record of behaviour-changing corrections
+- `rules/rule-key-snapshot.json`: rule keys and text hashes only
+- `.github/ISSUE_TEMPLATE/challenge.yml`: the issue form for challenging a script
 - Tests that use invented fixtures
 
 ## What is NOT included
