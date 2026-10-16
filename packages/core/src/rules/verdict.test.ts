@@ -118,7 +118,7 @@ describe('the diagnostic vocabulary', () => {
    * two codes are swapped, and a swap is precisely the change that silently
    * re-points a translation at the wrong message.
    */
-  it('is exactly the sixteen stable codes', () => {
+  it('is exactly the seventeen stable codes', () => {
     const expected = [
       'ACTION_LIMIT_REACHED',
       'CALL_COST_INSUFFICIENT',
@@ -129,6 +129,7 @@ describe('the diagnostic vocabulary', () => {
       'ENGINE_UNKNOWN',
       'GAME_OVER',
       'HAND_LIMIT_EXCEEDED',
+      'NOT_ACTION_PHASE',
       'NOT_PRIORITY_ACTOR',
       'NOT_TURN_PLAYER',
       'RULESET_STALE',
@@ -138,7 +139,7 @@ describe('the diagnostic vocabulary', () => {
       'ZONE_OCCUPIED',
     ];
 
-    expect(expected).toHaveLength(16);
+    expect(expected).toHaveLength(17);
     expect([...DiagnosticCodeSchema.options].sort()).toEqual(expected);
   });
 });
