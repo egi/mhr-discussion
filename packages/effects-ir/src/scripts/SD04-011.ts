@@ -11,16 +11,29 @@
  * modifier on the same card's R. The once-per-turn limit is a use limit, not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   characters,
   effect,
   select,
   statSet,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SD04-011');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves
+    { key: asRuleKey('301.41.a'), reviewedHash: '8283945e3cc4' }, // change ends earlier modifier
+    { key: asRuleKey('303.2.a.6.1.2'), reviewedHash: '06effe272462' }, // this-turn effects end
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('301.41.a') },
+    { discussion: '10', rule: asRuleKey('301.41.a') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {

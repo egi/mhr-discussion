@@ -14,7 +14,7 @@
  * the envelope and a use limit, not part of the IR.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   characters,
   effect,
@@ -25,9 +25,20 @@ import {
   statMod,
   step,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('SP01-016');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger
+    { key: asRuleKey('301.8.a'), reviewedHash: '7008a08eb9de' }, // power floor of zero
+    { key: asRuleKey('301.16.a.1'), reviewedHash: 'bff4b407369d' }, // zero power retreats
+    { key: asRuleKey('303.2.a.6.1.2'), reviewedHash: '06effe272462' }, // this-turn effects end
+  ],
+  rulings: [  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
