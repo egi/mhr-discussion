@@ -26,7 +26,7 @@ After 24 Sep, eight members held that a swap never retargets by itself; nobody h
 
 ## What the head judge said
 
-Nothing about retarget directly; he was tagged once on this exact question (L11909) and did not reply. His supporting principle (L8121-8126, 22 Sep) is that a swap retains all state, so no new character appears. On 6 Oct (L17571-17574) he distinguished not attacking (never declared) from failing to attack (declared and failed).
+Nothing about retarget directly; the head judge was tagged once on this exact question (L11909) and did not reply. The supporting principle (L8121-8126, 22 Sep) is that a swap retains all state, so no new character appears. On 6 Oct (L17571-17574) the head judge distinguished not attacking (never declared) from failing to attack (declared and failed).
 
 ## Verdict
 

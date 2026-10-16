@@ -21,7 +21,7 @@ No member or judge ruled on any of the four. Related chat: the example in discus
 
 ## What the head judge said
 
-Nothing on these four exact questions. For item 3 he said "do as much as you can" still applies (25 Sep, L10998-10999). For item 4(b) he said plain reductions accumulate (24 Sep, L10689-10695).
+Nothing on these four exact questions. For item 3 the head judge said "do as much as you can" still applies (25 Sep, L10998-10999). For item 4(b) the head judge said plain reductions accumulate (24 Sep, L10689-10695).
 
 ## Verdict
 

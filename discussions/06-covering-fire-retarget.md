@@ -13,7 +13,7 @@ BP01-033 (yellow, Lv4, in BACK) triggers when one of your Avengers characters at
 | Role | Date | Cite | Paraphrased position |
 |---|---|---|---|
 | member | 30 Sep | L13468-13478 | Asked the question; another member said the first reduction does not follow a retreated card, but an enemy still takes a reduction after a retarget. |
-| member | 30 Sep | L13479-13480 | To his knowledge a retarget does not trigger it again; it triggers when the attack is declared. |
+| member | 30 Sep | L13479-13480 | To that member's knowledge a retarget does not trigger it again; it triggers when the attack is declared. |
 | member | 30 Sep | L13481-13482 | Countered: a retarget opens a new counter window, so if that is right the trigger should fire again. No reply. |
 
 Two members, one each way. The thread moved on.
