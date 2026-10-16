@@ -23,6 +23,7 @@ import {
   select,
   sequence,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -52,5 +53,6 @@ export function script(): EffectIR {
         ifDone(power(select('opponent', 'BATTLE', characters({ lvMax: 5 })), -2000)),
       ),
     ),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

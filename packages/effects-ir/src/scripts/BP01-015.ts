@@ -10,7 +10,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, effect, optional, prune, select } from '../combinators';
+import { characters, effect, optional, prune, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -29,5 +29,6 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     optional(prune(select('opponent', 'BATTLE', characters({ powerMax: 4000 })))),
+    trigger('enters-field-by-call', 'FIELD'),
   );
 }

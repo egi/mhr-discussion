@@ -11,7 +11,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, effect, relocate, select } from '../combinators';
+import { characters, effect, relocate, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -35,5 +35,6 @@ export function script(): EffectIR {
       area: 'BASE',
       faceDown: false,
     }),
+    trigger('enters-field-by-call', 'BATTLE'),
   );
 }

@@ -19,6 +19,7 @@ import {
   select,
   sequence,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -43,5 +44,6 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     sequence(step(draw('self', 1)), ifDone(discard(select('self', 'HAND', ANY_CARD)))),
+    trigger('base-move', 'FIELD'),
   );
 }
