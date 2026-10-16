@@ -15,3 +15,4 @@ export type { EffectIR as WireEffectIR } from './schema';
 export * from './combinators';
 export * from './version';
 export * from './auto';
+export * from './declaration';
