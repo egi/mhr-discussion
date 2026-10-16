@@ -23,7 +23,7 @@ Two members argued for blocking (one explicitly, one by implication), one agains
 
 ## What the head judge said
 
-Nothing on this exact case. Nobody tagged the head judge on swap versus movement prevention, although he was active right after the debate. His only related statement (L8121-8126) is that a swap retains all state.
+Nothing on this exact case. Nobody tagged the head judge on swap versus movement prevention, although the head judge was active right after the debate. The only related statement (L8121-8126) is that a swap retains all state.
 
 ## Verdict
 
@@ -32,7 +32,7 @@ Authority tier: RULEBOOK. A swap IS blocked by an effect that prevents moving. T
 ## Rulebook check
 
 - 301.18.d: a swap of two field cards treats both as moving.
-- 301.18.e to 301.18.g: swaps involving the hand or deck treat the incoming card as placed and the field card as moving.
+- 301.18.e to 301.18.g: the areas involved decide whether each swapped card is treated as placed or as moving; for a swap with a hand or deck card, that card is placed and the other card moves.
 - 301.18.h: a swap that would move a card cannot resolve if an effect prevents that card from moving.
 - 301.18.b, 301.18.c: swapped cards exchange current state and attached cards.
 - 301.23 and 301.24: battle move and battle-base move are separate kinds of movement; 301.26.b: detaching is also movement; 303.2.a.4.2.1.1: rearranging is not movement.

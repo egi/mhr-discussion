@@ -14,7 +14,7 @@ BP01-001 is called by retreating characters, and its trigger prunes an opponent 
 |---|---|---|---|
 | member, trusted judge | 15 Sep | L3695-3722 | First asked. A trusted judge thought attachments do not count, since the retreated card is the host. Another trusted judge first leaned to counting, then suggested the attachments are collateral. A member argued they enter retreat by game rules, not by being sacrificed. Unresolved. |
 | trusted judge | 8 Oct | L18870-18876 | Not counted; another trusted judge said it should count, reading the English wording "by calling" as anything retreated as a result of the calling. |
-| trusted judge | 8-9 Oct | L18877-18888, L19051-19075 | Posted an image he treated as a ruling (its author is unknown and the image is not in the export). Several members said the attachment follows its host and is not retreated by the effect. |
+| trusted judge | 8-9 Oct | L18877-18888, L19051-19075 | Posted an image treated as a ruling (its author is unknown and the image is not in the export). Several members said the attachment follows its host and is not retreated by the effect. |
 | trusted judge | 9 Oct | L19221-19249 | Counted: the card says cards, and attachments are cards. Another trusted judge said the opposite. |
 | trusted judge | 9 Oct | L19255-19267 | Calling costs can only be characters and face-down cards; attachments are collateral, not tribute. |
 | trusted judge | 9 Oct | L19273-19276, L19305-19371 | Noted the rules never define whether following into retreat counts as a retreat cost; later agreed the structure of the card text points to not counting but wanted the rulebook clearer. |
@@ -24,7 +24,7 @@ By role: about six members and trusted judges gave not counted with a reason, th
 
 ## What the head judge said
 
-Nothing on this exact case. He was tagged on it at least twice (L3699, L18871) and did not reply; around the time of the October debate he was travelling (L19036). Adjacent statements, for context only: an attached card is a card with its own identity and its effect refers to itself, not to its host (L12510-12511); attachments return to hand with a host that returns to hand (L16418-16442). Neither says whether a following attachment counts as retreated for an effect.
+Nothing on this exact case. The head judge was tagged on it at least twice (L3699, L18871) and did not reply; around the time of the October debate the head judge was away (L19036). Adjacent statements, for context only: an attached card is a card with its own identity and its effect refers to itself, not to its host (L12510-12511); attachments return to hand with a host that returns to hand (L16418-16442). Neither says whether a following attachment counts as retreated for an effect.
 
 ## Verdict
 

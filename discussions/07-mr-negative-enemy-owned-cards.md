@@ -25,11 +25,11 @@ Nobody disagreed after 30 Sep.
 Nothing on this exact question. Adjacent statements:
 
 - 17 Sep (L5304-5312): on a different card that says "your cards in base", an enemy card sent into your field counts as yours, because the controller decides.
-- 25 Sep (L11011): he said he was checking the wording of SP01-061.
+- 25 Sep (L11011): the head judge said the wording of SP01-061 was being checked.
 - 29 Sep (L12971-12972, L13013-13014): when members said the English and Indonesian text differ, the English one is right. A flip opens the closed and closes the open; a cover only closes.
 - 1 Oct (L14670): a flip does not count as entering the field.
 
-He did not answer the original question that morning.
+The head judge did not answer the original question that morning.
 
 ## Verdict
 
