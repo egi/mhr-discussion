@@ -9,7 +9,7 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | # | File | Status | One-line |
 |---|---|---|---|
 | 1 | 01-counter-call-quota-after-24-sep.md | RESOLVED (303.2.a.4.3.2.3.1.1, 303.2.a.5.2.1.1) | One counter call per battle phase plus one per counter phase, for each player |
-| 2 | 02-antimatter-attachment-cost.md | RESOLVED (301.19.b, 301.25.c, card wording) | Attached cards that follow a retreated host do not count toward the calling-cost number |
+| 2 | 02-antimatter-attachment-cost.md | CONSENSUS (301.19.b, 301.25.c, card wording) | Attached cards that follow a retreated host do not count toward the calling-cost number |
 | 3 | 03-antimatter-vs-pym-arrow.md | RESOLVED (304.1.c-e, 304.1.g, card text) | Both triggers resolve, turn player first |
 | 4 | 04-swap-vs-movement-prevention.md | RESOLVED (301.18.h) | A swap is blocked by an effect that prevents moving |
 | 5 | 05-swap-vs-retarget.md | CONSENSUS (rulebook correction on timing, 303.2.a.4.3.2.2) | A swap gives no retarget by itself; re-selecting a target is immediate, not at judgement |

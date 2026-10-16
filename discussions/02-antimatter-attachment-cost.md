@@ -1,6 +1,6 @@
 # 02 - BP01-001: do attached cards of the retreated characters count toward X?
 
-**Status: RESOLVED (rulebook and card wording; strong but not an explicit sentence)**
+**Status: CONSENSUS (rulebook and card wording support it; no explicit sentence, and the head judge has not ruled)**
 
 > Source note: L<n> citations refer to a private chat export and cannot be re-checked by readers. This text is a paraphrase, and people appear by role only.
 
@@ -28,7 +28,7 @@ Nothing on this exact case. The head judge was tagged on it at least twice (L369
 
 ## Verdict
 
-Authority tier: RULEBOOK and CARD-TEXT. X counts the characters and face-down cards used as the calling cost only. Attached cards do not add to it. Calling a Lv4+ character requires retreating characters whose combined Lv equals the called Lv, and face-down cards may stand in as Lv1 each. The card design uses two distinct phrasings: effects that say "by calling" (BP01-026, SD01-018, BP01-001) and attachment cards that say they follow their host into retreat (SP01-014, SP01-024, SP01-028, SP01-037). The two are deliberately different events, so an attachment that follows its host is not retreated by calling.
+Authority tier: TRUSTED-CONSENSUS, resting on the rulebook and the card wording. X counts the characters and face-down cards used as the calling cost only. Attached cards do not add to it. Calling a Lv4+ character requires retreating characters whose combined Lv equals the called Lv, and face-down cards may stand in as Lv1 each. The card design uses two distinct phrasings: effects that say "by calling" (BP01-026, SD01-018, BP01-001) and attachment cards that say they follow their host into retreat (SP01-014, SP01-024, SP01-028, SP01-037). The two are deliberately different events, so an attachment that follows its host is not retreated by calling.
 
 The remaining counter-argument is that no sentence in the rulebook says outright that attachments do not count; it is outweighed by the structure above rather than refuted. A question for the head judge would make it airtight.
 
