@@ -13,7 +13,7 @@
  * answers EFFECT_UNSUPPORTED and the card is played by hand.
  */
 
-import { asCardNo } from '@mhr/core';
+import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   characters,
   cover,
@@ -25,9 +25,22 @@ import {
   step,
   subject,
 } from '../combinators';
+import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
 export const CARD_NO = asCardNo('BP01-013');
+
+export const RULE_DECLARATION = declareRules({
+  rules: [
+    { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger timing
+    { key: asRuleKey('301.24.b'), reviewedHash: '5ebdfc22a919' }, // effect move BATTLE to BASE
+    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to greatest extent
+  ],
+  rulings: [
+    { discussion: '09', rule: asRuleKey('304.1.d') },
+    { discussion: '10', rule: asRuleKey('304.1.d') },
+  ],
+});
 
 /** The effect's IR. */
 export function script(): EffectIR {
