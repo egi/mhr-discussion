@@ -1,6 +1,6 @@
 # mhr-discussion
 
-The effect vocabulary and the 43 authored card scripts used by a Marvel Hero Rush simulator, plus the shared types package `@mhr/core`.
+The effect vocabulary and the 67 authored card scripts used by a Marvel Hero Rush simulator, plus the shared types package `@mhr/core`.
 
 ## Quick start
 
