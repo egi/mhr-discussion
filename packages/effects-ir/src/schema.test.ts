@@ -222,3 +222,25 @@ describe('the optional trigger tag', () => {
     ]);
   });
 });
+
+describe('the optional name filter', () => {
+  const named = (filter: Record<string, unknown>): unknown =>
+    wrap({
+      kind: 'prune',
+      target: { kind: 'selected', side: 'self', area: 'BATTLE', count: 1, upTo: false, filter },
+    });
+
+  it('parses a filter with no name text, as every earlier script wrote it', () => {
+    expect(() => EffectIRSchema.parse(named({ ...NO_FILTER }))).not.toThrow();
+  });
+
+  it('accepts a non-empty name text and keeps it', () => {
+    const parsed = EffectIRSchema.parse(named({ ...NO_FILTER, nameIncludes: 'ULTRON' }));
+    expect(JSON.stringify(parsed)).toContain('"nameIncludes":"ULTRON"');
+  });
+
+  it('rejects an empty name text and a non-text one', () => {
+    expect(() => EffectIRSchema.parse(named({ ...NO_FILTER, nameIncludes: '' }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ ...NO_FILTER, nameIncludes: 7 }))).toThrow();
+  });
+});
