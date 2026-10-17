@@ -16,7 +16,10 @@ import type { CardScript } from '../ir';
 import * as BP01_002 from './BP01-002';
 import * as BP01_003 from './BP01-003';
 import * as BP01_005 from './BP01-005';
+import * as BP01_007 from './BP01-007';
+import * as BP01_008 from './BP01-008';
 import * as BP01_009 from './BP01-009';
+import * as BP01_010 from './BP01-010';
 import * as BP01_012 from './BP01-012';
 import * as BP01_013 from './BP01-013';
 import * as BP01_015 from './BP01-015';
@@ -76,7 +79,10 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-002': BP01_002.script,
   'BP01-003': BP01_003.script,
   'BP01-005': BP01_005.script,
+  'BP01-007': BP01_007.script,
+  'BP01-008': BP01_008.script,
   'BP01-009': BP01_009.script,
+  'BP01-010': BP01_010.script,
   'BP01-012': BP01_012.script,
   'BP01-013': BP01_013.script,
   'BP01-015': BP01_015.script,

@@ -30,7 +30,7 @@ function kindsIn(op: EffectOp): string[] {
 }
 
 /** Op kinds with no authored script, pinned so opening or closing a gap fails the test. */
-const NOT_AUTHORED: readonly string[] = ['attach', 'show'];
+const NOT_AUTHORED: readonly string[] = ['show'];
 
 describe('card scripts', () => {
   const entries = Object.entries(CARD_SCRIPTS);
@@ -60,6 +60,8 @@ describe('card scripts', () => {
 /** Every tagged script with the Effect Location printed in its header (201.10.d.2). */
 const TAGGED: Readonly<Record<string, { event: string; area: EffectArea }>> = {
   'BP01-002': { event: 'activate-counter', area: 'HAND' },
+  'BP01-008': { event: 'enters-field', area: 'FIELD' },
+  'BP01-010': { event: 'activate', area: 'HAND' },
   'BP01-012': { event: 'enters-field-by-call', area: 'BATTLE' },
   'BP01-015': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-017': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -102,7 +104,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(18);
+    expect(tagged).toHaveLength(20);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
