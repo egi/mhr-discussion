@@ -6,9 +6,9 @@
  *   ACTI【FIELD/ONCE PER TURN】: 1 of your characters in the field takes BATTLE-BASE Move
  *   once.
  *
- * The script has one of the player's field characters take a BATTLE-BASE Move. The interpreter
- * does not run battle-move yet, so the script answers EFFECT_UNSUPPORTED and the card is played
- * by hand. The once-per-turn limit is a use limit, not part of the IR.
+ * The script has one of the player's field characters take a BATTLE-BASE Move. A card in the BASE moves
+ * to a lane the player names, and a card in a lane moves to the BASE; without a lane choice the
+ * interpreter answers EFFECT_UNEXECUTABLE and changes nothing. The once-per-turn limit is a use limit, not part of the IR.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

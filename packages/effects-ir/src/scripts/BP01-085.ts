@@ -7,9 +7,9 @@
  *   do, 1 of your characters in the field takes BATTLE-BASE Move once.
  *
  * The script lets the player prune one of their RETREAT characters and, only if that
- * happened, moves one of their field characters between BATTLE and BASE. The move is an op
- * the interpreter does not run yet, so applying this script today answers
- * EFFECT_UNSUPPORTED, changes nothing, and the card is played by hand.
+ * happened, moves one of their field characters between BATTLE and BASE. A card in the BASE
+ * moves to a lane the player names, and a card in a lane moves to the BASE; without a lane
+ * choice the interpreter answers EFFECT_UNEXECUTABLE and changes nothing.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

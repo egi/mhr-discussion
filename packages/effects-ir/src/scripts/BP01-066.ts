@@ -11,9 +11,9 @@
  * then, only if that happened, the character that triggered it is placed into the field. The
  * trigger (a Lv4-or-below Human character entering RETREAT from BATTLE by losing the fight or
  * an opposing effect) is the envelope; losing the fight is not an existing trigger event, so
- * the script carries no trigger tag. Placing a card into the field is a relocate the
- * interpreter does not run yet, so applying this script answers EFFECT_UNSUPPORTED, changes
- * nothing, and the card is played by hand.
+ * the script carries no trigger tag. Placing a card into the field is a relocate whose spot the text does not name, so the
+ * interpreter takes the player's placement (a free lane or the BASE) and, without one,
+ * answers EFFECT_UNEXECUTABLE and changes nothing.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
