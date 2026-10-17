@@ -12,6 +12,8 @@ The format follows Keep a Changelog.
 
 - `@mhr/effects-ir`: seven wave-2 scripts (BP01-016, BP01-026, BP01-059, EB01-010, EB01-013, SD01-018, SD02-016); the registry holds 50. BP01-059 and SD02-016 use `grant-ability`, which the interpreter does not run yet, so they stay manual. None is trigger-tagged. `EFFECT_RULES_VERSION` is unchanged.
 
+- `@mhr/effects-ir`: optional `EffectFilter.nameIncludes` (a case-insensitive name substring, rule 201.7.b), omitted when unused, so earlier scripts read and hash as before. Five wave-2 backfill scripts (BP01-014, BP01-030, BP01-032, BP01-033, BP01-034); the registry holds 67. BP01-014 and BP01-030 are trigger-tagged; BP01-032 and BP01-034 use ops the interpreter does not run yet. `EFFECT_RULES_VERSION` is unchanged.
+
 ### Removals
 
 Every takedown removal is recorded here with its date and scope, without the removed text.

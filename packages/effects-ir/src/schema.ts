@@ -48,6 +48,7 @@ export const EffectFilterSchema = z.strictObject({
   characterOnly: z.boolean(),
   faceDown: z.boolean().nullable(),
   exceptSource: z.boolean(),
+  nameIncludes: z.string().min(1).optional(),
 });
 
 export const EffectTargetSchema = z.discriminatedUnion('kind', [

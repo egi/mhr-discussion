@@ -187,6 +187,12 @@ export type EffectFilter = {
   readonly faceDown: boolean | null;
   /** Excludes the effect's own card ("except this card"). */
   readonly exceptSource: boolean;
+  /**
+   * Keeps cards whose name contains this text, ignoring case ("characters with Ultron in their
+   * names"). A character's name is all the text in it (201.7.b). Left out when the text does not
+   * ask for a name, so a filter written before this field existed reads and hashes the same.
+   */
+  readonly nameIncludes?: string | undefined;
 };
 
 /**
