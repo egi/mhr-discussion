@@ -30,7 +30,7 @@ function kindsIn(op: EffectOp): string[] {
 }
 
 /** Op kinds with no authored script, pinned so opening or closing a gap fails the test. */
-const NOT_AUTHORED: readonly string[] = ['attach', 'show', 'grant-ability'];
+const NOT_AUTHORED: readonly string[] = ['attach', 'show'];
 
 describe('card scripts', () => {
   const entries = Object.entries(CARD_SCRIPTS);
