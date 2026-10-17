@@ -9,8 +9,9 @@
  *
  * The script tests for exactly four cards in the HAND. When that holds it places a Lv4
  * character from the HAND into the field; otherwise it moves a RETREAT character to the
- * bottom of the DECK. The field placement names no lane, which the interpreter does not
- * run yet, so that branch answers EFFECT_UNSUPPORTED and the card is played by hand. The
+ * bottom of the DECK. The field placement names no lane, so that branch takes the player's
+ * placement (a free lane or the BASE) and, without one, answers EFFECT_UNEXECUTABLE and
+ * changes nothing. The
  * "once per turn" limit is a use limit, not an effect, and is not part of the IR.
  */
 

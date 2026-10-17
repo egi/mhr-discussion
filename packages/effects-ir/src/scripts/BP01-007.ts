@@ -10,9 +10,9 @@
  * The script is the effect after the trigger: an optional discard of two HAND cards, then, only
  * if that happened, this card is placed into the field and the opposing FRONT character loses
  * 1000 Power until the end of the turn. Entering VOID from RETREAT is not an existing trigger
- * event, so the script carries no trigger tag. Placing a card into the field is a relocate the
- * interpreter does not run yet, so applying this script answers EFFECT_UNSUPPORTED, changes
- * nothing, and the card is played by hand.
+ * event, so the script carries no trigger tag. Placing a card into the field is a relocate whose spot the text does not name, so the
+ * interpreter takes the player's placement (a free lane or the BASE) and, without one,
+ * answers EFFECT_UNEXECUTABLE and changes nothing.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
