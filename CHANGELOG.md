@@ -14,6 +14,8 @@ The format follows Keep a Changelog.
 
 - `@mhr/effects-ir`: optional `EffectFilter.nameIncludes` (a case-insensitive name substring, rule 201.7.b), omitted when unused, so earlier scripts read and hash as before. Five wave-2 backfill scripts (BP01-014, BP01-030, BP01-032, BP01-033, BP01-034); the registry holds 67. BP01-014 and BP01-030 are trigger-tagged; BP01-032 and BP01-034 use ops the interpreter does not run yet. `EFFECT_RULES_VERSION` is unchanged.
 
+- `@mhr/effects-ir`: wave-2 scripts, summarised. 24 scripts added over four batches and a backfill (BP01-007, 008, 010, 014, 016, 026, 028, 030, 032, 033, 034, 059, 066, 111, 119, EB01-010, 012, 013, SD01-018, SD02-016, 017, SD03-018, SD04-014, 015); the registry holds 67. Every script carries a rule declaration and the consistency report shows 67 declared, 0 undeclared, 0 withDrift, 0 failing (32 scripts carry a ruling flag, each tied to an open discussion). Two interpreter ops were promoted after clearing the three-card gate: `battle-move` (BP01-085, 111, SD03-018, SD04-015) and `relocate` into the field (BP01-007, 066, EB01-012); every other candidate op was held below the gate. No new IR op kind was added to this package. `EFFECT_RULES_VERSION` is unchanged at `1.03`.
+
 ### Removals
 
 Every takedown removal is recorded here with its date and scope, without the removed text.
