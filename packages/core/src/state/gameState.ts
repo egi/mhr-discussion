@@ -223,6 +223,12 @@ export type TurnState = {
    * moot — the opportunity simply did not renew).
    */
   readonly attackedIids: readonly number[];
+  /**
+   * The FIELD characters (by iid) whose attack opportunity the Turn Player declined this
+   * turn (303.2.a.4.7). A declined Character has lost its opportunity but has not
+   * attacked (301.50.a), so it is kept apart from `attackedIids`. Cleared with it.
+   */
+  readonly declinedIids: readonly number[];
 };
 
 /**
