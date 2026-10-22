@@ -69,9 +69,15 @@ export const DiagnosticCodeSchema = z.enum([
   /** An action that belongs to one phase (an ordinary Action CALL, 303.2.a.3.1.2) was
    * offered in another. */
   'NOT_ACTION_PHASE',
+  /** A declared attack locks the battle process in (303.2.a.4.5): the action offered would
+   * leave it. */
+  'BATTLE_LOCKED',
+  /** A Counter Step action was offered while no Counter Step is in the required state. The
+   * diagnostic's params carry `reason`: 'no-battle' | 'not-open' | 'still-open'. */
+  'COUNTER_STEP_STATE',
 ]);
 
-/** One of the seventeen stable codes above. */
+/** One of the nineteen stable codes above. */
 export type DiagnosticCode = z.infer<typeof DiagnosticCodeSchema>;
 
 /**

@@ -103,6 +103,7 @@ export type {
 } from './state/modifiers';
 
 export type { PriorityWindow } from './state/priority';
+export type { OpenBattle } from './state/battle';
 
 export { BATTLE_SLOT_NAMES } from './state/slots';
 export type { BattleSlotName } from './state/slots';

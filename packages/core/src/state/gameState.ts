@@ -31,6 +31,7 @@
  */
 
 import type { CardInstance } from '../cards/identity';
+import type { OpenBattle } from './battle';
 import type { PlayerId } from './player';
 import type { PriorityWindow } from './priority';
 import type { AutoActivation, EffectModifier } from './modifiers';
@@ -323,4 +324,10 @@ export type GameState = {
    * and the pure `advancePriority` transition over it.
    */
   readonly priorityWindow: PriorityWindow | null;
+  /**
+   * The battle opened by a declared attack, absent (never `null`) when none is open. Leaving
+   * the key off, rather than setting it to `null`, keeps the body and digest of every state
+   * with no battle exactly as they were.
+   */
+  readonly battle?: OpenBattle;
 };
