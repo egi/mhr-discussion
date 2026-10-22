@@ -73,6 +73,7 @@ const TAGGED: Readonly<
   'BP01-014': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-028': { event: 'activate', area: 'HAND' },
   'BP01-030': { event: 'activate', area: 'HAND' },
+  'BP01-033': { event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } },
   'BP01-053': { event: 'attacks', area: 'BATTLE' },
   'BP01-060': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD02-017': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -110,7 +111,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(24);
+    expect(tagged).toHaveLength(25);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -124,9 +125,9 @@ describe('trigger tags', () => {
     }
   });
 
-  it('uses an area of FIELD, BATTLE or HAND', () => {
+  it('uses an area of FIELD, BATTLE, BACK or HAND', () => {
     for (const [, script] of tagged) {
-      expect(['FIELD', 'BATTLE', 'HAND']).toContain(script().trigger?.area);
+      expect(['FIELD', 'BATTLE', 'BACK', 'HAND']).toContain(script().trigger?.area);
     }
   });
 });

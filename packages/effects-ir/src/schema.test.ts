@@ -223,6 +223,44 @@ describe('the optional trigger tag', () => {
   });
 });
 
+describe('the optional attacker feature filter', () => {
+  const base = {
+    cardNo: 'BP01-033',
+    rulesVersion: '1.03',
+    op: VALID['draw'],
+  };
+  const withTrigger = (trigger: Record<string, unknown>): unknown => ({ ...base, trigger });
+
+  it('accepts a feature on an attacks trigger and keeps it', () => {
+    const parsed = EffectIRSchema.safeParse(
+      withTrigger({ event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } }),
+    );
+    expect(parsed.success).toBe(true);
+    expect(JSON.stringify(parsed.data)).toContain('"feature":"Avengers"');
+  });
+
+  it('reads a filter with no feature as before', () => {
+    const parsed = EffectIRSchema.safeParse(
+      withTrigger({ event: 'attacks', area: 'HAND', attacker: { controller: 'self', color: 'red' } }),
+    );
+    expect(parsed.success).toBe(true);
+    expect(JSON.stringify(parsed.data)).not.toContain('feature');
+  });
+
+  it('rejects an empty feature and an attacker filter on a non-attacks event', () => {
+    expect(
+      EffectIRSchema.safeParse(
+        withTrigger({ event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: '' } }),
+      ).success,
+    ).toBe(false);
+    expect(
+      EffectIRSchema.safeParse(
+        withTrigger({ event: 'activate', area: 'HAND', attacker: { controller: 'self', feature: 'Avengers' } }),
+      ).success,
+    ).toBe(false);
+  });
+});
+
 describe('the optional name filter', () => {
   const named = (filter: Record<string, unknown>): unknown =>
     wrap({

@@ -178,6 +178,7 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
 export const AttackerFilterSchema = z.strictObject({
   controller: z.literal('self'),
   color: CardColorSchema.optional(),
+  feature: z.string().min(1).optional(),
 });
 
 export const EffectTriggerSchema = z

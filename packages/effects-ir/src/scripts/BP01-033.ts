@@ -8,12 +8,14 @@
  *   opponent's characters in BATTLE gets Power-500 in this turn.
  *
  * The script is the effect after the trigger: one opposing BATTLE character gets Power-500 until
- * the end of the turn. The trigger (any of the controller's Avengers characters attacking) is the
- * envelope; the existing "attacks" event names the card itself, so there is no trigger tag.
+ * the end of the turn. "When your character with Avengers in its feature attacks" is carried by the
+ * trigger tag: an `attacks` event fired from BACK (the carrier stands in the controller's BACK),
+ * filtered to an attacker of the same player whose printed traits include Avengers. The trigger is
+ * mandatory (304.1.b) and is not an op.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, effect, power, select } from '../combinators';
+import { characters, effect, power, select, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -30,5 +32,9 @@ export const RULE_DECLARATION = declareRules({
 
 /** The effect's IR. */
 export function script(): EffectIR {
-  return effect(CARD_NO, power(select('opponent', 'BATTLE', characters()), -500));
+  return effect(
+    CARD_NO,
+    power(select('opponent', 'BATTLE', characters()), -500),
+    trigger('attacks', 'BACK', { controller: 'self', feature: 'Avengers' }),
+  );
 }

@@ -103,11 +103,14 @@ export type EffectTrigger = {
 /**
  * Which attacker counts for an `attacks` trigger. `controller: 'self'` means the attacker
  * belongs to the same player as the card carrying the script; `color` is matched against the
- * attacker's printed colour.
+ * attacker's printed colour. `feature`, when present, must equal one of the attacker's printed
+ * traits (the feature field split on "/"); append-only, so absent means no feature requirement
+ * and earlier tags read and hash as before.
  */
 export type AttackerFilter = {
   readonly controller: 'self';
   readonly color?: CardColor | undefined;
+  readonly feature?: string | undefined;
 };
 
 /** Where a relocated card can end up. The deck is addressed by end, as the text does. */
