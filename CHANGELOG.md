@@ -6,6 +6,8 @@ The format follows Keep a Changelog.
 
 ### Added
 
+- `@mhr/effects-ir`: optional `AttackerFilter.feature` (append-only; matched against the attacker's printed traits, omitted when unused, so earlier scripts read and hash as before). BP01-033 is now tagged `attacks` / BACK with the same-player Avengers filter. `EFFECT_RULES_VERSION` is unchanged at `1.03`.
+
 - `@mhr/core`: append-only `OpenBattle` type (`attackerSlot`, `attackerIid`, `targetSlot`, `targetIid` or `null` for a Weakness, `step`: `select` | `declared` | `counter` | `counter-closed`) and an optional `GameState.battle`, absent when no battle is open so existing bodies and digests are unchanged. Two new diagnostic codes, `BATTLE_LOCKED` and `COUNTER_STEP_STATE`.
 
 - Initial import: `@mhr/core`, `@mhr/effects-ir` with the 43 card scripts, the CI privacy gate, the licence and the notice.
