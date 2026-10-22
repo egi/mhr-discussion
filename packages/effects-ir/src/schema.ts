@@ -175,10 +175,20 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('optional'), op: EffectOpRef }),
 ]);
 
-export const EffectTriggerSchema = z.strictObject({
-  event: z.enum(EFFECT_TRIGGER_EVENTS),
-  area: AreaSchema,
+export const AttackerFilterSchema = z.strictObject({
+  controller: z.literal('self'),
+  color: CardColorSchema.optional(),
 });
+
+export const EffectTriggerSchema = z
+  .strictObject({
+    event: z.enum(EFFECT_TRIGGER_EVENTS),
+    area: AreaSchema,
+    attacker: AttackerFilterSchema.optional(),
+  })
+  .refine((t) => t.attacker === undefined || t.event === 'attacks', {
+    message: 'an attacker filter is valid only on the attacks event',
+  });
 
 export const EffectIRSchema = z.strictObject({
   cardNo: CardNoSchema,

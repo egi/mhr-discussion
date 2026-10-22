@@ -33,7 +33,7 @@ import {
   swap,
 } from './combinators';
 import type { EffectOp } from './ir';
-import { EffectIRSchema } from './schema';
+import { EffectIRSchema, EffectTriggerSchema } from './schema';
 import { EFFECT_RULES_VERSION } from './version';
 import { SYNTHETIC_CARDS } from './fixtures/synthetic-cards';
 
@@ -113,5 +113,25 @@ describe('effect trigger tag', () => {
     const ir = effect(card.cardNo, op, trigger('enters-field-by-call', 'FIELD'));
     expect(ir.trigger).toEqual({ event: 'enters-field-by-call', area: 'FIELD' });
     expect(EffectIRSchema.safeParse(ir).success).toBe(true);
+  });
+
+  it('carries an optional attacker filter only when given, and only on attacks', () => {
+    expect(trigger('attacks', 'HAND')).toEqual({ event: 'attacks', area: 'HAND' });
+    expect('attacker' in trigger('attacks', 'HAND')).toBe(false);
+    const filtered = trigger('attacks', 'HAND', { controller: 'self', color: 'red' });
+    expect(filtered).toEqual({
+      event: 'attacks',
+      area: 'HAND',
+      attacker: { controller: 'self', color: 'red' },
+    });
+    expect(EffectTriggerSchema.safeParse(filtered).success).toBe(true);
+    expect(
+      EffectTriggerSchema.safeParse({ ...filtered, attacker: { controller: 'self', extra: 1 } })
+        .success,
+    ).toBe(false);
+    expect(
+      EffectTriggerSchema.safeParse({ event: 'activate', area: 'HAND', attacker: filtered.attacker })
+        .success,
+    ).toBe(false);
   });
 });
