@@ -8,8 +8,8 @@
  *
  * The script is the effect after the trigger: an optional discard of this card, then, only if
  * the discard happened, Power+3000 for one red character in BATTLE until the end of the turn.
- * "When your red character attacks" is the envelope that decides when the player may invoke
- * the script, and it is not an op.
+ * "When your red character attacks" is carried by the trigger tag (an `attacks` event fired
+ * from HAND, filtered to a red attacker of the same player), and it is not an op.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -24,6 +24,7 @@ import {
   sequence,
   source,
   step,
+  trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
@@ -53,5 +54,6 @@ export function script(): EffectIR {
         ifDone(power(select('self', 'BATTLE', colored('red')), 3000)),
       ),
     ),
+    trigger('attacks', 'HAND', { controller: 'self', color: 'red' }),
   );
 }

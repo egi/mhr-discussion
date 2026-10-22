@@ -8,7 +8,7 @@ The format follows Keep a Changelog.
 
 - Initial import: `@mhr/core`, `@mhr/effects-ir` with the 43 card scripts, the CI privacy gate, the licence and the notice.
 
-- `@mhr/effects-ir`: optional `EffectIR.trigger` (an append-only event plus the Effect Location the card must stand in) with six events: `enters-field-by-call`, `enters-field`, `attacks`, `base-move`, `activate`, `activate-counter`. Seventeen scripts are tagged (BP01-002, 012, 015, 017, 018, 020, 053, 060, 077, 106, 109, 112, 114, 118, SD01-007, SD02-010, SD04-002). An untagged script is manual only. `EFFECT_RULES_VERSION` is unchanged. Left untagged on purpose: scripts with a per-turn limit (no per-turn use record exists), BP01-003 (turn-end timing), BP01-065 (retreat by losing a fight, no battle-resolution event), BP01-005 (needs an attacker filter), and every script that cannot run yet.
+- `@mhr/effects-ir`: optional `EffectIR.trigger` (an append-only event plus the Effect Location the card must stand in) with six events: `enters-field-by-call`, `enters-field`, `attacks`, `base-move`, `activate`, `activate-counter`. Seventeen scripts are tagged (BP01-002, 012, 015, 017, 018, 020, 053, 060, 077, 106, 109, 112, 114, 118, SD01-007, SD02-010, SD04-002). An untagged script is manual only. `EFFECT_RULES_VERSION` is unchanged. Left untagged on purpose: scripts with a per-turn limit (no per-turn use record exists), BP01-003 (turn-end timing), BP01-065 (retreat by losing a fight, no battle-resolution event), BP01-005 (needs an attacker filter; since tagged, see the attacker filter entry below), and every script that cannot run yet.
 
 - `@mhr/effects-ir`: seven wave-2 scripts (BP01-016, BP01-026, BP01-059, EB01-010, EB01-013, SD01-018, SD02-016); the registry holds 50. BP01-059 and SD02-016 use `grant-ability`, which the interpreter does not run yet, so they stay manual. None is trigger-tagged. `EFFECT_RULES_VERSION` is unchanged.
 
@@ -19,3 +19,5 @@ The format follows Keep a Changelog.
 ### Removals
 
 Every takedown removal is recorded here with its date and scope, without the removed text.
+
+- `@mhr/effects-ir`: optional `EffectTrigger.attacker` (append-only; `controller: 'self'`, optional `color`), valid only on the `attacks` event and omitted when unused, so earlier scripts read and hash as before. BP01-005 is now tagged `attacks` / HAND with the same-player red filter. `EFFECT_RULES_VERSION` is unchanged at `1.03`.

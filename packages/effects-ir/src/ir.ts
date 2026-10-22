@@ -68,7 +68,8 @@ export type EffectArea = (typeof EFFECT_AREAS)[number];
  *   a COUNTER CALL is the same action).
  * - `enters-field`: the card entered the field; today the engine can only express that as a
  *   CALL, so it fires on CALL only.
- * - `attacks`: the card was the attacker of a structural `attack`.
+ * - `attacks`: the card was the attacker of a structural `attack`. An optional `attacker`
+ *   filter on the trigger narrows which attacker counts ("when your red character attacks").
  * - `base-move`: a structural `base-move` where exactly one end is a BATTLE lane and the
  *   other is the BASE (301.24.a); BASE-to-BASE rearrangement does not count.
  * - `activate`: a player-initiated Activated Effect (201.10.f.2).
@@ -91,6 +92,22 @@ export type EffectTriggerEvent = (typeof EFFECT_TRIGGER_EVENTS)[number];
 export type EffectTrigger = {
   readonly event: EffectTriggerEvent;
   readonly area: EffectArea;
+  /**
+   * Narrows which attacker fires an `attacks` trigger. Append-only: left out when the text
+   * does not ask for it, so a tag written before this field existed reads and hashes the
+   * same. Valid only on the `attacks` event.
+   */
+  readonly attacker?: AttackerFilter | undefined;
+};
+
+/**
+ * Which attacker counts for an `attacks` trigger. `controller: 'self'` means the attacker
+ * belongs to the same player as the card carrying the script; `color` is matched against the
+ * attacker's printed colour.
+ */
+export type AttackerFilter = {
+  readonly controller: 'self';
+  readonly color?: CardColor | undefined;
 };
 
 /** Where a relocated card can end up. The deck is addressed by end, as the text does. */

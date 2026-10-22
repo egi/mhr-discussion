@@ -2,6 +2,7 @@ export { cardScript, scriptedCardNumbers } from './registry';
 export type { CardScript } from './ir';
 export * from './ir';
 export {
+  AttackerFilterSchema,
   EffectConditionSchema,
   EffectDestinationSchema,
   EffectFilterSchema,

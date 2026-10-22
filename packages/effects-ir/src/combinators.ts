@@ -29,6 +29,7 @@ import type {
   EffectSide,
   EffectStat,
   EffectStep,
+  AttackerFilter,
   EffectTrigger,
   EffectTriggerEvent,
   EffectStepGate,
@@ -240,6 +241,10 @@ export function effect(cardNo: CardNo, op: EffectOp, trigger?: EffectTrigger): E
 }
 
 /** Tag a script with the action outcome it fires on and the area its card must stand in. */
-export function trigger(event: EffectTriggerEvent, area: EffectArea): EffectTrigger {
-  return { event, area };
+export function trigger(
+  event: EffectTriggerEvent,
+  area: EffectArea,
+  attacker?: AttackerFilter,
+): EffectTrigger {
+  return attacker === undefined ? { event, area } : { event, area, attacker };
 }

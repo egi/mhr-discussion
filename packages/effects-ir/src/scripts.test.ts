@@ -58,8 +58,11 @@ describe('card scripts', () => {
 });
 
 /** Every tagged script with the Effect Location printed in its header (201.10.d.2). */
-const TAGGED: Readonly<Record<string, { event: string; area: EffectArea }>> = {
+const TAGGED: Readonly<
+  Record<string, { event: string; area: EffectArea; attacker?: object }>
+> = {
   'BP01-002': { event: 'activate-counter', area: 'HAND' },
+  'BP01-005': { event: 'attacks', area: 'HAND', attacker: { controller: 'self', color: 'red' } },
   'BP01-008': { event: 'enters-field', area: 'FIELD' },
   'BP01-010': { event: 'activate', area: 'HAND' },
   'BP01-012': { event: 'enters-field-by-call', area: 'BATTLE' },
@@ -107,7 +110,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(23);
+    expect(tagged).toHaveLength(24);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
