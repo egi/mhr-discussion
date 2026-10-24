@@ -238,7 +238,7 @@ describe('the optional trigger tag', () => {
   });
 
   it('keeps the event table append-only', () => {
-    expect([...EFFECT_TRIGGER_EVENTS]).toEqual([
+    expect([...EFFECT_TRIGGER_EVENTS].slice(0, 6)).toEqual([
       'enters-field-by-call',
       'enters-field',
       'attacks',
@@ -246,6 +246,44 @@ describe('the optional trigger tag', () => {
       'activate',
       'activate-counter',
     ]);
+  });
+
+  it('names every surveyed event after the first six, once each', () => {
+    const appended = [...EFFECT_TRIGGER_EVENTS].slice(6);
+    expect(new Set(appended).size).toBe(appended.length);
+    for (const name of [
+      'enters-retreat-from-field',
+      'enters-retreat-by-losing-fight',
+      'enters-retreat-by-discard-effect',
+      'wins-fight',
+      'is-attacked',
+      'turn-starts',
+      'turn-ends',
+      'this-card-attached',
+      'follows-host-to-retreat',
+      'opponent-character-enters-field',
+    ]) {
+      expect(appended).toContain(name);
+    }
+  });
+
+  it('accepts an appended event and rejects an unknown tag', () => {
+    const base = { cardNo: 'BP01-033', rulesVersion: '1.03', op: VALID['draw'] };
+    const tag = (event: string): unknown => ({ ...base, trigger: { event, area: 'HAND' } });
+    expect(EffectIRSchema.safeParse(tag('turn-ends')).success).toBe(true);
+    expect(EffectIRSchema.safeParse(tag('turn-ended')).success).toBe(false);
+  });
+
+  it('accepts a subject filter on a seat event only', () => {
+    const base = { cardNo: 'BP01-033', rulesVersion: '1.03', op: VALID['draw'] };
+    const subject = { color: 'blue', levelAtLeast: 4 };
+    const withTag = (event: string): unknown => ({
+      ...base,
+      trigger: { event, area: 'HAND', subject },
+    });
+    expect(EffectIRSchema.safeParse(withTag('opponent-character-enters-field')).success).toBe(true);
+    expect(EffectIRSchema.safeParse(withTag('attacks')).success).toBe(false);
+    expect(EffectIRSchema.safeParse(withTag('activate')).success).toBe(false);
   });
 });
 

@@ -245,15 +245,31 @@ export const AttackerFilterSchema = z.strictObject({
   feature: z.string().min(1).optional(),
 });
 
+export const TriggerSubjectFilterSchema = z.strictObject({
+  color: CardColorSchema.optional(),
+  feature: z.string().min(1).optional(),
+  level: z.number().int().min(0).optional(),
+  levelAtLeast: z.number().int().min(0).optional(),
+  levelAtMost: z.number().int().min(0).optional(),
+  lane: z.enum(['FRONT', 'WING', 'BACK']).optional(),
+});
+
 export const EffectTriggerSchema = z
   .strictObject({
     event: z.enum(EFFECT_TRIGGER_EVENTS),
     area: AreaSchema,
     attacker: AttackerFilterSchema.optional(),
+    subject: TriggerSubjectFilterSchema.optional(),
   })
   .refine((t) => t.attacker === undefined || t.event === 'attacks', {
     message: 'an attacker filter is valid only on the attacks event',
-  });
+  })
+  .refine(
+    (t) =>
+      t.subject === undefined ||
+      (t.event !== 'attacks' && t.event !== 'activate' && t.event !== 'activate-counter'),
+    { message: 'a subject filter is not valid on attacks or the activation events' },
+  );
 
 export const EffectIRSchema = z.strictObject({
   cardNo: CardNoSchema,

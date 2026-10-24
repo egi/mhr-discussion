@@ -10,6 +10,7 @@ export {
   EffectOpSchema,
   EffectTriggerSchema,
   EffectTargetSchema,
+  TriggerSubjectFilterSchema,
   effectIRAgrees,
   effectOpAgrees,
 } from './schema';
