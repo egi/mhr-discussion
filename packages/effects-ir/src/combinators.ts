@@ -33,6 +33,7 @@ import type {
   AttackerFilter,
   EffectTrigger,
   EffectTriggerEvent,
+  TriggerSubjectFilter,
   EffectStepGate,
   EffectTarget,
 } from './ir';
@@ -304,6 +305,12 @@ export function trigger(
   event: EffectTriggerEvent,
   area: EffectArea,
   attacker?: AttackerFilter,
+  subject?: TriggerSubjectFilter,
 ): EffectTrigger {
-  return attacker === undefined ? { event, area } : { event, area, attacker };
+  return {
+    event,
+    area,
+    ...(attacker === undefined ? {} : { attacker }),
+    ...(subject === undefined ? {} : { subject }),
+  };
 }

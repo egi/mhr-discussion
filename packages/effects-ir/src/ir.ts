@@ -75,6 +75,13 @@ export type EffectArea = (typeof EFFECT_AREAS)[number];
  *   other is the BASE (301.24.a); BASE-to-BASE rearrangement does not count.
  * - `activate`: a player-initiated Activated Effect (201.10.f.2).
  * - `activate-counter`: a COUNTER-Activated Effect (201.10.f.3).
+ *
+ * The appended events fall in three groups. "Self" events name the carrier itself ("when this card
+ * enters RETREAT"). "Seat" events are seen by every face-up card of one seat standing in the tag's
+ * area ("when your opponent's character enters the field"); the optional `subject` filter narrows
+ * which character counts. Turn events (`turn-starts`, `opponent-turn-starts`, `turn-ends`) have no
+ * event card. `power-increases`, `power-decreases` and `would-be-attached` are named so a script can
+ * be tagged, but the engine has no Power-change record or pre-attach window to emit them from.
  */
 export const EFFECT_TRIGGER_EVENTS = [
   'enters-field-by-call',
@@ -83,6 +90,42 @@ export const EFFECT_TRIGGER_EVENTS = [
   'base-move',
   'activate',
   'activate-counter',
+  // Appended after the first six; a stored tag keeps its meaning, so none of these is reordered.
+  'attacks-weakness-successfully',
+  'both-lose',
+  'card-moved-to-deck-bottom',
+  'enters-field-by-effect',
+  'enters-field-from-retreat',
+  'enters-retreat-by-call',
+  'enters-retreat-by-discard-effect',
+  'enters-retreat-by-losing-fight',
+  'enters-retreat-from-field',
+  'enters-retreat-from-field-by-effect',
+  'follows-host-to-retreat',
+  'host-attacks',
+  'is-attacked',
+  'opponent-base-move',
+  'opponent-character-attacks',
+  'opponent-character-enters-field',
+  'opponent-character-enters-field-by-effect',
+  'opponent-set-card-in-base-increases',
+  'opponent-turn-starts',
+  'own-character-attacked',
+  'own-character-enters-field',
+  'own-character-enters-retreat',
+  'own-character-enters-retreat-by-losing-fight',
+  'own-character-enters-void',
+  'own-character-loses-fight',
+  'own-weakness-attacked',
+  'power-decreases',
+  'power-increases',
+  'this-card-attached',
+  'this-card-enters-void',
+  'turn-ends',
+  'turn-starts',
+  'wins-fight',
+  'wins-fight-by-attacking',
+  'would-be-attached',
 ] as const;
 export type EffectTriggerEvent = (typeof EFFECT_TRIGGER_EVENTS)[number];
 
@@ -99,6 +142,27 @@ export type EffectTrigger = {
    * same. Valid only on the `attacks` event.
    */
   readonly attacker?: AttackerFilter | undefined;
+  /**
+   * Narrows which character an appended seat event counts ("your blue character", "an opponent
+   * character with Lv4 or above"). Append-only and optional, so a tag written before it existed
+   * reads and hashes the same. Not valid on `attacks` (which has `attacker`) or the two
+   * activation events.
+   */
+  readonly subject?: TriggerSubjectFilter | undefined;
+};
+
+/**
+ * Which character a seat event counts. Every present key must hold of the event's character;
+ * colour, Lv and feature are the printed values, `lane` is where it stands when the event happens.
+ */
+export type TriggerSubjectFilter = {
+  readonly color?: CardColor | undefined;
+  readonly feature?: string | undefined;
+  /** Printed Lv equal to this. */
+  readonly level?: number | undefined;
+  readonly levelAtLeast?: number | undefined;
+  readonly levelAtMost?: number | undefined;
+  readonly lane?: 'FRONT' | 'WING' | 'BACK' | undefined;
 };
 
 /**
