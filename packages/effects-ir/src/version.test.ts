@@ -5,9 +5,15 @@ import { effect, draw } from './combinators';
 import { SYNTHETIC_CARDS } from './fixtures/synthetic-cards';
 
 describe('rules version', () => {
-  it('is a non-empty string equal to the revision', () => {
-    expect(EFFECT_RULES_VERSION.length).toBeGreaterThan(0);
-    expect(EFFECT_RULES_VERSION).toBe(String(EFFECT_RULES_REVISION));
+  it('is the revision plus the script generation suffix, and the revision stays 1.03', () => {
+    expect(String(EFFECT_RULES_REVISION)).toBe('1.03');
+    expect(EFFECT_RULES_VERSION).toBe(`${String(EFFECT_RULES_REVISION)}+17.1`);
+  });
+
+  it('stamps every effect() with the version, not the bare revision', () => {
+    const card = SYNTHETIC_CARDS[0]!;
+    expect(effect(card.cardNo, draw('self', 1)).rulesVersion).toBe(EFFECT_RULES_VERSION);
+    expect(effect(card.cardNo, draw('self', 1)).rulesVersion).not.toBe(String(EFFECT_RULES_REVISION));
   });
 
   it('lets an IR carry a different revision while no longer equalling the constant', () => {

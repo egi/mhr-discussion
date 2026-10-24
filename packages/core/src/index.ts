@@ -102,6 +102,14 @@ export type {
   ModifierStat,
 } from './state/modifiers';
 
+export { TURN_EFFECT_KINDS, TURN_GRANTABLE_ABILITIES, TURN_RESTRICTIONS } from './state/turnEffects';
+export type {
+  TurnEffect,
+  TurnEffectKind,
+  TurnGrantableAbility,
+  TurnRestriction,
+} from './state/turnEffects';
+
 export type { PriorityWindow } from './state/priority';
 export type { OpenBattle } from './state/battle';
 
