@@ -35,6 +35,7 @@ import type { OpenBattle } from './battle';
 import type { PlayerId } from './player';
 import type { PriorityWindow } from './priority';
 import type { AutoActivation, EffectModifier } from './modifiers';
+import type { TurnEffect } from './turnEffects';
 
 export { PLAYER_IDS } from './player';
 export type { PlayerId } from './player';
@@ -274,6 +275,14 @@ export type PlayerState = {
    * record remembers it.
    */
   readonly autoActivations: readonly AutoActivation[];
+  /**
+   * The effects this player controls that last for the rest of the turn (restrictions, granted
+   * abilities, a second attack chance, a skipped Battle Phase). Source state, like `modifiers`:
+   * the effect that created each entry is not replayed. Absent (never an empty array) when there
+   * are none, so a state without one keeps the exact body and digest it had before the record
+   * existed. Cleared for both seats at the end of the turn.
+   */
+  readonly turnEffects?: readonly TurnEffect[];
 };
 
 /** The players, keyed by id. Both are always present. */

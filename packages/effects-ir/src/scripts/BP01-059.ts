@@ -7,14 +7,13 @@
  *   【ASSAULT】(AUTO【BATTLE】: If this card wins the fight by attacking, this card attacks the
  *   weakness successfully） in this turn.
  *
- * The script gives this card the ASSAULT ability until the end of the turn. The interpreter does
- * not run grant-ability until the per-turn record exists in the game state and the share codec,
- * so applying this script answers EFFECT_UNSUPPORTED, changes nothing, and the card is played by
- * hand; for the same reason it carries no trigger tag.
+ * The script gives this card the ASSAULT ability until the end of the turn. The interpreter
+ * records the grant for the turn on the controller (the per-turn record), and the battle rules
+ * read it like a printed ASSAULT.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { effect, grantAbility, source } from '../combinators';
+import { effect, grantAbility, source, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -31,5 +30,5 @@ export const RULE_DECLARATION = declareRules({
 
 /** The effect's IR. */
 export function script(): EffectIR {
-  return effect(CARD_NO, grantAbility(source(), 'ASSAULT'));
+  return effect(CARD_NO, grantAbility(source(), 'ASSAULT'), trigger('enters-field-by-call', 'FIELD'));
 }
