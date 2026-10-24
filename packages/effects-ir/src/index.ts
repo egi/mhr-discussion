@@ -19,3 +19,5 @@ export * from './combinators';
 export * from './version';
 export * from './auto';
 export * from './declaration';
+export { CARD_KEYWORDS, cardKeywords, keywordCardNumbers } from './keywords';
+export type { KeywordAbility, KeywordDeclaration } from './keywords';
