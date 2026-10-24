@@ -23,6 +23,7 @@ import {
   EFFECT_DIG_REMAINDERS,
   EFFECT_GRANTABLE_ABILITIES,
   EFFECT_MILL_DISPOSALS,
+  EFFECT_RESTRICTION_LANES,
   EFFECT_RESTRICTIONS,
   EFFECT_SCALE_SOURCES,
   EFFECT_SETTABLE_STATS,
@@ -49,6 +50,21 @@ export const EffectFilterSchema = z.strictObject({
   faceDown: z.boolean().nullable(),
   exceptSource: z.boolean(),
   nameIncludes: z.string().min(1).optional(),
+  nameExcludes: z.string().min(1).optional(),
+  differentNameFrom: z.enum(['source', 'selected']).optional(),
+  sameNameAsSelected: z.boolean().optional(),
+  lvSameAsRevealed: z.boolean().optional(),
+  lvOffsetFromSelected: z.number().int().optional(),
+  equalLvAcrossSides: z.boolean().optional(),
+  extreme: z
+    .strictObject({ stat: z.enum(['lv', 'power']), which: z.enum(['highest', 'lowest']) })
+    .optional(),
+  lvBy: z
+    .strictObject({ mode: z.enum(['max', 'exact']), source: z.enum(EFFECT_SCALE_SOURCES) })
+    .optional(),
+  noEffects: z.boolean().optional(),
+  original: z.boolean().optional(),
+  hasAutoEffect: z.boolean().optional(),
 });
 
 export const EffectTargetSchema = z.discriminatedUnion('kind', [
@@ -61,7 +77,9 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
     count: CountSchema.nullable(),
     upTo: z.boolean(),
     filter: EffectFilterSchema,
+    random: z.boolean().optional(),
   }),
+  z.strictObject({ kind: z.literal('host-of-source') }),
 ]);
 
 export const EffectDestinationSchema = z.strictObject({
@@ -86,6 +104,21 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
   }),
   z.strictObject({ kind: z.literal('source-did-not-attack') }),
   z.strictObject({ kind: z.literal('subject-matches'), filter: EffectFilterSchema }),
+  z.strictObject({
+    kind: z.literal('attack-target-matches'),
+    filter: EffectFilterSchema,
+    powerAboveSource: z.boolean(),
+  }),
+  z.strictObject({ kind: z.literal('have-weakness') }),
+  z.strictObject({ kind: z.literal('host-did-not-attack') }),
+  z.strictObject({ kind: z.literal('more-set-cards-than-opponent') }),
+  z.strictObject({ kind: z.literal('no-call-this-turn') }),
+  z.strictObject({ kind: z.literal('owner-is-opponent') }),
+  z.strictObject({ kind: z.literal('previous-step-retreated') }),
+  z.strictObject({ kind: z.literal('set-equals-character-count-in-base') }),
+  z.strictObject({ kind: z.literal('target-attacked-before') }),
+  z.strictObject({ kind: z.literal('top-card-matches'), filter: EffectFilterSchema }),
+  z.strictObject({ kind: z.literal('total-lv-lower-than-opponent') }),
 ]);
 
 const DurationSchema = z.literal('this-turn');
@@ -155,6 +188,12 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     target: EffectTargetSchema,
     restriction: z.enum(EFFECT_RESTRICTIONS),
     duration: DurationSchema,
+    limit: z
+      .strictObject({
+        lv: OptionalBoundSchema,
+        lane: z.enum(EFFECT_RESTRICTION_LANES).nullable(),
+      })
+      .optional(),
   }),
   z.strictObject({
     kind: z.literal('grant-ability'),
@@ -173,6 +212,31 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     otherwise: EffectOpRef.nullable(),
   }),
   z.strictObject({ kind: z.literal('optional'), op: EffectOpRef }),
+  z.strictObject({
+    kind: z.literal('retreat-attached-of-host'),
+    host: EffectTargetSchema,
+    scope: z.enum(['all', 'one']),
+    exceptSource: z.boolean(),
+  }),
+  z.strictObject({ kind: z.literal('rearrange-deck-top'), side: SideSchema, count: CountSchema }),
+  z.strictObject({ kind: z.literal('draw-by-board-comparison'), count: CountSchema }),
+  z.strictObject({ kind: z.literal('flip'), target: EffectTargetSchema, faceDown: z.boolean() }),
+  z.strictObject({ kind: z.literal('retarget-attack'), target: EffectTargetSchema }),
+  z.strictObject({
+    kind: z.literal('skip-phase'),
+    phase: z.literal('battle'),
+    duration: DurationSchema,
+  }),
+  z.strictObject({
+    kind: z.literal('grant-second-chance-attack'),
+    target: EffectTargetSchema,
+    duration: DurationSchema,
+  }),
+  z.strictObject({
+    kind: z.literal('copy-attached-effects'),
+    target: EffectTargetSchema,
+    duration: DurationSchema,
+  }),
 ]);
 
 export const AttackerFilterSchema = z.strictObject({

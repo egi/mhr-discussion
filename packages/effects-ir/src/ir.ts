@@ -6,12 +6,13 @@
  * has runtime behaviour beyond a handful of const tables, and the file imports no React,
  * DOM or store code, so the vocabulary stays usable from Node, a Worker or a build script.
  *
- * ## Why 19 kinds
+ * ## Why these kinds
  *
- * The vocabulary is read off the literal English text of a 47-card pilot (TRIG, ACTI and
+ * The first 19 kinds are read off the literal English text of a 47-card pilot (TRIG, ACTI and
  * COUNTER-ACTI clauses, no AUTO text) recorded in `pilot.test.ts`, not imagined. That
  * file lists the kinds with their semantics and asserts that each one is exercised by a
- * real card. A new verb is a deliberate change to that evidence and to this union, never
+ * real card. The kinds after `optional` were added from a survey of every unfinished effect
+ * text; each is appended, never inserted, so a stored tag keeps its meaning. A new verb is a deliberate change to that evidence and to this union, never
  * something a single card script can introduce on its own.
  *
  * ## Why closed
@@ -148,12 +149,58 @@ export const EFFECT_SCALE_SOURCES = [
   'characters-in-void',
   'opponent-characters-in-battle',
   'discarded-lv-total',
+  // Appended after the first five; a stored tag keeps its meaning.
+  'abilities-on-opponent-battle',
+  'attached-cards-of-source',
+  'cards-in-hand',
+  'non-attacking-own-characters',
+  'opponent-characters-on-wing',
+  'opponent-front-power-per-3000',
+  'original-r-of-host',
+  'own-characters-in-battle-matching',
+  'own-characters-in-field-matching',
+  'own-characters-in-retreat-matching',
+  'own-characters-with-original-power-500-in-battle',
+  'power-increase-value',
+  'power-of-selected-card',
+  'pruned-lv-total',
+  'retreated-card-count',
+  'retreated-lv-total',
+  'set-cards-in-base',
+  'source-lv',
+  'target-attached-cards-matching',
+  'total-power-own-battle',
 ] as const;
 export type EffectScaleSource = (typeof EFFECT_SCALE_SOURCES)[number];
 
 /** What a restriction forbids for the rest of the turn. */
-export const EFFECT_RESTRICTIONS = ['move', 'attack'] as const;
+export const EFFECT_RESTRICTIONS = [
+  'move',
+  'attack',
+  // Appended: the prevention-shaped restrictions a card can carry.
+  /** The card cannot be affected by the effect of a character at or under `limit.lv`. */
+  'affected-by-effects',
+  /** The host can attack only the lane or Lv named by `limit`. */
+  'attack-target',
+  /** The card is not retreated by Both Lose. */
+  'retreat-by-both-lose',
+  /** The player cannot retreat the named character to pay a CALL cost. */
+  'retreat-to-call',
+] as const;
 export type EffectRestriction = (typeof EFFECT_RESTRICTIONS)[number];
+
+/** The lanes an `attack-target` restriction can name. */
+export const EFFECT_RESTRICTION_LANES = ['FRONT', 'WING', 'BACK'] as const;
+export type EffectRestrictionLane = (typeof EFFECT_RESTRICTION_LANES)[number];
+
+/**
+ * The operand of a restriction that needs one: a Lv bound ("Lv6 only", "Lv4 or below") and/or a
+ * lane ("FRONT only"). `null` means the restriction does not name that part.
+ */
+export type RestrictionLimit = {
+  readonly lv: number | null;
+  readonly lane: EffectRestrictionLane | null;
+};
 
 /** The named abilities an effect can hand out. Drawn from Rule 305, never extended here. */
 export const EFFECT_GRANTABLE_ABILITIES = [
@@ -213,6 +260,34 @@ export type EffectFilter = {
    * ask for a name, so a filter written before this field existed reads and hashes the same.
    */
   readonly nameIncludes?: string | undefined;
+  /**
+   * Drops cards whose name contains this text, ignoring case ("without Wasp in its name").
+   * Append-only, like `nameIncludes`.
+   */
+  readonly nameExcludes?: string | undefined;
+  /**
+   * Requires a name different from the effect's own card (`source`) or from the cards picked
+   * earlier in the same effect (`selected`). Append-only.
+   */
+  readonly differentNameFrom?: 'source' | 'selected' | undefined;
+  /** Requires the same name as a card picked earlier in the same effect. Append-only. */
+  readonly sameNameAsSelected?: boolean | undefined;
+  /** Requires the same Lv as a card shown earlier in the same effect. Append-only. */
+  readonly lvSameAsRevealed?: boolean | undefined;
+  /** Requires Lv equal to the Lv of a card picked earlier plus this offset ("Lv X+1"). Append-only. */
+  readonly lvOffsetFromSelected?: number | undefined;
+  /** One card per side with the same Lv ("1 of each player's characters with the same Lv"). Append-only. */
+  readonly equalLvAcrossSides?: boolean | undefined;
+  /** Keeps only the candidates with the highest or lowest value of a stat. Append-only. */
+  readonly extreme?: { readonly stat: 'lv' | 'power'; readonly which: 'highest' | 'lowest' } | undefined;
+  /** Lv ceiling (`max`) or exact Lv (`exact`) equal to a counted quantity X. Append-only. */
+  readonly lvBy?: { readonly mode: 'max' | 'exact'; readonly source: EffectScaleSource } | undefined;
+  /** Keeps only characters with no effects (vanilla). Append-only. */
+  readonly noEffects?: boolean | undefined;
+  /** Lv, Power and R bounds read the printed (original) value. Append-only. */
+  readonly original?: boolean | undefined;
+  /** Keeps only cards that have an AUTO effect in their text. Append-only. */
+  readonly hasAutoEffect?: boolean | undefined;
 };
 
 /**
@@ -233,7 +308,14 @@ export type EffectTarget =
       readonly count: number | null;
       readonly upTo: boolean;
       readonly filter: EffectFilter;
-    };
+      /**
+       * The card is picked at random; the pick travels in the action so a replay is the same.
+       * Append-only: left out for a chosen pick.
+       */
+      readonly random?: boolean | undefined;
+    }
+  /** The character the source card is attached to ("the character this card is attached to"). */
+  | { readonly kind: 'host-of-source' };
 
 /** Where a relocated card goes, and whether it lands face down. */
 export type EffectDestination = {
@@ -262,7 +344,34 @@ export type EffectCondition =
   /** The effect's own card did not attack this turn. */
   | { readonly kind: 'source-did-not-attack' }
   /** The subject card matches the filter. */
-  | { readonly kind: 'subject-matches'; readonly filter: EffectFilter };
+  | { readonly kind: 'subject-matches'; readonly filter: EffectFilter }
+  // Appended below: each is named in the survey with the cards that print it.
+  /** The attack target matches the filter, optionally with more Power than the source. */
+  | {
+      readonly kind: 'attack-target-matches';
+      readonly filter: EffectFilter;
+      readonly powerAboveSource: boolean;
+    }
+  /** The controller has any Weakness. */
+  | { readonly kind: 'have-weakness' }
+  /** The character the source is attached to did not attack this turn. */
+  | { readonly kind: 'host-did-not-attack' }
+  /** The controller has more set (face-down) cards in BASE than the opponent. */
+  | { readonly kind: 'more-set-cards-than-opponent' }
+  /** The controller did not call a character this turn. */
+  | { readonly kind: 'no-call-this-turn' }
+  /** The source card's owner is the opponent (a card the opponent took control of). */
+  | { readonly kind: 'owner-is-opponent' }
+  /** The previous step retreated its target. */
+  | { readonly kind: 'previous-step-retreated' }
+  /** The controller's set cards in BASE equal their characters in BASE. */
+  | { readonly kind: 'set-equals-character-count-in-base' }
+  /** The attack target was attacked earlier this turn. */
+  | { readonly kind: 'target-attacked-before' }
+  /** The card just shown from the top of the deck matches the filter. */
+  | { readonly kind: 'top-card-matches'; readonly filter: EffectFilter }
+  /** The total Lv of the controller's BATTLE characters is lower than the opponent's. */
+  | { readonly kind: 'total-lv-lower-than-opponent' };
 
 /** One step of a sequence. */
 export type EffectStep = {
@@ -323,6 +432,8 @@ export type EffectOp =
       readonly target: EffectTarget;
       readonly restriction: EffectRestriction;
       readonly duration: 'this-turn';
+      /** Operand of `affected-by-effects` and `attack-target`. Append-only: left out when unused. */
+      readonly limit?: RestrictionLimit | undefined;
     }
   | {
       readonly kind: 'grant-ability';
@@ -337,7 +448,37 @@ export type EffectOp =
       readonly then: EffectOp;
       readonly otherwise: EffectOp | null;
     }
-  | { readonly kind: 'optional'; readonly op: EffectOp };
+  | { readonly kind: 'optional'; readonly op: EffectOp }
+  // Appended below, in survey order. Existing kinds above keep their position.
+  /** Retreat all (or one) of the cards attached to `host`, optionally except the source. */
+  | {
+      readonly kind: 'retreat-attached-of-host';
+      readonly host: EffectTarget;
+      readonly scope: 'all' | 'one';
+      readonly exceptSource: boolean;
+    }
+  /** Show the top `count` cards, put some back on top in the chosen order and the rest at the bottom. */
+  | { readonly kind: 'rearrange-deck-top'; readonly side: EffectSide; readonly count: number }
+  /** The player with fewer characters in BATTLE draws `count`. */
+  | { readonly kind: 'draw-by-board-comparison'; readonly count: number }
+  /** Flip face-down or face-up cards in BASE. */
+  | { readonly kind: 'flip'; readonly target: EffectTarget; readonly faceDown: boolean }
+  /** Change the target of the attack in progress. */
+  | { readonly kind: 'retarget-attack'; readonly target: EffectTarget }
+  /** Skip the controller's Battle Phase this turn. */
+  | { readonly kind: 'skip-phase'; readonly phase: 'battle'; readonly duration: 'this-turn' }
+  /** Give the target the second chance to attack (not a named ability of rule 305). */
+  | {
+      readonly kind: 'grant-second-chance-attack';
+      readonly target: EffectTarget;
+      readonly duration: 'this-turn';
+    }
+  /** The target gets the effects of one of its attached cards this turn. */
+  | {
+      readonly kind: 'copy-attached-effects';
+      readonly target: EffectTarget;
+      readonly duration: 'this-turn';
+    };
 
 /** Every op kind, in vocabulary order. A kind missing from this list is a compile error. */
 export const EFFECT_OP_KINDS = [
@@ -360,12 +501,100 @@ export const EFFECT_OP_KINDS = [
   'sequence',
   'conditional',
   'optional',
+  'retreat-attached-of-host',
+  'rearrange-deck-top',
+  'draw-by-board-comparison',
+  'flip',
+  'retarget-attack',
+  'skip-phase',
+  'grant-second-chance-attack',
+  'copy-attached-effects',
 ] as const satisfies readonly EffectOp['kind'][];
 
 const everyKindListed: [Exclude<EffectOp['kind'], (typeof EFFECT_OP_KINDS)[number]>] extends [never]
   ? true
   : never = true;
 void everyKindListed;
+
+/** Every condition kind, in vocabulary order. A kind missing from this list is a compile error. */
+export const EFFECT_CONDITION_KINDS = [
+  'have',
+  'fewer-than-opponent',
+  'source-did-not-attack',
+  'subject-matches',
+  'attack-target-matches',
+  'have-weakness',
+  'host-did-not-attack',
+  'more-set-cards-than-opponent',
+  'no-call-this-turn',
+  'owner-is-opponent',
+  'previous-step-retreated',
+  'set-equals-character-count-in-base',
+  'target-attacked-before',
+  'top-card-matches',
+  'total-lv-lower-than-opponent',
+] as const satisfies readonly EffectCondition['kind'][];
+
+const everyConditionListed: [
+  Exclude<EffectCondition['kind'], (typeof EFFECT_CONDITION_KINDS)[number]>,
+] extends [never]
+  ? true
+  : never = true;
+void everyConditionListed;
+
+/** Every target kind, in vocabulary order. */
+export const EFFECT_TARGET_KINDS = [
+  'source',
+  'subject',
+  'selected',
+  'host-of-source',
+] as const satisfies readonly EffectTarget['kind'][];
+
+const everyTargetListed: [Exclude<EffectTarget['kind'], (typeof EFFECT_TARGET_KINDS)[number]>] extends [
+  never,
+]
+  ? true
+  : never = true;
+void everyTargetListed;
+
+/**
+ * The optional facets of an `EffectFilter`, in the order they were added. The nine required
+ * fields are not listed: they cannot be left out. A facet missing from this list is a compile
+ * error.
+ */
+export const EFFECT_FILTER_FACETS = [
+  'nameIncludes',
+  'nameExcludes',
+  'differentNameFrom',
+  'sameNameAsSelected',
+  'lvSameAsRevealed',
+  'lvOffsetFromSelected',
+  'equalLvAcrossSides',
+  'extreme',
+  'lvBy',
+  'noEffects',
+  'original',
+  'hasAutoEffect',
+] as const satisfies readonly (keyof EffectFilter)[];
+
+const everyFacetListed: [
+  Exclude<
+    keyof EffectFilter,
+    | (typeof EFFECT_FILTER_FACETS)[number]
+    | 'color'
+    | 'lvMin'
+    | 'lvMax'
+    | 'powerMin'
+    | 'powerMax'
+    | 'feature'
+    | 'characterOnly'
+    | 'faceDown'
+    | 'exceptSource'
+  >,
+] extends [never]
+  ? true
+  : never = true;
+void everyFacetListed;
 
 /**
  * A scripted effect: the card it belongs to, the rules revision it was written against,

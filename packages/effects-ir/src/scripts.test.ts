@@ -30,7 +30,18 @@ function kindsIn(op: EffectOp): string[] {
 }
 
 /** Op kinds with no authored script, pinned so opening or closing a gap fails the test. */
-const NOT_AUTHORED: readonly string[] = ['show'];
+const NOT_AUTHORED: readonly string[] = [
+  'show',
+  // Vocabulary added from the survey of unfinished effect texts; scripts for them come later.
+  'retreat-attached-of-host',
+  'rearrange-deck-top',
+  'draw-by-board-comparison',
+  'flip',
+  'retarget-attack',
+  'skip-phase',
+  'grant-second-chance-attack',
+  'copy-attached-effects',
+];
 
 describe('card scripts', () => {
   const entries = Object.entries(CARD_SCRIPTS);
