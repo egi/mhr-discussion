@@ -40,6 +40,7 @@ Authority tier: none for item 1 and item 3; head judge for the direction of item
 - 301.18.e: a swap between two areas other than the HAND and the deck places both cards.
 - 301.19.b: a CALL retreats the cost first and then places the card.
 - 301.21.c: a face-down card has no effects.
+- 301.41: changes to Lv, R and Attack Power (the AUTO change on BP01-097 sets R).
 
 ## Scripts and engine
 
