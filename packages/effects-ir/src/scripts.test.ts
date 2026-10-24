@@ -86,6 +86,7 @@ const TAGGED: Readonly<
   'BP01-033': { event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } },
   'BP01-053': { event: 'attacks', area: 'BATTLE' },
   'BP01-060': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-061': { event: 'activate-counter', area: 'HAND' },
   'SD02-017': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-077': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-106': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -98,7 +99,15 @@ const TAGGED: Readonly<
   'SD04-002': { event: 'enters-field', area: 'FIELD' },
 };
 
-const NOT_RUNNABLE_KINDS = ['restrict', 'grant-ability', 'cover', 'swap', 'battle-move', 'dig'];
+/** The kinds the interpreter refuses today (swap, cover, dig and battle-move run). */
+const NOT_RUNNABLE_KINDS = [
+  'restrict',
+  'grant-ability',
+  'retarget-attack',
+  'skip-phase',
+  'grant-second-chance-attack',
+  'copy-attached-effects',
+];
 
 function relocateAreas(op: EffectOp): string[] {
   switch (op.kind) {
@@ -121,7 +130,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(25);
+    expect(tagged).toHaveLength(26);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
