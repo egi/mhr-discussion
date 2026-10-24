@@ -37,7 +37,6 @@ const NOT_AUTHORED: readonly string[] = [
   'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
-  'retarget-attack',
   'skip-phase',
   'grant-second-chance-attack',
   'copy-attached-effects',
