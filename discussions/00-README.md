@@ -18,6 +18,8 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | 8 | (withheld) | WITHHELD | Reserved; not published until its contents are user-confirmed |
 | 9 | 09-effect-resolution-order.md | RESOLVED (304.1, 301.41, 303.2.a.6 and head judge rulings; 2 gaps listed) | Order of applying effects across several cards: no stack, queue, turn player first, trigger versus counter, change versus plus/minus, end of turn |
 | 10 | 10-auto-effect-ordering-open-items.md | ESCALATE-OPEN (4 items) | Engine choices resting on inference: tie-break for same-moment auto effects, zero-power latch, partial resolution after an "if you do" clause, unlettered 301.41 combinations |
+| 11 | 11-open-points-swap-attach-errata-text.md | ESCALATE-OPEN (3 items) | Open points from the second export: whether a swap counts as an attach, the pending Follow Shadow errata, a stray fragment in the BP01-097 text |
+| 13 | 13-attack-retarget-refire-open-items.md | ESCALATE-OPEN (3 items) | Engine choices that rest on inference: whether a retarget fires "when this attacks" again, whether a window exists before the target is chosen, whether a retarget opens a fresh Counter Step |
 
 ## How to keep this board in sync
 

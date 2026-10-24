@@ -7,9 +7,8 @@
  *   into your BATTLE.
  *
  * The script places this card into the controller's BATTLE when the BATTLE holds at least
- * three yellow characters ("have 3" is read as a lower bound). The destination lane is a
- * choice the invocation does not carry yet, so when the condition holds the interpreter
- * answers EFFECT_UNSUPPORTED and the card is played by hand.
+ * three yellow characters ("have 3" is read as a lower bound). The destination lane is the
+ * invocation's placement choice, or the one free lane when there is only one.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

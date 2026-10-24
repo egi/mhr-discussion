@@ -8,8 +8,8 @@
  *   rest.
  *
  * The script digs the top three DECK cards for one with the Human feature and discards the
- * rest. The interpreter does not run the dig op yet, so applying this script today answers
- * EFFECT_UNSUPPORTED and the card is played by hand.
+ * rest. The interpreter runs the dig op; with no Human among the three, the cards are all
+ * discarded.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

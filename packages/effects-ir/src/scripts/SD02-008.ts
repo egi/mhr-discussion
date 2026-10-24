@@ -7,9 +7,9 @@
  *   do, cover this card.
  *
  * The script raises the R of one of the controller's BATTLE characters by 1 until the end
- * of the turn and, only if that happened, covers this card. Covering is an op the
- * interpreter does not run yet, so applying this script today answers EFFECT_UNSUPPORTED,
- * changes nothing, and the card is played by hand. The "once per turn" limit is a use
+ * of the turn and, only if that happened, covers this card. Covering turns it face-down (301.14;
+ * "cover" is not a rulebook term, a reading taken from the card survey, still marked open). The
+ * "once per turn" limit is a use
  * limit, not an effect, and is not part of the IR.
  */
 

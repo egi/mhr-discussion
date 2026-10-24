@@ -7,9 +7,8 @@
  *   deck, add 1 of them with 【Machine】 in their features to your HAND and discard the rest.
  *
  * The script digs the top three DECK cards for one with the Machine feature and discards the
- * rest. The interpreter does not run the dig op, so applying this script answers
- * EFFECT_UNSUPPORTED, changes nothing, and the card is played by hand. The printed text carries
- * a typo ("callling") that the header keeps as printed.
+ * rest. The interpreter runs the dig op. The printed text carries a typo ("callling") that the
+ * header keeps as printed.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

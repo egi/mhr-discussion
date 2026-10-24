@@ -8,9 +8,8 @@
  *   this card.
  *
  * The script lets the player place an Avengers character from the HAND onto the BATTLE and,
- * only if that happened, retreats the card itself. Placing into the BATTLE names no lane, which
- * the interpreter does not run yet, so the whole script answers EFFECT_UNSUPPORTED and the card
- * is played by hand. The BATTLE-BASE Move trigger is the envelope that decides when it may run.
+ * only if that happened, retreats the card itself. The lane comes from the invocation's
+ * placement choice. The BATTLE-BASE Move trigger is the envelope that decides when it may run.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

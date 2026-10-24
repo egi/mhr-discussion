@@ -7,8 +7,8 @@
  *   the field and that character.
  *
  * The script swaps this card with the character the trigger pinned down (the one that won the
- * fight). The interpreter does not run swap yet, so the script answers EFFECT_UNSUPPORTED and
- * the card is played by hand. The once-per-turn limit is a use limit, not part of the IR.
+ * fight). The interpreter runs the swap, which counts as moving (301.18.d) and is refused when
+ * either card is protected from moving (301.18.h). The once-per-turn limit is a use limit, not part of the IR.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

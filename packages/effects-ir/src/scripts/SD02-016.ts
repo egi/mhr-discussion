@@ -8,8 +8,9 @@
  *   weakness successfully） in this turn.
  *
  * The script gives this card the ASSAULT ability until the end of the turn. The interpreter does
- * not run grant-ability yet, so applying this script answers EFFECT_UNSUPPORTED, changes nothing,
- * and the card is played by hand; for the same reason it carries no trigger tag. It has the same
+ * not run grant-ability until the per-turn record exists in the game state and the share codec,
+ * so applying this script answers EFFECT_UNSUPPORTED, changes nothing, and the card is played by
+ * hand; for the same reason it carries no trigger tag. It has the same
  * text and the same script as BP01-059.
  */
 
