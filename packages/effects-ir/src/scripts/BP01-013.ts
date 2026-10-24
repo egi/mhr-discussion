@@ -9,8 +9,10 @@
  *
  * The script moves one opposing Human character with Power 5000 or more from BATTLE to its
  * owner's BASE, then, only if that happened, covers it ("that character" is the subject).
- * The cover step is an op the interpreter does not run yet, so applying this script today
- * answers EFFECT_UNSUPPORTED and the card is played by hand.
+ * The cover step turns the relocated card face-down (301.14; "cover" is not a rulebook term, a
+ * reading taken from the card survey) and needs the caller to name that card as the subject.
+ * Whether the moved character was mid-attack is a re-selection question and rests on the
+ * still-open discussion 13.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -35,10 +37,14 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger timing
     { key: asRuleKey('301.24.b'), reviewedHash: '5ebdfc22a919' }, // effect move BATTLE to BASE
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to greatest extent
+    { key: asRuleKey('303.2.a.4.3.2.2'), reviewedHash: '16c82563f537' }, // attacker leaves: back to selecting a target
   ],
   rulings: [
     { discussion: '09', rule: asRuleKey('304.1.d') },
     { discussion: '10', rule: asRuleKey('304.1.d') },
+    // 13: ESCALATE-OPEN. If the moved opposing character is mid-attack, what the attack does
+    // next rests on the provisional re-selection defaults (discussion 13, items 1 to 3).
+    { discussion: '13', rule: asRuleKey('303.2.a.4.3.2.2') },
   ],
 });
 

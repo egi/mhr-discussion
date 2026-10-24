@@ -12,9 +12,8 @@
  * The script is the TRIG clause after its trigger (a yellow character in Both Lose is the
  * envelope and no existing event names it, so there is no trigger tag): an optional placement of
  * this card from the HAND into the BATTLE and, only if that happened, Power-1000 until the end of
- * the turn on one opposing BATTLE character. Placing into the BATTLE names no lane, which the
- * interpreter does not run, so applying this script answers EFFECT_UNSUPPORTED, changes nothing,
- * and the card is played by hand. UNIQUE is a rule keyword, not an effect.
+ * the turn on one opposing BATTLE character. The lane comes from the invocation's placement
+ * choice. UNIQUE is a rule keyword, not an effect.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

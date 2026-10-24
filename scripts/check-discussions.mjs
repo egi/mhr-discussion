@@ -9,7 +9,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-export const PUBLISHED_NUMBERS = ['01', '02', '03', '04', '05', '06', '07', '09', '10'];
+export const PUBLISHED_NUMBERS = ['01', '02', '03', '04', '05', '06', '07', '09', '10', '11', '13'];
 export const PUBLIC_MARKS = ['RESOLVED', 'HEAD-JUDGE', 'CONSENSUS', 'ESCALATE', 'ESCALATE-OPEN'];
 export const HEADINGS = [
   'The question',
@@ -77,7 +77,7 @@ export function checkDiscussions(files, board, snapshotKeys) {
     if (name === BOARD_NAME) continue;
     const m = name.match(DISCUSSION_FILE);
     if (!m || !PUBLISHED_NUMBERS.includes(m[1])) {
-      add('DISC_FILE_SET', name, 'file is not part of the published set (00 plus 01-07, 09, 10)');
+      add('DISC_FILE_SET', name, 'file is not part of the published set (00 plus 01-07, 09, 10, 11, 13)');
       continue;
     }
     if (seenNumbers.has(m[1])) add('DISC_FILE_SET', name, `duplicate number ${m[1]}`);

@@ -7,8 +7,9 @@
  *   characters in the field can not move in this turn.
  *
  * The script forbids one opposing FIELD character from moving until the end of the turn.
- * Nothing in the state records a movement restriction yet, so the interpreter answers
- * EFFECT_UNSUPPORTED and the card is played by hand.
+ * A trigger or activated restriction needs a per-turn record in the game state and the share
+ * codec; until that record exists the interpreter answers EFFECT_UNSUPPORTED, changes nothing
+ * and the card is played by hand.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

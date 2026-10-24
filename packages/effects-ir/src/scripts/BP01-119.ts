@@ -9,8 +9,8 @@
  * The script lets the player swap this card in the RETREAT with one of their Lv6 characters in
  * the field. "When this card enters RETREAT by discarding of effect" is the envelope;
  * discarding by effect is not an existing trigger event, so the script carries no trigger tag.
- * The swap is an op the interpreter does not run yet, so applying this script answers
- * EFFECT_UNSUPPORTED, changes nothing, and the card is played by hand.
+ * The swap is run by the interpreter and counts as moving (301.18.d). Whether a swap also counts
+ * as an attach is open (discussion 11, item 1); the script does not treat it as one.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -23,6 +23,7 @@ export const CARD_NO = asCardNo('BP01-119');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
+    { key: asRuleKey('301.18.c'), reviewedHash: 'ecf7cbe1e937' }, // swapped cards exchange attached cards
     { key: asRuleKey('301.18.d'), reviewedHash: '75dd0629d8dd' }, // swap counts as moving
     { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // movement prevention blocks swap
     { key: asRuleKey('303.2.a.4.3.2.2'), reviewedHash: '16c82563f537' }, // invalid target returns to selection
@@ -30,6 +31,9 @@ export const RULE_DECLARATION = declareRules({
   rulings: [
     { discussion: '04', rule: asRuleKey('301.18.h') },
     { discussion: '05', rule: asRuleKey('303.2.a.4.3.2.2') },
+    // 11: ESCALATE-OPEN. Whether a swap counts as an attach is not settled; the script swaps
+    // and does not treat the swap as an attach (discussion 11, item 1).
+    { discussion: '11', rule: asRuleKey('301.18.c') },
   ],
 });
 

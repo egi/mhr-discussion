@@ -8,9 +8,8 @@
  *   BATTLE.
  *
  * The script discards one HAND card and, only if that happened, lets the player place an
- * Archenemy character from the HAND onto the BATTLE. Placing into the BATTLE names no lane,
- * which the interpreter does not run yet, so the script answers EFFECT_UNSUPPORTED, and the
- * card is played by hand. The once-per-turn limit is a use limit, not part of the IR.
+ * Archenemy character from the HAND onto the BATTLE. The lane comes from the invocation's
+ * placement choice. The once-per-turn limit is a use limit, not part of the IR.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

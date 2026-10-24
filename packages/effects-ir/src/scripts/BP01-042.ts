@@ -7,8 +7,8 @@
  *   characters with Lv2 or below from RETREAT into your BATTLE.
  *
  * The script places one yellow Lv2-or-below character from the RETREAT into the BATTLE. The
- * destination lane is a choice the invocation does not carry yet, so the interpreter answers
- * EFFECT_UNSUPPORTED and the card is played by hand.
+ * destination lane is the invocation's placement choice; with several free lanes and no choice
+ * the effect is unexecutable.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
