@@ -6,26 +6,35 @@ import {
   characters,
   colored,
   conditional,
+  copyAttachedEffects,
   cover,
   dig,
   discard,
   draw,
+  drawByBoardComparison,
   effect,
+  flip,
   grantAbility,
+  grantSecondChanceAttack,
+  hostOfSource,
   ifDone,
   trigger,
   mill,
   optional,
   power,
   prune,
+  rearrangeDeckTop,
   relocate,
   restrict,
+  retargetAttack,
   retreat,
+  retreatAttachedOfHost,
   select,
   selectAll,
   selectUpTo,
   sequence,
   show,
+  skipBattlePhase,
   source,
   statSet,
   step,
@@ -60,6 +69,14 @@ const OPS: Record<string, EffectOp> = {
   sequence: sequence(step(draw('self', 1)), ifDone(power(mine, 2000))),
   conditional: conditional({ kind: 'source-did-not-attack' }, draw('self', 1), draw('opponent', 1)),
   optional: optional(draw('self', 2)),
+  retreatAttachedOfHost: retreatAttachedOfHost(hostOfSource(), 'all', true),
+  rearrangeDeckTop: rearrangeDeckTop('self', 3),
+  drawByBoardComparison: drawByBoardComparison(1),
+  flip: flip(mine, false),
+  retargetAttack: retargetAttack(mine),
+  skipBattlePhase: skipBattlePhase(),
+  grantSecondChanceAttack: grantSecondChanceAttack(source()),
+  copyAttachedEffects: copyAttachedEffects(source()),
 };
 
 describe('combinators', () => {
@@ -99,6 +116,24 @@ describe('combinators', () => {
       const ir = effect(c.cardNo, power(select('self', 'BATTLE', filter), 1000));
       expect(EffectIRSchema.safeParse(ir).success).toBe(true);
     }
+  });
+});
+
+describe('the appended combinators', () => {
+  it('restrict leaves the limit key out unless one is given', () => {
+    expect('limit' in restrict(mine, 'attack')).toBe(false);
+    expect(restrict(mine, 'attack-target', { lv: null, lane: 'FRONT' })).toMatchObject({
+      limit: { lv: null, lane: 'FRONT' },
+    });
+  });
+
+  it('retreatAttachedOfHost defaults to all attached cards and keeps the source', () => {
+    expect(retreatAttachedOfHost(hostOfSource())).toEqual({
+      kind: 'retreat-attached-of-host',
+      host: { kind: 'host-of-source' },
+      scope: 'all',
+      exceptSource: false,
+    });
   });
 });
 

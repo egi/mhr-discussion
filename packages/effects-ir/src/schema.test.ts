@@ -1,6 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { asCardNo } from '@mhr/core';
-import { EFFECT_OP_KINDS, EFFECT_TRIGGER_EVENTS, type EffectFilter, type EffectIR, type EffectOp, type EffectTarget } from './ir';
+import {
+  EFFECT_CONDITION_KINDS,
+  EFFECT_FILTER_FACETS,
+  EFFECT_OP_KINDS,
+  EFFECT_RESTRICTIONS,
+  EFFECT_SCALE_SOURCES,
+  EFFECT_TARGET_KINDS,
+  EFFECT_TRIGGER_EVENTS,
+  type EffectCondition,
+  type EffectFilter, type EffectIR, type EffectOp, type EffectTarget } from './ir';
 import { EffectIRSchema, type EffectIR as WireEffectIR } from './schema';
 
 const NO_FILTER: EffectFilter = {
@@ -83,6 +92,23 @@ const VALID: Readonly<Record<EffectOp['kind'], EffectOp>> = {
     otherwise: { kind: 'discard', target: OWN_HAND },
   },
   optional: { kind: 'optional', op: DRAW_ONE },
+  'retreat-attached-of-host': {
+    kind: 'retreat-attached-of-host',
+    host: { kind: 'host-of-source' },
+    scope: 'all',
+    exceptSource: true,
+  },
+  'rearrange-deck-top': { kind: 'rearrange-deck-top', side: 'self', count: 3 },
+  'draw-by-board-comparison': { kind: 'draw-by-board-comparison', count: 1 },
+  flip: { kind: 'flip', target: OWN_HAND, faceDown: false },
+  'retarget-attack': { kind: 'retarget-attack', target: OPPONENT_BATTLE },
+  'skip-phase': { kind: 'skip-phase', phase: 'battle', duration: 'this-turn' },
+  'grant-second-chance-attack': {
+    kind: 'grant-second-chance-attack',
+    target: SOURCE,
+    duration: 'this-turn',
+  },
+  'copy-attached-effects': { kind: 'copy-attached-effects', target: SOURCE, duration: 'this-turn' },
 };
 
 const wrap = (op: unknown): unknown => ({ cardNo: 'BP01-001', rulesVersion: '1.0', op });
@@ -280,5 +306,152 @@ describe('the optional name filter', () => {
   it('rejects an empty name text and a non-text one', () => {
     expect(() => EffectIRSchema.parse(named({ ...NO_FILTER, nameIncludes: '' }))).toThrow();
     expect(() => EffectIRSchema.parse(named({ ...NO_FILTER, nameIncludes: 7 }))).toThrow();
+  });
+});
+
+describe('the vocabulary tables are append-only', () => {
+  it('keeps the first 19 op kinds in place and appends every later one', () => {
+    expect([...EFFECT_OP_KINDS].slice(0, 19)).toEqual([
+      'stat-mod',
+      'stat-set',
+      'draw',
+      'discard',
+      'mill',
+      'prune',
+      'retreat',
+      'relocate',
+      'attach',
+      'cover',
+      'swap',
+      'dig',
+      'show',
+      'battle-move',
+      'restrict',
+      'grant-ability',
+      'sequence',
+      'conditional',
+      'optional',
+    ]);
+    expect(EFFECT_OP_KINDS.length).toBeGreaterThan(19);
+    expect(new Set(EFFECT_OP_KINDS).size).toBe(EFFECT_OP_KINDS.length);
+  });
+
+  it('keeps the first five scale sources, the first two restrictions and the first four conditions', () => {
+    expect([...EFFECT_SCALE_SOURCES].slice(0, 5)).toEqual([
+      'none',
+      'self-power',
+      'characters-in-void',
+      'opponent-characters-in-battle',
+      'discarded-lv-total',
+    ]);
+    expect([...EFFECT_RESTRICTIONS].slice(0, 2)).toEqual(['move', 'attack']);
+    expect([...EFFECT_CONDITION_KINDS].slice(0, 4)).toEqual([
+      'have',
+      'fewer-than-opponent',
+      'source-did-not-attack',
+      'subject-matches',
+    ]);
+    expect([...EFFECT_TARGET_KINDS].slice(0, 3)).toEqual(['source', 'subject', 'selected']);
+    expect(EFFECT_FILTER_FACETS[0]).toBe('nameIncludes');
+  });
+
+  it('has no duplicate entry in any table', () => {
+    for (const table of [EFFECT_SCALE_SOURCES, EFFECT_RESTRICTIONS, EFFECT_CONDITION_KINDS, EFFECT_FILTER_FACETS]) {
+      expect(new Set(table).size).toBe(table.length);
+    }
+  });
+});
+
+describe('the appended conditions, targets, facets, scale sources and restrictions', () => {
+  const conditional = (condition: unknown): unknown =>
+    wrap({ kind: 'conditional', condition, then: DRAW_ONE, otherwise: null });
+  const CONDITIONS: Readonly<Record<EffectCondition['kind'], EffectCondition>> = {
+    have: { kind: 'have', side: 'self', area: 'BASE', filter: NO_FILTER, min: 1, max: null },
+    'fewer-than-opponent': { kind: 'fewer-than-opponent', area: 'BATTLE', filter: NO_FILTER },
+    'source-did-not-attack': { kind: 'source-did-not-attack' },
+    'subject-matches': { kind: 'subject-matches', filter: NO_FILTER },
+    'attack-target-matches': { kind: 'attack-target-matches', filter: NO_FILTER, powerAboveSource: true },
+    'have-weakness': { kind: 'have-weakness' },
+    'host-did-not-attack': { kind: 'host-did-not-attack' },
+    'more-set-cards-than-opponent': { kind: 'more-set-cards-than-opponent' },
+    'no-call-this-turn': { kind: 'no-call-this-turn' },
+    'owner-is-opponent': { kind: 'owner-is-opponent' },
+    'previous-step-retreated': { kind: 'previous-step-retreated' },
+    'set-equals-character-count-in-base': { kind: 'set-equals-character-count-in-base' },
+    'target-attacked-before': { kind: 'target-attacked-before' },
+    'top-card-matches': { kind: 'top-card-matches', filter: NO_FILTER },
+    'total-lv-lower-than-opponent': { kind: 'total-lv-lower-than-opponent' },
+  };
+
+  it.each(EFFECT_CONDITION_KINDS)('accepts a %s condition and rejects an unknown key on it', (kind) => {
+    const condition = CONDITIONS[kind];
+    expect(() => EffectIRSchema.parse(conditional(condition))).not.toThrow();
+    expect(() => EffectIRSchema.parse(conditional({ ...condition, surplus: 1 }))).toThrow();
+  });
+
+  it('rejects an unknown condition kind', () => {
+    expect(() => EffectIRSchema.parse(conditional({ kind: 'the-moon-is-full' }))).toThrow();
+  });
+
+  it('accepts the host-of-source target and rejects a target kind outside the table', () => {
+    expect(EFFECT_TARGET_KINDS).toContain('host-of-source');
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'host-of-source' } }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'host' } }))).toThrow();
+  });
+
+  it('accepts a random selection and rejects a non-boolean one', () => {
+    const selection = (random: unknown): unknown =>
+      wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, random } });
+    expect(() => EffectIRSchema.parse(selection(true))).not.toThrow();
+    expect(() => EffectIRSchema.parse(selection('yes'))).toThrow();
+  });
+
+  it('accepts every filter facet and rejects a malformed one', () => {
+    const named = (filter: Record<string, unknown>): unknown =>
+      wrap({ kind: 'prune', target: { ...OPPONENT_BATTLE, filter: { ...NO_FILTER, ...filter } } });
+    const FACETS: Readonly<Record<(typeof EFFECT_FILTER_FACETS)[number], unknown>> = {
+      nameIncludes: 'ULTRON',
+      nameExcludes: 'WASP',
+      differentNameFrom: 'source',
+      sameNameAsSelected: true,
+      lvSameAsRevealed: true,
+      lvOffsetFromSelected: 1,
+      equalLvAcrossSides: true,
+      extreme: { stat: 'lv', which: 'highest' },
+      lvBy: { mode: 'max', source: 'source-lv' },
+      noEffects: true,
+      original: true,
+      hasAutoEffect: true,
+    };
+    for (const facet of EFFECT_FILTER_FACETS) {
+      expect(() => EffectIRSchema.parse(named({ [facet]: FACETS[facet] })), facet).not.toThrow();
+    }
+    expect(() => EffectIRSchema.parse(named({ nameExcludes: '' }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ differentNameFrom: 'anyone' }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ extreme: { stat: 'r', which: 'highest' } }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ lvBy: { mode: 'max', source: 'moonlight' } }))).toThrow();
+  });
+
+  it('accepts every scale source and rejects an unknown one', () => {
+    for (const scaleBy of EFFECT_SCALE_SOURCES) {
+      expect(() => EffectIRSchema.parse(wrap({ ...VALID['stat-mod'], scaleBy }))).not.toThrow();
+    }
+    expect(() => EffectIRSchema.parse(wrap({ ...VALID['stat-mod'], scaleBy: 'moonlight' }))).toThrow();
+  });
+
+  it('accepts every restriction with and without a limit, and rejects a bad limit', () => {
+    for (const restriction of EFFECT_RESTRICTIONS) {
+      const base = { ...VALID['restrict'], restriction };
+      expect(() => EffectIRSchema.parse(wrap(base))).not.toThrow();
+      expect(() => EffectIRSchema.parse(wrap({ ...base, limit: { lv: 6, lane: null } }))).not.toThrow();
+      expect(() => EffectIRSchema.parse(wrap({ ...base, limit: { lv: null, lane: 'FRONT' } }))).not.toThrow();
+    }
+    expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], limit: { lv: null, lane: 'MOON' } }))).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], limit: { lv: 6 } }))).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], restriction: 'levitate' }))).toThrow();
+  });
+
+  it('rejects an op kind outside the table', () => {
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'summon', target: SOURCE }))).toThrow();
   });
 });

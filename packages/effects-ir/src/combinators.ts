@@ -24,6 +24,7 @@ import type {
   EffectMillDisposal,
   EffectOp,
   EffectRestriction,
+  RestrictionLimit,
   EffectScaleSource,
   EffectSettableStat,
   EffectSide,
@@ -189,9 +190,18 @@ export function battleMove(target: EffectTarget): EffectOp {
   return { kind: 'battle-move', target };
 }
 
-/** Forbid the target from moving or attacking for the rest of the turn. */
-export function restrict(target: EffectTarget, restriction: EffectRestriction): EffectOp {
-  return { kind: 'restrict', target, restriction, duration: 'this-turn' };
+/**
+ * Forbid the target from moving, attacking and the like for the rest of the turn. `limit` is the
+ * operand of the restrictions that name a Lv or a lane.
+ */
+export function restrict(
+  target: EffectTarget,
+  restriction: EffectRestriction,
+  limit?: RestrictionLimit,
+): EffectOp {
+  return limit === undefined
+    ? { kind: 'restrict', target, restriction, duration: 'this-turn' }
+    : { kind: 'restrict', target, restriction, duration: 'this-turn', limit };
 }
 
 /** Give the target a named ability for the rest of the turn. */
@@ -226,6 +236,55 @@ export function conditional(
 /** "You may": the player chose to run the wrapped op by taking the action. */
 export function optional(op: EffectOp): EffectOp {
   return { kind: 'optional', op };
+}
+
+/** The character the source card is attached to. */
+export function hostOfSource(): EffectTarget {
+  return { kind: 'host-of-source' };
+}
+
+/** Retreat all (or one) of the cards attached to `host`, optionally except the source card. */
+export function retreatAttachedOfHost(
+  host: EffectTarget,
+  scope: 'all' | 'one' = 'all',
+  exceptSource = false,
+): EffectOp {
+  return { kind: 'retreat-attached-of-host', host, scope, exceptSource };
+}
+
+/** Show the top `count` cards; put some back on top in a chosen order and the rest at the bottom. */
+export function rearrangeDeckTop(side: EffectSide, count: number): EffectOp {
+  return { kind: 'rearrange-deck-top', side, count };
+}
+
+/** The player with fewer characters in BATTLE draws `count`. */
+export function drawByBoardComparison(count: number): EffectOp {
+  return { kind: 'draw-by-board-comparison', count };
+}
+
+/** Flip cards in BASE face-down or face-up. */
+export function flip(target: EffectTarget, faceDown: boolean): EffectOp {
+  return { kind: 'flip', target, faceDown };
+}
+
+/** Change the target of the attack in progress. */
+export function retargetAttack(target: EffectTarget): EffectOp {
+  return { kind: 'retarget-attack', target };
+}
+
+/** Skip the controller's Battle Phase this turn. */
+export function skipBattlePhase(): EffectOp {
+  return { kind: 'skip-phase', phase: 'battle', duration: 'this-turn' };
+}
+
+/** Give the target the second chance to attack for this turn. */
+export function grantSecondChanceAttack(target: EffectTarget): EffectOp {
+  return { kind: 'grant-second-chance-attack', target, duration: 'this-turn' };
+}
+
+/** The target gets the effects of one of its attached cards this turn. */
+export function copyAttachedEffects(target: EffectTarget): EffectOp {
+  return { kind: 'copy-attached-effects', target, duration: 'this-turn' };
 }
 
 // --- the script envelope ---------------------------------------------------------------------
