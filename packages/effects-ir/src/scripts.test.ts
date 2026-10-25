@@ -96,10 +96,12 @@ const TAGGED: Readonly<
   'BP01-112': { event: 'enters-field', area: 'FIELD' },
   'BP01-114': { event: 'base-move', area: 'FIELD' },
   'BP01-118': { event: 'base-move', area: 'FIELD' },
+  'BP01-119': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'SD01-007': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD02-010': { event: 'enters-field-by-call', area: 'BATTLE' },
   'SD02-016': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD04-002': { event: 'enters-field', area: 'FIELD' },
+  'SD04-014': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
 };
 
 /** The kinds the interpreter refuses today (everything else runs, for the restrictions and abilities it records). */
@@ -126,7 +128,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(29);
+    expect(tagged).toHaveLength(31);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -140,9 +142,9 @@ describe('trigger tags', () => {
     }
   });
 
-  it('uses an area of FIELD, BATTLE, BACK or HAND', () => {
+  it('uses an area of FIELD, BATTLE, BACK, HAND or RETREAT', () => {
     for (const [, script] of tagged) {
-      expect(['FIELD', 'BATTLE', 'BACK', 'HAND']).toContain(script().trigger?.area);
+      expect(['FIELD', 'BATTLE', 'BACK', 'HAND', 'RETREAT']).toContain(script().trigger?.area);
     }
   });
 });

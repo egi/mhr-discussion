@@ -7,14 +7,14 @@
  *   in RETREAT and 1 of your characters with Lv6 in the field.
  *
  * The script lets the player swap this card in the RETREAT with one of their Lv6 characters in
- * the field. "When this card enters RETREAT by discarding of effect" is the envelope;
- * discarding by effect is not an existing trigger event, so the script carries no trigger tag.
- * The swap is run by the interpreter and counts as moving (301.18.d). Whether a swap also counts
+ * the field. It is optional (304.1.a) and starts when another effect discards the card into the
+ * RETREAT ('enters-retreat-by-discard-effect'); a CALL, a lost fight, a card leaving the field
+ * and the End Phase hand-limit discard (a rule action) do not start it. The swap is run by the interpreter and counts as moving (301.18.d). Whether a swap also counts
  * as an attach is open (discussion 11, item 1); the script does not treat it as one.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { characters, effect, optional, select, source, swap } from '../combinators';
+import { characters, effect, optional, select, source, swap, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -42,5 +42,6 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     optional(swap(source(), select('self', 'FIELD', characters({ lvMin: 6, lvMax: 6 })))),
+    trigger('enters-retreat-by-discard-effect', 'RETREAT'),
   );
 }
