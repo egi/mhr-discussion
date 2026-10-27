@@ -494,7 +494,7 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
   });
 
   it('accepts oncePerTurn true, rejects other values, and accepts its absence', () => {
-    const base = wrap(VALID['restrict']);
+    const base = wrap(VALID['restrict']) as Record<string, unknown>;
     expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: true })).not.toThrow();
     expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: false })).toThrow();
     expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: 1 })).toThrow();
