@@ -8,7 +8,9 @@
  *   BATTLE.
  *
  * The script discards one HAND card and, only if that happened, lets the player place an
- * Archenemy character from the HAND onto the BATTLE. The lane comes from the invocation's
+ * Archenemy character from the HAND onto the BATTLE. No mirrored card lists Archenemy among its
+ * traits; the Archenemy cards carry it in their names (「Spider-Archenemy」...), so the filter reads the
+ * name. The lane comes from the invocation's
  * placement choice. The ONCE PER TURN Condition is
  * carried by the `oncePerTurn` marker on the IR and enforced by the engine. The basis is the card's
  * own printed Condition: 301.1.a gives effect text priority over rules text, and 201.10.f.3 only
@@ -55,7 +57,7 @@ export function script(): EffectIR {
       step(discard(select('self', 'HAND', ANY_CARD))),
       ifDone(
         optional(
-          relocate(select('self', 'HAND', characters({ feature: 'Archenemy' })), {
+          relocate(select('self', 'HAND', characters({ nameIncludes: 'Archenemy' })), {
             side: 'self',
             area: 'BATTLE',
             faceDown: false,
