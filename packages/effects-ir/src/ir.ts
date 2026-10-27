@@ -673,6 +673,16 @@ export type EffectIR = {
    * append-only.
    */
   readonly trigger?: EffectTrigger | undefined;
+  /**
+   * Set by the script when the printed text says ONCE PER TURN; the engine refuses a second
+   * start in the same turn on the declared path. Absent otherwise.
+   *
+   * Precondition: the use record is kept by the settle-step prune only while the source card is
+   * on the FIELD (FIELD zones plus Characters attached under a FIELD card; BACK counts as FIELD),
+   * so once-per-turn is enforced only for a source that sits on the FIELD when started. A flagged
+   * IR started from HAND does not keep its record.
+   */
+  readonly oncePerTurn?: true | undefined;
 };
 
 /** An authored card script: a pure function producing the card's effect IR. */

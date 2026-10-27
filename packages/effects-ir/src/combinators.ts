@@ -291,12 +291,18 @@ export function copyAttachedEffects(target: EffectTarget): EffectOp {
 // --- the script envelope ---------------------------------------------------------------------
 
 /** Wrap an op as the IR of one card's effect, stamped with the current rules revision. */
-export function effect(cardNo: CardNo, op: EffectOp, trigger?: EffectTrigger): EffectIR {
+export function effect(
+  cardNo: CardNo,
+  op: EffectOp,
+  trigger?: EffectTrigger,
+  options?: { readonly oncePerTurn?: true },
+): EffectIR {
   return {
     cardNo,
     rulesVersion: EFFECT_RULES_VERSION,
     op,
     ...(trigger === undefined ? {} : { trigger }),
+    ...(options?.oncePerTurn === true ? { oncePerTurn: true as const } : {}),
   };
 }
 

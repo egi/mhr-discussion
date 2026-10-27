@@ -148,3 +148,16 @@ describe('trigger tags', () => {
     }
   });
 });
+
+describe('oncePerTurn marker', () => {
+  it('is set on SP01-043 alone and absent (not undefined-valued) everywhere else', () => {
+    for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
+      const ir = script();
+      if (cardNo === 'SP01-043') {
+        expect(ir.oncePerTurn).toBe(true);
+      } else {
+        expect('oncePerTurn' in ir).toBe(false);
+      }
+    }
+  });
+});

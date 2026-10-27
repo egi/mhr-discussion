@@ -26,7 +26,13 @@ export const TURN_GRANTABLE_ABILITIES = ['BLOCK', 'DOUBLE ATTACK', 'ASSAULT', 'A
 export type TurnGrantableAbility = (typeof TURN_GRANTABLE_ABILITIES)[number];
 
 /** The wire order of the entry kinds. Append only. */
-export const TURN_EFFECT_KINDS = ['restriction', 'ability', 'second-chance-attack', 'skip-battle-phase'] as const;
+export const TURN_EFFECT_KINDS = [
+  'restriction',
+  'ability',
+  'second-chance-attack',
+  'skip-battle-phase',
+  'effect-used',
+] as const;
 export type TurnEffectKind = (typeof TURN_EFFECT_KINDS)[number];
 
 /** One effect that lasts until the end of the turn. */
@@ -38,4 +44,6 @@ export type TurnEffect =
   /** The card `iid` has one more attack opportunity this turn, against a character only. */
   | { readonly kind: 'second-chance-attack'; readonly iid: number }
   /** The controller skips their Battle Phase this turn. */
-  | { readonly kind: 'skip-battle-phase' };
+  | { readonly kind: 'skip-battle-phase' }
+  /** The card `iid` has started its once-per-turn effect this turn. */
+  | { readonly kind: 'effect-used'; readonly iid: number };

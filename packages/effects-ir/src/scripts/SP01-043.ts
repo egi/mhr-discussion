@@ -9,7 +9,10 @@
  *
  * The script discards one HAND card and, only if that happened, lets the player place an
  * Archenemy character from the HAND onto the BATTLE. The lane comes from the invocation's
- * placement choice. The once-per-turn limit is a use limit, not part of the IR.
+ * placement choice. The ONCE PER TURN Condition is
+ * carried by the `oncePerTurn` marker on the IR and enforced by the engine. The basis is the card's
+ * own printed Condition: 301.1.a gives effect text priority over rules text, and 201.10.f.3 only
+ * says an Activated Effect may carry additional Conditions.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -60,5 +63,7 @@ export function script(): EffectIR {
         ),
       ),
     ),
+    undefined,
+    { oncePerTurn: true },
   );
 }

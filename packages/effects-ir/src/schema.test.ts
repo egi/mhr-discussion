@@ -492,4 +492,12 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
   it('rejects an op kind outside the table', () => {
     expect(() => EffectIRSchema.parse(wrap({ kind: 'summon', target: SOURCE }))).toThrow();
   });
+
+  it('accepts oncePerTurn true, rejects other values, and accepts its absence', () => {
+    const base = wrap(VALID['restrict']);
+    expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: true })).not.toThrow();
+    expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: false })).toThrow();
+    expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: 1 })).toThrow();
+    expect(() => EffectIRSchema.parse(base)).not.toThrow();
+  });
 });

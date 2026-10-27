@@ -276,6 +276,7 @@ export const EffectIRSchema = z.strictObject({
   rulesVersion: z.string().min(1),
   op: EffectOpSchema,
   trigger: EffectTriggerSchema.optional(),
+  oncePerTurn: z.literal(true).optional(),
 });
 
 export type EffectIR = z.infer<typeof EffectIRSchema>;
