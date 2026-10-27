@@ -59,6 +59,8 @@ export const DiagnosticCodeSchema = z.enum([
   'RULESET_STALE',
   'EFFECT_UNSUPPORTED',
   'EFFECT_UNEXECUTABLE',
+  /** A once-per-turn effect (the card prints ONCE PER TURN) was started again in the same turn. */
+  'EFFECT_ALREADY_USED',
   'ENGINE_UNKNOWN',
   /** Wrong priority-window actor (Counter Step/Phase alternation) — distinct from
    * `NOT_TURN_PLAYER`'s "wrong game-turn player". */
