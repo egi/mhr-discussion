@@ -17,6 +17,7 @@ const RUNTIME_EXPORTS = [
   'CardNoSchema',
   'isCardNo',
   'normalizeCardNo',
+  'ownerOf',
   // card schemas
   'CardColorSchema',
   'CardIndexRowSchema',

@@ -18,6 +18,8 @@
  */
 import { z } from 'zod';
 
+import type { PlayerId } from '../state/player';
+
 /**
  * The card-number format as observed in the vendor feed: two product letters, a
  * two-digit product number, a separator, and a three-digit card number.
@@ -211,6 +213,14 @@ export type CardInstance = {
    */
   readonly faceDown: boolean;
   /**
+   * Rule 301.3.a: whose deck the card belongs to. OPTIONAL in the type: an absent owner reads as
+   * the seat of the zone or field holding the card (see {@link ownerOf}). Set explicitly wherever
+   * a card is created, and never changed by a move; a card that becomes a new card on leaving the
+   * FIELD (301.45.b) keeps it. Controller is a different fact: it is the owner of the FIELD the
+   * card sits in (301.4.a) and is not stored.
+   */
+  readonly owner?: PlayerId | undefined;
+  /**
    * Attached cards, in attachment order. An ORDERED array, never a set: 301.25.m
    * requires cards to be stacked underneath their host in the order they were
    * attached, and 301.25.n forbids reordering. That order is semantically meaningful
@@ -218,3 +228,11 @@ export type CardInstance = {
    */
   readonly attached: CardInstance[];
 };
+
+/**
+ * Whose deck a card belongs to (301.3.a). A card with no recorded owner reads as the seat of
+ * the zone or field that holds it, which is correct for any card that never changed side.
+ */
+export function ownerOf(card: Pick<CardInstance, 'owner'>, holder: PlayerId): PlayerId {
+  return card.owner ?? holder;
+}

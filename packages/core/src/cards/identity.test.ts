@@ -1,6 +1,6 @@
 import { expect, expectTypeOf, test } from 'vitest';
 import type { CardDefinition, CardInstance, CardNo, Printing } from './identity';
-import { CardNoSchema, asCardNo, isCardNo, normalizeCardNo } from './identity';
+import { CardNoSchema, asCardNo, isCardNo, normalizeCardNo, ownerOf } from './identity';
 
 /**
  * Real card numbers sampled from the vendor feed (verified 2026-09-25): `BP01-005`,
@@ -131,4 +131,14 @@ test('type-level: Printing carries the per-language printing identifier', () => 
     setLabel: 'BP01',
   };
   expect(printing.printingId).toBe('vendor-printing-id-123');
+});
+
+test('ownerOf: a recorded owner wins over the holder seat, an absent one reads as the holder (301.3.a)', () => {
+  expect(ownerOf({ owner: 'p1' }, 'p0')).toBe('p1');
+  expect(ownerOf({ owner: 'p0' }, 'p1')).toBe('p0');
+  expect(ownerOf({}, 'p1')).toBe('p1');
+});
+
+test('CardInstance.owner is optional in the type', () => {
+  expectTypeOf<CardInstance['owner']>().toEqualTypeOf<'p0' | 'p1' | undefined>();
 });

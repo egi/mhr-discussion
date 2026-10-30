@@ -9,7 +9,7 @@
 
 // --- cards: identity ----------------------------------------------------------
 
-export { asCardNo, CARD_NO_PATTERN, CardNoSchema, isCardNo, normalizeCardNo } from './cards/identity';
+export { asCardNo, CARD_NO_PATTERN, CardNoSchema, isCardNo, normalizeCardNo, ownerOf } from './cards/identity';
 export type {
   CardColor,
   CardDefinition,
