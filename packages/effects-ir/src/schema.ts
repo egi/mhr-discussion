@@ -124,6 +124,7 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('previous-step-retreated') }),
   z.strictObject({ kind: z.literal('set-equals-character-count-in-base') }),
   z.strictObject({ kind: z.literal('target-attacked-before') }),
+  z.strictObject({ kind: z.literal('cause-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('top-card-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('total-lv-lower-than-opponent') }),
 ]);

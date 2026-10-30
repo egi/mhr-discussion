@@ -419,6 +419,7 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     'previous-step-retreated': { kind: 'previous-step-retreated' },
     'set-equals-character-count-in-base': { kind: 'set-equals-character-count-in-base' },
     'target-attacked-before': { kind: 'target-attacked-before' },
+    'cause-matches': { kind: 'cause-matches', filter: NO_FILTER },
     'top-card-matches': { kind: 'top-card-matches', filter: NO_FILTER },
     'total-lv-lower-than-opponent': { kind: 'total-lv-lower-than-opponent' },
   };

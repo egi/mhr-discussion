@@ -465,6 +465,8 @@ export type EffectCondition =
   | { readonly kind: 'set-equals-character-count-in-base' }
   /** The attack target was attacked earlier this turn. */
   | { readonly kind: 'target-attacked-before' }
+  /** The card whose effect caused the event (a card entering VOID by effect) matches the filter. */
+  | { readonly kind: 'cause-matches'; readonly filter: EffectFilter }
   /** The card just shown from the top of the deck matches the filter. */
   | { readonly kind: 'top-card-matches'; readonly filter: EffectFilter }
   /** The total Lv of the controller's BATTLE characters is lower than the opponent's. */
@@ -639,6 +641,7 @@ export const EFFECT_CONDITION_KINDS = [
   'previous-step-retreated',
   'set-equals-character-count-in-base',
   'target-attacked-before',
+  'cause-matches',
   'top-card-matches',
   'total-lv-lower-than-opponent',
 ] as const satisfies readonly EffectCondition['kind'][];
