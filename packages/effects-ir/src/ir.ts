@@ -80,8 +80,13 @@ export type EffectArea = (typeof EFFECT_AREAS)[number];
  * enters RETREAT"). "Seat" events are seen by every face-up card of one seat standing in the tag's
  * area ("when your opponent's character enters the field"); the optional `subject` filter narrows
  * which character counts. Turn events (`turn-starts`, `opponent-turn-starts`, `turn-ends`) have no
- * event card. `power-increases`, `power-decreases` and `would-be-attached` are named so a script can
- * be tagged, but the engine has no Power-change record or pre-attach window to emit them from.
+ * event card. The Power-change family is read off the settled before/after difference of effective
+ * Power and R, once per applied action: `power-increases` and `power-decreases` are seen by the card
+ * whose Power changed ("this card"), `own-character-power-increases`/`-decreases` by every face-up
+ * card of the seat that controls the changed character, `host-power-decreases` by the cards attached
+ * to it, and `own-character-r-or-power-increases` also counts an R-only increase. The changed amount
+ * is available to the effect as the `power-increase-value` scale source. `would-be-attached` is named
+ * so a script can be tagged, but the engine has no pre-attach window to emit it from.
  */
 export const EFFECT_TRIGGER_EVENTS = [
   'enters-field-by-call',
@@ -126,6 +131,11 @@ export const EFFECT_TRIGGER_EVENTS = [
   'wins-fight',
   'wins-fight-by-attacking',
   'would-be-attached',
+  // Power-change family, appended last (a stored tag keeps its meaning).
+  'host-power-decreases',
+  'own-character-power-decreases',
+  'own-character-power-increases',
+  'own-character-r-or-power-increases',
 ] as const;
 export type EffectTriggerEvent = (typeof EFFECT_TRIGGER_EVENTS)[number];
 
