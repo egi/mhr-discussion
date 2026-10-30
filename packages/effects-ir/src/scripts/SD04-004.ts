@@ -7,19 +7,18 @@
  *   card, the target attacked by that character changes to this card.）
  *
  * The script is the COUNTER-Activated Effect of the BLOCK ability (305.2.a): the attack in
- * progress is aimed at this card instead. The "once per turn" limit is a use limit, not part of
- * the IR. "May attack this card" is the condition under which BLOCK may be activated at all; it
- * is not an op.
+ * progress is aimed at this card instead. It is tagged `activate-counter` from the BATTLE and
+ * marked once per turn, so the engine offers it in the Counter Step. "May attack this card" is
+ * the condition under which BLOCK may be activated at all; it is not an op, the engine offers the
+ * activation only when this card can be chosen as the attack target.
  *
- * The interpreter does not run `retarget-attack`: running it needs the attack in progress, and a
- * retarget rests on the still-open discussion 13 (whether it fires "attacks" again, whether there
- * is a window before the target is chosen, whether it opens a fresh Counter Step). The card stays
- * playable by hand and the badge does not show it as scripted; for the same reason the script
- * carries no trigger tag.
+ * Whether the retarget fires "attacks" again and whether it opens a fresh Counter Step rest on
+ * the still-open discussion 13 (items 1 to 3); the engine's provisional reading is that it does
+ * neither.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { effect, retargetAttack, source } from '../combinators';
+import { effect, retargetAttack, source, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -39,5 +38,5 @@ export const RULE_DECLARATION = declareRules({
 
 /** The effect's IR. */
 export function script(): EffectIR {
-  return effect(CARD_NO, retargetAttack(source()));
+  return effect(CARD_NO, retargetAttack(source()), trigger('activate-counter', 'BATTLE'), { oncePerTurn: true });
 }
