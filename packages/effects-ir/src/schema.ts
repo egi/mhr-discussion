@@ -68,6 +68,7 @@ export const EffectFilterSchema = z.strictObject({
   original: z.boolean().optional(),
   hasAutoEffect: z.boolean().optional(),
   ref: PickNameSchema.optional(),
+  notAttackedThisTurn: z.boolean().optional(),
 });
 
 export const EffectTargetSchema = z.discriminatedUnion('kind', [

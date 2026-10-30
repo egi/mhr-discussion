@@ -361,6 +361,8 @@ export type EffectFilter = {
   readonly original?: boolean | undefined;
   /** Keeps only cards that have an AUTO effect in their text. Append-only. */
   readonly hasAutoEffect?: boolean | undefined;
+  /** Keeps only cards that did not attack this turn (a declared attack counts as attacked). Append-only. */
+  readonly notAttackedThisTurn?: boolean | undefined;
 };
 
 /**
@@ -662,6 +664,7 @@ export const EFFECT_FILTER_FACETS = [
   'original',
   'hasAutoEffect',
   'ref',
+  'notAttackedThisTurn',
 ] as const satisfies readonly (keyof EffectFilter)[];
 
 const everyFacetListed: [
