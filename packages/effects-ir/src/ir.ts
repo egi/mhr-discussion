@@ -410,7 +410,9 @@ export type EffectTarget =
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }
   /** The card an earlier `selected` target bound to `name`. Append-only. */
-  | { readonly kind: 'named'; readonly name: EffectPickName };
+  | { readonly kind: 'named'; readonly name: EffectPickName }
+  /** The character whose attack fired the effect ("that your character"). Append-only. */
+  | { readonly kind: 'attacker' };
 
 /** Where a relocated card goes, and whether it lands face down. */
 export type EffectDestination = {
@@ -655,6 +657,7 @@ export const EFFECT_TARGET_KINDS = [
   'selected',
   'host-of-source',
   'named',
+  'attacker',
 ] as const satisfies readonly EffectTarget['kind'][];
 
 const everyTargetListed: [Exclude<EffectTarget['kind'], (typeof EFFECT_TARGET_KINDS)[number]>] extends [

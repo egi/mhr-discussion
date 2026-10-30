@@ -439,6 +439,12 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'host' } }))).toThrow();
   });
 
+  it('accepts the attacker target', () => {
+    expect(EFFECT_TARGET_KINDS).toContain('attacker');
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'attacker' } }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'attacker', x: 1 } }))).toThrow();
+  });
+
   it('accepts named picks and rejects unknown pick names', () => {
     const bound = (bind: unknown): unknown =>
       wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, bind } });

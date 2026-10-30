@@ -244,6 +244,11 @@ export function hostOfSource(): EffectTarget {
   return { kind: 'host-of-source' };
 }
 
+/** The character whose attack fired the effect. */
+export function attackingCharacter(): EffectTarget {
+  return { kind: 'attacker' };
+}
+
 /** Retreat all (or one) of the cards attached to `host`, optionally except the source card. */
 export function retreatAttachedOfHost(
   host: EffectTarget,
