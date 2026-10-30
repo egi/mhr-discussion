@@ -32,6 +32,7 @@ export const TURN_EFFECT_KINDS = [
   'second-chance-attack',
   'skip-battle-phase',
   'effect-used',
+  'defended',
 ] as const;
 export type TurnEffectKind = (typeof TURN_EFFECT_KINDS)[number];
 
@@ -46,4 +47,6 @@ export type TurnEffect =
   /** The controller skips their Battle Phase this turn. */
   | { readonly kind: 'skip-battle-phase' }
   /** The card `iid` has started its once-per-turn effect this turn. */
-  | { readonly kind: 'effect-used'; readonly iid: number };
+  | { readonly kind: 'effect-used'; readonly iid: number }
+  /** The card `iid` has been the defender of an attack declared this turn. */
+  | { readonly kind: 'defended'; readonly iid: number };
