@@ -237,6 +237,13 @@ export const EFFECT_SCALE_SOURCES = [
 ] as const;
 export type EffectScaleSource = (typeof EFFECT_SCALE_SOURCES)[number];
 
+/**
+ * The names a pick can be bound to inside one effect ("pick A", "pick B"). Append-only: a
+ * stored name keeps its meaning.
+ */
+export const EFFECT_PICK_NAMES = ['A', 'B'] as const;
+export type EffectPickName = (typeof EFFECT_PICK_NAMES)[number];
+
 /** What a restriction forbids for the rest of the turn. */
 export const EFFECT_RESTRICTIONS = [
   'move',
@@ -336,6 +343,8 @@ export type EffectFilter = {
   readonly differentNameFrom?: 'source' | 'selected' | undefined;
   /** Requires the same name as a card picked earlier in the same effect. Append-only. */
   readonly sameNameAsSelected?: boolean | undefined;
+  /** Which bound pick `sameNameAsSelected` and `lvOffsetFromSelected` read; pick A when left out. Append-only. */
+  readonly ref?: EffectPickName | undefined;
   /** Requires the same Lv as a card shown earlier in the same effect. Append-only. */
   readonly lvSameAsRevealed?: boolean | undefined;
   /** Requires Lv equal to the Lv of a card picked earlier plus this offset ("Lv X+1"). Append-only. */
@@ -377,9 +386,16 @@ export type EffectTarget =
        * Append-only: left out for a chosen pick.
        */
       readonly random?: boolean | undefined;
+      /**
+       * Binds the picked card to a name so a later `named` target, reference facet or
+       * `scaleFrom` can refer to it. Append-only: left out for an unnamed pick.
+       */
+      readonly bind?: EffectPickName | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
-  | { readonly kind: 'host-of-source' };
+  | { readonly kind: 'host-of-source' }
+  /** The card an earlier `selected` target bound to `name`. Append-only. */
+  | { readonly kind: 'named'; readonly name: EffectPickName };
 
 /** Where a relocated card goes, and whether it lands face down. */
 export type EffectDestination = {
@@ -454,6 +470,11 @@ export type EffectOp =
       readonly stat: EffectStat;
       readonly delta: number;
       readonly scaleBy: EffectScaleSource;
+      /**
+       * Scales `delta` by a stat of a bound pick ("Power+X where X is the pruned card's
+       * Power"). Used together with `scaleBy: 'none'`. Append-only.
+       */
+      readonly scaleFrom?: { readonly name: EffectPickName; readonly stat: 'power' | 'lv' | 'r' } | undefined;
       readonly duration: 'this-turn';
     }
   | {
@@ -612,6 +633,7 @@ export const EFFECT_TARGET_KINDS = [
   'subject',
   'selected',
   'host-of-source',
+  'named',
 ] as const satisfies readonly EffectTarget['kind'][];
 
 const everyTargetListed: [Exclude<EffectTarget['kind'], (typeof EFFECT_TARGET_KINDS)[number]>] extends [
@@ -639,6 +661,7 @@ export const EFFECT_FILTER_FACETS = [
   'noEffects',
   'original',
   'hasAutoEffect',
+  'ref',
 ] as const satisfies readonly (keyof EffectFilter)[];
 
 const everyFacetListed: [

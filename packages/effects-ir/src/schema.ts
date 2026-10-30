@@ -23,6 +23,7 @@ import {
   EFFECT_DIG_REMAINDERS,
   EFFECT_GRANTABLE_ABILITIES,
   EFFECT_MILL_DISPOSALS,
+  EFFECT_PICK_NAMES,
   EFFECT_RESTRICTION_LANES,
   EFFECT_RESTRICTIONS,
   EFFECT_SCALE_SOURCES,
@@ -38,6 +39,7 @@ const SideSchema = z.enum(EFFECT_SIDES);
 const AreaSchema = z.enum(EFFECT_AREAS);
 const CountSchema = z.number().int().nonnegative();
 const OptionalBoundSchema = z.number().int().nullable();
+const PickNameSchema = z.enum(EFFECT_PICK_NAMES);
 
 export const EffectFilterSchema = z.strictObject({
   color: CardColorSchema.nullable(),
@@ -65,6 +67,7 @@ export const EffectFilterSchema = z.strictObject({
   noEffects: z.boolean().optional(),
   original: z.boolean().optional(),
   hasAutoEffect: z.boolean().optional(),
+  ref: PickNameSchema.optional(),
 });
 
 export const EffectTargetSchema = z.discriminatedUnion('kind', [
@@ -78,8 +81,10 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
     upTo: z.boolean(),
     filter: EffectFilterSchema,
     random: z.boolean().optional(),
+    bind: PickNameSchema.optional(),
   }),
   z.strictObject({ kind: z.literal('host-of-source') }),
+  z.strictObject({ kind: z.literal('named'), name: PickNameSchema }),
 ]);
 
 export const EffectDestinationSchema = z.strictObject({
@@ -142,6 +147,7 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     stat: z.enum(EFFECT_STATS),
     delta: z.number().int(),
     scaleBy: z.enum(EFFECT_SCALE_SOURCES),
+    scaleFrom: z.strictObject({ name: PickNameSchema, stat: z.enum(['power', 'lv', 'r']) }).optional(),
     duration: DurationSchema,
   }),
   z.strictObject({

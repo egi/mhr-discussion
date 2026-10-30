@@ -437,6 +437,28 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'host' } }))).toThrow();
   });
 
+  it('accepts named picks and rejects unknown pick names', () => {
+    const bound = (bind: unknown): unknown =>
+      wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, bind } });
+    expect(() => EffectIRSchema.parse(bound('A'))).not.toThrow();
+    expect(() => EffectIRSchema.parse(bound('B'))).not.toThrow();
+    expect(() => EffectIRSchema.parse(bound('C'))).toThrow();
+    expect(EFFECT_TARGET_KINDS).toContain('named');
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'named', name: 'A' } }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'named', name: 'C' } }))).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'cover', target: { kind: 'named' } }))).toThrow();
+    const scaled = (scaleFrom: unknown): unknown =>
+      wrap({ ...VALID['stat-mod'], scaleFrom });
+    expect(() => EffectIRSchema.parse(scaled({ name: 'A', stat: 'power' }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(scaled({ name: 'A', stat: 'name' }))).toThrow();
+    expect(() => EffectIRSchema.parse(scaled({ name: 'Z', stat: 'lv' }))).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ ...VALID['prune'], scaleFrom: { name: 'A', stat: 'lv' } }))).toThrow();
+    const ref = (value: unknown): unknown =>
+      wrap({ kind: 'prune', target: { ...OPPONENT_BATTLE, filter: { ...NO_FILTER, ref: value } } });
+    expect(() => EffectIRSchema.parse(ref('B'))).not.toThrow();
+    expect(() => EffectIRSchema.parse(ref('C'))).toThrow();
+  });
+
   it('accepts a random selection and rejects a non-boolean one', () => {
     const selection = (random: unknown): unknown =>
       wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, random } });
@@ -460,6 +482,7 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
       noEffects: true,
       original: true,
       hasAutoEffect: true,
+      ref: 'B',
     };
     for (const facet of EFFECT_FILTER_FACETS) {
       expect(() => EffectIRSchema.parse(named({ [facet]: FACETS[facet] })), facet).not.toThrow();
