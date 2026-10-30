@@ -220,8 +220,15 @@ export type AutoGrantableAbility = EffectGrantableAbility | 'COUNTER';
 export type AutoRestriction =
   /** The card cannot be moved by any effect or move (301.18.h for a swap). */
   | { readonly kind: 'cannot-move' }
-  /** The effects of cards whose Lv is at most `lvAtMost` do not affect the card. */
-  | { readonly kind: 'cannot-be-affected'; readonly lvAtMost: number }
+  /**
+   * The effects of cards whose Lv is at most `lvAtMost` do not affect the card; `lvIs` instead
+   * names one exact Lv ("cards with Lv1"), so a Lv0 card still affects it. Give exactly one.
+   */
+  | {
+      readonly kind: 'cannot-be-affected';
+      readonly lvAtMost?: number | undefined;
+      readonly lvIs?: number | undefined;
+    }
   /** The card can attack only a target in `lane` (the opponent's) and/or with Lv `lv`. */
   | {
       readonly kind: 'attack-only';
