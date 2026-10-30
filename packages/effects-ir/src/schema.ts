@@ -149,7 +149,17 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     delta: z.number().int(),
     scaleBy: z.enum(EFFECT_SCALE_SOURCES),
     scaleFrom: z.strictObject({ name: PickNameSchema, stat: z.enum(['power', 'lv', 'r']) }).optional(),
+    scaleCount: z
+      .strictObject({
+        side: SideSchema,
+        area: AreaSchema,
+        filter: EffectFilterSchema,
+        exceptSource: z.boolean(),
+      })
+      .optional(),
     duration: DurationSchema,
+  }).refine((op) => (op.scaleBy === 'filtered-count') === (op.scaleCount !== undefined), {
+    message: 'scaleCount is required with scaleBy "filtered-count" and allowed only there',
   }),
   z.strictObject({
     kind: z.literal('stat-set'),

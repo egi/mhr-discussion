@@ -116,6 +116,8 @@ const wrap = (op: unknown): unknown => ({ cardNo: 'BP01-001', rulesVersion: '1.0
 /** An op with one unexpected key added at its top level. */
 const withExtraKey = (op: EffectOp): unknown => ({ ...op, surplus: true });
 
+const COUNT = { side: 'self', area: 'BATTLE', filter: { ...NO_FILTER, characterOnly: true }, exceptSource: true };
+
 describe('EffectIRSchema, accepting', () => {
   it.each(EFFECT_OP_KINDS)('accepts a valid %s', (kind) => {
     const parsed = EffectIRSchema.parse(wrap(VALID[kind]));
@@ -497,9 +499,20 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
 
   it('accepts every scale source and rejects an unknown one', () => {
     for (const scaleBy of EFFECT_SCALE_SOURCES) {
-      expect(() => EffectIRSchema.parse(wrap({ ...VALID['stat-mod'], scaleBy }))).not.toThrow();
+      const extra = scaleBy === 'filtered-count' ? { scaleCount: COUNT } : {};
+      expect(() => EffectIRSchema.parse(wrap({ ...VALID['stat-mod'], scaleBy, ...extra }))).not.toThrow();
     }
     expect(() => EffectIRSchema.parse(wrap({ ...VALID['stat-mod'], scaleBy: 'moonlight' }))).toThrow();
+  });
+
+  it('requires scaleCount with filtered-count and refuses it with any other source', () => {
+    const op = VALID['stat-mod'];
+    expect(() => EffectIRSchema.parse(wrap({ ...op, scaleBy: 'filtered-count' }))).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ ...op, scaleBy: 'none', scaleCount: COUNT }))).toThrow();
+    expect(() =>
+      EffectIRSchema.parse(wrap({ ...op, scaleBy: 'filtered-count', scaleCount: { ...COUNT, exceptSource: 'yes' } })),
+    ).toThrow();
+    expect(() => EffectIRSchema.parse(wrap({ ...op, scaleBy: 'host-power' }))).not.toThrow();
   });
 
   it('accepts every restriction with and without a limit, and rejects a bad limit', () => {

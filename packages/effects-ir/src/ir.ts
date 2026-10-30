@@ -234,8 +234,21 @@ export const EFFECT_SCALE_SOURCES = [
   'source-lv',
   'target-attached-cards-matching',
   'total-power-own-battle',
+  /** Counts the cards matching `stat-mod.scaleCount` (side, area, filter, except this card). */
+  'filtered-count',
+  /** The effective Power of the card the source is attached to. */
+  'host-power',
 ] as const;
 export type EffectScaleSource = (typeof EFFECT_SCALE_SOURCES)[number];
+
+/** The cards a `filtered-count` scale counts. */
+export type ScaleCount = {
+  readonly side: EffectSide;
+  readonly area: EffectArea;
+  readonly filter: EffectFilter;
+  /** Leaves out the card the script belongs to ("other than this card"). */
+  readonly exceptSource: boolean;
+};
 
 /**
  * The names a pick can be bound to inside one effect ("pick A", "pick B"). Append-only: a
@@ -477,6 +490,12 @@ export type EffectOp =
        * Power"). Used together with `scaleBy: 'none'`. Append-only.
        */
       readonly scaleFrom?: { readonly name: EffectPickName; readonly stat: 'power' | 'lv' | 'r' } | undefined;
+      /**
+       * What `scaleBy: 'filtered-count'` counts: the cards of `side` in `area` matching `filter`,
+       * leaving out the source card when `exceptSource` is set. Required with that source and
+       * meaningless with any other. Append-only.
+       */
+      readonly scaleCount?: ScaleCount | undefined;
       readonly duration: 'this-turn';
     }
   | {
