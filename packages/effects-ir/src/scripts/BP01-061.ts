@@ -1,6 +1,6 @@
 /**
  * BP01-061 Follow Shadow, a Lv6 blue character that swaps itself in from the HAND as a counter.
- * Provisional: the script follows the pre-errata reading (set cards only) of the cost.
+ * Provisional: the cost follows the errata text; the attachment case is not encoded (below).
  *
  * Printed text (official card, post-errata as mirrored 2026-11-01):
  *
@@ -9,15 +9,17 @@
  *   BATTLE.
  *
  * The pre-errata text read "2 of your set cards". The script retreats two of the controller's
- * face-down (set) cards in the BASE and, only if that happened, swaps this card in the HAND with one of the controller's blue characters of Lv4 or
- * above in the BATTLE whose name differs from this card's. A swap with a HAND card places the
- * HAND card and moves the other (301.18.f), and is refused while an effect keeps the BATTLE card
- * from moving (301.18.h).
+ * cards in the BASE, face-down or face-up (discussion 37, HEAD-JUDGE: the cost takes any card
+ * instead of set cards only), and, only if that happened, swaps this card in the HAND with one of
+ * the controller's blue characters of Lv4 or above in the BATTLE whose name differs from this
+ * card's. A swap with a HAND card places the HAND card and moves the other (301.18.f), and is
+ * refused while an effect keeps the BATTLE card from moving (301.18.h).
  *
- * The head judge announced an errata that lets the cost take any card (a set card, a character or
- * an attachment); it is not encoded here. The errata text is now in the card data, but how a host
- * and its attachment count is still open (discussion 37), so the cost is not coded yet. When that
- * is settled this script is replaced, not patched. Until then the script is flagged provisional: its note shows on the log line and the detail sheet.
+ * Not encoded: the head judge also ruled that a BASE host can be retreated together with its
+ * attachment when both are declared (two cards), while declaring only the host counts as one.
+ * Here an attachment is not a pickable BASE card, so it only follows its host and never counts
+ * toward the two. The IR selects from one area, and BASE plus ATTACHED would need a new one.
+ * Until then the script is flagged provisional: its note shows on the log line and the detail sheet.
  *
  * The trigger tag is a COUNTER activation from the HAND (201.10.f.3), the same envelope as the
  * other COUNTER·ACTI cards in this directory.
@@ -46,7 +48,6 @@ export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('201.10.f.3'), reviewedHash: 'a05bc11524e4' }, // COUNTER-Activated Effect
     { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves immediately
-    { key: asRuleKey('301.13.a'), reviewedHash: 'ece044bdbe4a' }, // SET a card (face-down)
     { key: asRuleKey('301.16.a.3'), reviewedHash: 'cdc114bcae3f' }, // retreat by effect
     { key: asRuleKey('301.18.f'), reviewedHash: '1dfd38a20178' }, // swap with a HAND card
     { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // movement prevention blocks swap
@@ -55,9 +56,10 @@ export const RULE_DECLARATION = declareRules({
   rulings: [
     { discussion: '09', rule: asRuleKey('304.1.d') },
     { discussion: '10', rule: asRuleKey('304.1.d') },
-    // 11: ESCALATE-OPEN. The pre-errata cost is scripted; the errata is not encoded
-    // (discussion 11, item 2).
+    // 37: HEAD-JUDGE principle (any card), published text in the mirror; the attachment
+    // declaration is not encoded. 11 stays for the swap and the provisional note.
     { discussion: '11', rule: asRuleKey('301.16.a.3') },
+    { discussion: '37', rule: asRuleKey('301.16.a.3') },
   ],
 });
 
@@ -66,7 +68,7 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     sequence(
-      step(retreat(select('self', 'BASE', { ...ANY_CARD, faceDown: true }, 2))),
+      step(retreat(select('self', 'BASE', ANY_CARD, 2))),
       ifDone(
         swap(
           source(),
