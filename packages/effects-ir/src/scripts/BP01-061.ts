@@ -1,6 +1,6 @@
 /**
  * BP01-061 Follow Shadow, a Lv6 blue character that swaps itself in from the HAND as a counter.
- * Provisional: the cost follows the errata text; the attachment case is not encoded (below).
+ * Provisional: the cost follows the errata text and the head judge's attachment ruling.
  *
  * Printed text (official card, post-errata as mirrored 2026-11-01):
  *
@@ -15,11 +15,10 @@
  * card's. A swap with a HAND card places the HAND card and moves the other (301.18.f), and is
  * refused while an effect keeps the BATTLE card from moving (301.18.h).
  *
- * Not encoded: the head judge also ruled that a BASE host can be retreated together with its
- * attachment when both are declared (two cards), while declaring only the host counts as one.
- * Here an attachment is not a pickable BASE card, so it only follows its host and never counts
- * toward the two. The IR selects from one area, and BASE plus ATTACHED would need a new one.
- * Until then the script is flagged provisional: its note shows on the log line and the detail sheet.
+ * A BASE host can be retreated together with its attachment when both are declared (two cards,
+ * discussion 37); declaring only the host counts as one and the attachment follows it. The cost
+ * selects with `includeAttached`, so an attachment under a BASE card is a pickable card of its own.
+ * The script is flagged provisional: its note shows on the log line and the detail sheet.
  *
  * The trigger tag is a COUNTER activation from the HAND (201.10.f.3), the same envelope as the
  * other COUNTER·ACTI cards in this directory.
@@ -33,6 +32,7 @@ import {
   ifDone,
   retreat,
   select,
+  selectWithAttached,
   sequence,
   source,
   step,
@@ -68,7 +68,7 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     sequence(
-      step(retreat(select('self', 'BASE', ANY_CARD, 2))),
+      step(retreat(selectWithAttached('self', 'BASE', ANY_CARD, 2))),
       ifDone(
         swap(
           source(),

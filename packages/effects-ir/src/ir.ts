@@ -416,6 +416,12 @@ export type EffectTarget =
        * `scaleFrom` can refer to it. Append-only: left out for an unnamed pick.
        */
       readonly bind?: EffectPickName | undefined;
+      /**
+       * The cards attached to the cards in `area` (at any depth) are pickable too, each as a card
+       * of its own ("2 of your cards in BASE", where a BASE host may be declared with its
+       * attachment). Append-only: left out when only the area's own cards are pickable.
+       */
+      readonly includeAttached?: boolean | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }

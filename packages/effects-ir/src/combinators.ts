@@ -84,6 +84,19 @@ export function select(
   return { kind: 'selected', side, area, count, upTo: false, filter };
 }
 
+/**
+ * `count` matching cards from the area or attached to the cards in it: a host and its attachment
+ * are two cards when both are picked.
+ */
+export function selectWithAttached(
+  side: EffectSide,
+  area: EffectArea,
+  filter: EffectFilter,
+  count = 1,
+): EffectTarget {
+  return { kind: 'selected', side, area, count, upTo: false, filter, includeAttached: true };
+}
+
 /** Up to `count` matching cards ("up to 2 ..."). */
 export function selectUpTo(
   side: EffectSide,
