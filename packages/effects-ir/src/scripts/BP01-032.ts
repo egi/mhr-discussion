@@ -3,8 +3,8 @@
  *
  * Printed text (official card):
  *
- *   UNIQUE(AUTO【FIELD】:You can not have another character with the same name as this card in
- *   the field. This effect can not be lost.)
+ *   UNIQUE(AUTO【FIELD】:You cannot have another card with the same name as this card on the
+ *   field. This effect cannot be lost.)
  *   TRIG【HAND】:When your yellow character is in Both Lose, you may place this card from HAND
  *   into your BATTLE. If you do, 1 of your opponent's characters in BATTLE gets Power-1000 in
  *   this turn.

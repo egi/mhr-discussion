@@ -4,7 +4,7 @@
  * Printed text (official card):
  *
  *   COUNTER·ACTI【BACK/ONCE PER TURN】:You discard 1 of your cards in HAND. If you do, you may
- *   place 1 of your characters with 【Archenemy】 in their features from HAND onto your
+ *   place 1 of your characters with 【Archenemy】 in their names from HAND onto your
  *   BATTLE.
  *
  * The script discards one HAND card and, only if that happened, lets the player place an

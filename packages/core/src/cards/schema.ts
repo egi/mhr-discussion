@@ -72,7 +72,7 @@ export const VendorCardRowSchema = z.strictObject({
   environment: z.string(),
   feature: z.string(),
   id: z.string(),
-  image: z.strictObject({ key: z.string(), url: z.string() }),
+  image: z.strictObject({ key: z.string(), url: z.string(), variants: z.unknown().optional() }),
   language: z.string(),
   level: z.string(),
   name: z.string(),

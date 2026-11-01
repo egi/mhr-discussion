@@ -1,24 +1,23 @@
 /**
  * BP01-061 Follow Shadow, a Lv6 blue character that swaps itself in from the HAND as a counter.
- * Provisional: the script follows the pre-errata mirror text.
+ * Provisional: the script follows the pre-errata reading (set cards only) of the cost.
  *
- * Printed text (official card, pre-errata as mirrored):
+ * Printed text (official card, post-errata as mirrored 2026-11-01):
  *
- *   COUNTER·ACTI【HAND】:You retreat 2 of your set cards in BASE. If you do, you swap this card
- *   in HAND and 1 of your blue characters with Lv4 or above and different name from this card in
+ *   COUNTER·ACTI【HAND】:You retreat 2 of your cards in BASE. If you do, you swap this card in
+ *   HAND and 1 of your blue characters with Lv4 or above and different name from this card in
  *   BATTLE.
  *
- * The script retreats two of the controller's face-down (set) cards in the BASE and, only if that
- * happened, swaps this card in the HAND with one of the controller's blue characters of Lv4 or
+ * The pre-errata text read "2 of your set cards". The script retreats two of the controller's
+ * face-down (set) cards in the BASE and, only if that happened, swaps this card in the HAND with one of the controller's blue characters of Lv4 or
  * above in the BATTLE whose name differs from this card's. A swap with a HAND card places the
  * HAND card and moves the other (301.18.f), and is refused while an effect keeps the BATTLE card
  * from moving (301.18.h).
  *
  * The head judge announced an errata that lets the cost take any card (a set card, a character or
- * an attachment); it is not encoded here. The mirrored text is the pre-errata text, the errata
- * text has not been published, and the cost is not coded from chat alone (discussion 11, item 2).
- * When the published text reaches the card data this script is replaced, not patched. Until then
- * the script is flagged provisional: its note shows on the log line and the detail sheet.
+ * an attachment); it is not encoded here. The errata text is now in the card data, but how a host
+ * and its attachment count is still open (discussion 37), so the cost is not coded yet. When that
+ * is settled this script is replaced, not patched. Until then the script is flagged provisional: its note shows on the log line and the detail sheet.
  *
  * The trigger tag is a COUNTER activation from the HAND (201.10.f.3), the same envelope as the
  * other COUNTER·ACTI cards in this directory.
