@@ -37,7 +37,6 @@ const NOT_AUTHORED: readonly string[] = [
   'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
-  'skip-phase',
   'grant-second-chance-attack',
   'copy-attached-effects',
 ];
@@ -93,6 +92,8 @@ const TAGGED: Readonly<
   'SD02-017': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-069': { event: 'activate', area: 'FIELD' },
   'BP01-077': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-073': { event: 'card-moved-to-deck-bottom', area: 'FIELD' },
+  'BP01-090': { event: 'activate', area: 'HAND' },
   'BP01-093': { event: 'attacks', area: 'WING' },
   'BP01-104': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-105': { event: 'attacks', area: 'FIELD', attacker: { controller: 'self' } },
@@ -105,6 +106,7 @@ const TAGGED: Readonly<
   'PB01-002': { event: 'attacks', area: 'BATTLE' },
   'PB01-007': { event: 'attacks', area: 'BATTLE' },
   'SD01-006': { event: 'activate', area: 'HAND' },
+  'SP01-032': { event: 'this-card-enters-void', area: 'VOID' },
   'SD01-007': { event: 'enters-field-by-call', area: 'FIELD' },
   'SP01-006': { event: 'activate', area: 'BATTLE' },
   'SP01-023': { event: 'activate-counter', area: 'BATTLE' },
@@ -140,7 +142,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(43);
+    expect(tagged).toHaveLength(46);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -154,19 +156,20 @@ describe('trigger tags', () => {
     }
   });
 
-  it('uses an area of FIELD, BATTLE, WING, BACK, HAND or RETREAT', () => {
+  it('uses an area of FIELD, BATTLE, WING, BACK, HAND, RETREAT or VOID', () => {
     for (const [, script] of tagged) {
-      expect(['FIELD', 'BATTLE', 'WING', 'BACK', 'HAND', 'RETREAT']).toContain(script().trigger?.area);
+      expect(['FIELD', 'BATTLE', 'WING', 'BACK', 'HAND', 'RETREAT', 'VOID']).toContain(script().trigger?.area);
     }
   });
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-069, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
         cardNo === 'BP01-069' ||
+        cardNo === 'BP01-073' ||
         cardNo === 'BP01-105' ||
         cardNo === 'SP01-006' ||
         cardNo === 'SP01-023' ||
