@@ -56,7 +56,6 @@ export const RULE_DECLARATION = declareRules({
   rulings: [
     { discussion: '09', rule: asRuleKey('304.1.d') },
     { discussion: '10', rule: asRuleKey('304.1.d') },
-    { discussion: '31', rule: asRuleKey('301.19.a') },
   ],
 });
 
