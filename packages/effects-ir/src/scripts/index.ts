@@ -45,10 +45,12 @@ import * as BP01_060 from './BP01-060';
 import * as BP01_061 from './BP01-061';
 import * as BP01_065 from './BP01-065';
 import * as BP01_066 from './BP01-066';
+import * as BP01_069 from './BP01-069';
 import * as BP01_074 from './BP01-074';
 import * as BP01_077 from './BP01-077';
 import * as BP01_085 from './BP01-085';
 import * as BP01_087 from './BP01-087';
+import * as BP01_093 from './BP01-093';
 import * as BP01_105 from './BP01-105';
 import * as BP01_106 from './BP01-106';
 import * as BP01_109 from './BP01-109';
@@ -71,6 +73,7 @@ import * as SD02_008 from './SD02-008';
 import * as SD02_010 from './SD02-010';
 import * as SD02_016 from './SD02-016';
 import * as SD02_017 from './SD02-017';
+import * as SD03_001 from './SD03-001';
 import * as SD03_003 from './SD03-003';
 import * as SD03_005 from './SD03-005';
 import * as SD03_008 from './SD03-008';
@@ -85,6 +88,7 @@ import * as SD04_014 from './SD04-014';
 import * as SD04_015 from './SD04-015';
 import * as SP01_006 from './SP01-006';
 import * as SP01_016 from './SP01-016';
+import * as SP01_023 from './SP01-023';
 import * as SP01_043 from './SP01-043';
 import * as SP01_048 from './SP01-048';
 
@@ -121,10 +125,12 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-061': BP01_061.script,
   'BP01-065': BP01_065.script,
   'BP01-066': BP01_066.script,
+  'BP01-069': BP01_069.script,
   'BP01-074': BP01_074.script,
   'BP01-077': BP01_077.script,
   'BP01-085': BP01_085.script,
   'BP01-087': BP01_087.script,
+  'BP01-093': BP01_093.script,
   'BP01-105': BP01_105.script,
   'BP01-106': BP01_106.script,
   'BP01-109': BP01_109.script,
@@ -147,6 +153,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SD02-010': SD02_010.script,
   'SD02-016': SD02_016.script,
   'SD02-017': SD02_017.script,
+  'SD03-001': SD03_001.script,
   'SD03-003': SD03_003.script,
   'SD03-005': SD03_005.script,
   'SD03-008': SD03_008.script,
@@ -161,6 +168,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SD04-015': SD04_015.script,
   'SP01-006': SP01_006.script,
   'SP01-016': SP01_016.script,
+  'SP01-023': SP01_023.script,
   'SP01-043': SP01_043.script,
   'SP01-048': SP01_048.script,
 };
