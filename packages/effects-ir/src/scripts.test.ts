@@ -68,7 +68,7 @@ describe('card scripts', () => {
 
 /** Every tagged script with the Effect Location printed in its header (201.10.d.2). */
 const TAGGED: Readonly<
-  Record<string, { event: string; area: EffectArea; attacker?: object }>
+  Record<string, { event: string; area: EffectArea; attacker?: object; subject?: object }>
 > = {
   'BP01-002': { event: 'activate-counter', area: 'HAND' },
   'BP01-005': { event: 'attacks', area: 'HAND', attacker: { controller: 'self', color: 'red' } },
