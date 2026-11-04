@@ -2,6 +2,11 @@ import { describe, expect, it } from 'vitest';
 import {
   ANY_CARD,
   attach,
+  attackerFilter,
+  bind,
+  named,
+  scaleCount,
+  scaleFrom,
   battleMove,
   characters,
   colored,
@@ -168,5 +173,51 @@ describe('effect trigger tag', () => {
       EffectTriggerSchema.safeParse({ event: 'activate', area: 'HAND', attacker: filtered.attacker })
         .success,
     ).toBe(false);
+  });
+});
+
+describe('the pick-name and scale helpers', () => {
+  const parses = (op: EffectOp): boolean => EffectIRSchema.safeParse(effect(card.cardNo, op)).success;
+
+  it('bind sets the pick name on a selected target and named refers to it', () => {
+    const picked = bind(select('self', 'BASE', ANY_CARD), 'A');
+    expect(picked).toMatchObject({ kind: 'selected', bind: 'A' });
+    expect(named('A')).toEqual({ kind: 'named', name: 'A' });
+    expect(parses(power(named('A'), 1000))).toBe(true);
+    expect(parses(sequence(step(retreat(picked)), ifDone(power(named('A'), 1000))))).toBe(true);
+    expect(() => bind(source(), 'A')).toThrow(Error);
+  });
+
+  it('scaleFrom scales the delta by a stat of a bound pick', () => {
+    const op = scaleFrom(source(), 'power', 1000, 'A', 'power');
+    expect(op).toEqual({
+      kind: 'stat-mod',
+      target: source(),
+      stat: 'power',
+      delta: 1000,
+      scaleBy: 'none',
+      scaleFrom: { name: 'A', stat: 'power' },
+      duration: 'this-turn',
+    });
+    expect(parses(sequence(step(prune(bind(select('self', 'BASE', ANY_CARD), 'A'))), ifDone(op)))).toBe(true);
+  });
+
+  it('scaleCount scales the delta by a filtered count', () => {
+    const count = { side: 'self', area: 'BATTLE', filter: characters(), exceptSource: true } as const;
+    const op = scaleCount(source(), 'power', 500, count);
+    expect(op).toMatchObject({ kind: 'stat-mod', scaleBy: 'filtered-count', scaleCount: count });
+    expect(parses(op)).toBe(true);
+  });
+
+  it('attackerFilter builds the attacker narrowing for an attacks trigger', () => {
+    expect(attackerFilter()).toEqual({ controller: 'self' });
+    expect(attackerFilter({ color: 'red', feature: 'X' })).toEqual({
+      controller: 'self',
+      color: 'red',
+      feature: 'X',
+    });
+    expect(EffectTriggerSchema.safeParse(trigger('attacks', 'HAND', attackerFilter({ color: 'red' }))).success).toBe(
+      true,
+    );
   });
 });

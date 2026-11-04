@@ -23,6 +23,8 @@ import type {
   EffectIR,
   EffectMillDisposal,
   EffectOp,
+  EffectPickName,
+  ScaleCount,
   EffectRestriction,
   RestrictionLimit,
   EffectScaleSource,
@@ -122,6 +124,52 @@ export function statMod(
   scaleBy: EffectScaleSource = 'none',
 ): EffectOp {
   return { kind: 'stat-mod', target, stat, delta, scaleBy, duration: 'this-turn' };
+}
+
+/** The card an earlier pick bound to `name` ("pick A"). */
+export function named(name: EffectPickName): EffectTarget {
+  return { kind: 'named', name };
+}
+
+/** Binds a `selected` target's pick to `name` so later steps can refer to it. */
+export function bind(target: EffectTarget, name: EffectPickName): EffectTarget {
+  if (target.kind !== 'selected') {
+    throw new Error(`bind needs a selected target, got ${target.kind}`);
+  }
+  return { ...target, bind: name };
+}
+
+/** Stat change scaled by a stat of a bound pick ("Power+X where X is that card's Power"). */
+export function scaleFrom(
+  target: EffectTarget,
+  stat: EffectStat,
+  delta: number,
+  name: EffectPickName,
+  fromStat: 'power' | 'lv' | 'r',
+): EffectOp {
+  return {
+    kind: 'stat-mod',
+    target,
+    stat,
+    delta,
+    scaleBy: 'none',
+    scaleFrom: { name, stat: fromStat },
+    duration: 'this-turn',
+  };
+}
+
+/** Stat change scaled by the number of cards matching `count` ("+500 for each ..."). */
+export function scaleCount(target: EffectTarget, stat: EffectStat, delta: number, count: ScaleCount): EffectOp {
+  return { kind: 'stat-mod', target, stat, delta, scaleBy: 'filtered-count', scaleCount: count, duration: 'this-turn' };
+}
+
+/** Narrows an `attacks` trigger to the controller's own attackers of a colour or feature. */
+export function attackerFilter(narrow: { color?: CardColor; feature?: string } = {}): AttackerFilter {
+  return {
+    controller: 'self',
+    ...(narrow.color === undefined ? {} : { color: narrow.color }),
+    ...(narrow.feature === undefined ? {} : { feature: narrow.feature }),
+  };
 }
 
 /** Shorthand for `statMod(target, 'power', delta)`: "gets Power+3000 in this turn". */
