@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EFFECT_OP_KINDS, type EffectArea, type EffectOp } from './ir';
+import { EFFECT_DESTINATION_AREAS, EFFECT_OP_KINDS, type EffectArea, type EffectOp } from './ir';
 import { EffectIRSchema } from './schema';
 import { CARD_SCRIPTS } from './scripts';
 import { EFFECT_RULES_VERSION } from './version';
@@ -112,12 +112,15 @@ const TAGGED: Readonly<
   'SP01-032': { event: 'this-card-enters-void', area: 'VOID' },
   'SP01-042': { event: 'activate', area: 'BATTLE' },
   'SD01-007': { event: 'enters-field-by-call', area: 'FIELD' },
+  'SP01-001': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'SP01-006': { event: 'activate', area: 'BATTLE' },
+  'SP01-031': { event: 'enters-retreat-by-losing-fight', area: 'RETREAT' },
   'SP01-023': { event: 'activate-counter', area: 'BATTLE' },
   'SD03-001': { event: 'enters-field', area: 'FIELD' },
   'SD02-010': { event: 'enters-field-by-call', area: 'BATTLE' },
   'SD02-016': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD04-002': { event: 'enters-field', area: 'FIELD' },
+  'SD04-003': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'SD04-004': { event: 'activate-counter', area: 'BATTLE' },
   'SD04-014': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
 };
@@ -146,7 +149,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(50);
+    expect(tagged).toHaveLength(53);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -156,7 +159,9 @@ describe('trigger tags', () => {
     for (const [, script] of tagged) {
       const op = script().op;
       for (const kind of kindsIn(op)) expect(NOT_RUNNABLE_KINDS).not.toContain(kind);
-      for (const area of relocateAreas(op)) expect(['FIELD', 'BATTLE']).not.toContain(area);
+      // A relocate to the FIELD or the BATTLE is run: the lane is the player's choice
+      // (`EffectInvocation.placement`), so the destination no longer makes a script unrunnable.
+      for (const area of relocateAreas(op)) expect(EFFECT_DESTINATION_AREAS).toContain(area);
     }
   });
 
