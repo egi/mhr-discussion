@@ -56,10 +56,10 @@ export const RULE_DECLARATION = declareRules({
   rulings: [
     { discussion: '09', rule: asRuleKey('304.1.d') },
     { discussion: '10', rule: asRuleKey('304.1.d') },
-    // 37: HEAD-JUDGE principle (any card), published text in the mirror; the attachment
-    // declaration is not encoded. 11 stays for the swap and the provisional note.
+    // Discussion 37 (HEAD-JUDGE principle: any card, published text in the mirror) is cited
+    // here only: declarations hold public vendor discussion ids, and 37 is not published.
+    // 11 stays for the swap and the provisional note.
     { discussion: '11', rule: asRuleKey('301.16.a.3') },
-    { discussion: '37', rule: asRuleKey('301.16.a.3') },
   ],
 });
 
