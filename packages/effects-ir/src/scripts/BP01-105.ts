@@ -19,8 +19,9 @@
  * - Discussion 06 (HEAD-JUDGE, via the mhrdecklab FAQ F-18): a retarget does not fire "attacks"
  *   again, so the effect is read once per declaration.
  * - Which Power counts for "Power 5000 or higher" (the effective Power now, or the printed
- *   one) is UNRULED. The engine reads the effective Power, registered as the engine reading
- *   `effective-power-lv-basis`; the script rests on it and must not be shown as settled.
+ *   one) is UNRULED, registered as the engine reading `effective-power-lv-basis` (effective).
+ *   The target filter's `powerMin` currently compares the printed Power, so the script rests
+ *   on a reading that is neither ruled nor fully implemented; it must not be shown as settled.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
