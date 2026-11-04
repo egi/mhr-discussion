@@ -49,7 +49,9 @@ export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
     { key: asRuleKey('301.18.f'), reviewedHash: '1dfd38a20178' }, // swap with a HAND card
+    { key: asRuleKey('301.18.c'), reviewedHash: 'ecf7cbe1e937' }, // swapped cards exchange attached cards
     { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // movement prevention blocks swap
+    { key: asRuleKey('303.2.a.4.3.2.2'), reviewedHash: '16c82563f537' }, // invalid target returns to selection
     { key: asRuleKey('305.3.a'), reviewedHash: '50e7a5497ebc' }, // DOUBLE ATTACK
     { key: asRuleKey('303.2.a.6.1.2'), reviewedHash: '06effe272462' }, // this-turn effects end
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
@@ -59,9 +61,9 @@ export const RULE_DECLARATION = declareRules({
     { discussion: '09', rule: asRuleKey('304.1.d') },
     { discussion: '10', rule: asRuleKey('304.1.d') },
     // 11: ESCALATE-OPEN. Whether a swap counts as an attach is not settled.
-    { discussion: '11', rule: asRuleKey('301.18.f') },
+    { discussion: '11', rule: asRuleKey('301.18.c') },
     // 13: ESCALATE-OPEN. DOUBLE ATTACK read literally; re-fire and retarget are not settled.
-    { discussion: '13', rule: asRuleKey('305.3.a') },
+    { discussion: '13', rule: asRuleKey('303.2.a.4.3.2.2') },
   ],
 });
 
