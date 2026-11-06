@@ -13,8 +13,11 @@
  * `extreme` facet; ties stay candidates and the player chooses). The prune comes first, so the
  * cards it just pruned are part of the VOID being searched. With no Web character in the VOID
  * the prune stays and the effect resolves (discussion 25). UNIQUE and BLOCK are keywords, not
- * effects, so nothing is scripted for them. Whether BLOCK re-fires the retargeted attack is
- * ESCALATE-OPEN (discussion 13 items 2-3) and is not settled here.
+ * effects, so nothing is scripted for them. A [BLOCK] retarget changes the Attack Target in place
+ * and opens no fresh Counter Step (engine reading block-retarget-refire, ESCALATE-OPEN). A
+ * re-selection after the original target becomes invalid during the Counter Step returns to the
+ * Select Target Step (303.2.a.4.3.2.2; FAQ F-17). Whether a fresh Counter Step then offers BLOCK
+ * again to holders within R is inference (discussion 13 item 3, ESCALATE-OPEN).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

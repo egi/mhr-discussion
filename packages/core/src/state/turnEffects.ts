@@ -36,6 +36,13 @@ export const TURN_EFFECT_KINDS = [
 ] as const;
 export type TurnEffectKind = (typeof TURN_EFFECT_KINDS)[number];
 
+/**
+ * Which of a card's once-per-turn effects an `effect-used` entry records. Absent is the card's
+ * primary (scripted, or plain [BLOCK] holder) effect; 'block' is the [BLOCK] retarget used on a
+ * card whose scripted COUNTER effect is a different one.
+ */
+export type EffectUsedTag = 'block';
+
 /** One effect that lasts until the end of the turn. */
 export type TurnEffect =
   /** The card `iid` cannot make the named move or attack for the turn. */
@@ -46,7 +53,10 @@ export type TurnEffect =
   | { readonly kind: 'second-chance-attack'; readonly iid: number }
   /** The controller skips their Battle Phase this turn. */
   | { readonly kind: 'skip-battle-phase' }
-  /** The card `iid` has started its once-per-turn effect this turn. */
-  | { readonly kind: 'effect-used'; readonly iid: number }
+  /**
+   * The card `iid` has started its once-per-turn effect this turn. `effect` names which one;
+   * absent means the card's primary effect (writers omit the key rather than set it undefined).
+   */
+  | { readonly kind: 'effect-used'; readonly iid: number; readonly effect?: EffectUsedTag | undefined }
   /** The card `iid` has been the defender of an attack declared this turn. */
   | { readonly kind: 'defended'; readonly iid: number };

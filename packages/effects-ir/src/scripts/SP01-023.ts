@@ -11,9 +11,13 @@
  *   Power value of the character pruned by this effect.
  *
  * A script carries one effect, so this one is the COUNTER·ACTI. BLOCK is a printed keyword with
- * nothing to script (whether BLOCK fires again after a retarget is ESCALATE-OPEN, discussion 13
- * items 2-3, and is not settled here). The TRIG that retreats a Knull-named host is not scripted
- * (a second effect on the same card): it stays with the engine as an unscripted effect.
+ * nothing to script. A [BLOCK] retarget changes the Attack Target in place and opens no fresh
+ * Counter Step (engine reading block-retarget-refire, ESCALATE-OPEN). A re-selection after the
+ * original target becomes invalid during the Counter Step returns to the Select Target Step
+ * (303.2.a.4.3.2.2; FAQ F-17). Whether a fresh Counter Step then offers BLOCK again to holders
+ * within R is inference (discussion 13 item 3, ESCALATE-OPEN). The TRIG that retreats a
+ * Knull-named host is not scripted (a second effect on the same card): it stays with the engine
+ * as an unscripted effect.
  *
  * The Human of Lv3 or below on BATTLE is chosen and pruned as pick A (`scaleFrom` keeps reading it
  * after it has left the board); only if the prune was done does this card get Power+X with X the

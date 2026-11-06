@@ -104,6 +104,7 @@ export type {
 
 export { TURN_EFFECT_KINDS, TURN_GRANTABLE_ABILITIES, TURN_RESTRICTIONS } from './state/turnEffects';
 export type {
+  EffectUsedTag,
   TurnEffect,
   TurnEffectKind,
   TurnGrantableAbility,
