@@ -36,7 +36,6 @@ const NOT_AUTHORED: readonly string[] = [
   'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
-  'grant-second-chance-attack',
   'copy-attached-effects',
 ];
 
@@ -73,6 +72,7 @@ const TAGGED: Readonly<
   'BP01-005': { event: 'attacks', area: 'HAND', attacker: { controller: 'self', color: 'red' } },
   'BP01-008': { event: 'enters-field', area: 'FIELD' },
   'BP01-010': { event: 'activate', area: 'HAND' },
+  'BP01-011': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-012': { event: 'enters-field-by-call', area: 'BATTLE' },
   'BP01-015': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-017': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -85,10 +85,14 @@ const TAGGED: Readonly<
   'BP01-030': { event: 'activate', area: 'HAND' },
   'BP01-033': { event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } },
   'BP01-035': { event: 'activate-counter', area: 'FIELD' },
+  'BP01-037': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-043': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-045': { event: 'power-increases', area: 'BATTLE' },
   'BP01-047': { event: 'activate-counter', area: 'FIELD' },
   'BP01-050': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-053': { event: 'attacks', area: 'BATTLE' },
+  'BP01-054': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-057': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-059': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-060': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-061': { event: 'activate-counter', area: 'HAND' },
@@ -155,7 +159,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(60);
+    expect(tagged).toHaveLength(65);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
