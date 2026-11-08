@@ -85,6 +85,8 @@ const TAGGED: Readonly<
   'BP01-033': { event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } },
   'BP01-035': { event: 'activate-counter', area: 'FIELD' },
   'BP01-037': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-038': { event: 'opponent-turn-starts', area: 'BATTLE' },
+  'BP01-041': { event: 'attacks-weakness-successfully', area: 'BATTLE' },
   'BP01-043': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-045': { event: 'power-increases', area: 'BATTLE' },
   'BP01-047': { event: 'activate-counter', area: 'FIELD' },
@@ -165,7 +167,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(72);
+    expect(tagged).toHaveLength(74);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
