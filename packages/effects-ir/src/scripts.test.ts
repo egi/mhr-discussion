@@ -106,6 +106,10 @@ const TAGGED: Readonly<
   'BP01-051': { event: 'enters-retreat-by-call', area: 'RETREAT' },
   'BP01-078': { event: 'enters-retreat-by-losing-fight', area: 'RETREAT' },
   'BP01-092': { event: 'enters-retreat-from-field', area: 'RETREAT' },
+  'BP01-095': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'BP01-102': { event: 'enters-retreat-from-field', area: 'RETREAT' },
+  'BP01-108': { event: 'activate', area: 'FIELD' },
+  'BP01-120': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'BP01-104': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-105': { event: 'attacks', area: 'FIELD', attacker: { controller: 'self' } },
   'BP01-106': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -161,7 +165,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(68);
+    expect(tagged).toHaveLength(72);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -185,7 +189,7 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -204,6 +208,7 @@ describe('oncePerTurn marker', () => {
         cardNo === 'SP01-023' ||
         cardNo === 'SP01-043' ||
         cardNo === 'SP01-062' ||
+        cardNo === 'BP01-108' ||
         cardNo === 'SD04-004'
       ) {
         expect(ir.oncePerTurn).toBe(true);
