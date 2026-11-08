@@ -33,7 +33,6 @@ function kindsIn(op: EffectOp): string[] {
 const NOT_AUTHORED: readonly string[] = [
   'show',
   // Vocabulary added from the survey of unfinished effect texts; scripts for them come later.
-  'retreat-attached-of-host',
   'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
@@ -81,10 +80,13 @@ const TAGGED: Readonly<
   'BP01-020': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-014': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-022': { event: 'enters-field-by-call', area: 'FIELD' },
+  'BP01-023': { event: 'activate-counter', area: 'FIELD' },
   'BP01-028': { event: 'activate', area: 'HAND' },
   'BP01-030': { event: 'activate', area: 'HAND' },
   'BP01-033': { event: 'attacks', area: 'BACK', attacker: { controller: 'self', feature: 'Avengers' } },
+  'BP01-035': { event: 'activate-counter', area: 'FIELD' },
   'BP01-045': { event: 'power-increases', area: 'BATTLE' },
+  'BP01-047': { event: 'activate-counter', area: 'FIELD' },
   'BP01-050': { event: 'enters-field-by-call', area: 'FIELD' },
   'BP01-053': { event: 'attacks', area: 'BATTLE' },
   'BP01-059': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -97,6 +99,7 @@ const TAGGED: Readonly<
   'BP01-073': { event: 'card-moved-to-deck-bottom', area: 'FIELD' },
   'BP01-090': { event: 'activate', area: 'HAND' },
   'BP01-093': { event: 'attacks', area: 'WING' },
+  'BP01-096': { event: 'activate-counter', area: 'FIELD' },
   'BP01-104': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-105': { event: 'attacks', area: 'FIELD', attacker: { controller: 'self' } },
   'BP01-106': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -109,6 +112,7 @@ const TAGGED: Readonly<
   'PB01-007': { event: 'attacks', area: 'BATTLE' },
   'SD01-003': { event: 'own-character-r-or-power-increases', area: 'BATTLE' },
   'SD01-006': { event: 'activate', area: 'HAND' },
+  'SD01-016': { event: 'activate-counter', area: 'FIELD' },
   'SP01-032': { event: 'this-card-enters-void', area: 'VOID' },
   'SP01-042': { event: 'activate', area: 'BATTLE' },
   'SD01-007': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -151,7 +155,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(55);
+    expect(tagged).toHaveLength(60);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -175,11 +179,16 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-045, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
+        cardNo === 'BP01-023' ||
+        cardNo === 'BP01-035' ||
         cardNo === 'BP01-045' ||
+        cardNo === 'BP01-047' ||
+        cardNo === 'BP01-096' ||
+        cardNo === 'SD01-016' ||
         cardNo === 'SD01-003' ||
         cardNo === 'SP01-042' ||
         cardNo === 'BP01-069' ||
