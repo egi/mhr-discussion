@@ -32,7 +32,6 @@ function kindsIn(op: EffectOp): string[] {
 /** Op kinds with no authored script, pinned so opening or closing a gap fails the test. */
 const NOT_AUTHORED: readonly string[] = [
   // Vocabulary added from the survey of unfinished effect texts; scripts for them come later.
-  'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
   'copy-attached-effects',
@@ -105,7 +104,10 @@ const TAGGED: Readonly<
   'BP01-090': { event: 'activate', area: 'HAND' },
   'BP01-093': { event: 'attacks', area: 'WING' },
   'BP01-096': { event: 'activate-counter', area: 'FIELD' },
+  'BP01-048': { event: 'activate', area: 'BATTLE' },
   'BP01-051': { event: 'enters-retreat-by-call', area: 'RETREAT' },
+  'BP01-052': { event: 'own-character-enters-field', area: 'HAND', subject: { levelAtLeast: 4, feature: 'Machine' } },
+  'BP01-070': { event: 'own-character-enters-field', area: 'FIELD', subject: { color: 'blue' } },
   'BP01-078': { event: 'enters-retreat-by-losing-fight', area: 'RETREAT' },
   'BP01-092': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'BP01-095': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
@@ -172,7 +174,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(79);
+    expect(tagged).toHaveLength(82);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -196,7 +198,7 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -218,6 +220,8 @@ describe('oncePerTurn marker', () => {
         cardNo === 'BP01-108' ||
         cardNo === 'BP01-113' ||
         cardNo === 'BP01-091' ||
+        cardNo === 'BP01-048' ||
+        cardNo === 'BP01-070' ||
         cardNo === 'SD04-004'
       ) {
         expect(ir.oncePerTurn).toBe(true);
