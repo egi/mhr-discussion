@@ -163,6 +163,12 @@ const TAGGED: Readonly<
   'SP01-032': { event: 'this-card-enters-void', area: 'VOID' },
   'SP01-038': { event: 'activate', area: 'BATTLE' },
   'SP01-039': { event: 'enters-field-from-retreat', area: 'BATTLE' },
+  'SD01-009': { event: 'activate', area: 'HAND' },
+  'SD03-002': { event: 'enters-field', area: 'FIELD' },
+  'SD03-006': { event: 'activate', area: 'BATTLE' },
+  'SP01-008': { event: 'own-character-enters-retreat', area: 'FIELD', subject: { feature: 'Human' } },
+  'SP01-010': { event: 'activate', area: 'BATTLE' },
+  'SP01-015': { event: 'host-attacks', area: 'BATTLE' },
   'SP01-042': { event: 'activate', area: 'BATTLE' },
   'SD01-007': { event: 'enters-field-by-call', area: 'FIELD' },
   'SP01-001': { event: 'enters-retreat-from-field', area: 'RETREAT' },
@@ -225,7 +231,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(126);
+    expect(tagged).toHaveLength(132);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -249,7 +255,7 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009 and SD02-011 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008 and SP01-010 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -283,7 +289,10 @@ describe('oncePerTurn marker', () => {
         cardNo === 'SP01-020' ||
         cardNo === 'SP01-038' ||
         cardNo === 'SD02-009' ||
-        cardNo === 'SD02-011'
+        cardNo === 'SD02-011' ||
+        cardNo === 'SD03-006' ||
+        cardNo === 'SP01-008' ||
+        cardNo === 'SP01-010'
       ) {
         expect(ir.oncePerTurn).toBe(true);
       } else {
