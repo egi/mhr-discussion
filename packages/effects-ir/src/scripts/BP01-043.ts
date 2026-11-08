@@ -12,8 +12,9 @@
  * with Ultron in its name (substring match, 201.7.b, ignoring case; this card itself qualifies
  * when it has Ultron in its name). Only if that was done, draw 1 card and then optionally place
  * one HAND character with Lv3 or below and the Machine feature into the field, face up (301.12.a).
- * The draw and the placement are independent parts of one "If you do" (discussions 09 and 10), so
- * an empty deck does not stop the placement. The lane or the BASE is the player's placement
+ * The draw and the placement are independent parts of one "If you do" (discussion 10 item 3,
+ * Reading B, closed by the user decision of 2026-11-04), so an empty deck does not stop the
+ * placement. The lane or the BASE is the player's placement
  * choice. With no Ultron in the field nothing happens.
  */
 
@@ -42,12 +43,8 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.16.a'), reviewedHash: '72a1ab425b37' }, // retreat a character
     { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw
     { key: asRuleKey('301.12.a'), reviewedHash: 'dadfa25956d9' }, // place face-up
-    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
   ],
-  rulings: [
-    { discussion: '09', rule: asRuleKey('304.1.d') },
-    { discussion: '10', rule: asRuleKey('304.1.d') },
-  ],
+  rulings: [],
 });
 
 /** The effect's IR. */

@@ -38,12 +38,8 @@ export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
     { key: asRuleKey('301.15.a'), reviewedHash: '2148fe594165' }, // discard
-    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
   ],
-  rulings: [
-    { discussion: '09', rule: asRuleKey('304.1.d') },
-    { discussion: '10', rule: asRuleKey('304.1.d') },
-  ],
+  rulings: [],
 });
 
 /** The effect's IR. */

@@ -8,8 +8,9 @@
  *
  * The script is the effect after the trigger: draw 1 card, and only if that was done give this
  * card the second chance to attack, which can target characters only, for this turn. With an
- * empty deck nothing is drawn, so the grant does not run ("If you do", discussions 09 and 10;
- * discussion 10 stays ESCALATE-OPEN and the engine default Reading B applies). The trigger is
+ * empty deck nothing is drawn, so the grant does not run ("If you do", Reading B, the engine
+ * default: discussion 10 item 3 is closed by the user decision of 2026-11-04, CR 301.38.a). The
+ * second chance is limited to attacking a character by rule, not by this script. The trigger is
  * mandatory (304.1.b).
  */
 
@@ -33,12 +34,8 @@ export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger
     { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw
-    { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // greatest extent
   ],
-  rulings: [
-    { discussion: '09', rule: asRuleKey('304.1.d') },
-    { discussion: '10', rule: asRuleKey('304.1.d') },
-  ],
+  rulings: [],
 });
 
 /** The effect's IR. */
