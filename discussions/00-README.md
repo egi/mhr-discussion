@@ -17,9 +17,19 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | 7 | 07-mr-negative-enemy-owned-cards.md | RESOLVED (301.4, card text) | The effect flips enemy-owned cards in the user's base |
 | 8 | (withheld) | WITHHELD | Reserved; not published until its contents are user-confirmed |
 | 9 | 09-effect-resolution-order.md | RESOLVED (304.1, 301.41, 303.2.a.6 and head judge rulings; 2 gaps listed) | Order of applying effects across several cards: no stack, queue, turn player first, trigger versus counter, change versus plus/minus, end of turn |
-| 10 | 10-auto-effect-ordering-open-items.md | ESCALATE-OPEN (4 items) | Engine choices resting on inference: tie-break for same-moment auto effects, zero-power latch, partial resolution after an "if you do" clause, unlettered 301.41 combinations |
+| 10 | 10-auto-effect-ordering-open-items.md | ESCALATE-OPEN (items 1, 2, 4; item 3 closed 2026-11-04, Reading B) | Engine choices resting on inference: tie-break for same-moment auto effects, zero-power latch, partial resolution after an "if you do" clause, unlettered 301.41 combinations |
 | 11 | 11-open-points-swap-attach-errata-text.md | ESCALATE-OPEN (3 items) | Open points from the second export: whether a swap counts as an attach, the pending Follow Shadow errata, a stray fragment in the BP01-097 text |
 | 13 | 13-attack-retarget-refire-open-items.md | ESCALATE-OPEN (3 items) | Engine choices that rest on inference: whether a retarget fires "when this attacks" again, whether a window exists before the target is chosen, whether a retarget opens a fresh Counter Step |
+| 16 | 16-derived-trigger-placement.md | HEAD-JUDGE | A trigger derived while an effect resolves goes right after that effect |
+| 17 | 17-same-event-triggers-atomic-grouping.md | HEAD-JUDGE (result; the grouping mechanism is ESCALATE-OPEN) | Triggers of one event are atomic; which events group is unstated |
+| 18 | 18-hand-triggers-and-drawn-cards.md | HEAD-JUDGE (304.1.k RESOLVED) | A drawn card still triggers from HAND at that timing; HAND triggers need no declaration |
+| 19 | 19-swap-layers-and-position-state.md | HEAD-JUDGE (swap; other moves ESCALATE-OPEN) | A swap exchanges the card only; layer-2 results stay on the position |
+| 22 | 22-declared-attack-counts-as-attacked.md | HEAD-JUDGE | Declaring an attack counts as having attacked |
+| 23 | 23-win-a-battle-triggers.md | HEAD-JUDGE (defender; weakness CONSENSUS) | Who "wins a battle" |
+| 24 | 24-partial-resolution-do-as-much-as-you-can.md | HEAD-JUDGE (principle; cases CONSENSUS) | Cost paid, effect does what it can; a full zone does nothing for that part |
+| 25 | 25-cost-only-activation-without-target.md | HEAD-JUDGE (provisional) | Activating with only a cost when the effect has no target |
+| 30 | 30-flip-is-not-entering-the-field.md | HEAD-JUDGE | A flip is not entering the field or a move |
+| 35 | 35-i-am-the-shield-swap-with-itself.md | HEAD-JUDGE | BP01-096 can swap with another copy |
 
 ## How to keep this board in sync
 

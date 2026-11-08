@@ -1,6 +1,6 @@
 # 10 - Auto-effect ordering: engine choices that rest on inference
 
-**Status: ESCALATE-OPEN (four items; nothing here is a head judge ruling)**
+**Status: ESCALATE-OPEN (items 1, 2 and 4 open; item 3 closed 2026-11-04 by user decision, Reading B; nothing here is a head judge ruling)**
 
 > Source note: L<n> citations refer to a private chat export and cannot be re-checked by readers. This text is a paraphrase, and people appear by role only.
 
@@ -14,7 +14,7 @@ Ordering continuous (Auto) effects and resolving effects partially forces four c
 |---|---|---|---|
 | 1 | Tie-break for Auto effects that begin applying at the same moment | open, provisional | none |
 | 2 | A 0-Power retreat when the value passes through 0 but settles above it | open, provisional | rulebook for the pieces, inference for the combination |
-| 3 | An "If you do" step after a partly done step | open for the interaction; the "do as much as you can" half is HEAD-JUDGE | head judge plus rulebook for one half |
+| 3 | An "If you do" step after a partly done step | CLOSED 2026-11-04 by user decision (Reading B: the step before "If you do" must be done in full; CR 301.38.a); the "do as much as you can" half is HEAD-JUDGE | rulebook 301.38.a plus user decision; head judge for the other half |
 | 4 | Combinations that 301.41 has no letter for | open, provisional | none for (a); head judge for accumulation in general, inference for the arithmetic in (b) |
 
 No member or judge ruled on any of the four. Related chat: the example in discussion 09 (an Auto effect overwritten by an attached "changes to" effect, the first applying again when the attachment leaves).
@@ -29,7 +29,7 @@ Authority tier: none for the open halves. All four stay ESCALATE-OPEN and provis
 
 1. AUTO same-moment tie-break (provisional). The rulebook orders modifiers by whether the card is already being affected (former versus latter) and has no order for Auto effects starting at the same moment. The turn-player-first rule is written for triggers, not Auto effects. Engine choice, inferred by analogy and never presented as a rule: turn player first, then the controller's board order. Question for the head judge: when two Auto effects changing the same Lv, R or Power begin applying at the same moment, which is the former and which is the latter?
 2. 0-Power retreat latch (provisional). The pieces come from the rulebook (a reduction to 0 retreats the character; once 0 the retreat is locked in; the minimum is 0 but extra reduction still exists). The engine retreats only on the settled value of the ordered pass, not on a transient zero, and only when some reduction was applied. Question for the head judge: if an ordered Auto pass passes through 0 but settles above 0, does the character still retreat?
-3. "If you do" under partial resolution (open interaction). A step applies to as many targets as exist and counts as done if any changed; an "if you do" step still depends on the previous step having changed something. Question for the head judge: when a step is only partly done, does the following "If you do" step resolve? The mismatch with the "do as much as you can" principle is the reason this is open.
+3. "If you do" under partial resolution (CLOSED 2026-11-04, user decision, Reading B: a step after "If you do" resolves only when the step before it was done in full, CR 301.38.a; the engine default). Earlier text, kept for the record: A step applies to as many targets as exist and counts as done if any changed; an "if you do" step still depends on the previous step having changed something. Question for the head judge: when a step is only partly done, does the following "If you do" step resolve? The mismatch with the "do as much as you can" principle is the reason this is open.
 4. Unlettered 301.41 combinations (provisional). (a) A later trigger or activated change after an earlier trigger or activated change has no letter in the rulebook; the engine lets the later replace the former. (b) An increase and a decrease among themselves accumulate; P1000 with +500 then -500 reading 1000 is an inference, asked once and not answered. Question for the head judge: confirm (a) and (b).
 
 Two implementation constants are engineering choices, not rulings: a fixpoint iteration cap and a derive cache key. They must not be cited as rules.
