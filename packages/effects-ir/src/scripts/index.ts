@@ -110,6 +110,7 @@ import * as PB01_007 from './PB01-007';
 import * as PB01_009 from './PB01-009';
 import * as PB01_010 from './PB01-010';
 import * as PB01_011 from './PB01-011';
+import * as SD01_001 from './SD01-001';
 import * as SD01_003 from './SD01-003';
 import * as SD01_005 from './SD01-005';
 import * as SD01_006 from './SD01-006';
@@ -143,12 +144,17 @@ import * as SD04_015 from './SD04-015';
 import * as SP01_001 from './SP01-001';
 import * as SP01_006 from './SP01-006';
 import * as SP01_012 from './SP01-012';
+import * as SP01_014 from './SP01-014';
 import * as SP01_016 from './SP01-016';
+import * as SP01_021 from './SP01-021';
 import * as SP01_022 from './SP01-022';
 import * as SP01_023 from './SP01-023';
+import * as SP01_025 from './SP01-025';
+import * as SP01_030 from './SP01-030';
 import * as SP01_031 from './SP01-031';
 import * as SP01_032 from './SP01-032';
 import * as SP01_034 from './SP01-034';
+import * as SP01_035 from './SP01-035';
 import * as SP01_050 from './SP01-050';
 import * as SP01_042 from './SP01-042';
 import * as SP01_043 from './SP01-043';
@@ -253,6 +259,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'PB01-009': PB01_009.script,
   'PB01-010': PB01_010.script,
   'PB01-011': PB01_011.script,
+  'SD01-001': SD01_001.script,
   'SD01-003': SD01_003.script,
   'SD01-005': SD01_005.script,
   'SD01-006': SD01_006.script,
@@ -286,12 +293,17 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SP01-001': SP01_001.script,
   'SP01-006': SP01_006.script,
   'SP01-012': SP01_012.script,
+  'SP01-014': SP01_014.script,
   'SP01-016': SP01_016.script,
+  'SP01-021': SP01_021.script,
   'SP01-022': SP01_022.script,
   'SP01-023': SP01_023.script,
+  'SP01-025': SP01_025.script,
+  'SP01-030': SP01_030.script,
   'SP01-031': SP01_031.script,
   'SP01-032': SP01_032.script,
   'SP01-034': SP01_034.script,
+  'SP01-035': SP01_035.script,
   'SP01-042': SP01_042.script,
   'SP01-043': SP01_043.script,
   'SP01-048': SP01_048.script,
