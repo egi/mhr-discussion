@@ -119,6 +119,8 @@ const TAGGED: Readonly<
   'BP01-109': { event: 'enters-field', area: 'FIELD' },
   'BP01-112': { event: 'enters-field', area: 'FIELD' },
   'BP01-113': { event: 'opponent-character-attacks', area: 'FIELD', subject: { lane: 'BACK' } },
+  'BP01-091': { event: 'opponent-set-card-in-base-increases', area: 'FIELD' },
+  'BP01-099': { event: 'opponent-character-enters-field', area: 'FIELD', subject: { levelAtLeast: 4 } },
   'BP01-114': { event: 'base-move', area: 'FIELD' },
   'BP01-116': { event: 'opponent-character-attacks', area: 'FIELD', subject: { lane: 'WING' } },
   'BP01-118': { event: 'base-move', area: 'FIELD' },
@@ -170,7 +172,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(77);
+    expect(tagged).toHaveLength(79);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -194,7 +196,7 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -215,6 +217,7 @@ describe('oncePerTurn marker', () => {
         cardNo === 'SP01-062' ||
         cardNo === 'BP01-108' ||
         cardNo === 'BP01-113' ||
+        cardNo === 'BP01-091' ||
         cardNo === 'SD04-004'
       ) {
         expect(ir.oncePerTurn).toBe(true);
