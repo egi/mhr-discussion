@@ -138,6 +138,12 @@ const TAGGED: Readonly<
   'PB01-003': { event: 'opponent-character-enters-field-by-effect', area: 'BASE' },
   'PB01-005': { event: 'activate', area: 'HAND' },
   'PB01-007': { event: 'attacks', area: 'BATTLE' },
+  'PB01-009': { event: 'activate', area: 'HAND' },
+  'PB01-010': { event: 'activate', area: 'HAND' },
+  'PB01-011': { event: 'activate', area: 'VOID' },
+  'SD02-007': { event: 'activate', area: 'HAND' },
+  'SP01-012': { event: 'activate', area: 'BATTLE' },
+  'SP01-034': { event: 'this-card-attached', area: 'FIELD' },
   'SD01-003': { event: 'own-character-r-or-power-increases', area: 'BATTLE' },
   'SD01-006': { event: 'activate', area: 'HAND' },
   'SD01-016': { event: 'activate-counter', area: 'FIELD' },
@@ -183,7 +189,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(91);
+    expect(tagged).toHaveLength(97);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -207,7 +213,7 @@ describe('trigger tags', () => {
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011 and SP01-012 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -232,7 +238,9 @@ describe('oncePerTurn marker', () => {
         cardNo === 'BP01-091' ||
         cardNo === 'BP01-048' ||
         cardNo === 'BP01-070' ||
-        cardNo === 'SD04-004'
+        cardNo === 'SD04-004' ||
+        cardNo === 'PB01-011' ||
+        cardNo === 'SP01-012'
       ) {
         expect(ir.oncePerTurn).toBe(true);
       } else {
