@@ -66,6 +66,7 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.20.a'), reviewedHash: '2254445a2da9' }, // an empty BATTLE area is a Weakness
     { key: asRuleKey('301.17.a'), reviewedHash: '3200ad9250ee' }, // prune places the card into VOID
     { key: asRuleKey('301.38.a'), reviewedHash: '35e8b25aa5b6' }, // [After doing so] needs the earlier text in full
+    { key: asRuleKey('303.2.a.4.3'), reviewedHash: '7c6ee101bd64' }, // the battle process starts at the declaration
     { key: asRuleKey('302.11.b'), reviewedHash: 'e021deff8956' }, // deck order changes only as instructed
   ],
   rulings: [
