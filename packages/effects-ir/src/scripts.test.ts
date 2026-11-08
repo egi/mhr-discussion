@@ -130,7 +130,13 @@ const TAGGED: Readonly<
   'BP01-116': { event: 'opponent-character-attacks', area: 'FIELD', subject: { lane: 'WING' } },
   'BP01-118': { event: 'base-move', area: 'FIELD' },
   'BP01-119': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'EB01-006': { event: 'opponent-character-enters-field', area: 'BATTLE', subject: { level: 6 } },
+  'EB01-007': { event: 'activate', area: 'BATTLE' },
+  'EB01-009': { event: 'wins-fight', area: 'BATTLE' },
+  'PB01-001': { event: 'wins-fight', area: 'BATTLE' },
   'PB01-002': { event: 'attacks', area: 'BATTLE' },
+  'PB01-003': { event: 'opponent-character-enters-field-by-effect', area: 'BASE' },
+  'PB01-005': { event: 'activate', area: 'HAND' },
   'PB01-007': { event: 'attacks', area: 'BATTLE' },
   'SD01-003': { event: 'own-character-r-or-power-increases', area: 'BATTLE' },
   'SD01-006': { event: 'activate', area: 'HAND' },
@@ -177,7 +183,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(85);
+    expect(tagged).toHaveLength(91);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -193,18 +199,19 @@ describe('trigger tags', () => {
     }
   });
 
-  it('uses an area of FIELD, BATTLE, WING, BACK, HAND, RETREAT or VOID', () => {
+  it('uses an area of FIELD, BATTLE, WING, BACK, BASE, HAND, RETREAT or VOID', () => {
     for (const [, script] of tagged) {
-      expect(['FIELD', 'BATTLE', 'WING', 'BACK', 'HAND', 'RETREAT', 'VOID']).toContain(script().trigger?.area);
+      expect(['FIELD', 'BATTLE', 'WING', 'BACK', 'BASE', 'HAND', 'RETREAT', 'VOID']).toContain(script().trigger?.area);
     }
   });
 });
 
 describe('oncePerTurn marker', () => {
-  it('is set on BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
+  it('is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070 and SD04-004 alone and absent (not undefined-valued) everywhere else', () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
+        cardNo === 'EB01-007' ||
         cardNo === 'BP01-023' ||
         cardNo === 'BP01-035' ||
         cardNo === 'BP01-045' ||
