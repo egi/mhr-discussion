@@ -163,6 +163,11 @@ const TAGGED: Readonly<
   'SD04-003': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'SD04-004': { event: 'activate-counter', area: 'BATTLE' },
   'SD04-014': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'SD01-005': { event: 'enters-field-by-call', area: 'FIELD' },
+  'SD01-014': { event: 'enters-field-by-call', area: 'FIELD' },
+  'SD01-015': { event: 'enters-field-by-call', area: 'FIELD' },
+  'SD02-006': { event: 'enters-field-by-call', area: 'BATTLE' },
+  'SD02-015': { event: 'enters-field-by-call', area: 'FIELD' },
 };
 
 /** The kinds the interpreter refuses today (everything else runs, for the restrictions and abilities it records). */
@@ -189,7 +194,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(97);
+    expect(tagged).toHaveLength(102);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
