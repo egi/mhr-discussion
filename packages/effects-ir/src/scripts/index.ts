@@ -48,6 +48,7 @@ import * as BP01_043 from './BP01-043';
 import * as BP01_045 from './BP01-045';
 import * as BP01_047 from './BP01-047';
 import * as BP01_050 from './BP01-050';
+import * as BP01_051 from './BP01-051';
 import * as BP01_053 from './BP01-053';
 import * as BP01_054 from './BP01-054';
 import * as BP01_057 from './BP01-057';
@@ -61,9 +62,11 @@ import * as BP01_069 from './BP01-069';
 import * as BP01_073 from './BP01-073';
 import * as BP01_074 from './BP01-074';
 import * as BP01_077 from './BP01-077';
+import * as BP01_078 from './BP01-078';
 import * as BP01_085 from './BP01-085';
 import * as BP01_087 from './BP01-087';
 import * as BP01_090 from './BP01-090';
+import * as BP01_092 from './BP01-092';
 import * as BP01_093 from './BP01-093';
 import * as BP01_096 from './BP01-096';
 import * as BP01_104 from './BP01-104';
@@ -154,6 +157,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-045': BP01_045.script,
   'BP01-047': BP01_047.script,
   'BP01-050': BP01_050.script,
+  'BP01-051': BP01_051.script,
   'BP01-053': BP01_053.script,
   'BP01-054': BP01_054.script,
   'BP01-057': BP01_057.script,
@@ -167,9 +171,11 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-073': BP01_073.script,
   'BP01-074': BP01_074.script,
   'BP01-077': BP01_077.script,
+  'BP01-078': BP01_078.script,
   'BP01-085': BP01_085.script,
   'BP01-087': BP01_087.script,
   'BP01-090': BP01_090.script,
+  'BP01-092': BP01_092.script,
   'BP01-093': BP01_093.script,
   'BP01-096': BP01_096.script,
   'BP01-104': BP01_104.script,

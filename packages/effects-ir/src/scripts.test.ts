@@ -31,7 +31,6 @@ function kindsIn(op: EffectOp): string[] {
 
 /** Op kinds with no authored script, pinned so opening or closing a gap fails the test. */
 const NOT_AUTHORED: readonly string[] = [
-  'show',
   // Vocabulary added from the survey of unfinished effect texts; scripts for them come later.
   'rearrange-deck-top',
   'draw-by-board-comparison',
@@ -104,6 +103,9 @@ const TAGGED: Readonly<
   'BP01-090': { event: 'activate', area: 'HAND' },
   'BP01-093': { event: 'attacks', area: 'WING' },
   'BP01-096': { event: 'activate-counter', area: 'FIELD' },
+  'BP01-051': { event: 'enters-retreat-by-call', area: 'RETREAT' },
+  'BP01-078': { event: 'enters-retreat-by-losing-fight', area: 'RETREAT' },
+  'BP01-092': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'BP01-104': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-105': { event: 'attacks', area: 'FIELD', attacker: { controller: 'self' } },
   'BP01-106': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -159,7 +161,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(65);
+    expect(tagged).toHaveLength(68);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
