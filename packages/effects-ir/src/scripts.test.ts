@@ -163,6 +163,12 @@ const TAGGED: Readonly<
   'SD04-003': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'SD04-004': { event: 'activate-counter', area: 'BATTLE' },
   'SD04-014': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'SD03-007': { event: 'base-move', area: 'FIELD' },
+  'SD04-005': { event: 'enters-retreat-from-field', area: 'RETREAT' },
+  'SD04-008': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'SD04-009': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
+  'SD04-017': { event: 'base-move', area: 'FIELD' },
+  'SD04-018': { event: 'base-move', area: 'FIELD' },
   'SD01-005': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD01-014': { event: 'enters-field-by-call', area: 'FIELD' },
   'SD01-015': { event: 'enters-field-by-call', area: 'FIELD' },
@@ -204,7 +210,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(108);
+    expect(tagged).toHaveLength(114);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
