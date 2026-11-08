@@ -114,6 +114,7 @@ const TAGGED: Readonly<
   'BP01-092': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'BP01-095': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-102': { event: 'enters-retreat-from-field', area: 'RETREAT' },
+  'BP01-107': { event: 'enters-retreat-by-discard-effect', area: 'RETREAT' },
   'BP01-108': { event: 'activate', area: 'FIELD' },
   'BP01-120': { event: 'enters-retreat-from-field', area: 'RETREAT' },
   'BP01-103': { event: 'base-move', area: 'FIELD' },
@@ -176,7 +177,7 @@ describe('trigger tags', () => {
 
   it('tags exactly the pinned scripts, with the pinned event and area', () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(84);
+    expect(tagged).toHaveLength(85);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
