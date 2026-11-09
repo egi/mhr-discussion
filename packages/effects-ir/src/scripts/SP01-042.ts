@@ -40,7 +40,7 @@ export const CARD_NO = asCardNo('SP01-042');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves immediately
-    { key: asRuleKey('301.1.a'), reviewedHash: 'f5fb571c54b2' }, // printed Condition (ONCE PER TURN)
+    { key: asRuleKey('201.10.f.2'), reviewedHash: 'cd3f45d43dbb' }, // activated effect: printed Condition (ONCE PER TURN) is an additional Condition
     { key: asRuleKey('301.17.a'), reviewedHash: '3200ad9250ee' }, // prune places the card into VOID
     { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw from DECK top
     { key: asRuleKey('302.6.a'), reviewedHash: 'a0baa15958d8' }, // BASE area

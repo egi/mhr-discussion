@@ -9,7 +9,7 @@
  *   you place 1 of your characters with the same Lv as that opponent's card from RETREAT face down
  *   into your BASE.
  *
- * Event tag: activate, BATTLE, once per turn (301.1.a). The opponent's HAND card is picked at
+ * Event tag: activate, BATTLE, once per turn (201.10.f.2). The opponent's HAND card is picked at
  * random: the pick is designated by the opponent and travels in the action (CR 301.29.a, "the other
  * player designates"), so a replay reveals the same card and no Math.random is involved. Only if the
  * card was shown is 1 of the player's own RETREAT characters with the same printed Lv as the shown
@@ -42,7 +42,7 @@ export const CARD_NO = asCardNo('SP01-010');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.2.a'), reviewedHash: '27e81bd820cf' }, // activated effect resolves immediately
-    { key: asRuleKey('301.1.a'), reviewedHash: 'f5fb571c54b2' }, // printed Condition (ONCE PER TURN)
+    { key: asRuleKey('201.10.f.2'), reviewedHash: 'cd3f45d43dbb' }, // activated effect: printed Condition (ONCE PER TURN) is an additional Condition
     { key: asRuleKey('301.28.a'), reviewedHash: '07b2366e111b' }, // show reveals the front face
     { key: asRuleKey('301.13.a'), reviewedHash: 'ece044bdbe4a' }, // set cards face-down
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent

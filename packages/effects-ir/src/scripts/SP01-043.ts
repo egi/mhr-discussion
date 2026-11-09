@@ -13,8 +13,8 @@
  * name. The lane comes from the invocation's
  * placement choice. The ONCE PER TURN Condition is
  * carried by the `oncePerTurn` marker on the IR and enforced by the engine. The basis is the card's
- * own printed Condition: 301.1.a gives effect text priority over rules text, and 201.10.f.3 only
- * says an Activated Effect may carry additional Conditions.
+ * own printed Condition: 201.10.f.3 says a COUNTER Activated Effect may carry additional
+ * Conditions.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

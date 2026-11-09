@@ -26,7 +26,7 @@ export const CARD_NO = asCardNo('SD01-003');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // trigger timing
-    { key: asRuleKey('301.1.a'), reviewedHash: 'f5fb571c54b2' }, // printed Condition (ONCE PER TURN)
+    { key: asRuleKey('201.10.d.2'), reviewedHash: 'bc5181d4de09' }, // trigger effect: printed Condition (ONCE PER TURN) is an additional Condition
     { key: asRuleKey('301.41.k'), reviewedHash: '16ffb3d7924e' }, // trigger change after a trigger change
     { key: asRuleKey('303.2.a.6.1.2'), reviewedHash: '06effe272462' }, // this-turn effects end
   ],

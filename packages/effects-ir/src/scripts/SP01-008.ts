@@ -7,7 +7,7 @@
  *   TRIG【FIELD/ONCE PER TURN】:When your character with 【Human】 in its feature enters RETREAT
  *   from the field, you may retreat 1 of your cards in BASE. If you do, you draw 1 card.
  *
- * Event tag: own-character-enters-retreat, FIELD, once per turn (301.1.a), subject with Human in its
+ * Event tag: own-character-enters-retreat, FIELD, once per turn (201.10.d.2), subject with Human in its
  * features (a non-Human character does not fire it). The retreat of one BASE card is optional
  * (304.1.a); only if it was done is one card drawn (302.13.b). With no card in BASE the retreat is
  * not done and nothing is drawn. "If you do" follows Reading B (discussion 10 item 3,
@@ -35,7 +35,7 @@ export const CARD_NO = asCardNo('SP01-008');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.a'), reviewedHash: 'd1cde41a6928' }, // optional trigger
-    { key: asRuleKey('301.1.a'), reviewedHash: 'f5fb571c54b2' }, // printed Condition (ONCE PER TURN)
+    { key: asRuleKey('201.10.d.2'), reviewedHash: 'bc5181d4de09' }, // trigger effect: printed Condition (ONCE PER TURN) is an additional Condition
     { key: asRuleKey('301.16.a'), reviewedHash: '72a1ab425b37' }, // retreat
     { key: asRuleKey('302.13.b'), reviewedHash: 'f4fd473858f6' }, // draw
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent

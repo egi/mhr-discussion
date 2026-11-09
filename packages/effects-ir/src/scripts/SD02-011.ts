@@ -7,7 +7,7 @@
  *   show 1 of your set cards in BASE. If you do and that set card has the same Lv as that character,
  *   flip that set card.
  *
- * Event tag: own-character-loses-fight, BACK, once per turn (201.10.d.2, 301.1.a), subject printed
+ * Event tag: own-character-loses-fight, BACK, once per turn (201.10.d.2), subject printed
  * Lv3 or below ("original Lv"; a Lv4 loser does not fire it). The script is the effect after the
  * trigger: the player shows 1 set (face-down) card in their BASE (301.28.a); only if a card was
  * shown, and only if its Lv equals the Lv of the losing character, that same card is flipped
@@ -48,7 +48,7 @@ export const CARD_NO = asCardNo('SD02-011');
 export const RULE_DECLARATION = declareRules({
   rules: [
     { key: asRuleKey('304.1.b'), reviewedHash: '8c3ab46e7230' }, // mandatory trigger timing
-    { key: asRuleKey('301.1.a'), reviewedHash: 'f5fb571c54b2' }, // printed Condition (ONCE PER TURN)
+    { key: asRuleKey('201.10.d.2'), reviewedHash: 'bc5181d4de09' }, // trigger effect: printed Condition (ONCE PER TURN) is an additional Condition
     { key: asRuleKey('301.13.a'), reviewedHash: 'ece044bdbe4a' }, // a set card is a face-down card in the BASE
     { key: asRuleKey('301.28.a'), reviewedHash: '07b2366e111b' }, // show reveals the front face
     { key: asRuleKey('301.22.a'), reviewedHash: '4a51b9811106' }, // flip a face-down card face-up
