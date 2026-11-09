@@ -750,6 +750,11 @@ export type EffectIR = {
    * IR started from HAND does not keep its record.
    */
   readonly oncePerTurn?: true | undefined;
+  /**
+   * Set by the script when the printed clause is only partly modelled (an omitted sub-clause or
+   * a narrowed choice). The interpreter ignores it; the coverage badge reads it. Absent otherwise.
+   */
+  readonly partial?: true | undefined;
 };
 
 /** An authored card script: a pure function producing the card's effect IR. */

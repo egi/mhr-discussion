@@ -545,4 +545,12 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse({ ...base, oncePerTurn: 1 })).toThrow();
     expect(() => EffectIRSchema.parse(base)).not.toThrow();
   });
+
+  it('accepts partial true, rejects other values and surplus keys, and accepts its absence', () => {
+    const base = wrap(VALID['restrict']) as Record<string, unknown>;
+    expect(() => EffectIRSchema.parse({ ...base, partial: true })).not.toThrow();
+    expect(() => EffectIRSchema.parse({ ...base, partial: false })).toThrow();
+    expect(() => EffectIRSchema.parse({ ...base, partially: true })).toThrow();
+    expect(() => EffectIRSchema.parse(base)).not.toThrow();
+  });
 });

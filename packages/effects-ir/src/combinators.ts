@@ -361,7 +361,7 @@ export function effect(
   cardNo: CardNo,
   op: EffectOp,
   trigger?: EffectTrigger,
-  options?: { readonly oncePerTurn?: true },
+  options?: { readonly oncePerTurn?: true; readonly partial?: true },
 ): EffectIR {
   return {
     cardNo,
@@ -369,6 +369,7 @@ export function effect(
     op,
     ...(trigger === undefined ? {} : { trigger }),
     ...(options?.oncePerTurn === true ? { oncePerTurn: true as const } : {}),
+    ...(options?.partial === true ? { partial: true as const } : {}),
   };
 }
 
