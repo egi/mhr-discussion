@@ -407,8 +407,8 @@ describe("oncePerTurn marker", () => {
 });
 
 describe("partial marker", () => {
-  const PARTIAL_MARKED = new Set(["SD04-001", "SP01-038"]);
-  it("is set on SD04-001 and SP01-038 alone and absent (not undefined-valued) everywhere else", () => {
+  const PARTIAL_MARKED = new Set(["SP01-038"]);
+  it("is set on SP01-038 alone and absent (not undefined-valued) everywhere else", () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (PARTIAL_MARKED.has(cardNo)) {

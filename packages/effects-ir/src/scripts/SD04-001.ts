@@ -12,25 +12,19 @@
  * Event tag: activate-counter, HAND; no once-per-turn limit is printed. The AUTO clause is modelled
  * in packages/engine/src/cards/autos/index.ts ("The R of the character attached by this card
  * changes to 0, and that character gets Power+1000."), not here. The script stacks this card under
- * a Human character (301.25.a). The text says "the characters ... in the field" without "your";
- * the IR selector has no either-side choice, so the host is one of the player's own field
- * characters and an opposing host is NOT MODELLED (manual path), which badges the card partial.
- * With no legal host the activation is not done.
+ * a Human character (301.25.a). The text says "the characters ... in the field" without "your", so
+ * the host is any Human character on the field, own or opposing (selectEitherSide). Opposing Human
+ * hosts are allowed by a USER DECISION (phase 17.4 UAT test 3, 2026-11-09), not by a head-judge
+ * ruling. With no legal host the activation is not done.
  *
- * Ruling note: community-rulings discussion 21 (HEAD-JUDGE, rulebook 303.2.a.4.3.2.5-7; the file
+ * Context: community-rulings discussion 21 (HEAD-JUDGE, rulebook 303.2.a.4.3.2.5-7; the file
  * is not on the vendor board, so it is cited here only and not linked) says the Counter Step ends
  * when the attack disappears, for example when this card's R-0 change leaves the attacker without
  * a target. That is a consequence of the AUTO half and the Counter Step flow, not of this attach.
- *
- * Partial marker: the opposing-host choice the IR selector cannot yet offer is omitted (USER
- * DECISION: opposing Human characters are allowed, not a head-judge ruling), so the card badges
- * partial and keeps its manual Apply effect path. The AUTO half is implemented in
- * packages/engine/src/cards/autos/index.ts and is not missing. The marker is temporary (removed by
- * plan 17.4-15).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { attach, characters, effect, select, source, trigger } from '../combinators';
+import { attach, characters, effect, selectEitherSide, source, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -49,8 +43,7 @@ export const RULE_DECLARATION = declareRules({
 export function script(): EffectIR {
   return effect(
     CARD_NO,
-    attach(source(), select('self', 'FIELD', characters({ feature: 'Human' }))),
+    attach(source(), selectEitherSide('FIELD', characters({ feature: 'Human' }))),
     trigger('activate-counter', 'HAND'),
-    { partial: true },
   );
 }
