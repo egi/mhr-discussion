@@ -422,6 +422,7 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     'cause-matches': { kind: 'cause-matches', filter: NO_FILTER },
     'top-card-matches': { kind: 'top-card-matches', filter: NO_FILTER },
     'total-lv-lower-than-opponent': { kind: 'total-lv-lower-than-opponent' },
+    'retreated-cards-match': { kind: 'retreated-cards-match', filter: NO_FILTER },
   };
 
   it.each(EFFECT_CONDITION_KINDS)('accepts a %s condition and rejects an unknown key on it', (kind) => {

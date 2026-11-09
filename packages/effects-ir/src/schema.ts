@@ -128,6 +128,7 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('cause-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('top-card-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('total-lv-lower-than-opponent') }),
+  z.strictObject({ kind: z.literal('retreated-cards-match'), filter: EffectFilterSchema }),
 ]);
 
 const DurationSchema = z.literal('this-turn');

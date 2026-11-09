@@ -486,7 +486,12 @@ export type EffectCondition =
   /** The card just shown from the top of the deck matches the filter. */
   | { readonly kind: 'top-card-matches'; readonly filter: EffectFilter }
   /** The total Lv of the controller's BATTLE characters is lower than the opponent's. */
-  | { readonly kind: 'total-lv-lower-than-opponent' };
+  | { readonly kind: 'total-lv-lower-than-opponent' }
+  /**
+   * The previous step was a retreat that moved at least one card, and every card it moved is face up
+   * and satisfies the filter. A face-down card never satisfies it.
+   */
+  | { readonly kind: 'retreated-cards-match'; readonly filter: EffectFilter };
 
 /** One step of a sequence. */
 export type EffectStep = {
@@ -660,6 +665,7 @@ export const EFFECT_CONDITION_KINDS = [
   'cause-matches',
   'top-card-matches',
   'total-lv-lower-than-opponent',
+  'retreated-cards-match',
 ] as const satisfies readonly EffectCondition['kind'][];
 
 const everyConditionListed: [
