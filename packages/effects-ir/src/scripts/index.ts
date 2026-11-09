@@ -191,6 +191,10 @@ import * as SP01_060 from './SP01-060';
 import * as SP01_044 from './SP01-044';
 import * as SP01_046 from './SP01-046';
 import * as SP01_063 from './SP01-063';
+import * as SP01_059 from './SP01-059';
+import * as SP01_068 from './SP01-068';
+import * as SP01_070 from './SP01-070';
+import * as SP01_074 from './SP01-074';
 import * as SP01_080 from './SP01-080';
 
 export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
@@ -369,8 +373,12 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SP01-054': SP01_054.script,
   'SP01-055': SP01_055.script,
   'SP01-056': SP01_056.script,
+  'SP01-059': SP01_059.script,
   'SP01-060': SP01_060.script,
   'SP01-062': SP01_062.script,
   'SP01-063': SP01_063.script,
+  'SP01-068': SP01_068.script,
+  'SP01-070': SP01_070.script,
+  'SP01-074': SP01_074.script,
   'SP01-080': SP01_080.script,
 };

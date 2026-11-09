@@ -296,6 +296,10 @@ const TAGGED: Readonly<
   "SP01-046": { event: "enters-field", area: "BATTLE" },
   "SP01-063": { event: "enters-field", area: "FIELD" },
   "SP01-080": { event: "enters-field-by-call", area: "BATTLE" },
+  "SP01-059": { event: "activate", area: "HAND" },
+  "SP01-068": { event: "enters-retreat-by-losing-fight", area: "RETREAT" },
+  "SP01-070": { event: "this-card-attached", area: "FIELD" },
+  "SP01-074": { event: "this-card-attached", area: "FIELD" },
   "SP01-035": {
     event: "own-character-enters-retreat-by-losing-fight",
     area: "BATTLE",
@@ -332,7 +336,7 @@ describe("trigger tags", () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(
       Object.keys(TAGGED).sort(),
     );
-    expect(tagged).toHaveLength(140);
+    expect(tagged).toHaveLength(144);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
