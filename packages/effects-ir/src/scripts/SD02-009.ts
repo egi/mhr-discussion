@@ -12,6 +12,10 @@
  * the interpreter's cover note, OPEN-RULING). With no opposing BATTLE character neither step is done.
  * The "If you do" reading is the engine default Reading B (discussion 10, ESCALATE-OPEN on the
  * board; user decision of 2026-11-03).
+ *
+ * A target the -1000 takes to Power 0 Retreats at once (301.16.a.1, 301.16.b; discussion 10 item
+ * 2) and the effect's remaining steps do not run (USER DECISION 2026-11-10, no source), so the
+ * cover step is not done in that case and this card stays face-up.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

@@ -12,7 +12,9 @@
  * that does not control the entering character, for a call and for an entry by effect, not for
  * an own entry. The effect is mandatory (304.1.b): this card gets Power-1000 until the end of the
  * turn, and so does the entering character (the fire's subject). Power cannot go below 0
- * (301.8.a). Tiers: no community ruling touches this card (searched discussions/by-card.md and
+ * (301.8.a). If the first step takes this card to Power 0 it Retreats at once (301.16.a.1,
+ * 301.16.b) and the effect's remaining step does not run, so the entering character is not
+ * reduced (USER DECISION 2026-11-10, discussion 10 item 2; no source rules on it). Tiers: no community ruling touches this card (searched discussions/by-card.md and
  * the glossary); everything here is card text and the rulebook.
  */
 

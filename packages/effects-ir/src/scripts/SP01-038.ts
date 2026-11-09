@@ -14,7 +14,9 @@
  * below a head-judge ruling). With no opposing character the retreat stays and the
  * Power step is not done. A target the reduction takes to 0 Power retreats at once and the
  * Retreat is locked in (301.16.a.1, 301.16.b; FAQ F-33, relayed by mhrdecklab, discussion 10
- * item 2, even if a later increase would settle it above 0).
+ * item 2, even if a later increase would settle it above 0). The Power step is the last scripted
+ * step, so nothing scripted follows a zero; the engine ends an effect's remaining steps at a zero
+ * (USER DECISION 2026-11-10, no source), which would leave the omitted extra draw unreached.
  *
  * Not modelled: "If that character is retreated by this effect, you draw 1 card extra". The IR has
  * no condition on whether a stat change retreated its target, so the extra draw stays on the
