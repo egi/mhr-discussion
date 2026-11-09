@@ -99,6 +99,14 @@ export function selectWithAttached(
   return { kind: 'selected', side, area, count, upTo: false, filter, includeAttached: true };
 }
 
+/**
+ * `count` matching cards from the area on either seat ("any Human character on the field",
+ * either player's). The own seat's cards are listed first.
+ */
+export function selectEitherSide(area: EffectArea, filter: EffectFilter, count = 1): EffectTarget {
+  return { kind: 'selected', side: 'self', area, count, upTo: false, filter, eitherSide: true };
+}
+
 /** Up to `count` matching cards ("up to 2 ..."). */
 export function selectUpTo(
   side: EffectSide,

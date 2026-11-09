@@ -36,6 +36,7 @@ import {
   retreatAttachedOfHost,
   select,
   selectAll,
+  selectEitherSide,
   selectUpTo,
   sequence,
   show,
@@ -109,10 +110,16 @@ describe('combinators', () => {
       select('self', 'FIELD', ANY_CARD, 2),
       selectUpTo('opponent', 'HAND', ANY_CARD, 3),
       selectAll('self', 'BASE', ANY_CARD),
+      selectEitherSide('FIELD', ANY_CARD),
     ]) {
       expect(target.kind).toBe('selected');
       expect(EffectIRSchema.safeParse(effect(card.cardNo, discard(target))).success).toBe(true);
     }
+  });
+
+  it('only selectEitherSide emits the eitherSide key', () => {
+    expect(selectEitherSide('FIELD', ANY_CARD)).toMatchObject({ side: 'self', eitherSide: true, count: 1 });
+    expect('eitherSide' in select('self', 'FIELD', ANY_CARD)).toBe(false);
   });
 
   it('builds filters from invented cards', () => {

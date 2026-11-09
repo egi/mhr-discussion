@@ -84,6 +84,7 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
     random: z.boolean().optional(),
     bind: PickNameSchema.optional(),
     includeAttached: z.boolean().optional(),
+    eitherSide: z.boolean().optional(),
   }),
   z.strictObject({ kind: z.literal('host-of-source') }),
   z.strictObject({ kind: z.literal('attacker') }),

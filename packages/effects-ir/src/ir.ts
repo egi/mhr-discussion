@@ -422,6 +422,12 @@ export type EffectTarget =
        * attachment). Append-only: left out when only the area's own cards are pickable.
        */
       readonly includeAttached?: boolean | undefined;
+      /**
+       * The pool is the union of both seats' matching cards ("any Human character on the field",
+       * either player's). `side` stays the nominal seat and only decides the order: that seat's
+       * cards come first. Append-only: left out when only one seat's cards are pickable.
+       */
+      readonly eitherSide?: boolean | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }

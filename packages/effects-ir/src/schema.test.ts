@@ -476,6 +476,14 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse(selection('yes'))).toThrow();
   });
 
+  it('accepts an either-side selection and rejects a non-boolean or unknown sibling key', () => {
+    const selection = (extra: Record<string, unknown>): unknown =>
+      wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, ...extra } });
+    expect(() => EffectIRSchema.parse(selection({ eitherSide: true }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(selection({ eitherSide: 'yes' }))).toThrow();
+    expect(() => EffectIRSchema.parse(selection({ eitherSides: true }))).toThrow();
+  });
+
   it('accepts every filter facet and rejects a malformed one', () => {
     const named = (filter: Record<string, unknown>): unknown =>
       wrap({ kind: 'prune', target: { ...OPPONENT_BATTLE, filter: { ...NO_FILTER, ...filter } } });
