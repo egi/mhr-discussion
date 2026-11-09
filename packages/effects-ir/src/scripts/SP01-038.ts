@@ -16,7 +16,9 @@
  *
  * Not modelled: "If that character is retreated by this effect, you draw 1 card extra". The IR has
  * no condition on whether a stat change retreated its target, so the extra draw stays on the
- * manual path and the card badges partial.
+ * manual path and the card badges partial. The player is told by that partial badge and by the
+ * retained Apply effect control, which keeps the omitted extra draw reachable; the engine verdict
+ * itself is unchanged.
  *
  * Partial marker: it covers the omitted "draw 1 card extra" sub-clause. The user decision of
  * UAT test 1 keeps the script; the basis is FAQ F-33 as relayed by mhrdecklab (a relayed statement,

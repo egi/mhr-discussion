@@ -20,6 +20,10 @@
  * TRIG【VOID】 clause (place this card from VOID into BASE) is not modelled and stays on the manual
  * path, so the card badges partial. UNIQUE is a rule keyword, not an effect.
  *
+ * own-character-enters-field fires for characters; every card with Web in the current pool is a
+ * character (checked by a test), so a non-character Web entry cannot occur today; if a
+ * non-character Web card is ever printed this narrowing must be revisited.
+ *
  * Ruling note: community-rulings discussion 18 (HEAD-JUDGE, 304.1.k RESOLVED, on the vendor board) lists this
  * card; it concerns HAND triggers and drawn cards, which this clause is not, so it is linked for
  * traceability only and changes nothing in the script.

@@ -12,8 +12,8 @@
  * features is discarded (a hand without one makes the discard not done); only if it was done does
  * one opposing BATTLE character get Power-1000 until the end of the turn (304.1.d, discussions 09
  * and 10; discussion 10 is ESCALATE-OPEN and the "If you do" reading is the engine default, tier:
- * user decision below a head-judge ruling). The text does not say "other", and this card is itself an
- * Avengers character, so it may discard itself. Nothing is left unmodelled.
+ * user decision below a head-judge ruling). The card is activated from BATTLE and
+ * discards a card from HAND, so it can never discard itself. Nothing is left unmodelled.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
