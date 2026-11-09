@@ -12,7 +12,9 @@
  * one opposing field character get Power-1000 until the end of the turn (304.1.d, discussions 09
  * and 10; discussion 10 item 3 is CLOSED as USER-DECISION Reading B, the engine default, a tier
  * below a head-judge ruling). With no opposing character the retreat stays and the
- * Power step is not done.
+ * Power step is not done. A target the reduction takes to 0 Power retreats at once and the
+ * Retreat is locked in (301.16.a.1, 301.16.b; FAQ F-33, relayed by mhrdecklab, discussion 10
+ * item 2, even if a later increase would settle it above 0).
  *
  * Not modelled: "If that character is retreated by this effect, you draw 1 card extra". The IR has
  * no condition on whether a stat change retreated its target, so the extra draw stays on the
