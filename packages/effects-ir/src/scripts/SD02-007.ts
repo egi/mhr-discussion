@@ -8,7 +8,7 @@
  *   more, you place this card from HAND into your field.
  *
  * An activation from the HAND. The player's own RETREAT must hold 9 or more yellow characters and
- * no character of another colour (blue, red, green are each tested for zero); then this card is
+ * no character of another colour (blue, red, green, orange and purple are each tested for zero); then this card is
  * placed face up into the field, the lane or the BASE being the placement choice. Any other
  * RETREAT leaves the card in the HAND, with no error. No community ruling touches this card.
  */
@@ -29,7 +29,7 @@ export const RULE_DECLARATION = declareRules({
   rulings: [],
 });
 
-const none = (color: 'blue' | 'red' | 'green') => ({
+const none = (color: 'blue' | 'red' | 'green' | 'orange' | 'purple') => ({
   kind: 'have' as const,
   side: 'self' as const,
   area: 'RETREAT' as const,
@@ -46,7 +46,16 @@ export function script(): EffectIR {
       { kind: 'have', side: 'self', area: 'RETREAT', filter: colored('yellow'), min: 9, max: null },
       conditional(
         none('blue'),
-        conditional(none('red'), conditional(none('green'), relocate(source(), { side: 'self', area: 'FIELD', faceDown: false }))),
+        conditional(
+          none('red'),
+          conditional(
+            none('green'),
+            conditional(
+              none('orange'),
+              conditional(none('purple'), relocate(source(), { side: 'self', area: 'FIELD', faceDown: false })),
+            ),
+          ),
+        ),
       ),
     ),
     trigger('activate', 'HAND'),
