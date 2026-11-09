@@ -21,6 +21,12 @@
  * is not on the vendor board, so it is cited here only and not linked) says the Counter Step ends
  * when the attack disappears, for example when this card's R-0 change leaves the attacker without
  * a target. That is a consequence of the AUTO half and the Counter Step flow, not of this attach.
+ *
+ * Partial marker: the opposing-host choice the IR selector cannot yet offer is omitted (USER
+ * DECISION: opposing Human characters are allowed, not a head-judge ruling), so the card badges
+ * partial and keeps its manual Apply effect path. The AUTO half is implemented in
+ * packages/engine/src/cards/autos/index.ts and is not missing. The marker is temporary (removed by
+ * plan 17.4-15).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -45,5 +51,6 @@ export function script(): EffectIR {
     CARD_NO,
     attach(source(), select('self', 'FIELD', characters({ feature: 'Human' }))),
     trigger('activate-counter', 'HAND'),
+    { partial: true },
   );
 }

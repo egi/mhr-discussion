@@ -10,13 +10,19 @@
  *
  * Event tag: activate, BATTLE, once per turn. This card is retreated; only if that was done does
  * one opposing field character get Power-1000 until the end of the turn (304.1.d, discussions 09
- * and 10; discussion 10 is ESCALATE-OPEN and the "If you do" reading is the engine default, tier:
- * user decision below a head-judge ruling). With no opposing character the retreat stays and the
+ * and 10; discussion 10 item 3 is CLOSED as USER-DECISION Reading B, the engine default, a tier
+ * below a head-judge ruling). With no opposing character the retreat stays and the
  * Power step is not done.
  *
  * Not modelled: "If that character is retreated by this effect, you draw 1 card extra". The IR has
  * no condition on whether a stat change retreated its target, so the extra draw stays on the
  * manual path and the card badges partial.
+ *
+ * Partial marker: it covers the omitted "draw 1 card extra" sub-clause. The user decision of
+ * UAT test 1 keeps the script; the basis is FAQ F-33 as relayed by mhrdecklab (a relayed statement,
+ * not an official tier), CR 301.16.a.1 and 301.16.b. The "If you do" reading is discussion 10
+ * item 3, CLOSED 2026-11-04 as USER-DECISION Reading B. The marker stays until the extra draw is
+ * implemented.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -59,6 +65,6 @@ export function script(): EffectIR {
       ifDone(power(select('opponent', 'FIELD', characters()), -1000)),
     ),
     trigger('activate', 'BATTLE'),
-    { oncePerTurn: true },
+    { oncePerTurn: true, partial: true },
   );
 }

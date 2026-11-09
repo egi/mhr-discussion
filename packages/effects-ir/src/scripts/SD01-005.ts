@@ -11,7 +11,7 @@
  * the activation): 2 of the player's own BASE cards are retreated, and only if that was done the
  * player draws 2 cards. Resolving to the greatest extent possible is 304.1.d (discussion 24,
  * HEAD-JUDGE principle); the engine reading of "If you do" is Reading B (discussion 10 item 3,
- * ESCALATE-OPEN, user decision of 2026-11-03).
+ * CLOSED 2026-11-04 as USER-DECISION).
  *
  * PROVISIONAL (user decision D-07, D-09). The survey label "11 O3" resolves, through the
  * community-rulings imports.md, to chat-source discussions 32 and 28. Both are cited by path and
@@ -32,6 +32,10 @@
  * manual path. Whether a face-down BASE card is red is not implemented as settled: the retreat
  * filter reads the card facts of face-up cards only. Printed Lv, Power and colour are used
  * (effective-power-lv-basis is UNRULED).
+ *
+ * Partial marker: the red-only retreat omits the choice of retreating a non-red pair, so the card
+ * badges partial and keeps its manual Apply effect path. The marker is temporary (removed by plan
+ * 17.4-13).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -62,5 +66,6 @@ export function script(): EffectIR {
       ),
     ),
     trigger('enters-field-by-call', 'FIELD'),
+    { partial: true },
   );
 }
