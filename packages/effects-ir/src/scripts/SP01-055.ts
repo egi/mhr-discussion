@@ -10,12 +10,19 @@
  *
  * Event tag: base-move, FIELD (301.24.a), once per turn (201.10.d.2), on this card's own move only.
  * The effect is optional (304.1.a): the player may discard 3 HAND cards (301.15.a); declining
- * changes nothing and the attach never runs. Only if the discard was done in full is 1 own
- * Machine character from the RETREAT attached to this card (301.25.a). With fewer than 3 HAND
- * cards the engine discards what it can (304.1.d) but the discard is not done in full, so no
- * attach; with no Machine character in the RETREAT the attach is not done and the discard stays paid (discussion 24 principle, discussion 25 for a cost
- * with no legal target, 304.1.d). "If you do" follows Reading B (discussion 10 item 3,
- * USER-DECISION of 2026-11-04, closed).
+ * changes nothing and the attach never runs.
+ *
+ * The discard is a cost that must be paid in full (user decision of 2026-11-11; discussion 24 is
+ * cited only for the unpayable-cost case, a cost that cannot be paid is not paid; F-29 and
+ * CR 301.38.a cover only the "after doing so" sentence). With fewer than 3 cards in the HAND the
+ * cost cannot be paid, so nothing is discarded and nothing attaches. This replaces the earlier
+ * "discard what it can" reading. The IR therefore checks for 3 HAND cards before the discard.
+ *
+ * Only if the discard was done in full is 1 own Machine character from the RETREAT attached to
+ * this card (301.25.a). With no Machine character in the RETREAT the attach is not done and the
+ * discard stays paid (discussion 25 for a cost with no legal target). "If you do" follows
+ * Reading B (discussion 10 item 3, user decision of 2026-11-04, closed; its equivalence with
+ * [After doing so] is an inference).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -23,6 +30,7 @@ import {
   ANY_CARD,
   attach,
   characters,
+  conditional,
   discard,
   effect,
   ifDone,
@@ -46,6 +54,7 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.15.a'), reviewedHash: '2148fe594165' }, // discard
     { key: asRuleKey('301.25.a'), reviewedHash: 'c2f486b7c72e' }, // attached card
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
+    { key: asRuleKey('301.38.a'), reviewedHash: '35e8b25aa5b6' }, // [After doing so] needs the earlier text in full
   ],
   rulings: [
     { discussion: '10', rule: asRuleKey('304.1.d') },
@@ -59,9 +68,13 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     optional(
-      sequence(
-        step(discard(select('self', 'HAND', ANY_CARD, 3))),
-        ifDone(attach(select('self', 'RETREAT', characters({ feature: 'Machine' })), source())),
+      conditional(
+        { kind: 'have', side: 'self', area: 'HAND', filter: ANY_CARD, min: 3, max: null },
+        sequence(
+          step(discard(select('self', 'HAND', ANY_CARD, 3))),
+          ifDone(attach(select('self', 'RETREAT', characters({ feature: 'Machine' })), source())),
+        ),
+        null,
       ),
     ),
     trigger('base-move', 'FIELD'),
