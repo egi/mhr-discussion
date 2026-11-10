@@ -301,6 +301,14 @@ const TAGGED: Readonly<
   "SP01-049": { event: "activate", area: "BATTLE" },
   "SP01-070": { event: "this-card-attached", area: "FIELD" },
   "SP01-074": { event: "this-card-attached", area: "FIELD" },
+  "SP01-057": {
+    event: "opponent-character-enters-field",
+    area: "HAND",
+    subject: { feature: "Human", level: 2 },
+  },
+  "SP01-069": { event: "activate-counter", area: "BASE" },
+  "SP01-076": { event: "activate", area: "RETREAT" },
+  "SP01-078": { event: "activate", area: "BASE" },
   "SP01-035": {
     event: "own-character-enters-retreat-by-losing-fight",
     area: "BATTLE",
@@ -337,7 +345,7 @@ describe("trigger tags", () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(
       Object.keys(TAGGED).sort(),
     );
-    expect(tagged).toHaveLength(146);
+    expect(tagged).toHaveLength(150);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
@@ -372,7 +380,7 @@ describe("trigger tags", () => {
 });
 
 describe("oncePerTurn marker", () => {
-  it("is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008, SP01-010, SP01-055, SP01-056, SP01-060 and SP01-049 alone and absent (not undefined-valued) everywhere else", () => {
+  it("is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008, SP01-010, SP01-055, SP01-056, SP01-060, SP01-049, SP01-069 and SP01-078 alone and absent (not undefined-valued) everywhere else", () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
       const ir = script();
       if (
@@ -393,6 +401,8 @@ describe("oncePerTurn marker", () => {
         cardNo === "SP01-043" ||
         cardNo === "SP01-062" ||
         cardNo === "SP01-049" ||
+        cardNo === "SP01-069" ||
+        cardNo === "SP01-078" ||
         cardNo === "BP01-108" ||
         cardNo === "BP01-113" ||
         cardNo === "BP01-091" ||
