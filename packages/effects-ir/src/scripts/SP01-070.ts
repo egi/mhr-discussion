@@ -16,7 +16,7 @@
  * (the Web character entering VOID, the prune, the placement onto BATTLE and the Lv4 extra discard)
  * is not modelled and stays on the manual path, so the card badges partial. The grouping mechanism
  * of same-event triggers is still open (discussions 16 and 17, tiers HEAD-JUDGE for the rule and
- * ESCALATE-OPEN for the mechanism; cited by path, no ruling link). The openness is not limited to
+ * ESCALATE-OPEN for the mechanism; no ruling link). The openness is not limited to
  * the unmodelled VOID clause: this scripted attach trigger is itself a same-event trigger, so it
  * may be affected in principle. No hand flag is set.
  */

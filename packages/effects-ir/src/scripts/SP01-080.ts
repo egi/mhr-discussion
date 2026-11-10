@@ -13,11 +13,11 @@
  * is partial by clause count.
  *
  * Event tag: enters-field-by-call, BATTLE (201.10.d.2). The trigger fires only when this card
- * entered by calling, not when it was placed by effect (community-rulings discussion 31, by path,
+ * entered by calling, not when it was placed by effect (discussion 31,
  * HEAD-JUDGE via F-09). The move is optional (304.1.a). It is a same-player BATTLE-BASE move of
  * the opponent's character (301.24.b), written as `relocate` to the opponent's BASE and not as the
  * acting player's own `battle-move`: the character leaves the opponent's BATTLE and lands in the
- * opponent's BASE, nothing crosses sides. A full BASE follows community-rulings discussion 24
+ * opponent's BASE, nothing crosses sides. A full BASE follows discussion 24
  * (principle HEAD-JUDGE F-29, cases CONSENSUS): the move is not done and raises no error.
  *
  * The Lv bound reads the printed Lv; `effective-power-lv-basis` is UNRULED, so the printed

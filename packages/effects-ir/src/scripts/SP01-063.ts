@@ -19,14 +19,14 @@
  * The effect is mandatory (304.1.b). One card of the opponent's HAND, picked at random (the pick
  * is designated by the opponent and travels in the action, so a replay places the same card), is
  * placed face down into the opponent's BASE (301.21.a). This is a placement by effect, not a call
- * (community-rulings discussion 31, by path: "by calling" triggers do not fire on it). With an
+ * (discussion 31: "by calling" triggers do not fire on it). With an
  * empty opposing HAND nothing is placed and no error is raised (304.1.d); with a full BASE the
- * engine places what it can (community-rulings discussion 24 principle). Discussion 29 (CONSENSUS,
- * by path) covers this card's trigger interplay with a placed card.
+ * engine places what it can (discussion 24 principle). Discussion 29 (CONSENSUS)
+ * covers this card's trigger interplay with a placed card.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { ANY_CARD, effect, relocate, select, trigger } from '../combinators';
+import { ANY_CARD, effect, relocate, selectRandom, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR, EffectTarget } from '../ir';
 
@@ -44,7 +44,7 @@ export const RULE_DECLARATION = declareRules({
 
 /** One random card of the opponent's HAND. */
 const randomHandCard = (): EffectTarget =>
-  ({ ...select('opponent', 'HAND', ANY_CARD, 1), random: true }) as EffectTarget;
+  selectRandom('opponent', 'HAND', ANY_CARD, 1);
 
 /** The effect's IR. */
 export function script(): EffectIR {

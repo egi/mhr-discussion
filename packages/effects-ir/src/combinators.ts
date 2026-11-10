@@ -86,6 +86,16 @@ export function select(
   return { kind: 'selected', side, area, count, upTo: false, filter };
 }
 
+/** `count` matching cards picked at random; the pick travels in the action. */
+export function selectRandom(
+  side: EffectSide,
+  area: EffectArea,
+  filter: EffectFilter,
+  count = 1,
+): Extract<EffectTarget, { readonly kind: 'selected' }> {
+  return { kind: 'selected', side, area, count, upTo: false, filter, random: true };
+}
+
 /**
  * `count` matching cards from the area or attached to the cards in it: a host and its attachment
  * are two cards when both are picked.

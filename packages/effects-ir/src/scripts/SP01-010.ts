@@ -29,6 +29,7 @@ import {
   ifDone,
   relocate,
   select,
+  selectRandom,
   sequence,
   show,
   step,
@@ -55,7 +56,7 @@ export const RULE_DECLARATION = declareRules({
 
 /** One random card of the opponent's HAND, bound as pick A. */
 const randomHandCard = (): EffectTarget =>
-  bind({ ...select('opponent', 'HAND', ANY_CARD, 1), random: true } as EffectTarget, 'A');
+  bind(selectRandom('opponent', 'HAND', ANY_CARD, 1), 'A');
 
 /** The effect's IR. */
 export function script(): EffectIR {

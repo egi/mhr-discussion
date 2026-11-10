@@ -15,7 +15,7 @@
  * character the effect is not done and the card stays in the RETREAT. The second TRIG【BATTLE】
  * clause (the BATTLE-BASE Move of a Power4000-or-lower host and the cover) is not modelled and
  * stays on the manual path, so the card badges partial. The community discussion 32 (attachments
- * follow the host) is cited by path only: .planning/research/community-rulings/discussions/32-*.md.
+ * follow the host) is the related reading.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

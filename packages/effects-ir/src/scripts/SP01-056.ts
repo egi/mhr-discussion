@@ -14,7 +14,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { ANY_CARD, effect, retreat, select, trigger } from '../combinators';
+import { ANY_CARD, effect, retreat, selectRandom, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR, EffectTarget } from '../ir';
 
@@ -32,7 +32,7 @@ export const RULE_DECLARATION = declareRules({
 
 /** One random set card of the opponent's BASE. */
 const randomSetCard = (): EffectTarget =>
-  ({ ...select('opponent', 'BASE', { ...ANY_CARD, faceDown: true }, 1), random: true }) as EffectTarget;
+  selectRandom('opponent', 'BASE', { ...ANY_CARD, faceDown: true }, 1);
 
 /** The effect's IR. */
 export function script(): EffectIR {

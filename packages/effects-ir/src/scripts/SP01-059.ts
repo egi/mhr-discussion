@@ -16,7 +16,7 @@
  * seat. With no legal host the activation is not done and the card stays in the HAND. The
  * TRIG【BATTLE】 turn-end prune of a host that did not attack is not modelled and stays on the
  * manual path, so the card badges partial. The community discussion 32 (attachments follow the
- * host) is cited by path only: .planning/research/community-rulings/discussions/32-*.md.
+ * host) is the related reading.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';

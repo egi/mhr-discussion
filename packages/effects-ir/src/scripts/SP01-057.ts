@@ -12,9 +12,7 @@
  * is the cost (301.15.a); only if that was done is the entered character (the pinned subject)
  * retreated. A Lv3 Human, a Lv2 character without Human, and a character entering on the own
  * side do not fire. The Lv test uses the printed Lv (effective-power-lv-basis is UNRULED).
- * Related community reading, cited by path only (not on the pinned board):
- * .planning/research/community-rulings/discussions/29-black-cat-vs-crowds-of-the-hand.md
- * (CONSENSUS tier).
+ * Related community reading: discussion 29 (CONSENSUS tier).
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
