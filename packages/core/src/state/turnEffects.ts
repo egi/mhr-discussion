@@ -33,6 +33,8 @@ export const TURN_EFFECT_KINDS = [
   'skip-battle-phase',
   'effect-used',
   'defended',
+  'battle-base-moved',
+  'placed-this-turn',
 ] as const;
 export type TurnEffectKind = (typeof TURN_EFFECT_KINDS)[number];
 
@@ -59,4 +61,8 @@ export type TurnEffect =
    */
   | { readonly kind: 'effect-used'; readonly iid: number; readonly effect?: EffectUsedTag | undefined }
   /** The card `iid` has been the defender of an attack declared this turn. */
-  | { readonly kind: 'defended'; readonly iid: number };
+  | { readonly kind: 'defended'; readonly iid: number }
+  /** The card `iid` has used its one BATTLE-BASE MOVE opportunity this turn (303.2.a.3.1.3.2). */
+  | { readonly kind: 'battle-base-moved'; readonly iid: number }
+  /** The card `iid` was placed onto the FIELD this turn (303.2.a.3.1.3.3). */
+  | { readonly kind: 'placed-this-turn'; readonly iid: number };
