@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { TURN_EFFECT_KINDS } from './turnEffects';
 
 describe('TURN_EFFECT_KINDS', () => {
-  it('is append-only: earlier kinds keep their wire index and defended is last', () => {
+  it('is append-only: earlier kinds keep their wire index and placed-this-turn is last', () => {
     expect(TURN_EFFECT_KINDS).toEqual([
       'restriction',
       'ability',
@@ -10,6 +10,8 @@ describe('TURN_EFFECT_KINDS', () => {
       'skip-battle-phase',
       'effect-used',
       'defended',
+      'battle-base-moved',
+      'placed-this-turn',
     ]);
   });
 });
