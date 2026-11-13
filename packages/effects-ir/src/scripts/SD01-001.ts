@@ -10,7 +10,7 @@
  *   Lv of the cards you retreat by this effect.
  *
  * Event tag: this-card-attached, BATTLE, once per turn. The trigger fires after the attach
- * (community-rulings discussion 45, USER-DECISION of the project owner 2026-11-05, not a
+ * (discussion 45, USER-DECISION of the project owner 2026-11-05, not a
  * head-judge ruling; the file is not on the vendor board, so it is cited here only). The effect
  * runs only while the opponent has a character of printed Lv5 or above in BATTLE; the retreat of
  * every card attached to this card is optional (304.1.a); only if it was done is one opposing

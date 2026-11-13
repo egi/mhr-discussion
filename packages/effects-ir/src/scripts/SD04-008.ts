@@ -8,8 +8,7 @@
  *
  * Event tag: enters-retreat-by-discard-effect, RETREAT. It starts when an effect discards the card
  * into the RETREAT; a lost fight, a CALL, leaving the field and the End Phase hand-limit discard
- * do not (discussion 26 in .planning/research/community-rulings/discussions, RESOLVED by 301.15.a
- * and 303.2.a.6.1.3). The top two DECK cards go face down into the BASE (301.13.a). When the BASE
+ * do not (discussion 26, RESOLVED by 301.15.a and 303.2.a.6.1.3). The top two DECK cards go face down into the BASE (301.13.a). When the BASE
  * or the DECK cannot take both, as many as possible are placed (survey label "11 B2" is
  * discussion 24, HEAD-JUDGE for the principle, CR 304.1.d; the zone-full cases are CONSENSUS).
  */

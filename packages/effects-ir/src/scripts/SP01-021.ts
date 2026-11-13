@@ -24,7 +24,7 @@
  * character (checked by a test), so a non-character Web entry cannot occur today; if a
  * non-character Web card is ever printed this narrowing must be revisited.
  *
- * Ruling note: community-rulings discussion 18 (HEAD-JUDGE, 304.1.k RESOLVED, on the vendor board) lists this
+ * Ruling note: discussion 18 (HEAD-JUDGE, 304.1.k RESOLVED, on the vendor board) lists this
  * card; it concerns HAND triggers and drawn cards, which this clause is not, so it is linked for
  * traceability only and changes nothing in the script.
  */

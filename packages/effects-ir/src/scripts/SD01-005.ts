@@ -18,13 +18,13 @@
  * retreat is a free choice of any 2 BASE cards; draw 2 only if every retreated card is red,
  * otherwise the effect stops after the retreat.
  *
- * PROVISIONAL (user decision D-07, D-09). The survey label "11 O3" resolves, through the
- * community-rulings imports.md, to chat-source discussions 32 and 28. Both are cited by path and
- * tier only; neither is on the pinned vendor board, so no rulings link is encoded:
+ * PROVISIONAL (user decision D-07, D-09). The survey label "11 O3" resolves to discussions 32
+ * and 28. Both are cited by number and tier only; neither is on the pinned vendor board, so no
+ * rulings link is encoded:
  *
- * - community-rulings/discussions/32-attachments-follow-the-host.md: HEAD-JUDGE (FAQ F-37). It
- *   does not govern this clause.
- * - community-rulings/discussions/28-face-down-cards-effects-and-costs.md: a face-down retreated
+ * - discussion 32 (attachments follow the host): HEAD-JUDGE (FAQ F-37). It does not govern this
+ *   clause.
+ * - discussion 28 (face-down cards, effects and costs): a face-down retreated
  *   card is NOT red and draws nothing. That is a card-local USER DECISION of 2026-11-09 (HUMAN-UAT
  *   test 2), not a head-judge ruling; discussion 28 stays ESCALATE-OPEN for the broader question
  *   of a set card's colour. That discussion never names this card; the link from SD01-005 to it is

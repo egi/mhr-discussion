@@ -17,8 +17,8 @@
  * hosts are allowed by a USER DECISION (phase 17.4 UAT test 3, 2026-11-09), not by a head-judge
  * ruling. With no legal host the activation is not done.
  *
- * Context: community-rulings discussion 21 (HEAD-JUDGE, rulebook 303.2.a.4.3.2.5-7; the file
- * is not on the vendor board, so it is cited here only and not linked) says the Counter Step ends
+ * Context: discussion 21 (HEAD-JUDGE, rulebook 303.2.a.4.3.2.5-7; it is not on the vendor
+ * board, so it is cited here only and not linked) says the Counter Step ends
  * when the attack disappears, for example when this card's R-0 change leaves the attacker without
  * a target. That is a consequence of the AUTO half and the Counter Step flow, not of this attach.
  */

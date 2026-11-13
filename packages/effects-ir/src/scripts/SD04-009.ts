@@ -9,8 +9,7 @@
  *   down into your opponent's BASE.
  *
  * Event tag: enters-retreat-by-discard-effect, RETREAT. Which discards count as "by effect" is
- * discussion 26 (.planning/research/community-rulings/discussions/26-discard-by-effect.md,
- * RESOLVED by 301.15.a and 303.2.a.6.1.3): the End Phase hand-limit discard does not. The
+ * discussion 26 (RESOLVED by 301.15.a and 303.2.a.6.1.3): the End Phase hand-limit discard does not. The
  * placement is optional (304.1.a). Only if this card was placed does the opponent put the top card
  * of their own deck face down into their own BASE; a declined placement, or one that is not done,
  * skips that step. "If you do" follows Reading B (discussion 10 item 3, ESCALATE-OPEN, user

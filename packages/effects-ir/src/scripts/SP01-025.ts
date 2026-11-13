@@ -13,7 +13,7 @@
  * nothing and is not done. The TRIG【FIELD】 by-call clause (reveal 3, add 1 Web card to HAND, prune
  * the rest) is not modelled and stays on the manual path, so the card badges partial.
  *
- * Ruling note: community-rulings discussion 18 (HEAD-JUDGE, 304.1.k RESOLVED, on the vendor board) lists this
+ * Ruling note: discussion 18 (HEAD-JUDGE, 304.1.k RESOLVED, on the vendor board) lists this
  * card; it concerns HAND triggers and drawn cards, which this clause is not, so it is linked for
  * traceability only and changes nothing in the script.
  */
