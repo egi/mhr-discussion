@@ -102,13 +102,19 @@ export type {
   ModifierStat,
 } from './state/modifiers';
 
-export { TURN_EFFECT_KINDS, TURN_GRANTABLE_ABILITIES, TURN_RESTRICTIONS } from './state/turnEffects';
+export {
+  TURN_EFFECT_KINDS,
+  TURN_GRANTABLE_ABILITIES,
+  TURN_RESTRICTIONS,
+  TURN_RESTRICTION_DIRECTIONS,
+} from './state/turnEffects';
 export type {
   EffectUsedTag,
   TurnEffect,
   TurnEffectKind,
   TurnGrantableAbility,
   TurnRestriction,
+  TurnRestrictionDirection,
 } from './state/turnEffects';
 
 export type { PriorityWindow } from './state/priority';

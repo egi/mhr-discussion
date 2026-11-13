@@ -17,9 +17,19 @@
  * codec and a schema version, never a change to an existing member.
  */
 
-/** What a restriction recorded for the turn forbids. */
-export const TURN_RESTRICTIONS = ['move', 'attack'] as const;
+/**
+ * What a restriction recorded for the turn forbids. Append only: `'retreat-to-call'` forbids a
+ * Character to be retreated as the cost of a CALL (301.19.b). The "this turn" lifetime of such a
+ * record rests on 303.2.a.6.1.2; discussion 14 (community-rulings) settles, at HEAD-JUDGE tier, only
+ * that a card leaving the FIELD is a new card for once-per-turn triggers, and marks the application
+ * to "this turn" records as ESCALATE-OPEN, so the pruning of these records is inference.
+ */
+export const TURN_RESTRICTIONS = ['move', 'attack', 'retreat-to-call'] as const;
 export type TurnRestriction = (typeof TURN_RESTRICTIONS)[number];
+
+/** The comparison a `restriction-limit` makes against a Character's Lv. Append only. */
+export const TURN_RESTRICTION_DIRECTIONS = ['at-least', 'at-most', 'exact'] as const;
+export type TurnRestrictionDirection = (typeof TURN_RESTRICTION_DIRECTIONS)[number];
 
 /** The abilities an effect can hand out for the turn (the grantable subset of rule 305). */
 export const TURN_GRANTABLE_ABILITIES = ['BLOCK', 'DOUBLE ATTACK', 'ASSAULT', 'AIR-ATTACK'] as const;
@@ -35,6 +45,7 @@ export const TURN_EFFECT_KINDS = [
   'defended',
   'battle-base-moved',
   'placed-this-turn',
+  'restriction-limit',
 ] as const;
 export type TurnEffectKind = (typeof TURN_EFFECT_KINDS)[number];
 
@@ -65,4 +76,17 @@ export type TurnEffect =
   /** The card `iid` has used its one BATTLE-BASE MOVE opportunity this turn (303.2.a.3.1.3.2). */
   | { readonly kind: 'battle-base-moved'; readonly iid: number }
   /** The card `iid` was placed onto the FIELD this turn (303.2.a.3.1.3.3). */
-  | { readonly kind: 'placed-this-turn'; readonly iid: number };
+  | { readonly kind: 'placed-this-turn'; readonly iid: number }
+  /**
+   * A restriction that names no card, only a Lv and a direction: every Character of the seat that
+   * holds the record whose Lv matches is forbidden the named restriction, including Characters that
+   * enter the FIELD later this turn (user decision 2026-11-13; not ruled in Comprehensive Rules v1.03,
+   * and discussion 14's application to "this turn" records is ESCALATE-OPEN). `limit.lv` is the
+   * effective Lv, read when the restriction is checked, not when it is recorded. It ends with the
+   * turn (303.2.a.6.1.2). Only `'retreat-to-call'` carries a limit.
+   */
+  | {
+      readonly kind: 'restriction-limit';
+      readonly restriction: TurnRestriction;
+      readonly limit: { readonly lv: number; readonly direction: TurnRestrictionDirection };
+    };
