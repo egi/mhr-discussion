@@ -31,6 +31,7 @@ import {
   EFFECT_SIDES,
   EFFECT_STATS,
   EFFECT_STEP_GATES,
+  type EffectFilter as EffectFilterType,
   type EffectIR as EffectIRType,
   type EffectOp,
 } from './ir';
@@ -40,6 +41,8 @@ const AreaSchema = z.enum(EFFECT_AREAS);
 const CountSchema = z.number().int().nonnegative();
 const OptionalBoundSchema = z.number().int().nullable();
 const PickNameSchema = z.enum(EFFECT_PICK_NAMES);
+
+const EffectFilterRef: z.ZodType<EffectFilterType> = z.lazy(() => EffectFilterSchema);
 
 export const EffectFilterSchema = z.strictObject({
   color: CardColorSchema.nullable(),
@@ -69,6 +72,8 @@ export const EffectFilterSchema = z.strictObject({
   hasAutoEffect: z.boolean().optional(),
   ref: PickNameSchema.optional(),
   notAttackedThisTurn: z.boolean().optional(),
+  rMin: z.number().int().nonnegative().optional(),
+  anyOf: z.array(EffectFilterRef).readonly().optional(),
 });
 
 export const EffectTargetSchema = z.discriminatedUnion('kind', [

@@ -392,6 +392,13 @@ export type EffectFilter = {
   readonly hasAutoEffect?: boolean | undefined;
   /** Keeps only cards that did not attack this turn (a declared attack counts as attacked). Append-only. */
   readonly notAttackedThisTurn?: boolean | undefined;
+  /** Keeps only cards whose R is at least this, read the way `lvMin` reads Lv. Append-only; absent means no constraint. */
+  readonly rMin?: number | undefined;
+  /**
+   * The card must also match at least one of these filters. Each member is a full filter, so
+   * every facet is available inside it. An empty list matches nothing. Append-only.
+   */
+  readonly anyOf?: readonly EffectFilter[] | undefined;
 };
 
 /**
@@ -727,6 +734,8 @@ export const EFFECT_FILTER_FACETS = [
   'hasAutoEffect',
   'ref',
   'notAttackedThisTurn',
+  'rMin',
+  'anyOf',
 ] as const satisfies readonly (keyof EffectFilter)[];
 
 const everyFacetListed: [

@@ -502,11 +502,17 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
       hasAutoEffect: true,
       ref: 'B',
       notAttackedThisTurn: true,
+      rMin: 2,
+      anyOf: [{ ...NO_FILTER, nameIncludes: 'GWEN' }, { ...NO_FILTER, nameIncludes: 'GHOST' }],
     };
     for (const facet of EFFECT_FILTER_FACETS) {
       expect(() => EffectIRSchema.parse(named({ [facet]: FACETS[facet] })), facet).not.toThrow();
     }
     expect(() => EffectIRSchema.parse(named({ notAttackedThisTurn: 'yes' }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ rMin: -1 }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ rMin: 'x' }))).toThrow();
+    expect(() => EffectIRSchema.parse(named({ anyOf: [] }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(named({ anyOf: [{ ...NO_FILTER, bogus: 1 }] }))).toThrow();
     expect(() => EffectIRSchema.parse(named({ nameExcludes: '' }))).toThrow();
     expect(() => EffectIRSchema.parse(named({ differentNameFrom: 'anyone' }))).toThrow();
     expect(() => EffectIRSchema.parse(named({ extreme: { stat: 'r', which: 'highest' } }))).toThrow();
