@@ -328,6 +328,11 @@ export function attackingCharacter(): EffectTarget {
   return { kind: 'attacker' };
 }
 
+/** The character that won the fight that retreated the subject. */
+export function winningCharacter(): EffectTarget {
+  return { kind: 'winner' };
+}
+
 /** Retreat all (or one) of the cards attached to `host`, optionally except the source card. */
 export function retreatAttachedOfHost(
   host: EffectTarget,
