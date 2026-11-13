@@ -1,6 +1,6 @@
 # 20 - A swap counts as an attach
 
-**Status: ESCALATE-OPEN. Nothing here is a head judge ruling; do not implement either reading as settled.**
+**Status: ESCALATE-OPEN (nothing here is a head judge ruling; do not implement either reading as settled)**
 
 > Source note: L<n> citations refer to a private chat export and cannot be re-checked by readers. This text is a paraphrase, and people appear by role only.
 
