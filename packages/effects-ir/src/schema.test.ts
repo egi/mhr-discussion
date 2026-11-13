@@ -600,12 +600,29 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     for (const restriction of EFFECT_RESTRICTIONS) {
       const base = { ...VALID['restrict'], restriction };
       expect(() => EffectIRSchema.parse(wrap(base))).not.toThrow();
+      if (restriction === 'retreat-to-call') continue;
       expect(() => EffectIRSchema.parse(wrap({ ...base, limit: { lv: 6, lane: null } }))).not.toThrow();
       expect(() => EffectIRSchema.parse(wrap({ ...base, limit: { lv: null, lane: 'FRONT' } }))).not.toThrow();
     }
     expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], limit: { lv: null, lane: 'MOON' } }))).toThrow();
     expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], limit: { lv: 6 } }))).toThrow();
     expect(() => EffectIRSchema.parse(wrap({ ...VALID['restrict'], restriction: 'levitate' }))).toThrow();
+  });
+
+  it('accepts a retreat-to-call per card and by operand with a direction, and rejects the malformed shapes', () => {
+    const base = { ...VALID['restrict'], restriction: 'retreat-to-call' };
+    const ok = (op: unknown) => expect(() => EffectIRSchema.parse(wrap(op))).not.toThrow();
+    const bad = (op: unknown) => expect(() => EffectIRSchema.parse(wrap(op))).toThrow();
+    ok(base);
+    for (const direction of ['at-least', 'at-most', 'exact']) {
+      ok({ ...base, limit: { lv: 5, lane: null, direction } });
+    }
+    bad({ ...base, limit: { lv: 5, lane: null } });
+    bad({ ...base, limit: { lv: null, lane: null, direction: 'at-least' } });
+    bad({ ...base, limit: { lv: 5, lane: 'FRONT', direction: 'at-least' } });
+    bad({ ...base, limit: { lv: 5, lane: null, direction: 'above' } });
+    bad({ ...VALID['restrict'], restriction: 'attack-target', limit: { lv: 5, lane: null, direction: 'at-least' } });
+    ok({ ...VALID['restrict'], restriction: 'attack-target', limit: { lv: 6, lane: null } });
   });
 
   it('rejects an op kind outside the table', () => {

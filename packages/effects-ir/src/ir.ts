@@ -291,7 +291,12 @@ export const EFFECT_RESTRICTIONS = [
   'attack-target',
   /** The card is not retreated by Both Lose. */
   'retreat-by-both-lose',
-  /** The player cannot retreat the named character to pay a CALL cost. */
+  /**
+   * The player cannot retreat the character to pay a CALL cost (301.19.b). Without a `limit` it
+   * names the one card the `target` resolves to; with a `limit` it names the controller's
+   * characters by operand (the `target` is `source` and is not used to pick cards), and the entry
+   * applies to characters on the field now and to those that enter later this turn.
+   */
   'retreat-to-call',
 ] as const;
 export type EffectRestriction = (typeof EFFECT_RESTRICTIONS)[number];
@@ -300,6 +305,10 @@ export type EffectRestriction = (typeof EFFECT_RESTRICTIONS)[number];
 export const EFFECT_RESTRICTION_LANES = ['FRONT', 'WING', 'BACK'] as const;
 export type EffectRestrictionLane = (typeof EFFECT_RESTRICTION_LANES)[number];
 
+/** How a `retreat-to-call` operand compares a character's Lv with `limit.lv`. */
+export const EFFECT_RESTRICTION_DIRECTIONS = ['at-least', 'at-most', 'exact'] as const;
+export type EffectRestrictionDirection = (typeof EFFECT_RESTRICTION_DIRECTIONS)[number];
+
 /**
  * The operand of a restriction that needs one: a Lv bound ("Lv6 only", "Lv4 or below") and/or a
  * lane ("FRONT only"). `null` means the restriction does not name that part.
@@ -307,6 +316,12 @@ export type EffectRestrictionLane = (typeof EFFECT_RESTRICTION_LANES)[number];
 export type RestrictionLimit = {
   readonly lv: number | null;
   readonly lane: EffectRestrictionLane | null;
+  /**
+   * For `retreat-to-call`: whether the characters named are those at or above `lv`, at or below
+   * it, or exactly at it; the Lv is the effective Lv. Absent for every other restriction, where
+   * `lv` keeps its meaning (append-only).
+   */
+  readonly direction?: EffectRestrictionDirection | undefined;
 };
 
 /** The named abilities an effect can hand out. Drawn from Rule 305, never extended here. */

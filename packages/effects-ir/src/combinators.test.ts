@@ -143,6 +143,13 @@ describe('the appended combinators', () => {
     });
   });
 
+  it('restrict carries the direction of a retreat-to-call operand', () => {
+    expect(restrict({ kind: 'source' }, 'retreat-to-call', { lv: 5, lane: null, direction: 'at-least' })).toMatchObject({
+      restriction: 'retreat-to-call',
+      limit: { lv: 5, lane: null, direction: 'at-least' },
+    });
+  });
+
   it('retreatAttachedOfHost defaults to all attached cards and keeps the source', () => {
     expect(retreatAttachedOfHost(hostOfSource())).toEqual({
       kind: 'retreat-attached-of-host',

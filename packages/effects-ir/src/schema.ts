@@ -24,6 +24,7 @@ import {
   EFFECT_GRANTABLE_ABILITIES,
   EFFECT_MILL_DISPOSALS,
   EFFECT_PICK_NAMES,
+  EFFECT_RESTRICTION_DIRECTIONS,
   EFFECT_RESTRICTION_LANES,
   EFFECT_RESTRICTIONS,
   EFFECT_SCALE_SOURCES,
@@ -237,9 +238,18 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
       .strictObject({
         lv: OptionalBoundSchema,
         lane: z.enum(EFFECT_RESTRICTION_LANES).nullable(),
+        direction: z.enum(EFFECT_RESTRICTION_DIRECTIONS).optional(),
       })
       .optional(),
-  }),
+  }).refine(
+    (op) => {
+      const limit = op.limit;
+      if (limit === undefined) return true;
+      if (op.restriction !== 'retreat-to-call') return limit.direction === undefined;
+      return limit.direction !== undefined && limit.lv !== null && limit.lane === null;
+    },
+    { message: 'a retreat-to-call limit needs lv and direction and no lane; direction belongs to retreat-to-call only' },
+  ),
   z.strictObject({
     kind: z.literal('grant-ability'),
     target: EffectTargetSchema,
