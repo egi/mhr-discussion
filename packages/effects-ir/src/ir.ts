@@ -174,6 +174,11 @@ export type TriggerSubjectFilter = {
   readonly levelAtLeast?: number | undefined;
   readonly levelAtMost?: number | undefined;
   readonly lane?: 'FRONT' | 'WING' | 'BACK' | undefined;
+  /**
+   * Fires only while the card carrying the script belongs to the active player (`'own'`) or to
+   * the other player (`'opponent'`), read when the event happens. Append-only: left out when unused.
+   */
+  readonly turn?: 'own' | 'opponent' | undefined;
 };
 
 /**
