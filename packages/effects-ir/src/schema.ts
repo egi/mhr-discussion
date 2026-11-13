@@ -219,7 +219,12 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     host: EffectTargetSchema,
   }),
   z.strictObject({ kind: z.literal('cover'), target: EffectTargetSchema }),
-  z.strictObject({ kind: z.literal('swap'), a: EffectTargetSchema, b: EffectTargetSchema }),
+  z.strictObject({
+    kind: z.literal('swap'),
+    a: EffectTargetSchema,
+    b: EffectTargetSchema,
+    hostSwap: z.literal(true).optional(),
+  }),
   z.strictObject({
     kind: z.literal('dig'),
     side: SideSchema,

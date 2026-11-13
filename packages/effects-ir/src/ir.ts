@@ -626,7 +626,19 @@ export type EffectOp =
     }
   | { readonly kind: 'attach'; readonly card: EffectTarget; readonly host: EffectTarget }
   | { readonly kind: 'cover'; readonly target: EffectTarget }
-  | { readonly kind: 'swap'; readonly a: EffectTarget; readonly b: EffectTarget }
+  | {
+      readonly kind: 'swap';
+      readonly a: EffectTarget;
+      readonly b: EffectTarget;
+      /**
+       * When set, one side is a card attached to the card on the other side and the swap trades
+       * their places: the attached card becomes the character and the former host becomes an
+       * attached card. PROVISIONAL under OPEN-RULING 20 (discussion 20, ESCALATE-OPEN; user decision
+       * D-15 of 17.5.1.1-CONTEXT.md), never a settled reading. Append-only: absent for every
+       * existing swap.
+       */
+      readonly hostSwap?: true | undefined;
+    }
   | {
       readonly kind: 'dig';
       readonly side: EffectSide;

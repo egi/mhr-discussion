@@ -245,9 +245,12 @@ export function cover(target: EffectTarget): EffectOp {
   return { kind: 'cover', target };
 }
 
-/** Swap the positions of two cards. */
-export function swap(a: EffectTarget, b: EffectTarget): EffectOp {
-  return { kind: 'swap', a, b };
+/**
+ * Swap the positions of two cards. With `hostSwap` one side is attached to the other and the two
+ * trade places (provisional, OPEN-RULING 20); without it the call builds the plain swap literal.
+ */
+export function swap(a: EffectTarget, b: EffectTarget, hostSwap?: true): EffectOp {
+  return hostSwap === true ? { kind: 'swap', a, b, hostSwap } : { kind: 'swap', a, b };
 }
 
 /** Look at the top `count` cards, take those matching `pick`, send the rest to `rest`. */

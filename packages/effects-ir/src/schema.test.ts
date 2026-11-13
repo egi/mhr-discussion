@@ -208,6 +208,27 @@ describe('EffectIRSchema, rejecting', () => {
   });
 });
 
+describe('the optional hostSwap key on swap', () => {
+  const swapOp = (extra: Record<string, unknown>): unknown =>
+    wrap({ kind: 'swap', a: SOURCE, b: { kind: 'subject' }, ...extra });
+
+  it('parses hostSwap: true', () => {
+    const parsed = EffectIRSchema.parse(swapOp({ hostSwap: true }));
+    expect(parsed.op).toEqual({ kind: 'swap', a: SOURCE, b: { kind: 'subject' }, hostSwap: true });
+  });
+
+  it('rejects hostSwap: false and a string', () => {
+    expect(() => EffectIRSchema.parse(swapOp({ hostSwap: false }))).toThrow();
+    expect(() => EffectIRSchema.parse(swapOp({ hostSwap: 'yes' }))).toThrow();
+  });
+
+  it('parses an existing swap literal and serialises it with no hostSwap key', () => {
+    const parsed = EffectIRSchema.parse(swapOp({}));
+    expect(JSON.stringify(parsed.op)).toBe(JSON.stringify(VALID['swap']));
+    expect(JSON.stringify(parsed.op)).not.toContain('hostSwap');
+  });
+});
+
 describe('the schema and the IR types agree', () => {
   it('assigns in both directions', () => {
     const ir: EffectIR = { cardNo: asCardNo('BP01-001'), rulesVersion: '1.0', op: VALID['sequence'] };

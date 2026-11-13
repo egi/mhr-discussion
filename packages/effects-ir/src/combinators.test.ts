@@ -135,6 +135,17 @@ describe('combinators', () => {
   });
 });
 
+describe('swap with hostSwap', () => {
+  it('builds the identical literal for every existing two-argument call', () => {
+    expect(swap(source(), mine)).toStrictEqual({ kind: 'swap', a: source(), b: mine });
+    expect(JSON.stringify(swap(source(), mine))).not.toContain('hostSwap');
+  });
+
+  it('adds the key only when asked', () => {
+    expect(swap(source(), mine, true)).toStrictEqual({ kind: 'swap', a: source(), b: mine, hostSwap: true });
+  });
+});
+
 describe('the appended combinators', () => {
   it('restrict leaves the limit key out unless one is given', () => {
     expect('limit' in restrict(mine, 'attack')).toBe(false);
