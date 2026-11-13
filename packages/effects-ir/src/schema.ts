@@ -90,6 +90,15 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
     bind: PickNameSchema.optional(),
     includeAttached: z.boolean().optional(),
     eitherSide: z.boolean().optional(),
+    areas: z
+      .array(AreaSchema)
+      .min(1)
+      .refine((a) => new Set(a).size === a.length, { message: 'areas must not repeat an area' })
+      .readonly()
+      .optional(),
+    countScale: z.enum(EFFECT_SCALE_SOURCES).optional(),
+  }).refine((t) => t.countScale === undefined || t.count !== null, {
+    message: 'countScale needs a numeric count',
   }),
   z.strictObject({ kind: z.literal('host-of-source') }),
   z.strictObject({ kind: z.literal('attacker') }),
@@ -193,6 +202,7 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     side: SideSchema,
     end: z.enum(EFFECT_DECK_ENDS),
     count: CountSchema,
+    countScale: z.enum(EFFECT_SCALE_SOURCES).optional(),
     disposal: z.enum(EFFECT_MILL_DISPOSALS),
   }),
   z.strictObject({ kind: z.literal('prune'), target: EffectTargetSchema }),

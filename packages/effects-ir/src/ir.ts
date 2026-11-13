@@ -441,6 +441,18 @@ export type EffectTarget =
        * cards come first. Append-only: left out when only one seat's cards are pickable.
        */
       readonly eitherSide?: boolean | undefined;
+      /**
+       * The pool is the union of these areas on the target's side, in list order, in addition to
+       * `area`, which stays the nominal first area ("1 of your characters in WING or BACK").
+       * Append-only: left out when only `area` is pickable.
+       */
+      readonly areas?: readonly EffectArea[] | undefined;
+      /**
+       * The resolved count is `count` multiplied by the value of this scale source (the same
+       * convention as `stat-mod.delta` times a scale), so `count` is the per-unit multiplier,
+       * normally 1. Invalid with `count: null`. Append-only: left out for the literal count.
+       */
+      readonly countScale?: EffectScaleSource | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }
@@ -576,6 +588,11 @@ export type EffectOp =
       readonly side: EffectSide;
       readonly end: EffectDeckEnd;
       readonly count: number;
+      /**
+       * The number of cards milled is `count` multiplied by the value of this scale source.
+       * Append-only: left out for the literal count.
+       */
+      readonly countScale?: EffectScaleSource | undefined;
       readonly disposal: EffectMillDisposal;
     }
   | { readonly kind: 'prune'; readonly target: EffectTarget }

@@ -492,6 +492,32 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse(selection({ eitherSides: true }))).toThrow();
   });
 
+  it('accepts a union-area and a scaled-count selection and rejects malformed ones', () => {
+    const selection = (extra: Record<string, unknown>): unknown =>
+      wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, ...extra } });
+    expect(() => EffectIRSchema.parse(selection({ areas: ['WING', 'BACK'] }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(selection({ areas: [] }))).toThrow();
+    expect(() => EffectIRSchema.parse(selection({ areas: ['WING', 'WING'] }))).toThrow();
+    expect(() => EffectIRSchema.parse(selection({ areas: ['NOWHERE'] }))).toThrow();
+    expect(() =>
+      EffectIRSchema.parse(selection({ count: 1, countScale: 'opponent-characters-in-battle' })),
+    ).not.toThrow();
+    expect(() =>
+      EffectIRSchema.parse(selection({ count: null, countScale: 'opponent-characters-in-battle' })),
+    ).toThrow();
+    expect(() => EffectIRSchema.parse(selection({ count: 1, countScale: 'nope' }))).toThrow();
+    const literal = EffectIRSchema.parse(selection({})) as unknown;
+    expect(JSON.stringify(literal)).not.toMatch(/areas|countScale/);
+  });
+
+  it('accepts a scaled mill and rejects an unknown scale source', () => {
+    const mill = (extra: Record<string, unknown>): unknown =>
+      wrap({ ...VALID['mill'], ...extra });
+    expect(() => EffectIRSchema.parse(mill({ countScale: 'opponent-characters-on-wing' }))).not.toThrow();
+    expect(() => EffectIRSchema.parse(mill({ countScale: 'nope' }))).toThrow();
+    expect(JSON.stringify(EffectIRSchema.parse(mill({})))).not.toMatch(/countScale/);
+  });
+
   it('accepts every filter facet and rejects a malformed one', () => {
     const named = (filter: Record<string, unknown>): unknown =>
       wrap({ kind: 'prune', target: { ...OPPONENT_BATTLE, filter: { ...NO_FILTER, ...filter } } });
