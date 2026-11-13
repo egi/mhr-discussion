@@ -665,7 +665,12 @@ export type EffectOp =
       readonly kind: 'copy-attached-effects';
       readonly target: EffectTarget;
       readonly duration: 'this-turn';
-    };
+    }
+  /**
+   * The controller chooses one of two to four alternatives and only that one runs. The answer is
+   * the index of the chosen alternative, carried outside the pick list.
+   */
+  | { readonly kind: 'choose-one'; readonly options: readonly EffectOp[] };
 
 /** Every op kind, in vocabulary order. A kind missing from this list is a compile error. */
 export const EFFECT_OP_KINDS = [
@@ -696,6 +701,7 @@ export const EFFECT_OP_KINDS = [
   'skip-phase',
   'grant-second-chance-attack',
   'copy-attached-effects',
+  'choose-one',
 ] as const satisfies readonly EffectOp['kind'][];
 
 const everyKindListed: [Exclude<EffectOp['kind'], (typeof EFFECT_OP_KINDS)[number]>] extends [never]

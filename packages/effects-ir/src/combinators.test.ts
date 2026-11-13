@@ -10,6 +10,7 @@ import {
   battleMove,
   characters,
   colored,
+  chooseOne,
   conditional,
   copyAttachedEffects,
   cover,
@@ -85,6 +86,7 @@ const OPS: Record<string, EffectOp> = {
   skipBattlePhase: skipBattlePhase(),
   grantSecondChanceAttack: grantSecondChanceAttack(source()),
   copyAttachedEffects: copyAttachedEffects(source()),
+  chooseOne: chooseOne(draw('self', 1), draw('opponent', 1)),
 };
 
 describe('combinators', () => {
@@ -234,5 +236,14 @@ describe('the pick-name and scale helpers', () => {
     expect(hostOfSourceMatches(ANY_CARD)).toEqual({ kind: 'host-of-source-matches', filter: ANY_CARD });
     expect(namedPickLv('A', 4)).toEqual({ kind: 'named-pick-lv', name: 'A', lvMin: 4, lvMax: null });
     expect(namedPickLv('B', null, 2)).toEqual({ kind: 'named-pick-lv', name: 'B', lvMin: null, lvMax: 2 });
+  });
+});
+
+describe('chooseOne', () => {
+  it('builds the literal op', () => {
+    expect(chooseOne(draw('self', 1), draw('self', 2))).toEqual({
+      kind: 'choose-one',
+      options: [draw('self', 1), draw('self', 2)],
+    });
   });
 });

@@ -257,6 +257,7 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
     otherwise: EffectOpRef.nullable(),
   }),
   z.strictObject({ kind: z.literal('optional'), op: EffectOpRef }),
+  z.strictObject({ kind: z.literal('choose-one'), options: z.array(EffectOpRef).min(2).max(4).readonly() }),
   z.strictObject({
     kind: z.literal('retreat-attached-of-host'),
     host: EffectTargetSchema,

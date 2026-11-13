@@ -38,6 +38,8 @@ function kindsIn(op: EffectOp): string[] {
       ];
     case "optional":
       return [op.kind, ...kindsIn(op.op)];
+    case "choose-one":
+      return [op.kind, ...op.options.flatMap(kindsIn)];
     default:
       return [op.kind];
   }
@@ -47,6 +49,7 @@ function kindsIn(op: EffectOp): string[] {
 const NOT_AUTHORED: readonly string[] = [
   // Vocabulary added from the survey of unfinished effect texts; scripts for them come later.
   "copy-attached-effects",
+  "choose-one",
 ];
 
 describe("card scripts", () => {

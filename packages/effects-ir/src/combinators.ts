@@ -313,6 +313,11 @@ export function conditional(
   return { kind: 'conditional', condition, then, otherwise };
 }
 
+/** The controller chooses one of the alternatives (two to four) and only it runs. */
+export function chooseOne(...options: readonly EffectOp[]): EffectOp {
+  return { kind: 'choose-one', options };
+}
+
 /** The character the source card is attached to satisfies the filter. */
 export function hostOfSourceMatches(filter: EffectFilter): EffectCondition {
   return { kind: 'host-of-source-matches', filter };

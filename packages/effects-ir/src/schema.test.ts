@@ -109,6 +109,7 @@ const VALID: Readonly<Record<EffectOp['kind'], EffectOp>> = {
     duration: 'this-turn',
   },
   'copy-attached-effects': { kind: 'copy-attached-effects', target: SOURCE, duration: 'this-turn' },
+  'choose-one': { kind: 'choose-one', options: [DRAW_ONE, { kind: 'discard', target: OWN_HAND }] },
 };
 
 const wrap = (op: unknown): unknown => ({ cardNo: 'BP01-001', rulesVersion: '1.0', op });
@@ -601,5 +602,39 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     expect(() => EffectIRSchema.parse({ ...base, partial: false })).toThrow();
     expect(() => EffectIRSchema.parse({ ...base, partially: true })).toThrow();
     expect(() => EffectIRSchema.parse(base)).not.toThrow();
+  });
+});
+
+describe('the choose-one op', () => {
+  const alt = (n: number) => Array.from({ length: n }, () => DRAW_ONE);
+  it('accepts two to four alternatives', () => {
+    for (const n of [2, 3, 4]) {
+      expect(() => EffectIRSchema.parse(wrap({ kind: 'choose-one', options: alt(n) }))).not.toThrow();
+    }
+  });
+  it('rejects one, five, zero and an unknown key', () => {
+    for (const n of [0, 1, 5]) {
+      expect(() => EffectIRSchema.parse(wrap({ kind: 'choose-one', options: alt(n) }))).toThrow();
+    }
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'choose-one', options: alt(2), extra: 1 }))).toThrow();
+  });
+  it('parses nested in a sequence and in a conditional branch', () => {
+    const one = { kind: 'choose-one', options: alt(2) };
+    expect(() =>
+      EffectIRSchema.parse(wrap({ kind: 'sequence', steps: [{ gate: 'always', op: one }] })),
+    ).not.toThrow();
+    expect(() =>
+      EffectIRSchema.parse(
+        wrap({
+          kind: 'conditional',
+          condition: { kind: 'have', side: 'self', area: 'BASE', filter: NO_FILTER, min: 0, max: 0 },
+          then: one,
+          otherwise: null,
+        }),
+      ),
+    ).not.toThrow();
+  });
+  it('rejects an unsupported shape inside an alternative', () => {
+    expect(() => EffectIRSchema.parse(wrap({ kind: 'choose-one', options: [DRAW_ONE, { kind: 'nope' }] }))).toThrow();
   });
 });
