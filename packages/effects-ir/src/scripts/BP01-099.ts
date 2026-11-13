@@ -12,7 +12,10 @@
  * printed Lv4 or above (the `levelAtLeast` subject filter). It fires for the seat that does not
  * control the entering character, not for an own entry, and not for a face-down card flipped
  * face up (discussion 30, HEAD-JUDGE: a flip is not entering the field). The discard is
- * optional (304.1.a). Only if cards were discarded does this card go to the VOID, and then the
+ * optional (304.1.a). The discard is a cost that must be paid in full (user decision of
+ * 2026-11-13, tier: user decision, FAQ F-29), overriding the "do as much as you can" default for
+ * counted discards: with fewer than 2 cards in the HAND nothing is discarded and nothing is
+ * pruned, so the IR checks for 2 HAND cards first. Only if the 2 cards were discarded does this card go to the VOID, and then the
  * opponent's field character (BATTLE or BASE, a face-down card is not a character, 301.21.a)
  * the player picks; with no such character the first prune stays and the effect resolves as far
  * as it can (discussion 25, HEAD-JUDGE via FAQ F-30, provisional: the head judge noted he might
@@ -31,6 +34,7 @@ import { asCardNo, asRuleKey } from '@mhr/core';
 import {
   ANY_CARD,
   characters,
+  conditional,
   discard,
   effect,
   ifDone,
@@ -69,11 +73,15 @@ export function script(): EffectIR {
   return effect(
     CARD_NO,
     optional(
-      sequence(
-        step(discard(select('self', 'HAND', ANY_CARD, 2))),
-        ifDone(
-          sequence(step(prune(source())), step(prune(select('opponent', 'FIELD', characters())))),
+      conditional(
+        { kind: 'have', side: 'self', area: 'HAND', filter: ANY_CARD, min: 2, max: null },
+        sequence(
+          step(discard(select('self', 'HAND', ANY_CARD, 2))),
+          ifDone(
+            sequence(step(prune(source())), step(prune(select('opponent', 'FIELD', characters())))),
+          ),
         ),
+        null,
       ),
     ),
     trigger('opponent-character-enters-field', 'FIELD', undefined, { levelAtLeast: 4 }),
