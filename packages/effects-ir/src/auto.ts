@@ -113,7 +113,16 @@ export type AutoQuantity =
       readonly stat: EffectStat;
     }
   /** The abilities the face-up characters in the area print, counted with repeats. */
-  | { readonly kind: 'abilities-in-area'; readonly side: EffectSide; readonly area: EffectArea };
+  | { readonly kind: 'abilities-in-area'; readonly side: EffectSide; readonly area: EffectArea }
+  /**
+   * The abilities the face-up characters in the area currently have: one per distinct ability per
+   * character (an ability counts once however many times it is printed or granted), the printed
+   * ones unless the character has lost its effects, plus abilities an AUTO grants and abilities
+   * in the per-turn record. A character that lost its effects counts none, later grants included
+   * (CR v1.03 301.33.a). Not ruled beyond 201.10.b and 301.33.a: user decision D-13 of
+   * 17.5.1.1-CONTEXT.md.
+   */
+  | { readonly kind: 'effective-abilities-in-area'; readonly side: EffectSide; readonly area: EffectArea };
 
 /**
  * How a stat moves: by a signed amount, to a fixed value, by an amount scaled by a counted
