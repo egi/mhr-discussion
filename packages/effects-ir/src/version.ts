@@ -17,10 +17,12 @@ export const EFFECT_RULES_REVISION = asRuleRevision('1.03');
  *
  * The suffix marks the move from scripts that covered a subset of the card pool to scripts that
  * cover the whole of it, restamped once more when the engine gained the capabilities the
- * remaining cards need (owner state, power-change events, DOUBLE ATTACK, BLOCK and others). The interpreter refuses an IR whose stamp differs, so a
+ * remaining cards need (owner state, power-change events, DOUBLE ATTACK, BLOCK and others), and
+ * restamped a last time for the capabilities added afterwards (event payloads, the counter-call
+ * predicate, up-to targets that may take none). The interpreter refuses an IR whose stamp differs, so a
  * script written before the move never runs under the new vocabulary. The rules revision itself
  * is unchanged, which keeps every citation and rule key as it was. A shared link stores no IR:
  * it replays by regenerating the IR from today's scripts, so an old link replays under the
  * current script semantics.
  */
-export const EFFECT_RULES_VERSION: string = `${EFFECT_RULES_REVISION}+17.2`;
+export const EFFECT_RULES_VERSION: string = `${EFFECT_RULES_REVISION}+17.5.1`;
