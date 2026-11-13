@@ -138,9 +138,10 @@ export const GAME_STATE_LIMITS = Object.freeze({
   /** 101.1.d — copies of one name per deck, read through `CardInstance.nameKey`. */
   copiesPerName: 3,
   /**
-   * 303.2.a.4.3.2.3.1.1 and 303.2.a.5.2.1.1 — one COUNTER CALL per turn. The two rules
-   * scope "once per turn" to a phase each (the Counter Step and the Counter Phase), and
-   * the document does not settle which reading governs. See `TurnState.counterCallPhase`.
+   * 303.2.a.4.3.2.3.1.1 and 303.2.a.5.2.1.1 — one COUNTER CALL per phase. Each rule scopes
+   * "at most once per turn" to its own phase (the Counter Step of the Battle Phase and the
+   * Counter Phase), so a player may make one call in each. This constant is the quota for
+   * one phase. See `TurnState.counterCallPhase`.
    */
   counterCallsPerTurn: 1,
 } as const);
@@ -202,11 +203,10 @@ export type BattleField = {
 /**
  * A player's per-turn counters.
  *
- * The COUNTER CALL is the one modelled ambiguity: 303.2.a.4.3.2.3.1.1 (Counter Step) and
- * 303.2.a.5.2.1.1 (Counter Phase) each grant "at most once per turn" *within a phase*.
- * A single field records the phase in which it was spent, so either reading — once per
- * turn, or once in each of the two phases — is a one-line change here rather than a
- * re-shape. **Open question; deliberately not resolved.**
+ * The COUNTER CALL quota: 303.2.a.4.3.2.3.1.1 (Counter Step) and 303.2.a.5.2.1.1 (Counter
+ * Phase) each grant "at most once per turn" *within a phase*, so a player has one call per
+ * Battle Phase and one per Counter Phase (community discussion 01, RESOLVED). A single
+ * field records the phase in which the most recent call was spent.
  */
 export type TurnState = {
   /** 303.2.a.3.1.2.2, narrowed to 1 by 303.2.a.3.1.2.3 on the first player's first turn. */
