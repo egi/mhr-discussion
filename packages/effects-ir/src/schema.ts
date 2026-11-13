@@ -136,6 +136,13 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('top-card-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('total-lv-lower-than-opponent') }),
   z.strictObject({ kind: z.literal('retreated-cards-match'), filter: EffectFilterSchema }),
+  z.strictObject({ kind: z.literal('host-of-source-matches'), filter: EffectFilterSchema }),
+  z.strictObject({
+    kind: z.literal('named-pick-lv'),
+    name: PickNameSchema,
+    lvMin: z.number().int().nonnegative().nullable(),
+    lvMax: z.number().int().nonnegative().nullable(),
+  }),
 ]);
 
 const DurationSchema = z.literal('this-turn');

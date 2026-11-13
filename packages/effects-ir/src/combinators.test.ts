@@ -22,6 +22,8 @@ import {
   grantAbility,
   grantSecondChanceAttack,
   hostOfSource,
+  hostOfSourceMatches,
+  namedPickLv,
   ifDone,
   trigger,
   mill,
@@ -226,5 +228,11 @@ describe('the pick-name and scale helpers', () => {
     expect(EffectTriggerSchema.safeParse(trigger('attacks', 'HAND', attackerFilter({ color: 'red' }))).success).toBe(
       true,
     );
+  });
+
+  it('builds the host-of-source-matches and named-pick-lv conditions', () => {
+    expect(hostOfSourceMatches(ANY_CARD)).toEqual({ kind: 'host-of-source-matches', filter: ANY_CARD });
+    expect(namedPickLv('A', 4)).toEqual({ kind: 'named-pick-lv', name: 'A', lvMin: 4, lvMax: null });
+    expect(namedPickLv('B', null, 2)).toEqual({ kind: 'named-pick-lv', name: 'B', lvMin: null, lvMax: 2 });
   });
 });

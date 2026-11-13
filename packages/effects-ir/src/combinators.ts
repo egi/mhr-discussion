@@ -313,6 +313,20 @@ export function conditional(
   return { kind: 'conditional', condition, then, otherwise };
 }
 
+/** The character the source card is attached to satisfies the filter. */
+export function hostOfSourceMatches(filter: EffectFilter): EffectCondition {
+  return { kind: 'host-of-source-matches', filter };
+}
+
+/** The card bound to `name` is, where it now stands, within the effective-Lv bounds (`null`: unbounded). */
+export function namedPickLv(
+  name: EffectPickName,
+  lvMin: number | null,
+  lvMax: number | null = null,
+): EffectCondition {
+  return { kind: 'named-pick-lv', name, lvMin, lvMax };
+}
+
 /** "You may": the player chose to run the wrapped op by taking the action. */
 export function optional(op: EffectOp): EffectOp {
   return { kind: 'optional', op };

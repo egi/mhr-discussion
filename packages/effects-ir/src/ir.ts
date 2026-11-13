@@ -512,7 +512,25 @@ export type EffectCondition =
    * The previous step was a retreat that moved at least one card, and every card it moved is face up
    * and satisfies the filter. A face-down card never satisfies it.
    */
-  | { readonly kind: 'retreated-cards-match'; readonly filter: EffectFilter };
+  | { readonly kind: 'retreated-cards-match'; readonly filter: EffectFilter }
+  /**
+   * The character the source card is attached to satisfies the filter (its features as printed).
+   * Unexecutable when the source card is not attached.
+   */
+  | { readonly kind: 'host-of-source-matches'; readonly filter: EffectFilter }
+  /**
+   * `name` only finds the card (by iid) an earlier step bound; the condition then reads that card's
+   * effective Lv where it now stands, live when the condition is evaluated: not a pick-time snapshot
+   * and not the printed Lv. Unexecutable when the name is unbound; false (not met) when the card
+   * cannot be located or its Lv cannot be determined (user decision D-31). The `subject` binding is
+   * not rebound (D-21). `null` means no bound on that side.
+   */
+  | {
+      readonly kind: 'named-pick-lv';
+      readonly name: EffectPickName;
+      readonly lvMin: number | null;
+      readonly lvMax: number | null;
+    };
 
 /** One step of a sequence. */
 export type EffectStep = {
@@ -687,6 +705,8 @@ export const EFFECT_CONDITION_KINDS = [
   'top-card-matches',
   'total-lv-lower-than-opponent',
   'retreated-cards-match',
+  'host-of-source-matches',
+  'named-pick-lv',
 ] as const satisfies readonly EffectCondition['kind'][];
 
 const everyConditionListed: [

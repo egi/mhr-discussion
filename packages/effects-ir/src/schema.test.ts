@@ -423,12 +423,20 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     'top-card-matches': { kind: 'top-card-matches', filter: NO_FILTER },
     'total-lv-lower-than-opponent': { kind: 'total-lv-lower-than-opponent' },
     'retreated-cards-match': { kind: 'retreated-cards-match', filter: NO_FILTER },
+    'host-of-source-matches': { kind: 'host-of-source-matches', filter: NO_FILTER },
+    'named-pick-lv': { kind: 'named-pick-lv', name: 'A', lvMin: 4, lvMax: null },
   };
 
   it.each(EFFECT_CONDITION_KINDS)('accepts a %s condition and rejects an unknown key on it', (kind) => {
     const condition = CONDITIONS[kind];
     expect(() => EffectIRSchema.parse(conditional(condition))).not.toThrow();
     expect(() => EffectIRSchema.parse(conditional({ ...condition, surplus: 1 }))).toThrow();
+  });
+
+  it('rejects a named-pick-lv condition with no name', () => {
+    expect(() =>
+      EffectIRSchema.parse(conditional({ kind: 'named-pick-lv', lvMin: 4, lvMax: null })),
+    ).toThrow();
   });
 
   it('rejects an unknown condition kind', () => {
