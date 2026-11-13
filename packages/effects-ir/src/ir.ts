@@ -179,6 +179,13 @@ export type TriggerSubjectFilter = {
    * the other player (`'opponent'`), read when the event happens. Append-only: left out when unused.
    */
   readonly turn?: 'own' | 'opponent' | undefined;
+  /**
+   * For a power-change event: fires only when the effect that caused the change is controlled by
+   * the seat of the card carrying the script (`'own'`) or by the other seat (`'opponent'`), read
+   * when the event happens. An event with no determinable cause never passes; a battle result is
+   * not an effect and gives no cause (user decision D-12, 2026-11-13). Append-only: left out when unused.
+   */
+  readonly causeSide?: 'own' | 'opponent' | undefined;
 };
 
 /**

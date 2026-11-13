@@ -290,6 +290,30 @@ describe('the optional trigger tag', () => {
   });
 });
 
+describe('the causeSide subject filter key', () => {
+  const base = { cardNo: 'BP01-033', rulesVersion: '1.03', op: VALID['draw'] };
+  const withSubject = (subject: unknown): unknown => ({
+    ...base,
+    trigger: { event: 'host-power-decreases', area: 'BATTLE', subject },
+  });
+
+  it('accepts own and opponent', () => {
+    expect(EffectIRSchema.safeParse(withSubject({ causeSide: 'own' })).success).toBe(true);
+    expect(EffectIRSchema.safeParse(withSubject({ causeSide: 'opponent' })).success).toBe(true);
+  });
+
+  it('rejects an unknown value and a number', () => {
+    expect(EffectIRSchema.safeParse(withSubject({ causeSide: 'both' })).success).toBe(false);
+    expect(EffectIRSchema.safeParse(withSubject({ causeSide: 1 })).success).toBe(false);
+  });
+
+  it('reads and serialises a filter without the key as before', () => {
+    const parsed = EffectIRSchema.safeParse(withSubject({ levelAtLeast: 2 }));
+    expect(parsed.success).toBe(true);
+    expect(JSON.stringify(parsed.data)).not.toContain('causeSide');
+  });
+});
+
 describe('the optional attacker feature filter', () => {
   const base = {
     cardNo: 'BP01-033',

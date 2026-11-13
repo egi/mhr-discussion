@@ -299,6 +299,7 @@ export const TriggerSubjectFilterSchema = z.strictObject({
   levelAtMost: z.number().int().min(0).optional(),
   lane: z.enum(['FRONT', 'WING', 'BACK']).optional(),
   turn: z.enum(['own', 'opponent']).optional(),
+  causeSide: z.enum(['own', 'opponent']).optional(),
 });
 
 export const EffectTriggerSchema = z
