@@ -24,6 +24,7 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | 17 | 17-same-event-triggers-atomic-grouping.md | HEAD-JUDGE (result; the grouping mechanism is ESCALATE-OPEN) | Triggers of one event are atomic; which events group is unstated |
 | 18 | 18-hand-triggers-and-drawn-cards.md | HEAD-JUDGE (304.1.k RESOLVED) | A drawn card still triggers from HAND at that timing; HAND triggers need no declaration |
 | 19 | 19-swap-layers-and-position-state.md | HEAD-JUDGE (swap; other moves ESCALATE-OPEN) | A swap exchanges the card only; layer-2 results stay on the position |
+| 20 | 20-swap-counts-as-attach.md | ESCALATE-OPEN | Does a swap re-trigger "when attached" or "hit field"? |
 | 22 | 22-declared-attack-counts-as-attacked.md | HEAD-JUDGE | Declaring an attack counts as having attacked |
 | 23 | 23-win-a-battle-triggers.md | HEAD-JUDGE (defender; weakness CONSENSUS) | Who "wins a battle" |
 | 24 | 24-partial-resolution-do-as-much-as-you-can.md | HEAD-JUDGE (principle; cases CONSENSUS) | Cost paid, effect does what it can; a full zone does nothing for that part |
