@@ -85,8 +85,9 @@ export type EffectArea = (typeof EFFECT_AREAS)[number];
  * whose Power changed ("this card"), `own-character-power-increases`/`-decreases` by every face-up
  * card of the seat that controls the changed character, `host-power-decreases` by the cards attached
  * to it, and `own-character-r-or-power-increases` also counts an R-only increase. The changed amount
- * is available to the effect as the `power-increase-value` scale source. `would-be-attached` is named
- * so a script can be tagged, but the engine has no pre-attach window to emit it from.
+ * is available to the effect as the `power-increase-value` scale source. `would-be-attached` is seen by
+ * the host a card is attached to, at the ordinary after-attach moment (discussion 45), with the
+ * attachment as the subject and the card whose effect attached it as the cause.
  */
 export const EFFECT_TRIGGER_EVENTS = [
   'enters-field-by-call',
