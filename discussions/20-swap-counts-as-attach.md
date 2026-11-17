@@ -1,6 +1,6 @@
 # 20 - A swap counts as an attach
 
-**Status: ESCALATE-OPEN (nothing here is a head judge ruling; do not implement either reading as settled)**
+**Status: ESCALATE-OPEN (closed 2026-11-17 by user decision: a swap counts as a re-attach; nothing here is a head judge ruling)**
 
 > Source note: L<n> citations refer to a private chat export and cannot be re-checked by readers. This text is a paraphrase, and people appear by role only.
 
@@ -28,7 +28,7 @@ Nothing on this question.
 
 ## Verdict
 
-ESCALATE-OPEN. The rulebook says that swapped cards exchange their attached cards (301.18.c), that a swap is treated as moving (301.18.d), and that a swap between two areas other than the HAND and the deck places both cards (301.18.e). None of the three mentions attaching. Any provisional engine behaviour must stay marked in code and must not be cited as settled.
+Closed by user decision on 2026-11-17: this project treats a host swap as a re-attach, based on member agreement. A swap fires attach triggers only: it is not a hit-field event, and the swapped characters do not count as entering the field. The Power-decrease check re-runs for the new host after a swap, comparing the previous host's Power before with the new host's Power after; the former host of a swap with its own attached card is not checked. The head judge has not ruled; reopen if they do. The rulebook says that swapped cards exchange their attached cards (301.18.c), that a swap is treated as moving (301.18.d), and that a swap between two areas other than the HAND and the deck places both cards (301.18.e). None of the three mentions attaching. The engine marks this behaviour as a user decision and must not cite it as a head judge ruling.
 
 ## Rulebook check
 

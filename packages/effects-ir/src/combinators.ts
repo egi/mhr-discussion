@@ -247,7 +247,8 @@ export function cover(target: EffectTarget): EffectOp {
 
 /**
  * Swap the positions of two cards. With `hostSwap` one side is attached to the other and the two
- * trade places (provisional, OPEN-RULING 20); without it the call builds the plain swap literal.
+ * trade places (OPEN-RULING 20, decided by user decision 2026-11-17; the head judge has not
+ * ruled); without it the call builds the plain swap literal.
  */
 export function swap(a: EffectTarget, b: EffectTarget, hostSwap?: true): EffectOp {
   return hostSwap === true ? { kind: 'swap', a, b, hostSwap } : { kind: 'swap', a, b };

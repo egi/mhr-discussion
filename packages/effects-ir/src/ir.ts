@@ -633,9 +633,9 @@ export type EffectOp =
       /**
        * When set, one side is a card attached to the card on the other side and the swap trades
        * their places: the attached card becomes the character and the former host becomes an
-       * attached card. PROVISIONAL under OPEN-RULING 20 (discussion 20, ESCALATE-OPEN; user decision
-       * D-15 of 17.5.1.1-CONTEXT.md), never a settled reading. Append-only: absent for every
-       * existing swap.
+       * attached card. A swap counts as a re-attach and is not a hit-field event (OPEN-RULING 20,
+       * decided: user decision 2026-11-17, discussion 20 closed; the head judge has not ruled).
+       * Append-only: absent for every existing swap.
        */
       readonly hostSwap?: true | undefined;
     }
