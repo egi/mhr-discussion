@@ -31,14 +31,13 @@ import {
   ifDone,
   relocate,
   retreat,
-  selectAll,
   sequence,
   source,
   step,
   trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
-import type { EffectIR } from '../ir';
+import type { EffectIR, EffectTarget } from '../ir';
 
 export const CARD_NO = asCardNo('SP01-005');
 
@@ -56,6 +55,17 @@ export const RULE_DECLARATION = declareRules({
   ],
 });
 
+/** Every own card on the field with Buster in its name, attached cards included. */
+const busterCards = (): EffectTarget => ({
+  kind: 'selected',
+  side: 'self',
+  area: 'FIELD',
+  count: null,
+  upTo: false,
+  filter: { ...ANY_CARD, nameIncludes: 'Buster' },
+  includeAttached: true,
+});
+
 /** The effect's IR. */
 export function script(): EffectIR {
   return effect(
@@ -63,12 +73,7 @@ export function script(): EffectIR {
     conditional(
       { kind: 'have-weakness' },
       sequence(
-        step(
-          retreat({
-            ...selectAll('self', 'FIELD', { ...ANY_CARD, nameIncludes: 'Buster' }),
-            includeAttached: true,
-          }),
-        ),
+        step(retreat(busterCards())),
         ifDone(relocate(source(), { side: 'self', area: 'BATTLE', faceDown: false })),
       ),
     ),
