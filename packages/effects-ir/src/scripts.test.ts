@@ -153,6 +153,9 @@ const TAGGED: Readonly<
   },
   "BP01-072": { event: "own-weakness-attacked", area: "HAND" },
   "BP01-078": { event: "enters-retreat-by-losing-fight", area: "RETREAT" },
+  "BP01-001": { event: "enters-field-by-call", area: "FIELD" },
+  "BP01-094": { event: "turn-ends", area: "FIELD" },
+  "SP01-067": { event: "enters-field-by-call", area: "BATTLE" },
   "BP01-100": { event: "enters-field", area: "FIELD" },
   "TB01-001": { event: "enters-field-by-call", area: "FIELD" },
   "BP01-101": { event: "own-weakness-attacked", area: "FIELD" },
@@ -385,7 +388,7 @@ describe("trigger tags", () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(
       Object.keys(TAGGED).sort(),
     );
-    expect(tagged).toHaveLength(172);
+    expect(tagged).toHaveLength(175);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }

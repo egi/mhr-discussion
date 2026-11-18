@@ -13,6 +13,7 @@
  * `registry.test.ts` fails if a script file has no entry here, or an entry has no file.
  */
 import type { CardScript } from '../ir';
+import * as BP01_001 from './BP01-001';
 import * as BP01_002 from './BP01-002';
 import * as BP01_003 from './BP01-003';
 import * as BP01_005 from './BP01-005';
@@ -79,6 +80,7 @@ import * as BP01_090 from './BP01-090';
 import * as BP01_091 from './BP01-091';
 import * as BP01_092 from './BP01-092';
 import * as BP01_093 from './BP01-093';
+import * as BP01_094 from './BP01-094';
 import * as BP01_095 from './BP01-095';
 import * as BP01_096 from './BP01-096';
 import * as BP01_098 from './BP01-098';
@@ -213,6 +215,7 @@ import * as SP01_059 from './SP01-059';
 import * as SP01_040 from './SP01-040';
 import * as SP01_049 from './SP01-049';
 import * as SP01_066 from './SP01-066';
+import * as SP01_067 from './SP01-067';
 import * as SP01_068 from './SP01-068';
 import * as SP01_070 from './SP01-070';
 import * as SP01_074 from './SP01-074';
@@ -226,6 +229,7 @@ import * as SP01_080 from './SP01-080';
 import * as TB01_001 from './TB01-001';
 
 export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
+  'BP01-001': BP01_001.script,
   'BP01-002': BP01_002.script,
   'BP01-003': BP01_003.script,
   'BP01-005': BP01_005.script,
@@ -292,6 +296,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-091': BP01_091.script,
   'BP01-092': BP01_092.script,
   'BP01-093': BP01_093.script,
+  'BP01-094': BP01_094.script,
   'BP01-095': BP01_095.script,
   'BP01-096': BP01_096.script,
   'BP01-098': BP01_098.script,
@@ -425,6 +430,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SP01-062': SP01_062.script,
   'SP01-063': SP01_063.script,
   'SP01-066': SP01_066.script,
+  'SP01-067': SP01_067.script,
   'SP01-068': SP01_068.script,
   'SP01-069': SP01_069.script,
   'SP01-070': SP01_070.script,
