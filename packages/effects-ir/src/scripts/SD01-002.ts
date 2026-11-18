@@ -46,7 +46,7 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.16.a.4'), reviewedHash: '47953ce28d45' }, // an Attached Card retreated by effect
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
   ],
-  rulings: [{ discussion: '10', rule: asRuleKey('304.1.d') }],
+  rulings: [],
 });
 
 /** The effect's IR. */

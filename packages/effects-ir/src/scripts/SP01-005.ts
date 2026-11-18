@@ -52,7 +52,6 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
   ],
   rulings: [
-    { discussion: '10', rule: asRuleKey('304.1.d') },
     { discussion: '24', rule: asRuleKey('304.1.d') },
   ],
 });
