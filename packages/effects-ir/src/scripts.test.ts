@@ -153,6 +153,11 @@ const TAGGED: Readonly<
   },
   "BP01-072": { event: "own-weakness-attacked", area: "HAND" },
   "BP01-078": { event: "enters-retreat-by-losing-fight", area: "RETREAT" },
+  "BP01-080": {
+    event: "opponent-character-attacks",
+    area: "HAND",
+    subject: { level: 3 },
+  },
   "BP01-081": {
     event: "own-character-attacked",
     area: "HAND",
@@ -228,6 +233,11 @@ const TAGGED: Readonly<
     event: "opponent-character-enters-field",
     area: "HAND",
     subject: { feature: "Human", levelAtMost: 3 },
+  },
+  "SD03-015": {
+    event: "opponent-character-attacks",
+    area: "HAND",
+    subject: { level: 3 },
   },
   "SD03-016": {
     event: "own-character-attacked",
@@ -371,7 +381,7 @@ describe("trigger tags", () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(
       Object.keys(TAGGED).sort(),
     );
-    expect(tagged).toHaveLength(166);
+    expect(tagged).toHaveLength(168);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
