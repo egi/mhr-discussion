@@ -31,6 +31,7 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | 25 | 25-cost-only-activation-without-target.md | HEAD-JUDGE (provisional) | Activating with only a cost when the effect has no target |
 | 30 | 30-flip-is-not-entering-the-field.md | HEAD-JUDGE | A flip is not entering the field or a move |
 | 35 | 35-i-am-the-shield-swap-with-itself.md | HEAD-JUDGE | BP01-096 can swap with another copy |
+| 50 | 50-anti-venom-attach-and-attached-triggers-iron-man-black-panther.md | ESCALATE-OPEN | Anti-Venom vs on-attach triggers; AI-assisted answers only |
 
 ## How to keep this board in sync
 
