@@ -79,6 +79,7 @@ import * as BP01_092 from './BP01-092';
 import * as BP01_093 from './BP01-093';
 import * as BP01_095 from './BP01-095';
 import * as BP01_096 from './BP01-096';
+import * as BP01_098 from './BP01-098';
 import * as BP01_099 from './BP01-099';
 import * as BP01_102 from './BP01-102';
 import * as BP01_103 from './BP01-103';
@@ -204,7 +205,6 @@ import * as SP01_076 from './SP01-076';
 import * as SP01_077 from './SP01-077';
 import * as SP01_078 from './SP01-078';
 import * as SP01_079 from './SP01-079';
-import * as BP01_098 from './BP01-098';
 import * as SP01_080 from './SP01-080';
 
 export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
@@ -274,6 +274,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'BP01-093': BP01_093.script,
   'BP01-095': BP01_095.script,
   'BP01-096': BP01_096.script,
+  'BP01-098': BP01_098.script,
   'BP01-099': BP01_099.script,
   'BP01-102': BP01_102.script,
   'BP01-103': BP01_103.script,
@@ -399,6 +400,5 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SP01-077': SP01_077.script,
   'SP01-078': SP01_078.script,
   'SP01-079': SP01_079.script,
-  'BP01-098': BP01_098.script,
   'SP01-080': SP01_080.script,
 };
