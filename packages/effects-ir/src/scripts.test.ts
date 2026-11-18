@@ -116,6 +116,11 @@ const TAGGED: Readonly<
   "BP01-038": { event: "opponent-turn-starts", area: "BATTLE" },
   "BP01-041": { event: "attacks-weakness-successfully", area: "BATTLE" },
   "BP01-043": { event: "enters-field-by-call", area: "FIELD" },
+  "BP01-044": {
+    event: "opponent-character-enters-field",
+    area: "FIELD",
+    subject: { turn: "own" },
+  },
   "BP01-045": { event: "power-increases", area: "BATTLE" },
   "BP01-047": { event: "activate-counter", area: "FIELD" },
   "BP01-050": { event: "enters-field-by-call", area: "FIELD" },
@@ -250,6 +255,7 @@ const TAGGED: Readonly<
   },
   "SP01-010": { event: "activate", area: "BATTLE" },
   "SP01-015": { event: "host-attacks", area: "BATTLE" },
+  "SP01-041": { event: "wins-fight", area: "BATTLE" },
   "SP01-042": { event: "activate", area: "BATTLE" },
   "SD01-007": { event: "enters-field-by-call", area: "FIELD" },
   "SP01-001": { event: "enters-retreat-from-field", area: "RETREAT" },
@@ -365,7 +371,7 @@ describe("trigger tags", () => {
     expect(tagged.map(([key]) => key).sort()).toEqual(
       Object.keys(TAGGED).sort(),
     );
-    expect(tagged).toHaveLength(164);
+    expect(tagged).toHaveLength(166);
     for (const [key, script] of tagged) {
       expect(script().trigger).toEqual(TAGGED[key]);
     }
