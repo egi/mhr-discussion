@@ -113,6 +113,7 @@ import * as PB01_009 from './PB01-009';
 import * as PB01_010 from './PB01-010';
 import * as PB01_011 from './PB01-011';
 import * as SD01_001 from './SD01-001';
+import * as SD01_002 from './SD01-002';
 import * as SD01_003 from './SD01-003';
 import * as SD01_005 from './SD01-005';
 import * as SD01_006 from './SD01-006';
@@ -123,6 +124,7 @@ import * as SD01_014 from './SD01-014';
 import * as SD01_015 from './SD01-015';
 import * as SD01_016 from './SD01-016';
 import * as SD01_018 from './SD01-018';
+import * as SD02_002 from './SD02-002';
 import * as SD02_005 from './SD02-005';
 import * as SD02_008 from './SD02-008';
 import * as SD02_006 from './SD02-006';
@@ -162,7 +164,9 @@ import * as SD04_017 from './SD04-017';
 import * as SD04_018 from './SD04-018';
 import * as SP01_001 from './SP01-001';
 import * as SP01_004 from './SP01-004';
+import * as SP01_005 from './SP01-005';
 import * as SP01_006 from './SP01-006';
+import * as SP01_007 from './SP01-007';
 import * as SP01_008 from './SP01-008';
 import * as SP01_010 from './SP01-010';
 import * as SP01_039 from './SP01-039';
@@ -180,6 +184,7 @@ import * as SP01_031 from './SP01-031';
 import * as SP01_032 from './SP01-032';
 import * as SP01_034 from './SP01-034';
 import * as SP01_035 from './SP01-035';
+import * as SP01_036 from './SP01-036';
 import * as SP01_038 from './SP01-038';
 import * as SP01_050 from './SP01-050';
 import * as SP01_042 from './SP01-042';
@@ -308,6 +313,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'PB01-010': PB01_010.script,
   'PB01-011': PB01_011.script,
   'SD01-001': SD01_001.script,
+  'SD01-002': SD01_002.script,
   'SD01-003': SD01_003.script,
   'SD01-005': SD01_005.script,
   'SD01-006': SD01_006.script,
@@ -318,6 +324,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SD01-015': SD01_015.script,
   'SD01-016': SD01_016.script,
   'SD01-018': SD01_018.script,
+  'SD02-002': SD02_002.script,
   'SD02-005': SD02_005.script,
   'SD02-006': SD02_006.script,
   'SD02-007': SD02_007.script,
@@ -357,7 +364,9 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SD04-018': SD04_018.script,
   'SP01-001': SP01_001.script,
   'SP01-004': SP01_004.script,
+  'SP01-005': SP01_005.script,
   'SP01-006': SP01_006.script,
+  'SP01-007': SP01_007.script,
   'SP01-008': SP01_008.script,
   'SP01-010': SP01_010.script,
   'SP01-012': SP01_012.script,
@@ -374,6 +383,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
   'SP01-032': SP01_032.script,
   'SP01-034': SP01_034.script,
   'SP01-035': SP01_035.script,
+  'SP01-036': SP01_036.script,
   'SP01-038': SP01_038.script,
   'SP01-039': SP01_039.script,
   'SP01-040': SP01_040.script,
