@@ -21,15 +21,10 @@
  * there is no community or judge ruling on this card. Tests of the choice are named
  * `PROVISIONAL (planner reading, no ruling)`.
  *
- * OPEN-RULING 10, tier ESCALATE-OPEN (items 1 and 4; item 2 HEAD-JUDGE F-33):
- * .planning/research/community-rulings/discussions/10-auto-effect-ordering-open-items.md.
- * Discussion 10 frontmatter has `cards: []`, so the link comes from CONTEXT D-02 and which items
- * bite this card is the executor's reading, to be confirmed by the user: item 1 (AUTO same-moment
- * tie-break; user-confirmed engine reading of 2026-11-17, OPEN-RULING 10.1 still in place), item 2
- * (a retreat is immediate, HEAD-JUDGE F-33) and item 4 (unlettered 301.41 combinations;
- * user-confirmed engine reading of 2026-11-17, OPEN-RULING 10.4 still in place). Item 3 (the
- * "If you do" Reading B) does not apply: there is no "If you do" here. Nothing in discussion 10 is
- * implemented as settled by this script.
+ * A retreat by this effect is immediate (HEAD-JUDGE F-33), so the board is settled after one run.
+ * The engine's AUTO same-moment tie-break and its reading of unlettered 301.41 combinations are
+ * the user-confirmed engine readings of 2026-11-17, unchanged by this script. This card is not
+ * linked to any community-ruling discussion.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -45,7 +40,6 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.16.a.3'), reviewedHash: 'cdc114bcae3f' }, // retreat by effect
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
   ],
-  rulings: [{ discussion: '10', rule: asRuleKey('304.1.d') }],
 });
 
 /** The opponent's set cards in the field, as many as X. */
