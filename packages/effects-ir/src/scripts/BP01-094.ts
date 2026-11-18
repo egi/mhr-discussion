@@ -40,6 +40,7 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.16.a.3'), reviewedHash: 'cdc114bcae3f' }, // retreat by effect
     { key: asRuleKey('304.1.d'), reviewedHash: '7986869359ce' }, // resolve to the greatest extent
   ],
+  rulings: [],
 });
 
 /** The opponent's set cards in the field, as many as X. */
