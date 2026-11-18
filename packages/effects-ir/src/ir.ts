@@ -866,3 +866,35 @@ export type EffectIR = {
 
 /** An authored card script: a pure function producing the card's effect IR. */
 export type CardScript = () => EffectIR;
+
+/**
+ * A card with several printed effect lines: element N is the Nth printed effect line (keywords
+ * excluded; AUTO lines are numbered separately in `auto.ts`). The list is append-only, never
+ * reordered or removed. The facet is additive, so a `() => EffectIR` script keeps its exact IR
+ * JSON and hash.
+ */
+export type MultiClauseScript = () => readonly [EffectIR, EffectIR, ...EffectIR[]];
+
+/** Any authored card script: one clause or several. */
+export type AnyCardScript = CardScript | MultiClauseScript;
+
+/** The clauses a script produces, in printed order; a one-clause script yields one element. */
+export function scriptClauses(script: AnyCardScript): readonly EffectIR[] {
+  const out: EffectIR | readonly EffectIR[] = script();
+  return isClauseList(out) ? out : [out];
+}
+
+/**
+ * A one-clause script as the plain `CardScript`; `undefined` for no script or a multi-clause one.
+ * For readers that handle a single clause only.
+ */
+export function soleScript(script: AnyCardScript | undefined): CardScript | undefined {
+  if (script === undefined) return undefined;
+  const clauses = scriptClauses(script);
+  const only = clauses[0];
+  return clauses.length === 1 && only !== undefined ? () => only : undefined;
+}
+
+function isClauseList(v: EffectIR | readonly EffectIR[]): v is readonly EffectIR[] {
+  return Array.isArray(v);
+}

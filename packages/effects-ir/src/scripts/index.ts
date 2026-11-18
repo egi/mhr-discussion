@@ -12,7 +12,7 @@
  * point. Resolve it by combining the entries from both sides, never by dropping one.
  * `registry.test.ts` fails if a script file has no entry here, or an entry has no file.
  */
-import type { CardScript } from '../ir';
+import type { AnyCardScript } from '../ir';
 import * as BP01_001 from './BP01-001';
 import * as BP01_002 from './BP01-002';
 import * as BP01_003 from './BP01-003';
@@ -233,7 +233,7 @@ import * as SP01_079 from './SP01-079';
 import * as SP01_080 from './SP01-080';
 import * as TB01_001 from './TB01-001';
 
-export const CARD_SCRIPTS: Readonly<Record<string, CardScript>> = {
+export const CARD_SCRIPTS: Readonly<Record<string, AnyCardScript>> = {
   'BP01-001': BP01_001.script,
   'BP01-002': BP01_002.script,
   'BP01-003': BP01_003.script,

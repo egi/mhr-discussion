@@ -7,6 +7,7 @@
  */
 import { describe, expect, it } from 'vitest';
 import { asCardNo } from '@mhr/core';
+import { scriptClauses } from './ir';
 import { cardScript, scriptedCardNumbers } from './registry';
 
 // `import.meta.glob` is Vite-only and the engine's tsconfig carries no Vite types, so the
@@ -19,7 +20,7 @@ describe('card-script registry', () => {
   it('resolves an authored script', () => {
     const script = cardScript(asCardNo('BP01-005'));
     expect(script).toBeTypeOf('function');
-    expect(script?.().cardNo).toBe('BP01-005');
+    expect(script && scriptClauses(script)[0]?.cardNo).toBe('BP01-005');
   });
 
   it('returns undefined, without throwing, for an unscripted card', () => {

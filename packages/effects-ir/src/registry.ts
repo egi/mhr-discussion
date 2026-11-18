@@ -20,26 +20,33 @@
  */
 import { CARD_SCRIPTS } from './scripts';
 import { asCardNo, type CardNo } from '@mhr/core';
-import type { CardScript } from './ir';
+import { scriptClauses, type AnyCardScript, type CardScript } from './ir';
 import { EffectIRSchema } from './schema';
 
 export type { CardScript };
 
-const scripts: ReadonlyMap<CardNo, CardScript> = (() => {
-  const map = new Map<CardNo, CardScript>();
-  for (const [key, script] of Object.entries(CARD_SCRIPTS)) {
-    const cardNo = asCardNo(key);
-    const ir = EffectIRSchema.parse(script());
+/** Parses every clause of a script and requires each to name the card the script is keyed under. */
+export function assertClausesMatchKey(key: string, script: AnyCardScript): void {
+  const cardNo = asCardNo(key);
+  for (const clause of scriptClauses(script)) {
+    const ir = EffectIRSchema.parse(clause);
     if (ir.cardNo !== cardNo) {
       throw new Error(`CARD_SCRIPT_KEY_MISMATCH: ${key} produced an effect for ${ir.cardNo}`);
     }
-    map.set(cardNo, script);
+  }
+}
+
+const scripts: ReadonlyMap<CardNo, AnyCardScript> = (() => {
+  const map = new Map<CardNo, AnyCardScript>();
+  for (const [key, script] of Object.entries(CARD_SCRIPTS)) {
+    assertClausesMatchKey(key, script);
+    map.set(asCardNo(key), script);
   }
   return map;
 })();
 
 /** The authored script for a card, or `undefined` when the card is unscripted. */
-export function cardScript(cardNo: CardNo): CardScript | undefined {
+export function cardScript(cardNo: CardNo): AnyCardScript | undefined {
   return scripts.get(cardNo);
 }
 

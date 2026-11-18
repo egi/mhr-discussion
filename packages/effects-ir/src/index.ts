@@ -1,5 +1,6 @@
 export { cardScript, scriptedCardNumbers } from './registry';
-export type { CardScript } from './ir';
+export type { AnyCardScript, CardScript, MultiClauseScript } from './ir';
+export { scriptClauses, soleScript } from './ir';
 export * from './ir';
 export {
   AttackerFilterSchema,

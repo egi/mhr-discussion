@@ -4,6 +4,8 @@ import {
   EFFECT_OP_KINDS,
   type EffectArea,
   type EffectOp,
+  type EffectIR,
+  scriptClauses,
 } from "./ir";
 import { EffectIRSchema } from "./schema";
 import { CARD_SCRIPTS } from "./scripts";
@@ -57,36 +59,43 @@ describe("card scripts", () => {
   it.each(entries)(
     "%s parses, names its own file and carries the current revision",
     (key, script) => {
-      const ir = script();
-      expect(EffectIRSchema.safeParse(ir).success).toBe(true);
-      expect(ir.cardNo).toBe(key);
-      expect(fileCardNo(key)).toBe(key);
-      expect(ir.rulesVersion).toBe(EFFECT_RULES_VERSION);
+      for (const ir of scriptClauses(script)) {
+        expect(EffectIRSchema.safeParse(ir).success).toBe(true);
+        expect(ir.cardNo).toBe(key);
+        expect(fileCardNo(key)).toBe(key);
+        expect(ir.rulesVersion).toBe(EFFECT_RULES_VERSION);
+      }
     },
   );
 
   it("uses only kinds from the frozen vocabulary", () => {
     const frozen = new Set<string>(EFFECT_OP_KINDS);
     for (const [, script] of entries) {
-      for (const kind of kindsIn(script().op))
-        expect(frozen.has(kind)).toBe(true);
+      for (const ir of scriptClauses(script))
+        for (const kind of kindsIn(ir.op)) expect(frozen.has(kind)).toBe(true);
     }
   });
 
   it("authors every kind except the pinned gaps", () => {
-    const used = new Set(entries.flatMap(([, script]) => kindsIn(script().op)));
+    const used = new Set(entries.flatMap(([, script]) =>
+        scriptClauses(script).flatMap((ir) => kindsIn(ir.op)),
+      ));
     const missing = EFFECT_OP_KINDS.filter((kind) => !used.has(kind));
     expect(missing).toEqual([...NOT_AUTHORED]);
   });
 });
 
-/** Every tagged script with the Effect Location printed in its header (201.10.d.2). */
-const TAGGED: Readonly<
-  Record<
-    string,
-    { event: string; area: EffectArea; attacker?: object; subject?: object }
-  >
-> = {
+type Tag = {
+  event: string;
+  area: EffectArea;
+  attacker?: object;
+  subject?: object;
+};
+/**
+ * Every tagged script with the Effect Location printed in its header (201.10.d.2).
+ * Multi-clause card: the value is an array of tag objects indexed by clause (every clause tagged).
+ */
+const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "BP01-002": { event: "activate-counter", area: "HAND" },
   "BP01-005": {
     event: "attacks",
@@ -387,21 +396,26 @@ function relocateAreas(op: EffectOp): string[] {
 
 describe("trigger tags", () => {
   const entries = Object.entries(CARD_SCRIPTS);
-  const tagged = entries.filter(([, script]) => script().trigger !== undefined);
+  // One row per tagged clause: [key, clause index, clause].
+  const tagged: [string, number, EffectIR][] = entries.flatMap(([key, script]) =>
+    scriptClauses(script).flatMap((ir, i): [string, number, EffectIR][] =>
+      ir.trigger !== undefined ? [[key, i, ir]] : [],
+    ),
+  );
 
   it("tags exactly the pinned scripts, with the pinned event and area", () => {
-    expect(tagged.map(([key]) => key).sort()).toEqual(
-      Object.keys(TAGGED).sort(),
-    );
+    const taggedKeys = [...new Set(tagged.map(([key]) => key))].sort();
+    expect(taggedKeys).toEqual(Object.keys(TAGGED).sort());
     expect(tagged).toHaveLength(180);
-    for (const [key, script] of tagged) {
-      expect(script().trigger).toEqual(TAGGED[key]);
+    for (const [key, i, ir] of tagged) {
+      const want = TAGGED[key];
+      expect(ir.trigger).toEqual(Array.isArray(want) ? want[i] : want);
     }
   });
 
   it("tags only runnable scripts", () => {
-    for (const [, script] of tagged) {
-      const op = script().op;
+    for (const [, , ir] of tagged) {
+      const op = ir.op;
       for (const kind of kindsIn(op))
         expect(NOT_RUNNABLE_KINDS).not.toContain(kind);
       // A relocate to the FIELD or the BATTLE is run: the lane is the player's choice
@@ -412,7 +426,7 @@ describe("trigger tags", () => {
   });
 
   it("uses an area of FIELD, BATTLE, FRONT, WING, BACK, BASE, HAND, RETREAT or VOID", () => {
-    for (const [, script] of tagged) {
+    for (const [, , ir] of tagged) {
       expect([
         "FIELD",
         "BATTLE",
@@ -423,15 +437,18 @@ describe("trigger tags", () => {
         "HAND",
         "RETREAT",
         "VOID",
-      ]).toContain(script().trigger?.area);
+      ]).toContain(ir.trigger?.area);
     }
   });
 });
 
 describe("oncePerTurn marker", () => {
   it("is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008, SP01-010, SP01-055, SP01-056, SP01-060, SP01-049, SP01-069, SP01-078, BP01-062, SP01-007, SD01-002, SP01-036, SP01-019, SP01-072, SP01-075, SP01-011, SP01-058, BP01-101, SP01-066 and SP01-029 alone and absent (not undefined-valued) everywhere else", () => {
-    for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
-      const ir = script();
+    for (const [baseNo, script] of Object.entries(CARD_SCRIPTS)) {
+      const clauses = scriptClauses(script);
+      // Keyed by cardNo for a one-clause card, `<cardNo>#<index>` for a multi-clause card.
+      for (const [i, ir] of clauses.entries()) {
+      const cardNo = clauses.length === 1 ? baseNo : `${baseNo}#${i}`;
       if (
         cardNo === "EB01-007" ||
         cardNo === "BP01-023" ||
@@ -490,6 +507,7 @@ describe("oncePerTurn marker", () => {
       } else {
         expect("oncePerTurn" in ir).toBe(false);
       }
+      }
     }
   });
 });
@@ -498,11 +516,12 @@ describe("partial marker", () => {
   const PARTIAL_MARKED = new Set(["SP01-038"]);
   it("is set on SP01-038 alone and absent (not undefined-valued) everywhere else", () => {
     for (const [cardNo, script] of Object.entries(CARD_SCRIPTS)) {
-      const ir = script();
-      if (PARTIAL_MARKED.has(cardNo)) {
-        expect(ir.partial).toBe(true);
-      } else {
-        expect("partial" in ir).toBe(false);
+      for (const ir of scriptClauses(script)) {
+        if (PARTIAL_MARKED.has(cardNo)) {
+          expect(ir.partial).toBe(true);
+        } else {
+          expect("partial" in ir).toBe(false);
+        }
       }
     }
   });
