@@ -101,6 +101,7 @@ const VALID: Readonly<Record<EffectOp['kind'], EffectOp>> = {
   'rearrange-deck-top': { kind: 'rearrange-deck-top', side: 'self', count: 3 },
   'draw-by-board-comparison': { kind: 'draw-by-board-comparison', count: 1 },
   flip: { kind: 'flip', target: OWN_HAND, faceDown: false },
+  'flip-toggle': { kind: 'flip-toggle', target: OWN_HAND },
   'retarget-attack': { kind: 'retarget-attack', target: OPPONENT_BATTLE },
   'skip-phase': { kind: 'skip-phase', phase: 'battle', duration: 'this-turn' },
   'grant-second-chance-attack': {

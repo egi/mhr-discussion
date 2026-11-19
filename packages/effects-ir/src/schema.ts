@@ -287,6 +287,7 @@ export const EffectOpSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('rearrange-deck-top'), side: SideSchema, count: CountSchema }),
   z.strictObject({ kind: z.literal('draw-by-board-comparison'), count: CountSchema }),
   z.strictObject({ kind: z.literal('flip'), target: EffectTargetSchema, faceDown: z.boolean() }),
+  z.strictObject({ kind: z.literal('flip-toggle'), target: EffectTargetSchema }),
   z.strictObject({ kind: z.literal('retarget-attack'), target: EffectTargetSchema }),
   z.strictObject({
     kind: z.literal('skip-phase'),

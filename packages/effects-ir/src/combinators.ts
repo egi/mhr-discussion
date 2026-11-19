@@ -410,6 +410,11 @@ export function flip(target: EffectTarget, faceDown: boolean): EffectOp {
   return { kind: 'flip', target, faceDown };
 }
 
+/** Flip every card of the target in BASE: Characters face-down, then Face-Down Cards face-up (301.2.a.2). */
+export function flipToggle(target: EffectTarget): EffectOp {
+  return { kind: 'flip-toggle', target };
+}
+
 /** Change the target of the attack in progress. */
 export function retargetAttack(target: EffectTarget): EffectOp {
   return { kind: 'retarget-attack', target };

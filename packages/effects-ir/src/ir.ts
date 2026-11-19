@@ -717,6 +717,15 @@ export type EffectOp =
   | { readonly kind: 'draw-by-board-comparison'; readonly count: number }
   /** Flip face-down or face-up cards in BASE. */
   | { readonly kind: 'flip'; readonly target: EffectTarget; readonly faceDown: boolean }
+  /**
+   * "Flip" every card of the target in BASE: the target is read once, the face-up Characters in it
+   * are turned face-down (301.14.a.2), then the cards that were face-down when the read happened
+   * are flipped face-up (301.22.c.2), in that order (301.2.a.2). A Character turned face-down by
+   * this op is not flipped back up, and a Face-Down Card that [UNIQUE] forbids face-up stays
+   * face-down (301.22.d; the reveal is not modelled, as for `flip`). Chosen by user decision K8,
+   * answer A (17.5.2.1-CHECKPOINTS.md). `flip` is unchanged.
+   */
+  | { readonly kind: 'flip-toggle'; readonly target: EffectTarget }
   /** Change the target of the attack in progress. */
   | { readonly kind: 'retarget-attack'; readonly target: EffectTarget }
   /** Skip the controller's Battle Phase this turn. */
@@ -764,6 +773,7 @@ export const EFFECT_OP_KINDS = [
   'rearrange-deck-top',
   'draw-by-board-comparison',
   'flip',
+  'flip-toggle',
   'retarget-attack',
   'skip-phase',
   'grant-second-chance-attack',
