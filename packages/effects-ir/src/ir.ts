@@ -564,7 +564,26 @@ export type EffectCondition =
       readonly name: EffectPickName;
       readonly lvMin: number | null;
       readonly lvMax: number | null;
-    };
+    }
+  /**
+   * The character that won the fight (the invocation's `winner`) still stands on the FIELD and
+   * satisfies the filter, read live when the condition is evaluated. Not met when there is no
+   * winner or it has left the FIELD. The `subject` binding is not rebound.
+   */
+  | { readonly kind: 'winner-matches'; readonly filter: EffectFilter }
+  /**
+   * The attacking character (the invocation's `attacker`) satisfies the filter, read live when the
+   * condition is evaluated. Lv, Power and feature in the filter are printed values (rule 301.6.a).
+   * The defender is read by `subject-matches`, which is unchanged. The `subject` binding is not
+   * rebound.
+   */
+  | { readonly kind: 'attacker-matches'; readonly filter: EffectFilter }
+  /**
+   * This card's effective Lv, read live when the condition is evaluated, equals the printed Lv of
+   * the revealed card. Not met when this card is not on BATTLE or nothing is revealed. The
+   * `subject` binding is not rebound.
+   */
+  | { readonly kind: 'source-lv-equals-revealed' };
 
 /** One step of a sequence. */
 export type EffectStep = {
@@ -764,6 +783,9 @@ export const EFFECT_CONDITION_KINDS = [
   'retreated-cards-match',
   'host-of-source-matches',
   'named-pick-lv',
+  'winner-matches',
+  'attacker-matches',
+  'source-lv-equals-revealed',
 ] as const satisfies readonly EffectCondition['kind'][];
 
 const everyConditionListed: [

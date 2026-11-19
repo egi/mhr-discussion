@@ -336,6 +336,21 @@ export function namedPickLv(
   return { kind: 'named-pick-lv', name, lvMin, lvMax };
 }
 
+/** The fight winner still on the FIELD satisfies the filter. */
+export function winnerMatches(filter: EffectFilter): EffectCondition {
+  return { kind: 'winner-matches', filter };
+}
+
+/** The attacker satisfies the filter (printed values). */
+export function attackerMatches(filter: EffectFilter): EffectCondition {
+  return { kind: 'attacker-matches', filter };
+}
+
+/** This card's effective Lv equals the revealed card's printed Lv. */
+export function sourceLvEqualsRevealed(): EffectCondition {
+  return { kind: 'source-lv-equals-revealed' };
+}
+
 /** "You may": the player chose to run the wrapped op by taking the action. */
 export function optional(op: EffectOp): EffectOp {
   return { kind: 'optional', op };

@@ -153,6 +153,9 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
     lvMin: z.number().int().nonnegative().nullable(),
     lvMax: z.number().int().nonnegative().nullable(),
   }),
+  z.strictObject({ kind: z.literal('winner-matches'), filter: EffectFilterSchema }),
+  z.strictObject({ kind: z.literal('attacker-matches'), filter: EffectFilterSchema }),
+  z.strictObject({ kind: z.literal('source-lv-equals-revealed') }),
 ]);
 
 const DurationSchema = z.literal('this-turn');

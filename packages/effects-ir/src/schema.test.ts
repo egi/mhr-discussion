@@ -471,6 +471,9 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     'retreated-cards-match': { kind: 'retreated-cards-match', filter: NO_FILTER },
     'host-of-source-matches': { kind: 'host-of-source-matches', filter: NO_FILTER },
     'named-pick-lv': { kind: 'named-pick-lv', name: 'A', lvMin: 4, lvMax: null },
+    'winner-matches': { kind: 'winner-matches', filter: NO_FILTER },
+    'attacker-matches': { kind: 'attacker-matches', filter: NO_FILTER },
+    'source-lv-equals-revealed': { kind: 'source-lv-equals-revealed' },
   };
 
   it.each(EFFECT_CONDITION_KINDS)('accepts a %s condition and rejects an unknown key on it', (kind) => {
