@@ -142,6 +142,7 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "SD01-010": { event: "activate", area: "HAND" },
   "SD02-017": { event: "enters-field-by-call", area: "FIELD" },
   "BP01-063": { event: "own-character-power-decreases", area: "HAND" },
+  "BP01-068": { event: "enters-retreat-by-losing-fight", area: "RETREAT" },
   "BP01-069": { event: "activate", area: "FIELD" },
   "BP01-077": { event: "enters-field-by-call", area: "FIELD" },
   "BP01-073": { event: "card-moved-to-deck-bottom", area: "FIELD" },
@@ -326,6 +327,7 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   },
   "SP01-025": { event: "host-attacks", area: "BATTLE" },
   "SP01-030": { event: "this-card-attached", area: "FIELD" },
+  "SP01-053": { event: "opponent-character-attacks", area: "HAND", subject: { feature: "Human" } },
   "SP01-054": { event: "opponent-base-move", area: "BATTLE" },
   "SP01-055": { event: "base-move", area: "FIELD" },
   "SP01-056": { event: "base-move", area: "FIELD" },
@@ -406,7 +408,7 @@ describe("trigger tags", () => {
   it("tags exactly the pinned scripts, with the pinned event and area", () => {
     const taggedKeys = [...new Set(tagged.map(([key]) => key))].sort();
     expect(taggedKeys).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(180);
+    expect(tagged).toHaveLength(182);
     for (const [key, i, ir] of tagged) {
       const want = TAGGED[key];
       expect(ir.trigger).toEqual(Array.isArray(want) ? want[i] : want);
