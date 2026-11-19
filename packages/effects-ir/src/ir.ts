@@ -475,6 +475,13 @@ export type EffectTarget =
        * normally 1. Invalid with `count: null`. Append-only: left out for the literal count.
        */
       readonly countScale?: EffectScaleSource | undefined;
+      /**
+       * Narrows an `ATTACHED` pool by the card each candidate hangs directly under: `'source'` keeps
+       * the cards attached to this card, `'not-source'` drops them (rule 301.25.b: an Attached
+       * Card cannot attach to the card it is attached to). Append-only: left out for the whole
+       * pool; used only with `area: 'ATTACHED'`.
+       */
+      readonly attachedTo?: 'source' | 'not-source' | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }
@@ -583,7 +590,14 @@ export type EffectCondition =
    * the revealed card. Not met when this card is not on BATTLE or nothing is revealed. The
    * `subject` binding is not rebound.
    */
-  | { readonly kind: 'source-lv-equals-revealed' };
+  | { readonly kind: 'source-lv-equals-revealed' }
+  /**
+   * The effect that caused the event is this card's own effect (the invocation's `cause` is this
+   * card). Not met when the event has no card cause (a call, a rule action) or another card caused
+   * it. `cause-matches` filters printed characteristics and cannot name this card. The `subject`
+   * binding is not rebound.
+   */
+  | { readonly kind: 'cause-is-source' };
 
 /** One step of a sequence. */
 export type EffectStep = {
@@ -786,6 +800,7 @@ export const EFFECT_CONDITION_KINDS = [
   'winner-matches',
   'attacker-matches',
   'source-lv-equals-revealed',
+  'cause-is-source',
 ] as const satisfies readonly EffectCondition['kind'][];
 
 const everyConditionListed: [

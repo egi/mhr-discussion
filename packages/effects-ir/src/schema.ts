@@ -98,6 +98,7 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
       .readonly()
       .optional(),
     countScale: z.enum(EFFECT_SCALE_SOURCES).optional(),
+    attachedTo: z.enum(['source', 'not-source']).optional(),
   }).refine((t) => t.countScale === undefined || t.count !== null, {
     message: 'countScale needs a numeric count',
   }),
@@ -156,6 +157,7 @@ export const EffectConditionSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('winner-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('attacker-matches'), filter: EffectFilterSchema }),
   z.strictObject({ kind: z.literal('source-lv-equals-revealed') }),
+  z.strictObject({ kind: z.literal('cause-is-source') }),
 ]);
 
 const DurationSchema = z.literal('this-turn');

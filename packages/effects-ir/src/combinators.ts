@@ -351,6 +351,21 @@ export function sourceLvEqualsRevealed(): EffectCondition {
   return { kind: 'source-lv-equals-revealed' };
 }
 
+/** The effect that caused the event is this card's own effect. */
+export function causeIsSource(): EffectCondition {
+  return { kind: 'cause-is-source' };
+}
+
+/** `count` cards from the ATTACHED area, kept (`'source'`) or excluded (`'not-source'`) by being attached to this card. */
+export function selectAttachedTo(
+  attachedTo: 'source' | 'not-source',
+  side: EffectSide,
+  filter: EffectFilter,
+  count = 1,
+): EffectTarget {
+  return { kind: 'selected', side, area: 'ATTACHED', count, upTo: false, filter, attachedTo };
+}
+
 /** "You may": the player chose to run the wrapped op by taking the action. */
 export function optional(op: EffectOp): EffectOp {
   return { kind: 'optional', op };

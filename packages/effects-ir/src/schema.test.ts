@@ -474,6 +474,7 @@ describe('the appended conditions, targets, facets, scale sources and restrictio
     'winner-matches': { kind: 'winner-matches', filter: NO_FILTER },
     'attacker-matches': { kind: 'attacker-matches', filter: NO_FILTER },
     'source-lv-equals-revealed': { kind: 'source-lv-equals-revealed' },
+    'cause-is-source': { kind: 'cause-is-source' },
   };
 
   it.each(EFFECT_CONDITION_KINDS)('accepts a %s condition and rejects an unknown key on it', (kind) => {
