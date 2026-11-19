@@ -225,6 +225,8 @@ import * as SP01_059 from './SP01-059';
 import * as SP01_040 from './SP01-040';
 import * as SP01_049 from './SP01-049';
 import * as SP01_066 from './SP01-066';
+import * as SP01_064 from './SP01-064';
+import * as SP01_065 from './SP01-065';
 import * as SP01_067 from './SP01-067';
 import * as SP01_068 from './SP01-068';
 import * as SP01_070 from './SP01-070';
@@ -450,6 +452,8 @@ export const CARD_SCRIPTS: Readonly<Record<string, AnyCardScript>> = {
   'SP01-061': SP01_061.script,
   'SP01-062': SP01_062.script,
   'SP01-063': SP01_063.script,
+  'SP01-064': SP01_064.script,
+  'SP01-065': SP01_065.script,
   'SP01-066': SP01_066.script,
   'SP01-067': SP01_067.script,
   'SP01-068': SP01_068.script,
