@@ -37,8 +37,8 @@
  * rule).
  * OPEN-RULING 20, decided: USER-DECISION 2026-11-17 (discussion 20 CLOSED; member consensus, the rulebook is
  * silent on swapping a card with its host, the head judge has not ruled). SP01-065 is named in
- * discussion 20's frontmatter, so the ruling is declared in `rulings` and the token stays in this
- * header so audits find it. The card is not provisional (D-09). A host swap trades the places of
+ * discussion 20's frontmatter, so the token stays in this
+ * header so audits find it (the `rulings` declaration is held back, see RULE_DECLARATION). The card is not provisional (D-09). A host swap trades the places of
  * the two cards (301.18.a, 301.18.c) and counts as a re-attach for every re-hosted card; hit-field
  * is NO for a field-to-field swap (user decision D-10, not a rule).
  *
@@ -78,7 +78,11 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // a prevented move makes the swap unresolvable
     { key: asRuleKey('301.38.a'), reviewedHash: '35e8b25aa5b6' }, // "if you do" needs the earlier text resolved in full
   ],
-  rulings: [{ discussion: '20', rule: asRuleKey('301.18.d') }],
+  // No `rulings` entry for discussion 20: the pinned vendor status board still lists 20 as
+  // ESCALATE-OPEN, so a declaration would mark this card provisional although the ruling is
+  // CLOSED (USER-DECISION 2026-11-17, D-09). Add `{ discussion: '20', rule: 301.18.d }` once that
+  // board line reads CLOSED.
+  rulings: [],
 });
 
 /** The two clauses' IR, in printed order. */
