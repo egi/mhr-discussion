@@ -332,6 +332,10 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "SP01-055": { event: "base-move", area: "FIELD" },
   "SP01-056": { event: "base-move", area: "FIELD" },
   "SP01-060": { event: "base-move", area: "FIELD" },
+  "EB01-014": [
+    { event: "this-card-attached", area: "FIELD" },
+    { event: "activate", area: "HAND" },
+  ],
   "SP01-003": [
     { event: "activate", area: "RETREAT" },
     { event: "enters-field-from-retreat", area: "BATTLE" },
@@ -420,7 +424,7 @@ describe("trigger tags", () => {
   it("tags exactly the pinned scripts, with the pinned event and area", () => {
     const taggedKeys = [...new Set(tagged.map(([key]) => key))].sort();
     expect(taggedKeys).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(188);
+    expect(tagged).toHaveLength(190);
     for (const [key, i, ir] of tagged) {
       const want = TAGGED[key];
       expect(ir.trigger).toEqual(Array.isArray(want) ? want[i] : want);

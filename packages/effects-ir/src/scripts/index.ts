@@ -111,6 +111,7 @@ import * as EB01_009 from './EB01-009';
 import * as EB01_010 from './EB01-010';
 import * as EB01_012 from './EB01-012';
 import * as EB01_013 from './EB01-013';
+import * as EB01_014 from './EB01-014';
 import * as PB01_001 from './PB01-001';
 import * as PB01_002 from './PB01-002';
 import * as PB01_003 from './PB01-003';
@@ -337,6 +338,7 @@ export const CARD_SCRIPTS: Readonly<Record<string, AnyCardScript>> = {
   'EB01-010': EB01_010.script,
   'EB01-012': EB01_012.script,
   'EB01-013': EB01_013.script,
+  'EB01-014': EB01_014.script,
   'PB01-001': PB01_001.script,
   'PB01-002': PB01_002.script,
   'PB01-003': PB01_003.script,
