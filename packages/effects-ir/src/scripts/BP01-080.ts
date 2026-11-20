@@ -7,18 +7,19 @@
  *   characters in BATTLE is lower than your opponent's, you may prune this card in HAND. If you do,
  *   you retreat that character.
  *
- * The trigger tag is `opponent-character-attacks` from the HAND, narrowed to an attacker of Lv3
- * (the `level` subject filter; for this event the filter tests the ATTACKER, not the defender
- * that the fire pins as the trigger subject). A HAND trigger needs no declaration (304.1.g.2). The
+ * The trigger tag is `opponent-character-attacks` from the HAND, narrowed to an attacker of effective Lv3
+ * (the `effectiveLevel` subject filter; for this event the filter tests the ATTACKER, not the
+ * defender that the fire pins as the trigger subject). A HAND trigger needs no declaration (304.1.g.2). The
  * condition is `total-lv-lower-than-opponent`: the Lv total of the own BATTLE characters is
  * strictly lower than the opponent's; equal totals fail it. The prune of this card is the optional
  * cost (304.1.a, 301.17.a); only if it was done ("If you do", Reading B, discussion 10 item 3, rule
  * 301.38.a) is the attacker retreated (301.16.a.3). The retreat target is `attackingCharacter()`,
  * never the defender.
  *
- * Printed-Lv caveat: the trigger filter reads the attacker's PRINTED Lv, not its effective Lv, so a
- * character whose Lv was raised or lowered by an effect is judged by its printed Lv here. This
- * script does not declare discussion 10.
+ * Effective Lv: the filter reads the attacker's Lv as effects change it at the attack, so a printed
+ * Lv3 raised to Lv4 does not match and a printed Lv4 lowered to Lv3 does. Basis: USER-DECISION
+ * 2026-11-20 with the engine reading `attacker-effective-lv` (discussion 56); the rulebook is silent
+ * on effective Lv, so this is provisional. This script does not declare discussion 10.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
@@ -59,6 +60,6 @@ export function script(): EffectIR {
       { kind: 'total-lv-lower-than-opponent' },
       optional(sequence(step(prune(source())), ifDone(retreat(attackingCharacter())))),
     ),
-    trigger('opponent-character-attacks', 'HAND', undefined, { level: 3 }),
+    trigger('opponent-character-attacks', 'HAND', undefined, { effectiveLevel: 3 }),
   );
 }

@@ -12,8 +12,10 @@
  *
  * Event tag: follows-host-to-retreat, RETREAT. The AUTO is modelled elsewhere; the script is the
  * TRIG. It is optional (304.1.a) and has two steps: place this card from the RETREAT onto the
- * own BATTLE (it is a Character again once detached, 301.26.a), and only if that was done attach
- * one own Machine character from the RETREAT to this card, which is now the host. With no Machine
+ * own BATTLE (301.12.a: "To PLACE a card means to put that card face-up into the specified area."),
+ * and only if that was done attach one own Machine character from the RETREAT to this card, which
+ * is now a Character on the BATTLE and the host (301.25.a: a Character may be stacked underneath
+ * another Character and then becomes an Attached Card). With no Machine
  * character in the RETREAT the second step is not done and the card still stands on the BATTLE.
  *
  * Discussion 32 (attachments follow the host): HEAD-JUDGE for follow-host (FAQ F-37), RESOLVED
