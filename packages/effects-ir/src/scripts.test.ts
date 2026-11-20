@@ -142,6 +142,7 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "SD01-010": { event: "activate", area: "HAND" },
   "SD02-017": { event: "enters-field-by-call", area: "FIELD" },
   "BP01-063": { event: "own-character-power-decreases", area: "HAND" },
+  "BP01-067": { event: "opponent-character-attacks", area: "FIELD" },
   "BP01-068": { event: "enters-retreat-by-losing-fight", area: "RETREAT" },
   "BP01-069": { event: "activate", area: "FIELD" },
   "BP01-077": { event: "enters-field-by-call", area: "FIELD" },
@@ -441,7 +442,7 @@ describe("trigger tags", () => {
   it("tags exactly the pinned scripts, with the pinned event and area", () => {
     const taggedKeys = [...new Set(tagged.map(([key]) => key))].sort();
     expect(taggedKeys).toEqual(Object.keys(TAGGED).sort());
-    expect(tagged).toHaveLength(199);
+    expect(tagged).toHaveLength(200);
     for (const [key, i, ir] of tagged) {
       const want = TAGGED[key];
       expect(ir.trigger).toEqual(Array.isArray(want) ? want[i] : want);
@@ -478,7 +479,7 @@ describe("trigger tags", () => {
 });
 
 describe("oncePerTurn marker", () => {
-  it("is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008, SP01-010, SP01-055, SP01-056, SP01-060, SP01-049, SP01-069, SP01-078, BP01-062, SP01-007, SD01-002, SP01-036, SP01-019, SP01-072, SP01-075, SP01-011, SP01-058, BP01-101, SP01-066, SP01-029, SP01-064#0, SP01-064#1, SP01-065#0, SP01-065#1, SP01-026#0, SP01-009#0 and SP01-002 alone and absent (not undefined-valued) everywhere else", () => {
+  it("is set on EB01-007, BP01-023, BP01-035, BP01-045, BP01-047, BP01-069, BP01-073, BP01-105, SP01-006, SP01-023, SP01-043, SP01-062, SP01-042, SD01-003, SD01-016, BP01-096, BP01-108, BP01-113, BP01-091, BP01-048, BP01-070, BP01-067, SD04-004, PB01-011, SP01-012, SD01-001, SP01-021, SD03-017, SP01-020, SP01-038, SD02-009, SD02-011, SD03-006, SP01-008, SP01-010, SP01-055, SP01-056, SP01-060, SP01-049, SP01-069, SP01-078, BP01-062, SP01-007, SD01-002, SP01-036, SP01-019, SP01-072, SP01-075, SP01-011, SP01-058, BP01-101, SP01-066, SP01-029, SP01-064#0, SP01-064#1, SP01-065#0, SP01-065#1, SP01-026#0, SP01-009#0 and SP01-002 alone and absent (not undefined-valued) everywhere else", () => {
     for (const [baseNo, script] of Object.entries(CARD_SCRIPTS)) {
       const clauses = scriptClauses(script);
       // Keyed by cardNo for a one-clause card, `<cardNo>#<index>` for a multi-clause card.
@@ -521,6 +522,7 @@ describe("oncePerTurn marker", () => {
         cardNo === "BP01-091" ||
         cardNo === "BP01-048" ||
         cardNo === "BP01-070" ||
+        cardNo === "BP01-067" ||
         cardNo === "SD04-004" ||
         cardNo === "PB01-011" ||
         cardNo === "SP01-012" ||
