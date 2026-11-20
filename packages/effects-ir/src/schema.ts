@@ -105,6 +105,7 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
   z.strictObject({ kind: z.literal('host-of-source') }),
   z.strictObject({ kind: z.literal('attacker') }),
   z.strictObject({ kind: z.literal('winner') }),
+  z.strictObject({ kind: z.literal('retarget-candidate') }),
   z.strictObject({ kind: z.literal('named'), name: PickNameSchema }),
 ]);
 

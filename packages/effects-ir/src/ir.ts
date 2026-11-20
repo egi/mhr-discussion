@@ -490,7 +490,13 @@ export type EffectTarget =
   /** The character whose attack fired the effect ("that your character"). Append-only. */
   | { readonly kind: 'attacker' }
   /** The character that won the fight that retreated the subject ("the winner"). Append-only. */
-  | { readonly kind: 'winner' };
+  | { readonly kind: 'winner' }
+  /**
+   * The characters (and empty lanes, each a Weakness) the attacker in progress may legally attack,
+   * other than the current Attack Target; one is chosen. Read from the attack in progress when the
+   * step resolves. Append-only. Rule 303.2.a.4.3.1.1.
+   */
+  | { readonly kind: 'retarget-candidate' };
 
 /** Where a relocated card goes, and whether it lands face down. */
 export type EffectDestination = {
@@ -829,6 +835,7 @@ export const EFFECT_TARGET_KINDS = [
   'named',
   'attacker',
   'winner',
+  'retarget-candidate',
 ] as const satisfies readonly EffectTarget['kind'][];
 
 const everyTargetListed: [Exclude<EffectTarget['kind'], (typeof EFFECT_TARGET_KINDS)[number]>] extends [

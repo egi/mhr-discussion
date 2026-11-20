@@ -386,6 +386,14 @@ export function winningCharacter(): EffectTarget {
   return { kind: 'winner' };
 }
 
+/**
+ * The other targets the attack in progress may legally take, one of them chosen (empty lanes
+ * included, each a Weakness: 303.2.a.4.3.1.1). Use as the target of `retargetAttack`.
+ */
+export function retargetCandidate(): EffectTarget {
+  return { kind: 'retarget-candidate' };
+}
+
 /** Retreat all (or one) of the cards attached to `host`, optionally except the source card. */
 export function retreatAttachedOfHost(
   host: EffectTarget,
