@@ -173,6 +173,12 @@ export type TriggerSubjectFilter = {
   readonly level?: number | undefined;
   readonly levelAtLeast?: number | undefined;
   readonly levelAtMost?: number | undefined;
+  /**
+   * Effective Lv (the printed Lv as changed by effects) equal to this, read at the event. Unlike
+   * `level` this is not the printed value. User decision 2026-11-20, discussion 56 (the rulebook is
+   * silent on an effective Lv). Append-only: left out when unused.
+   */
+  readonly effectiveLevel?: number | undefined;
   readonly lane?: 'FRONT' | 'WING' | 'BACK' | undefined;
   /**
    * Fires only while the card carrying the script belongs to the active player (`'own'`) or to
