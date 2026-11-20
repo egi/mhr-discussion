@@ -22,8 +22,12 @@
  * Clause 1 (would-be-attached, BATTLE). "Would have a card attached" is the ordinary after-attach
  * timing (discussion 45, USER-DECISION). The cause must be this card itself (`causeIsSource`): an
  * attach by the opponent, by another own card or with no card cause (a call) does nothing. Branch
- * (1) of clause 0 attaches to this card by this card's own effect, so it fires clause 1 in
- * sequence. The opponent's deck with fewer than 2 cards mills what it has (304.1.d).
+ * (1) of clause 0 moves a card that is already attached elsewhere onto this card. The engine
+ * treats that move as an attach by this card's own effect: it emits the attach events, so clause 1
+ * fires and mills after the move (USER-DECISION 2026-11-21, discussion 57, CP-5 option B;
+ * provisional and unruled, under OPEN-RULING 50). Branch (2) moves this card's own attached card
+ * onto another character, so the new host is not this card and clause 1 does not fire. The
+ * opponent's deck with fewer than 2 cards mills what it has (304.1.d).
  *
  * OPEN-RULING 50, tier ESCALATE-OPEN: .planning/research/community-rulings/discussions/50-anti-venom-attach-and-attached-triggers-iron-man-black-panther.md
  * (cards SD01-001, SP01-067, SP01-009 and SP01-002, `cards-status: confirmed`): whether an on-attach
