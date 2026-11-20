@@ -174,7 +174,7 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "BP01-080": {
     event: "opponent-character-attacks",
     area: "HAND",
-    subject: { level: 3 },
+    subject: { effectiveLevel: 3 },
   },
   "BP01-081": {
     event: "own-character-attacked",
@@ -255,7 +255,7 @@ const TAGGED: Readonly<Record<string, Tag | readonly Tag[]>> = {
   "SD03-015": {
     event: "opponent-character-attacks",
     area: "HAND",
-    subject: { level: 3 },
+    subject: { effectiveLevel: 3 },
   },
   "SD03-016": {
     event: "own-character-attacked",
