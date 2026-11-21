@@ -54,6 +54,10 @@ describe('parseBoard', () => {
     expect(rows.get('10')?.mark).toBe('ESCALATE-OPEN');
     expect(rows.get('06')?.mark).toBe('ESCALATE');
   });
+  it('parses a USER-DECISION row', () => {
+    const text = real.replace(/^(\| *6 *\|[^|]*\|) *ESCALATE[^|]*\|/m, '$1 USER-DECISION (owner call) |');
+    expect(parseBoard(text).get('06')?.mark).toBe('USER-DECISION');
+  });
   it('throws BOARD_UNREADABLE without a header', () => {
     expect(() => parseBoard('no table here')).toThrow(/header/);
   });
@@ -116,6 +120,11 @@ describe('evaluate', () => {
     expect(open.scripts[0]?.flags).toEqual(['RULING_OPEN']);
     expect(open.scripts[0]?.rulings[0]?.status).toBe('ESCALATE');
     expect(run(good, board('ESCALATE-OPEN')).scripts[0]?.flags).toEqual(['RULING_OPEN']);
+  });
+  it('does not flag a USER-DECISION ruling', () => {
+    const r = run(good, board('USER-DECISION'));
+    expect(r.scripts[0]?.rulings[0]?.status).toBe('USER-DECISION');
+    expect(r.scripts[0]?.flags).toEqual([]);
   });
   it('restricts failures with only but keeps overall totals', () => {
     const r = run(undefined, board(), ['OTHER']);

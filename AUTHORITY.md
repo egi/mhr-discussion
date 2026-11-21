@@ -25,6 +25,9 @@ Every discussion carries exactly one mark on its Status line, and the status boa
 | CONSENSUS | The head judge was silent on the exact case, trusted judges agree after 24 Sep 2026, and nothing in the rulebook contradicts them. |
 | ESCALATE | Trusted judges are split, or key evidence is missing, and the head judge has not ruled. Not settled. |
 | ESCALATE-OPEN | An engine or script behaviour is provisional. Not settled. |
+| USER-DECISION | The project owner decided this. It is the owner's call, not a judge ruling, and it is revisited if the head judge rules. |
+
+USER-DECISION is not an open item, but it ranks below HEAD-JUDGE and the rulebook.
 
 ESCALATE and ESCALATE-OPEN items are never treated as settled. Engines, scripts and verdicts built on them must say so.
 

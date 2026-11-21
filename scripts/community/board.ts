@@ -8,6 +8,7 @@ export const MARKS = [
   'CONSENSUS',
   'ESCALATE-OPEN',
   'ESCALATE',
+  'USER-DECISION',
   'WITHHELD',
 ] as const;
 

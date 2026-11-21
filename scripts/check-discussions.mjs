@@ -10,7 +10,7 @@ import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const PUBLISHED_NUMBERS = ['01', '02', '03', '04', '05', '06', '07', '09', '10', '11', '13', '20', '55', '59'];
-export const PUBLIC_MARKS = ['RESOLVED', 'HEAD-JUDGE', 'CONSENSUS', 'ESCALATE', 'ESCALATE-OPEN'];
+export const PUBLIC_MARKS = ['RESOLVED', 'HEAD-JUDGE', 'CONSENSUS', 'ESCALATE', 'ESCALATE-OPEN', 'USER-DECISION'];
 export const HEADINGS = [
   'The question',
   'Positions',
@@ -177,7 +177,12 @@ function sampleBoard(status = 'RESOLVED (rulebook)') {
 function selfTest() {
   const keys = new Set(['303.2.a.4']);
   const run = (files, board = sampleBoard()) => checkDiscussions(files, board, keys).map((v) => v.code);
+  const userFiles = Object.fromEntries(
+    Object.entries(sampleFiles({})).map(([k, v]) => [k, k === BOARD_NAME ? v : v.replace('RESOLVED', 'USER-DECISION')]),
+  );
   const cases = [
+    ['USER-DECISION clean', run(userFiles, sampleBoard('USER-DECISION (owner call)')), null],
+    ['USER-DECISION mismatch', run(userFiles, sampleBoard('RESOLVED (rulebook)')), 'DISC_BOARD_MISMATCH'],
     ['clean', run(sampleFiles({})), null],
     ['DISC_FILE_SET', run(sampleFiles({ '08-x.md': CLEAN_DISCUSSION })), 'DISC_FILE_SET'],
     ['DISC_STATUS_LINE', run(sampleFiles({}, CLEAN_DISCUSSION.replace('RESOLVED', 'JUDGE-RULED'))), 'DISC_STATUS_LINE'],
