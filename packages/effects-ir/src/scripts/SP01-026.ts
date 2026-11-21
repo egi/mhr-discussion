@@ -42,11 +42,10 @@
  * "hit field". The character going from the field to the HAND is "moving" (301.18.f). Hit-field
  * stays NO for a field-to-field swap such as clause 0 (301.18.d).
  *
- * OPEN-RULING 20 decided: swap-as-attach, discussion 20 (CLOSED, USER-DECISION 2026-11-17; member
- * consensus, rulebook silent, head judge has not ruled). The card is not provisional (D-09).
- * `rulings` is left empty: the pinned vendor status board line for 20 still reads ESCALATE-OPEN,
- * which would list the card as provisional. Add `{ discussion: '20', rule: 301.18.d }` once that
- * board line reads CLOSED.
+ * Swap-as-attach: discussion 20 is USER-DECISION 2026-11-17 (the project owner's call; the head
+ * judge has not ruled), cited through `rulings` with rule 301.18.d. Rules 301.18.a-e and 301.25.a
+ * (checked docs/rules L357-367, L439) do not address a swap of a card with the card it is
+ * attached to. The card is not provisional (D-09).
  *
  * Rules verified in docs/rules: 301.18.a, 301.18.c, 301.18.d, 301.18.f, 301.18.h, 301.38.a,
  * 201.10.f.2 (Activated Effect), 201.10.f.3 (COUNTER-Activated Effect).
@@ -85,8 +84,7 @@ export const RULE_DECLARATION = declareRules({
     { key: asRuleKey('301.18.h'), reviewedHash: 'bce92f4d4890' }, // a prevented move makes the swap unresolvable
     { key: asRuleKey('301.38.a'), reviewedHash: '35e8b25aa5b6' }, // "if you do" needs the earlier text resolved in full
   ],
-  // No `rulings` entry for discussion 20: see the header.
-  rulings: [],
+  rulings: [{ discussion: '20', rule: asRuleKey('301.18.d') }],
 });
 
 /** The two clauses' IR, in printed order. */

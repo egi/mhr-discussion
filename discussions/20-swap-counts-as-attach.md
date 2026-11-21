@@ -1,6 +1,6 @@
 # 20 - A swap counts as an attach
 
-**Status: ESCALATE-OPEN (closed 2026-11-17 by user decision: a swap counts as a re-attach; nothing here is a head judge ruling)**
+**Status: USER-DECISION (closed 2026-11-17: a swap counts as a re-attach; this is the project owner's call, not a head judge ruling, and it is revisited if the head judge rules)**
 
 > Source note: L<n> citations refer to a private chat export and cannot be re-checked by readers. This text is a paraphrase, and people appear by role only.
 
