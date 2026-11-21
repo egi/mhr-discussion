@@ -16,12 +16,11 @@
 
 import { asCardNo, asRuleKey } from '@mhr/core';
 import {
-  ANY_CARD,
   effect,
   ifDone,
   optional,
   relocate,
-  select,
+  selectTop,
   sequence,
   source,
   step,
@@ -55,7 +54,7 @@ export function script(): EffectIR {
     optional(
       sequence(
         step(
-          relocate(select('self', 'DECK', ANY_CARD, 1), {
+          relocate(selectTop('self', 1), {
             side: 'self',
             area: 'BASE',
             faceDown: true,

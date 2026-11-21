@@ -15,7 +15,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { ANY_CARD, effect, optional, relocate, select, trigger } from '../combinators';
+import { effect, optional, relocate, selectTop, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -34,7 +34,7 @@ export const RULE_DECLARATION = declareRules({
 export function script(): EffectIR {
   return effect(
     CARD_NO,
-    optional(relocate(select('self', 'DECK', ANY_CARD, 1), { side: 'self', area: 'BASE', faceDown: true })),
+    optional(relocate(selectTop('self', 1), { side: 'self', area: 'BASE', faceDown: true })),
     trigger('own-character-enters-field', 'FIELD', undefined, { color: 'blue' }),
     { oncePerTurn: true },
   );

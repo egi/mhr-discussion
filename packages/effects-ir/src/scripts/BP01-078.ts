@@ -12,15 +12,12 @@
  * BASE (301.12.a) and otherwise it is discarded into the RETREAT (301.15.a.3). An empty deck shows
  * nothing and nothing happens.
  *
- * Known limit, shared with the other scripts that name the top DECK card (BP01-026, BP01-065,
- * BP01-077): the IR has no top-of-deck selector, so the target is `select('self','DECK',...,1)`.
- * Without a pick the interpreter takes the first card, which is the top card; but the choice
- * request lists every deck card as a candidate, and a pick naming a deeper card is honoured.
+ * The target is `selectTop('self', 1)`: the pool is exactly the top DECK card, so the player is
+ * never asked to choose and a forged pick naming a deeper card is ignored.
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
 import {
-  ANY_CARD,
   colored,
   conditional,
   discard,
@@ -28,6 +25,7 @@ import {
   optional,
   relocate,
   select,
+  selectTop,
   sequence,
   show,
   step,
@@ -48,7 +46,7 @@ export const RULE_DECLARATION = declareRules({
   rulings: [],
 });
 
-const top = () => select('self', 'DECK', ANY_CARD, 1);
+const top = () => selectTop('self', 1);
 
 /** The effect's IR. */
 export function script(): EffectIR {

@@ -12,9 +12,8 @@
  * (301.13.a); with no Avengers character in the HAND nothing happens, and a deck of fewer than 2
  * cards places what it holds. A full BASE (302.6.a) keeps the rest in the deck.
  *
- * The IR has no top-of-deck selector (see BP01-078), so the selection is
- * `select('self','DECK',...,2)`; the deck order is not chosen by the player, so the two cards
- * moved are the first two of the deck.
+ * The selection is `selectTop('self', 2)`: the two cards moved are exactly the top two of the
+ * deck, so the player is not asked to choose them.
  *
  * "If you do" Reading B (the gated step runs only if the first step was done in full) is a USER
  * DECISION, tier USER-DECISION, not a head-judge ruling on the phrase. It has been the engine
@@ -33,13 +32,13 @@
 
 import { asCardNo, asRuleKey } from '@mhr/core';
 import {
-  ANY_CARD,
   characters,
   discard,
   effect,
   ifDone,
   relocate,
   select,
+  selectTop,
   sequence,
   step,
   trigger,
@@ -67,7 +66,7 @@ export function script(): EffectIR {
     sequence(
       step(discard(select('self', 'HAND', characters({ feature: 'Avengers' })))),
       ifDone(
-        relocate(select('self', 'DECK', ANY_CARD, 2), {
+        relocate(selectTop('self', 2), {
           side: 'self',
           area: 'BASE',
           faceDown: true,

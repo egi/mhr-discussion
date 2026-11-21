@@ -12,13 +12,12 @@
 
 import { asCardNo, asRuleKey } from '@mhr/core';
 import {
-  ANY_CARD,
   colored,
   conditional,
   effect,
   optional,
   relocate,
-  select,
+  selectTop,
   trigger,
 } from '../combinators';
 import { declareRules } from '../declaration';
@@ -42,7 +41,7 @@ export function script(): EffectIR {
     conditional(
       { kind: 'have', side: 'self', area: 'BASE', filter: colored('red'), min: 1, max: null },
       optional(
-        relocate(select('self', 'DECK', ANY_CARD, 2), {
+        relocate(selectTop('self', 2), {
           side: 'self',
           area: 'BASE',
           faceDown: true,

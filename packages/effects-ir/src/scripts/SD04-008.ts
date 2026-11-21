@@ -14,7 +14,7 @@
  */
 
 import { asCardNo, asRuleKey } from '@mhr/core';
-import { ANY_CARD, effect, relocate, select, trigger } from '../combinators';
+import { effect, relocate, selectTop, trigger } from '../combinators';
 import { declareRules } from '../declaration';
 import type { EffectIR } from '../ir';
 
@@ -34,7 +34,7 @@ export const RULE_DECLARATION = declareRules({
 export function script(): EffectIR {
   return effect(
     CARD_NO,
-    relocate(select('self', 'DECK', ANY_CARD, 2), { side: 'self', area: 'BASE', faceDown: true }),
+    relocate(selectTop('self', 2), { side: 'self', area: 'BASE', faceDown: true }),
     trigger('enters-retreat-by-discard-effect', 'RETREAT'),
   );
 }

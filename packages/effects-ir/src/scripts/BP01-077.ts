@@ -12,12 +12,11 @@
 
 import { asCardNo, asRuleKey } from '@mhr/core';
 import {
-  ANY_CARD,
   draw,
   effect,
   ifDone,
   relocate,
-  select,
+  selectTop,
   sequence,
   step,
   trigger,
@@ -47,7 +46,7 @@ export function script(): EffectIR {
     sequence(
       step(draw('self', 1)),
       ifDone(
-        relocate(select('self', 'DECK', ANY_CARD), { side: 'self', area: 'BASE', faceDown: true }),
+        relocate(selectTop('self'), { side: 'self', area: 'BASE', faceDown: true }),
       ),
     ),
     trigger('enters-field-by-call', 'FIELD'),
