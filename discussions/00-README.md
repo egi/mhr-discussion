@@ -33,6 +33,8 @@ Citations written `L<n>` refer to a private chat export and cannot be re-checked
 | 35 | 35-i-am-the-shield-swap-with-itself.md | HEAD-JUDGE | BP01-096 can swap with another copy |
 | 32 | 32-attachments-follow-the-host.md | HEAD-JUDGE (follow host, FAQ F-37; face-down host RESOLVED, 301.25.l; deck-bottom attach order ESCALATE-OPEN) | Attached cards follow the host to RETREAT, VOID or HAND and return to their owner; the deck-bottom attach order is not settled |
 | 50 | 50-anti-venom-attach-and-attached-triggers-iron-man-black-panther.md | ESCALATE-OPEN | Anti-Venom vs on-attach triggers; AI-assisted answers only |
+| 55 | 55-bp01-067-retarget-queued-fires-and-decline.md | ESCALATE-OPEN (provisional user decisions on queued fires and decline; the no-refire reason rests on a head-judge FAQ statement) | Engine choices for a retarget: queued attack fires re-pointed to the new target, no re-fire, a declined optional step does not spend the once-per-turn use, Weakness is a candidate |
+| 59 | 59-bp01-035-second-clause-and-open-movement.md | ESCALATE-OPEN (scope is a user decision; the attach-from-field movement part is unanswered) | BP01-035 battle-trigger clause is scripted; whether the attach-from-field movement is a Move stays open |
 
 ## How to keep this board in sync
 

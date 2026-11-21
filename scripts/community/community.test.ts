@@ -43,9 +43,11 @@ describe('parseSnapshot', () => {
 
 describe('parseBoard', () => {
   const real = readFileSync(new URL('../../discussions/00-README.md', import.meta.url), 'utf8');
-  it('parses the committed board into 25 rows', () => {
+  it('parses the committed board into 27 rows', () => {
     const rows = parseBoard(real);
-    expect(rows.size).toBe(25);
+    expect(rows.size).toBe(27);
+    expect(rows.get('55')?.mark).toBe('ESCALATE-OPEN');
+    expect(rows.get('59')?.mark).toBe('ESCALATE-OPEN');
     expect(rows.get('50')?.mark).toBe('ESCALATE-OPEN');
     expect(rows.get('32')?.mark).toBe('HEAD-JUDGE');
     expect(rows.get('08')?.mark).toBe('WITHHELD');
