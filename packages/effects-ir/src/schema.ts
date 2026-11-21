@@ -99,9 +99,14 @@ export const EffectTargetSchema = z.discriminatedUnion('kind', [
       .optional(),
     countScale: z.enum(EFFECT_SCALE_SOURCES).optional(),
     attachedTo: z.enum(['source', 'not-source']).optional(),
-  }).refine((t) => t.countScale === undefined || t.count !== null, {
-    message: 'countScale needs a numeric count',
-  }),
+    deckEnd: z.enum(EFFECT_DECK_ENDS).optional(),
+  })
+    .refine((t) => t.countScale === undefined || t.count !== null, {
+      message: 'countScale needs a numeric count',
+    })
+    .refine((t) => t.deckEnd === undefined || (t.area === 'DECK' && t.count !== null && !t.upTo), {
+      message: 'deckEnd needs area DECK, a numeric count and upTo false',
+    }),
   z.strictObject({ kind: z.literal('host-of-source') }),
   z.strictObject({ kind: z.literal('attacker') }),
   z.strictObject({ kind: z.literal('winner') }),

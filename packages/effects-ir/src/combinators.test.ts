@@ -40,7 +40,9 @@ import {
   retreatAttachedOfHost,
   select,
   selectAll,
+  selectBottom,
   selectEitherSide,
+  selectTop,
   selectUpTo,
   sequence,
   show,
@@ -265,5 +267,16 @@ describe('chooseOne', () => {
       kind: 'choose-one',
       options: [draw('self', 1), draw('self', 2)],
     });
+  });
+});
+
+describe('selectTop and selectBottom', () => {
+  it('select the deck end with an exact count and validate', () => {
+    expect(selectTop('self', 2)).toEqual({
+      kind: 'selected', side: 'self', area: 'DECK', count: 2, upTo: false, filter: ANY_CARD, deckEnd: 'top',
+    });
+    expect(selectTop('opponent')).toMatchObject({ side: 'opponent', count: 1, deckEnd: 'top' });
+    expect(selectBottom('self', 3)).toMatchObject({ count: 3, deckEnd: 'bottom' });
+    expect('random' in selectTop('self')).toBe(false);
   });
 });

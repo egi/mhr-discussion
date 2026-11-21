@@ -96,6 +96,22 @@ export function selectRandom(
   return { kind: 'selected', side, area, count, upTo: false, filter, random: true };
 }
 
+/** The top `count` cards of the deck; the pool is exactly those cards, so nothing is chosen. */
+export function selectTop(
+  side: EffectSide,
+  count = 1,
+): Extract<EffectTarget, { readonly kind: 'selected' }> {
+  return { kind: 'selected', side, area: 'DECK', count, upTo: false, filter: ANY_CARD, deckEnd: 'top' };
+}
+
+/** The bottom `count` cards of the deck; the pool is exactly those cards, so nothing is chosen. */
+export function selectBottom(
+  side: EffectSide,
+  count = 1,
+): Extract<EffectTarget, { readonly kind: 'selected' }> {
+  return { kind: 'selected', side, area: 'DECK', count, upTo: false, filter: ANY_CARD, deckEnd: 'bottom' };
+}
+
 /**
  * `count` matching cards from the area or attached to the cards in it: a host and its attachment
  * are two cards when both are picked.

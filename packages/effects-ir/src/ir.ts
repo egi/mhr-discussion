@@ -488,6 +488,13 @@ export type EffectTarget =
        * pool; used only with `area: 'ATTACHED'`.
        */
       readonly attachedTo?: 'source' | 'not-source' | undefined;
+      /**
+       * The pool is the first (`'top'`) or last (`'bottom'`) `count` cards of the DECK, so the
+       * player is never asked to choose among them. Valid only with `area: 'DECK'`, a numeric
+       * `count` and `upTo: false`. Append-only: left out when unused, so earlier IR reads and
+       * hashes the same.
+       */
+      readonly deckEnd?: EffectDeckEnd | undefined;
     }
   /** The character the source card is attached to ("the character this card is attached to"). */
   | { readonly kind: 'host-of-source' }

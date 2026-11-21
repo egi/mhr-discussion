@@ -711,3 +711,28 @@ describe('the choose-one op', () => {
     expect(() => EffectIRSchema.parse(wrap({ kind: 'choose-one', options: [DRAW_ONE, { kind: 'nope' }] }))).toThrow();
   });
 });
+
+describe('deckEnd on a selected target', () => {
+  const deck = (extra: Record<string, unknown>): unknown =>
+    wrap({
+      ...VALID['prune'],
+      target: { ...OPPONENT_BATTLE, area: 'DECK', count: 2, upTo: false, deckEnd: 'top', ...extra },
+    });
+
+  it('accepts deckEnd on DECK with a numeric exact count', () => {
+    expect(() => EffectIRSchema.parse(deck({}))).not.toThrow();
+    expect(() => EffectIRSchema.parse(deck({ deckEnd: 'bottom' }))).not.toThrow();
+  });
+
+  it('rejects deckEnd on HAND, with count null, with upTo, or with an unknown end', () => {
+    expect(() => EffectIRSchema.parse(deck({ area: 'HAND' }))).toThrow();
+    expect(() => EffectIRSchema.parse(deck({ count: null }))).toThrow();
+    expect(() => EffectIRSchema.parse(deck({ upTo: true }))).toThrow();
+    expect(() => EffectIRSchema.parse(deck({ deckEnd: 'middle' }))).toThrow();
+  });
+
+  it('leaves the key out of an IR that does not use it', () => {
+    const plain = wrap({ ...VALID['prune'], target: { ...OPPONENT_BATTLE, area: 'DECK' } });
+    expect(JSON.stringify(EffectIRSchema.parse(plain))).not.toMatch(/deckEnd/);
+  });
+});
